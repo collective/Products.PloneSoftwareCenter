@@ -1,0 +1,9 @@
+Changelog for Products.PloneSoftwareCenter
+
+    (name of developer listed in brackets)
+
+Products.PloneSoftwareCenter - 1.5 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+
