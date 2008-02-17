@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <object name="AddRemoveWidget" meta_type="Filesystem Directory View"
+    directory="AddRemoveWidget/skins/AddRemoveWidget"/>
+ <object name="DataGridWidget" meta_type="Filesystem Directory View"
+    directory="DataGridField/skins/DataGridWidget"/>
+ <object name="archaddon" meta_type="Filesystem Directory View"
+    directory="ArchAddOn/skins/archaddon"/>
+ <object name="plonesoftwarecenter" meta_type="Filesystem Directory View"
+    directory="PloneSoftwareCenter/skins/plonesoftwarecenter"/>
+ <object name="plonesoftwarecenter_images"
+    meta_type="Filesystem Directory View"
+    directory="PloneSoftwareCenter/skins/plonesoftwarecenter_images"/>
+ <skin-path name="*">
+  <layer name="plonesoftwarecenter_images" 
+     insert-after="custom"/>
+  <layer name="plonesoftwarecenter" 
+     insert-after="plonesoftwarecenter_images"/>
+  <layer name="DataGridWidget"
+     insert-after="plonesoftwarecenter"/>
+  <layer name="archaddon" 
+     insert-after="DataGridWidget"/>
+  <layer name="AddRemoveWidget" 
+     insert-after="archaddon"/>
+ </skin-path>
+</object>

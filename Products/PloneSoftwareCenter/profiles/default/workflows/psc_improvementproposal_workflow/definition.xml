@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="psc_improvementproposal_workflow"
+             title="PSC Improvement Proposal workflow"
+             state_variable="review_state"
+             initial_state="draft">
+ <permission>Access contents information</permission>
+ <permission>View</permission>
+ <permission>Modify portal content</permission>
+ <state state_id="being-discussed" title="Being discussed">
+  <exit-transition transition_id="begin"/>
+  <exit-transition transition_id="defer"/>
+  <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="re-draft"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="completed" title="Completed and merged">
+  <exit-transition transition_id="re-merge"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="deferred" title="Deferred">
+  <exit-transition transition_id="begin"/>
+  <exit-transition transition_id="re-draft"/>
+  <exit-transition transition_id="reject"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="draft" title="Draft">
+  <exit-transition transition_id="propose"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="in-progress" title="In progress">
+  <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="defer"/>
+  <exit-transition transition_id="re-discuss"/>
+  <exit-transition transition_id="reject"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="ready-for-merge" title="Ready for merge">
+  <exit-transition transition_id="defer"/>
+  <exit-transition transition_id="merge"/>
+  <exit-transition transition_id="re-work"/>
+  <exit-transition transition_id="reject"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="rejected" title="Rejected">
+  <exit-transition transition_id="re-draft"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <transition transition_id="accept" title="" new_state=""
+             trigger="USER" before_script="" after_script="">
+  
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="begin"
+             title="Begin proposed work"
+             new_state="in-progress" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Begin work</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="complete"
+             title="Complete proposed work"
+             new_state="ready-for-merge" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Complete work</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="defer"
+             title="Defer work on this proposal"
+             new_state="deferred" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Defer work</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="merge"
+             title="Merge changes from this proposal"
+             new_state="completed" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Merge changes</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="propose" title="Propose"
+             new_state="being-discussed" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Propose</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="re-discuss"
+             title="Return to discussion stage"
+             new_state="being-discussed" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Re-discuss</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="re-draft" title="Re-draft"
+             new_state="draft" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Re-draft</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="re-merge"
+             title="Return to ready-for-merge stage"
+             new_state="ready-for-merge" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Un-merge</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="re-work"
+             title="Return to in-progress stage"
+             new_state="in-progress" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Re-work</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="reject"
+             title="Reject this proposal"
+             new_state="rejected" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Reject proposal</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <worklist worklist_id="reviewer_queue" title="">
+  <description>Reviewer tasks</description>
+  <action url="%(portal_url)s/search?review_state=pending"
+          category="global">Pending (%(count)d)</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+  <match name="review_state" values="pending"/>
+ </worklist>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+</dc-workflow>
