@@ -1,0 +1,56 @@
+/* 
+** PloneSoftwareCenter style sheet for CSS2-capable browsers.
+**
+** Copyright Alexander Limi - http://www.plonesolutions.com
+**
+** Feel free to use whole or parts of this for your own designs, but give credit
+** where credit is due.
+**
+*/
+
+/* <dtml-with base_properties> */
+
+.portletHalfWidth {
+    width: 45%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+.portletThirdWidth {
+    width: 30%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+/* This portlet link selector can be removed once Plone 2.1.3 and later is more common */
+.portlet a {
+    display: inline;
+}
+
+
+.state-being-discussed {
+    color: Black;
+}
+
+.state-in-progress {
+    color: &dtml-notifyBorderColor;;
+}
+
+.state-completed {
+    color: &dtml-linkColor;;
+}
+
+.state-rejected {
+    color: &dtml-discreetColor;;
+}
+
+.state-deferred {
+    color: Red;
+}
+
+.state-ready-for-merge {
+    color: #74AE0B;
+}
+
+
+/* </dtml-with> */
