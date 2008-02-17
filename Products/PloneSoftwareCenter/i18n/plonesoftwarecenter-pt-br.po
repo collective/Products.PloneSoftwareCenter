@@ -1,0 +1,196 @@
+# PloneSoftwareCenter
+# Dorneles Treméa <deo@plonesolutions.com>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneSoftwareCenter\n"
+"POT-Creation-Date: 2006-01-26 20:05+0000\n"
+"PO-Revision-Date: 2005-03-11 02:50+0000\n"
+"Last-Translator: Dorneles Treméa <deo@plonesolutions.com>\n"
+"Language-Team: Plone-i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pt-br\n"
+"Language-Name: Português do Brasil\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: plonesoftwarecenter\n"
+
+#. Default: "Latest releases"
+#: ./plonesoftwarecenter/portlet_releases.pt
+msgid "box_latest_releases"
+msgstr "Últimos Lançamentos"
+
+#. Default: "More Releases"
+#: ./plonesoftwarecenter/portlet_releases.pt
+msgid "box_more_projects"
+msgstr ""
+
+#. Default: "You can not add releases, documentation or feature proposals until the project itself is approved, make sure you submit it for approval when the relevant project information has been entered."
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "description_cannot_add_before_approved"
+msgstr "Você não pode adicionar lançamentos, documentação ou novas propostas de aperfeiçoamento até o projeto ser aprovado. Certifique-se de enviá-lo para aprovação após informar os dados relevantes do projeto."
+
+#. Default: "There are no available software files in this release yet."
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "description_no_available_files"
+msgstr "Ainda não existem arquivos disponíveis neste lançamento."
+
+#. Default: "There are no published releases in this project yet."
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "description_no_available_releases"
+msgstr "Ainda não existem lançamentos publicados neste projeto."
+
+#. Default: "This listing will prioritize final releases, but will list the latest published release of any other type if no final release exists."
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "description_prioritize_releases"
+msgstr "Esta listagem priorizará os lançamentos na maturidade 'Final', mas irá listar o último lançamento publicado de cada tipo caso não existam versões finais."
+
+#. Default: "Use the Add menu to add software files."
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "description_use_add_menu_to_add_files"
+msgstr "Use o menu Adicionar para incluir novos arquivos do software."
+
+#. Default: "Use the Add menu to add releases."
+#: ./plonesoftwarecenter/psc_releasefolder_view.pt
+msgid "description_use_add_menu_to_add_releases"
+msgstr "Use o menu Adicionar para incluir novos lançamentos."
+
+#. Default: "Available categories"
+#: ./plonesoftwarecenter/psc_categories_view.pt
+msgid "heading_available_categories"
+msgstr "Categorias disponíveis"
+
+#. Default: "Available downloads"
+#: ./plonesoftwarecenter/psc_categories_download.pt
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_available_downloads"
+msgstr "Downloads disponíveis"
+
+#. Default: "Documentation"
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "heading_documentation"
+msgstr "Documentação"
+
+#. Default: "Downloadable Releases"
+#: ./plonesoftwarecenter/psc_releasefolder_view.pt
+msgid "heading_downloadable_releases"
+msgstr "Lançamentos para Download"
+
+#. Default: "Expected Release"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_expecteddate"
+msgstr "Lançamento Esperado"
+
+#. Default: "Latest release: ${project}"
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "heading_latest_release_project"
+msgstr "Último lançamento: ${project}"
+
+#. Default: "License"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_license"
+msgstr "Licença"
+
+#. Default: "Released"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_released"
+msgstr ""
+
+#. Default: "Release Manager"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_relmanager"
+msgstr ""
+
+#. Default: "State"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_state"
+msgstr "Estado"
+
+#. Default: "Tested with"
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "heading_tested_with"
+msgstr "Testado com"
+
+#. Default: "Upcoming Releases"
+#: ./plonesoftwarecenter/psc_releasefolder_view.pt
+msgid "heading_upcoming_releases"
+msgstr "Próximos Lançamentos"
+
+#. Default: "Click to enlarge"
+#: ./plonesoftwarecenter/psc_project_view.pt
+#: ./plonesoftwarecenter/psc_release_listing.pt
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "label_click_to_enlarge"
+msgstr "Clique para aumentar"
+
+#. Default: "Download"
+#: ./plonesoftwarecenter/psc_project_view.pt
+#: ./plonesoftwarecenter/psc_release_listing.pt
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "label_download"
+msgstr "Download"
+
+#. Default: "Go to the release folder to add or publish a release."
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "label_goto_release_folder"
+msgstr "Ir para a pasta de lançamentos para adicionar ou publicar um lançamento."
+
+#. Default: "Read more"
+#: ./plonesoftwarecenter/psc_release_listing.pt
+msgid "label_read_more"
+msgstr "Leia mais"
+
+#. Default: "Release details"
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "label_release_details"
+msgstr ""
+
+#. Default: "RSS Feed"
+#: ./plonesoftwarecenter/portlet_releases.pt
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "label_rss_feed"
+msgstr ""
+
+#. Default: "All releases"
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "label_show_all_releases"
+msgstr "Exibir todos os lançamentos"
+
+#. Default: "Roadmap"
+#: ./plonesoftwarecenter/psc_project_view.pt
+msgid "label_show_upcoming_releases"
+msgstr "Exibir próximos lançamentos"
+
+#. Default: "Up to Product page"
+#: ./plonesoftwarecenter/psc_categories_download.pt
+#: ./plonesoftwarecenter/psc_categories_view.pt
+#: ./plonesoftwarecenter/psc_release_view.pt
+msgid "label_up_to_product_page"
+msgstr "Voltar para a página do Produto"
+
+#. Default: "Up to project overview"
+#: ./plonesoftwarecenter/by-category.pt
+msgid "label_up_to_project_overview"
+msgstr ""
+
+#. Default: "Up to Release page"
+#: ./plonesoftwarecenter/psc_file_view.pt
+msgid "label_up_to_release_page"
+msgstr "Voltar para a página do Lançamento"
+
+#. Default: "No projects found in this category."
+#: ./plonesoftwarecenter/by-category.pt
+msgid "no_packages_found"
+msgstr ""
+
+#. Default: "Read More"
+#: ./plonesoftwarecenter/by-category.pt
+msgid "read_more"
+msgstr ""
+
+#. Default: "RSS feed of the latest releases"
+#: ./plonesoftwarecenter/portlet_releases.pt
+msgid "title_rss_feed"
+msgstr ""
+
