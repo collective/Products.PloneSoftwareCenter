@@ -1,0 +1,30 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+	   xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="plonesoftwarecenter">
+
+  <include package=".browser" />
+  <include package=".events" file="configure.zcml" />
+
+  <gs:registerProfile
+	name="default"
+        title="Plone Software Center"
+	directory="profiles/default"
+	description="What's powering the products section on plone.org"
+	provides="Products.GenericSetup.interfaces.EXTENSION"
+	/>
+
+  <!-- Avoid deprecation warnings for manage_afterAdd and friends that
+       only show up because some base classes that we inherit from use
+       them. -->
+  <five:deprecatedManageAddDelete
+      class=".content.root.PloneSoftwareCenter" />
+  <five:deprecatedManageAddDelete
+      class=".content.project.PSCProject" />
+  <five:deprecatedManageAddDelete
+      class=".content.releasefolder.PSCReleaseFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.release.PSCRelease" />
+
+</configure>
