@@ -16,9 +16,8 @@ from Products.Archetypes.atapi import *
 from Products.PloneSoftwareCenter import config
 from Products.ATContentTypes.content.base import ATCTFileContent
 
-from plone.app.blob.interfaces import IATBlob
-from plone.app.blob.config import packageName
-from plone.app.blob.field import BlobMarshaller, BlobField
+from plone.app.blob.field import BlobField
+
 #from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
 # We need to make sure that the right storage is set at Field
@@ -63,7 +62,7 @@ PSCFileSchema_base_fields = BaseSchema.copy() + Schema((
         ),
     ),
 ),
-#marshall = PrimaryFieldMarshaller(),
+marshall = PrimaryFieldMarshaller(),
 )
 
 PSCFileSchema_without_blob_support = BaseSchema.copy() + Schema((
@@ -80,7 +79,7 @@ PSCFileSchema_without_blob_support = BaseSchema.copy() + Schema((
         storage=downloadableFileStorage,
     ),
 ),
-#marshall = PrimaryFieldMarshaller(),
+marshall = PrimaryFieldMarshaller(),
 )
 
 PSCFileSchema_with_blob_support = BaseSchema.copy() + Schema((
@@ -97,20 +96,15 @@ PSCFileSchema_with_blob_support = BaseSchema.copy() + Schema((
         storage=downloadableFileStorage,
     ),
 ),
-#marshall = PrimaryFieldMarshaller(),
+marshall = PrimaryFieldMarshaller(),
 )
 
 if config.USE_BLOB_FIELD:
     PSCFileSchema = PSCFileSchema_with_blob_support
-    PSCFileSchema['title'].storage = AnnotationStorage()
 else:
     PSCFileSchema = PSCFileSchema_without_blob_support
 
 PSCFileSchema['id'].widget.visible = {'edit': 'hidden'}
-
-#finalizeATCTSchema(PSCFileSchema, folderish=False, moveDiscussion=False)
-
-PSCFileSchema.registerLayer('marshall', BlobMarshaller())
 
 class PSCFile(ATCTFileContent):
     """Contains the downloadable file for the Release."""
