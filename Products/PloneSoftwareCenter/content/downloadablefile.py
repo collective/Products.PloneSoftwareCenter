@@ -16,9 +16,14 @@ from Products.Archetypes.atapi import *
 from Products.PloneSoftwareCenter import config
 from Products.ATContentTypes.content.base import ATCTFileContent
 
+from plone.app.blob.interfaces import IATBlob
+from plone.app.blob.config import packageName
+from plone.app.blob.field import BlobMarshaller, BlobField
+#from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+
 # We need to make sure that the right storage is set at Field
 # creation to correctly trigger the layer registration process
-if config.USE_EXTERNAL_STORAGE:
+if config.USE_EXTERNAL_STORAGE: 
     from Products.ExternalStorage.ExternalStorage import ExternalStorage
     downloadableFileStorage = ExternalStorage(
         prefix=config.EXTERNAL_STORAGE_PATH,
@@ -28,8 +33,7 @@ if config.USE_EXTERNAL_STORAGE:
 else:
     downloadableFileStorage = AttributeStorage()
 
-PSCFileSchema = BaseSchema.copy() + Schema((
-
+PSCFileSchema_base_fields = BaseSchema.copy() + Schema((
     TextField('title',
         default='',
         searchable=1,
@@ -46,20 +50,6 @@ PSCFileSchema = BaseSchema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-
-    FileField('downloadableFile',
-        primary=1,
-        required=1,
-        widget=FileWidget(
-            label="File",
-            label_msgid="label_file_description",
-            description="Click 'Browse' to upload a release file.",
-            description_msgid="help_file_description",
-            i18n_domain="plonesoftwarecenter",
-        ),
-        storage=downloadableFileStorage,
-    ),
-
     StringField('platform',
         required=1,
         searchable=0,
@@ -72,13 +62,55 @@ PSCFileSchema = BaseSchema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-
 ),
-
-marshall = PrimaryFieldMarshaller(),
-
+#marshall = PrimaryFieldMarshaller(),
 )
+
+PSCFileSchema_without_blob_support = BaseSchema.copy() + Schema((
+    FileField('downloadableFile',
+        primary=1,
+        required=1,
+        widget=FileWidget(
+            label="File",
+            label_msgid="label_file_description",
+            description="Click 'Browse' to upload a release file.",
+            description_msgid="help_file_description",
+            i18n_domain="plonesoftwarecenter",
+        ),
+        storage=downloadableFileStorage,
+    ),
+),
+#marshall = PrimaryFieldMarshaller(),
+)
+
+PSCFileSchema_with_blob_support = BaseSchema.copy() + Schema((
+    BlobField('downloadableFile',
+        primary=1,
+        required=1,
+        widget=FileWidget(
+            label="File",
+            label_msgid="label_file_description",
+            description="Click 'Browse' to upload a release file.",
+            description_msgid="help_file_description",
+            i18n_domain="plonesoftwarecenter",
+        ),
+        storage=downloadableFileStorage,
+    ),
+),
+#marshall = PrimaryFieldMarshaller(),
+)
+
+if config.USE_BLOB_FIELD:
+    PSCFileSchema = PSCFileSchema_with_blob_support
+    PSCFileSchema['title'].storage = AnnotationStorage()
+else:
+    PSCFileSchema = PSCFileSchema_without_blob_support
+
 PSCFileSchema['id'].widget.visible = {'edit': 'hidden'}
+
+#finalizeATCTSchema(PSCFileSchema, folderish=False, moveDiscussion=False)
+
+PSCFileSchema.registerLayer('marshall', BlobMarshaller())
 
 class PSCFile(ATCTFileContent):
     """Contains the downloadable file for the Release."""

@@ -4,7 +4,10 @@ $Id$
 from zLOG import LOG, PROBLEM
 
 # Use ExternalStorage for PSCFile?
-USE_EXTERNAL_STORAGE = True
+USE_EXTERNAL_STORAGE = False
+
+# Use blob field for PSCFile?
+USE_BLOB_FIELD = True
 
 # Change to point to where content should be stored, it can be an
 # absolute or a relative path.
