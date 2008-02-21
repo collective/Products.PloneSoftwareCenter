@@ -105,4 +105,11 @@
       allowed_attributes="by_category _contained category_name category_description"
       />
 
+  <page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="psc-migration"
+      template="migration.pt"
+      class=".migration.MigrationView"
+      permission="cmf.ManagePortal" />
+
 </configure>

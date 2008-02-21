@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<metal:main fill-slot="main">
+
+<h1 class="documentFirstHeading"
+    i18n:translate="blob_migration_title">Blob Migration</h1>
+
+<div tal:condition="exists: options/notinstalled"
+     i18n:translate="blob_migration_unavailable">
+  <p> The migration facility is currently unavailable, since the
+      <a href="http://pypi.python.org/pypi/Products.contentmigration/">
+      Products.contentmigration</a> package has not been installed. </p>
+
+  <p> Please use 
+      <a href="http://peak.telecommunity.com/DevCenter/EasyInstall">
+      Easy Install</a> to do so or download and extract the package
+      into your `Products/` directory. </p>
+</div>
+
+<div tal:condition="exists: options/available">
+  <p i18n:translate="blob_migration_instructions">
+      Clicking the below button will cause all content items based on
+      ATContentTypes' PSCFile class to be migrated to use ZODB blobs, i.e.
+      the content data will be managed by the ZODB, but outside of the
+      "Data.fs" file. This process can take a while, especially for sites
+      with many and/or big file content items...
+  </p>
+
+  <form method="post" action="blob-migration"
+        tal:attributes="action request/URL">
+
+    <input class="destructive" type="submit" name="migrate" value=" Migrate"
+           tal:attributes="value string:Migrate ${options/available} item(s) " />
+
+    <input class="standalone" type="submit" name="cancel" value=" Cancel " />
+
+  </form>
+</div>
+
+<div tal:condition="exists: options/output">
+  <p i18n:translate="blob_migration_instructions">
+      Migration finished.  The following list shows all
+      <span tal:replace="options/count" /> migrated items...
+  </p>
+
+  <pre tal:content="options/output" />
+</div>
+
+</metal:main>
+
+</body>
+</html>
