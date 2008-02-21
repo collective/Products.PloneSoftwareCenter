@@ -15,4 +15,16 @@
 	provides="Products.GenericSetup.interfaces.EXTENSION"
 	/>
 
+  <!-- Avoid deprecation warnings for manage_afterAdd and friends that
+       only show up because some base classes that we inherit from use
+       them. -->
+  <five:deprecatedManageAddDelete
+      class=".content.root.PloneSoftwareCenter" />
+  <five:deprecatedManageAddDelete
+      class=".content.project.PSCProject" />
+  <five:deprecatedManageAddDelete
+      class=".content.releasefolder.PSCReleaseFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.release.PSCRelease" />
+
 </configure>

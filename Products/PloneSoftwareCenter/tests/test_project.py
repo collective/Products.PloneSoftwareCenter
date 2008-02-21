@@ -279,7 +279,11 @@ class TestProjectWithPloneHelpCenterIntegration(PSCTestCase):
         except AttributeError:
             self.fail('PloneHelpCenter integration tests cannot be run '
               'because the product is not installed.')
-    
+        # At least in Plone 3 an AttributeError while installing
+        # PloneHelpCenter is swallowed.  So we have to do a better
+        # check.
+        self.failIf(qi_tool.PloneHelpCenter.error)
+
     def testGetNotAddableTypes(self):
         self.failUnless('PSCDocumentationFolder' not in self.proj.getNotAddableTypes())
         self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')

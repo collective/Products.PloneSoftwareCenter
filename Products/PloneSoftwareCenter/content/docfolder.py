@@ -20,7 +20,10 @@ from Products.ATContentTypes.content.base import ATCTMixin
 
 from Products.PloneSoftwareCenter.config import PROJECTNAME, DOCUMENTATION_ID
 
-from Products.PloneHelpCenter.interfaces import IHelpCenterContent
+try:
+    from Products.PloneHelpCenter.interfaces import IHelpCenterContent
+except ImportError:
+    IHelpCenterContent = None
 
 PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
 
@@ -81,7 +84,10 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
 class PSCDocumentationFolder(ATCTMixin, OrderedBaseFolder):
     """Folder type for holding documentation."""
 
-    implements(IDocumentationFolderContent, IHelpCenterContent)
+    if IHelpCenterContent is not None:
+        implements(IDocumentationFolderContent, IHelpCenterContent)
+    else:
+        implements(IDocumentationFolderContent)
     
 
     archetype_name = 'Documentation Section'

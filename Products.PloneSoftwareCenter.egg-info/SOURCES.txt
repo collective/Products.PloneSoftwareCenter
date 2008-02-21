@@ -1,0 +1,14 @@
+README.txt
+setup.cfg
+setup.py
+Products/__init__.py
+Products.PloneSoftwareCenter.egg-info/PKG-INFO
+Products.PloneSoftwareCenter.egg-info/SOURCES.txt
+Products.PloneSoftwareCenter.egg-info/dependency_links.txt
+Products.PloneSoftwareCenter.egg-info/entry_points.txt
+Products.PloneSoftwareCenter.egg-info/namespace_packages.txt
+Products.PloneSoftwareCenter.egg-info/not-zip-safe
+Products.PloneSoftwareCenter.egg-info/requires.txt
+Products.PloneSoftwareCenter.egg-info/top_level.txt
+Products/PloneSoftwareCenter/__init__.py
+Products/PloneSoftwareCenter/tests.py
