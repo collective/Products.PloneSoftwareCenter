@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      i18n:domain="plonesoftwarecenter">
+
+<body>
+
+<!-- Macro used to show releases, since we need two near identical lists -->
+<!-- Call this with a variable 'releases' defined -->
+
+<metal:macro define-macro="release_listing">
+
+    <tal:releases repeat="release releases">
+
+        <div class="visualIEFloatFix" style="margin-top: 1em;">
+            
+            <dl>
+
+                <dt>
+                    <img tal:replace="structure here/product_icon.gif" />
+                    <a href="#"
+                       tal:content="release/Title"
+                       tal:attributes="href release/absolute_url">Ploneboard 1.0</a>
+                </dt>
+
+                <dd>
+                    <span tal:replace="release/Description">
+                        Main focus for this release is blah blah.
+                    </span>
+
+                    <br />
+                    <img tal:replace="structure here/document_icon.gif" />
+                    <a href="#"
+                       i18n:translate="label_read_more"
+                       tal:attributes="href release/absolute_url">Read more&hellip;</a>
+
+                </dd>
+
+
+            </dl>
+        </div>
+
+        <div class="visualClear"></div>
+
+    </tal:releases>
+</metal:macro>
+
+</body>
+</html>

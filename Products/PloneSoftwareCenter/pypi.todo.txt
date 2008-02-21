@@ -1,0 +1,6 @@
+to be removed when merged to trunk
+
+- deal with UNKNOWN values
+- upload removes project metadata
+- the reST is not parsed anymore on project page
+- refactor msg usage

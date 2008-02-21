@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en">
+ <head>
+  <title>Simple Index</title>
+ <body>
+  <tal:block tal:repeat="file_ view/get_files">
+   <a tal:attributes="href file_/url" 
+      tal:content="file_/title">file</a><br/>
+ </tal:block>
+
+ </body>
+</html>
+

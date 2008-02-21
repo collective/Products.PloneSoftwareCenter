@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="navtree_properties" meta_type="Plone Property Sheet">
+  <property name="parentMetaTypesNotToQuery" type="lines">
+   <element value="PloneSoftwareCenter"/>
+   <element value="PSCReleaseFolder"/>
+   <element value="PSCImprovementProposalFolder"/>
+   <element value="PSCRelease"/>
+  </property>
+ </object>
+ <object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="use_folder_tabs" type="lines">
+   <element value="PSCRelease"/>
+   <element value="PSCImprovementProposal"/>
+   <element value="PloneSoftwareCenter"/>
+   <element value="PSCReleaseFolder"/>
+   <element value="PSCDocumentationFolder"/>
+   <element value="PSCImprovementProposalFolder"/>
+   <element value="PSCProject"/>
+  </property>
+  <property name="typesLinkToFolderContentsInFC" type="lines">
+   <element value="PSCImprovementProposal"/>
+   <element value="PloneSoftwareCenter"/>
+   <element value="PSCRelease"/>
+   <element value="PSCReleaseFolder"/>
+   <element value="PSCDocumentationFolder"/>
+   <element value="PSCImprovementProposalFolder"/>
+   <element value="PSCProject"/>
+  </property>
+  <property name="typesUseViewActionInListings" type="lines">
+   <element value="PSCFile"/>
+  </property>
+ </object>
+</object>
