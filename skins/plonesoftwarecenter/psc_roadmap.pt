@@ -1,0 +1,271 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="plone"
+      metal:use-macro="here/main_template/macros/master">
+
+<head>
+    <metal:css fill-slot="css_slot">
+      <style type="text/css" media="all"
+             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+    </metal:css>
+</head>
+
+<body>
+
+<div metal:fill-slot="main"
+     tal:define="view context/@@roadmap_view;
+                 upcoming view/upcoming_releases;">
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+    </div>
+    
+    <h1>Roadmap for <span tal:replace="here/aq_parent/Title" /></h1>
+
+    <dl class="portlet"
+         style="margin-left: 0.5em; width: 35%; float: right; clear: right;"
+         tal:condition="upcoming">
+        <dt class="portletHeader">Roadmap index</dt>
+        <dd class="portletItem">
+            <ul>
+                <tal:release repeat="release upcoming">
+                <li>
+                    <a href="" 
+                        tal:content="release/Title"
+                        tal:attributes="href string:${current_page_url}#${release/id}">
+                    Some release
+                    </a>
+                </li>
+                </tal:release>
+
+                <li><a href="" tal:attributes="href string:${current_page_url}#discussion">Proposals being discussed</a></li>
+                <li><a href="" tal:attributes="href string:${current_page_url}#rejected">Rejected/deferred/draft proposals</a></li>
+            </ul>
+        </dd>
+    </dl>
+
+    <div class="documentDescription">
+    An overview of the upcoming releases for this project. Participants in the
+    project can add new features to the list.
+    </div>
+    
+    <p class="portalMessage"
+       tal:condition="python: is_editable and wtool.getInfoFor(here.aq_parent, 'review_state')!='published'">
+    You can not add releases, documentation or feature proposals until the 
+    project itself is approved, make sure you submit it for approval when 
+    the relevant project information has been entered.
+    </p>        
+        
+    <div class="visualClear"></div>
+
+    <tal:releases repeat="release upcoming">
+    <tal:release define="features release/getRelatedFeatures">
+
+    <h2 tal:attributes="id release/id"> 
+        <a href="" tal:attributes="href release/absolute_url">
+            <tal:date condition="release/getExpectedReleaseDate">
+                <span tal:replace="python: here.toLocalizedTime(release.getExpectedReleaseDate())">Relase date</span>:
+            </tal:date>
+            <span tal:replace="release/Title">Release Name</span>
+            <tal:codename condition="release/getCodename">&mdash;
+               <span tal:replace='string:"${release/getCodename}"'>codename</span>
+            </tal:codename>
+        </a>
+    </h2>
+    
+    <table class="vertical listing" style="width: 35%; float: right; margin: 1em 0 0.5em 0.5em;"
+           tal:define="released python:wtool.getInfoFor(release, 'review_state')=='published'">
+        <tr tal:condition="release/compatibility">
+            <th i18n:translate="heading_tested_with">
+            Tested with
+            </th>
+            <td>
+                <metal:versions
+                 metal:use-macro="python:release.widget('compatibility')">
+                Plone 1.0, Plone 2.0...
+                </metal:versions>
+            </td>
+        </tr>
+        <tr tal:define="licenseData python:here.getDataGridRow('availableLicenses', release.getLicense())">
+            <th i18n:translate="heading_license">License</th>
+            <td tal:condition="licenseData">
+                <a class="link-plain"
+                   tal:content="licenseData/id"
+                   tal:attributes="href licenseData/url;
+                                   title licenseData/title"
+                    i18n:translate="">
+                    GPL
+                </a>
+            </td>
+        </tr>
+        <tr tal:condition="release/getImprovementProposalFreezeDate">
+            <th i18n:translate="heading_improvementproposalfreezedate">
+                Proposal freeze</th>
+            <td i18n:translate=""
+                tal:content="python: here.toLocalizedTime(release.getImprovementProposalFreezeDate())">Date</td>
+        </tr>
+        <tr tal:condition="release/getFeatureFreezeDate">
+            <th i18n:translate="heading_featurefreezedate">
+                Feature freeze</th>
+            <td i18n:translate=""
+                tal:content="python: here.toLocalizedTime(release.getFeatureFreezeDate())">Date</td>
+        </tr>
+        <tr tal:condition="release/getExpectedReleaseDate">
+            <th tal:condition="not:released"
+                i18n:translate="heading_expecteddate">
+                Expected Release</th>
+            <th tal:condition="released"
+                i18n:translate="heading_released">
+                Released</th>
+            <td i18n:translate=""
+                tal:content="python: here.toLocalizedTime(release.getExpectedReleaseDate())">Date</td>
+        </tr>
+        <tr tal:condition="release/getRepository">
+            <th i18n:translate="heading_repository">
+                Repository branch</th>
+            <td>
+                <a class="link-plain"
+                   tal:content="python: release.getRepository().split('/')[-1]"
+                   tal:attributes="href release/getRepository">Branch name
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <p class="discreet"
+         tal:condition="release/getReleaseManager">
+        <span i18n:translate="heading_relmanager">Release Manager:</span>
+        <a href=""
+           tal:omit-tag="not: release/getReleaseManagerContact"
+           tal:attributes="href string: mailto:${release/getReleaseManagerContact}">
+            <span tal:replace="release/getReleaseManager">Some Guy</span>
+        </a>
+    </p>
+
+    <p tal:content="release/Description">
+        Release description
+    </p>
+
+    <p>
+        <a href="" tal:attributes="href release/absolute_url">Read more&hellip;</a>
+    </p>
+
+    <tal:header condition="nocall:features">
+        <h3>Associated feature proposals</h3>
+    </tal:header>
+
+    <p class="discreet" tal:condition="not:nocall:features">
+    No improvement proposals associated with this release.
+    </p>
+
+    <dl tal:define="states python:['in-progress', 
+                                   'ready-for-merge', 
+                                   'completed']"
+        tal:condition="nocall:features">
+
+        <tal:state repeat="state states">
+           
+            <tal:details define="plips python:release.getRelatedFeatures(state);"
+                         condition="nocall:plips">
+           
+               <dt tal:content="python: view.getStateTitle(state)"> 
+                   Workflow state
+               </dt>
+    
+               <tal:plips repeat="plip plips">
+               <dd>
+                   <a tal:attributes="href plip/absolute_url"><img tal:replace="structure here/improvementproposal_icon.gif" /></a>
+                   <a href="" 
+                      tal:content="plip/Title"
+                      tal:attributes="href plip/absolute_url;
+                                      title plip/Description">PLIP title</a>
+                   <span class="discreet">
+                   (<span tal:replace="plip/getProposer" 
+                     /><span tal:condition="plip/getSeconder" tal:replace="string:, ${plip/getSeconder}" />)
+                   </span>
+               </dd>
+               </tal:plips>
+            </tal:details>
+        </tal:state>
+
+    </dl>
+
+    <div class="visualClear"></div>
+
+    </tal:release>
+    </tal:releases>
+
+    <h2><a name="discussion">Proposals being discussed</a></h2>
+    <p>
+    These proposals are currently under consideration for inclusion in an 
+    upcoming release.
+    </p>
+    
+    <table class="listing">
+        <thead>
+            <tr>
+                <th>Proposal</th>
+                <th>Type</th>
+                <th>Proposed by</th>
+                <th>Added</th>
+                <th>Target Release</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tal:proposals define="releaseFolderUrl python:'/'.join(here.absolute_url().split('/')[:-1]) + '/releases'"
+                           repeat="proposal python:view.improvement_proposals(review_state=['being-discussed'])">
+            <tr tal:define="oddrow repeat/proposal/odd"
+                tal:attributes="class python:test(oddrow, 'even', 'odd')">
+                <td>
+                  <a href="" tal:content="proposal/Title"
+                             tal:attributes="href proposal/getURL;
+                                             title proposal/Description">
+                      Test proposal
+                  </a>
+                </td>
+                <td tal:content="python: ', '.join(proposal.getProposalTypes)">
+                  Process
+                </td>
+                <td tal:define="proposer proposal/getProposer | nothing;
+                                seconder proposal/getSeconder | nothing">
+                  <span tal:replace="proposer"/>
+                  <span tal:omit-tag="" tal:condition="python:proposer and seconder">,</span>
+                  <span tal:replace="seconder"/>
+                </td>
+                <td tal:content="python:here.toLocalizedTime(proposal.created)">
+                  123 days ago
+                </td>
+                <td>
+                  <tal:block repeat="release proposal/getRelatedReleases">
+                    <a tal:content="release" tal:attributes="href string:${releaseFolderUrl}/${release}">[item]</a>
+                  </tal:block>
+                </td>
+            </tr>
+            </tal:proposals>
+        </tbody>
+    </table>
+    
+    
+    <h2><a name="rejected">Rejected and Deferred Proposals</a></h2>
+    
+    <p>
+      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=rejected&state=deferred">
+        Rejected and deferred proposals</a> have been moved to a separate page.
+    </p>
+    
+    <p>
+      You can also 
+      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing">
+        view all proposals</a> or
+      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=draft">
+        draft proposals</a>.
+    </p>
+
+    
+</div>
+
+
+
+</body>
+</html>

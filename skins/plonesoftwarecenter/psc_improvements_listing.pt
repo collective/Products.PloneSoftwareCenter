@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      i18n:domain="plone"
+      metal:use-macro="here/main_template/macros/master">
+
+<head>
+    <metal:css fill-slot="css_slot">
+      <style type="text/css" media="all"
+             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+    </metal:css>
+</head>
+
+<body>
+
+
+<div metal:fill-slot="main"
+       tal:define="view context/@@roadmap_view;
+           state python:request.get('state', []);
+           plips python:view.improvement_proposals(review_state = state);
+           b_start python:request.get('b_start', 0);
+           Batch python:modules['Products.CMFPlone'].Batch;
+           batch python:Batch(plips, 50, int(b_start), orphan=0);
+           releaseFolderUrl python:'/'.join(here.absolute_url().split('/')[:-1]) + '/releases';
+           ">
+
+    <h1><span tal:replace="python:(', ').join(state).capitalize()" /> 
+        Improvement Proposals for 
+        <span tal:replace="here/aq_parent/Title" /></h1>
+
+        <p class="documentDescription"
+           tal:condition="plips">
+        If you want to see the feature proposals displayed according to what release
+        they are assigned to, go to the
+        <a href="psc_roadmap">Roadmap page</a>.
+        </p>
+
+
+
+    <!-- Navigation -->
+    <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+        <table id="sortable"
+               class="listing"
+               summary="Improvement Proposal listing"
+               tal:condition="plips">
+
+            <thead>
+
+                <tr>
+
+                    <th style="width: 50%">&nbsp;<tal:title i18n:translate="listingheader_title"
+                    >Title</tal:title>&nbsp;</th>
+
+                    <th>&nbsp;<tal:title i18n:translate="listingheader_title"
+                    >Category</tal:title>&nbsp;</th>
+
+                    <th>&nbsp;<tal:modified i18n:translate="listingheader_modified"
+                    >Modified</tal:modified>&nbsp;</th>
+
+                    <th>&nbsp;<tal:state i18n:translate="listingheader_status"
+                    >Status</tal:state>&nbsp;</th>
+
+                    <th>&nbsp;<tal:version
+                    >Target Release</tal:version>&nbsp;</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <metal:block tal:repeat="item batch">
+                <tr tal:define="oddrow repeat/item/odd;
+                                review_state item/review_state;"
+                    tal:attributes="class python:test(oddrow, 'even', 'odd')">
+
+                    <td>
+                        <a href="#" tal:attributes="href item/getURL; title item/Description;">
+                            <img
+                                 alt="" tal:attributes="src string:${portal_url}/improvementproposal_icon.gif"
+                            />&nbsp;<span tal:replace="item/Title">Title</span>
+                        </a>
+                    </td>
+
+                    <td tal:content="python: ', '.join(item.getProposalTypes)">
+                    Category
+                    </td>
+
+                    <td tal:content="item/ModificationDate">
+                    08/19/2001 03:01 AM
+                    </td>
+
+                    <td>
+                        <a tal:attributes="href string:${here/absolute_url}/${template/id}?state=${review_state};
+                                           class string:state-$review_state"
+                           tal:content="structure python:test(review_state, review_state, '&nbsp;')"
+                           i18n:translate="">
+                            State
+                        </a>
+                    </td>
+
+                    <td i18n:translate="">&nbsp;
+
+                        <span tal:repeat="release item/getRelatedReleases">
+                        <a tal:content="release" tal:attributes="href string:${releaseFolderUrl}/${release}">[item]</a>
+                        </span>
+                    </td>
+                </tr>
+            </metal:block>
+            </tbody>
+        </table>
+
+        <a style="display:block; text-align:right"
+            href="" 
+            tal:condition="state"
+            tal:attributes="href string:${here/absolute_url}/${template/id}">
+           Show all
+        </a>
+        
+        <p class="discreet"
+           tal:condition="not: plips">
+        There are no improvement proposals added for any versions. Use the add
+        menu to add proposals and/or feature specifications to be used in the
+        roadmap.
+        </p>
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+</div>
+
+
+</body>
+</html>

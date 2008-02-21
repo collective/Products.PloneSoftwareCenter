@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      i18n:domain="plonesoftwarecenter"
+      metal:use-macro="here/main_template/macros/master">
+
+<head>
+    <metal:css fill-slot="css_slot">
+      <style type="text/css" media="all"
+             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+    </metal:css>
+</head>
+
+<body>
+
+<div metal:fill-slot="main">
+
+    <div metal:define-macro="main"
+         tal:define="view here/@@file_view">
+    
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 class="documentFirstHeading">
+            <img tal:replace="structure here/product_icon.gif" />
+            <span tal:replace="here/aq_parent/title_or_id">Title or id</span> -
+            <span tal:replace="here/title_or_id">Title or id</span>
+        </h1>
+
+        <a href=""
+           class="link-parent"
+           i18n:translate="label_up_to_release_page"
+           tal:define="parent_url python:here.navigationParent(here, template.getId())"
+           tal:condition="parent_url"
+           tal:attributes="href parent_url">
+             Up to Release page
+        </a>
+
+        <div class="documentDescription"
+             tal:content="here/aq_parent/Description">
+            description
+        </div>
+
+        <p class="discreet"
+           tal:condition="python: is_editable">
+        Remember to publish your release once all files have been added by
+        <a href="" tal:attributes="href here/aq_parent/absolute_url">going back to the release page</a>. 
+        </p>
+
+        <p tal:define="downloadURL view/direct_url">
+            <a tal:attributes="href downloadURL"
+               tal:condition="view/file_size">
+                <img tal:replace="structure here/download_icon.gif" />
+            </a>
+            <a tal:attributes="href downloadURL"
+               tal:define="filename python:here.getFilename('downloadableFile')">
+                Download<tal:filename condition="filename"
+                                      replace="string: $filename" />
+            </a>
+            <tal:size define="fileSize view/file_size"
+                      condition="fileSize">
+                (<span tal:replace="fileSize">256KB</span>)
+            </tal:size>
+        </p>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+            Get the byline - contains details about author and modification date.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plonesoftwarecenter">
+
+<body>
+
+<!-- Release portlet -->
+
+<div metal:define-macro="portlet"
+     tal:condition="results"
+     tal:define="results python:context.portal_catalog(
+                                        portal_type='PSCRelease',
+                                        sort_on='Date',
+                                        sort_order='reverse',
+                                        sort_limit=5,
+                                        review_state=('alpha','beta','release-candidate','final',)
+                                        )[:5];
+                 psc python:context.portal_catalog(
+                                        portal_type='PloneSoftwareCenter',
+                                        sort_on='Date',
+                                        sort_order='reverse',
+                                        sort_limit=1)[:1]">
+
+<dl class="portlet" id="portlet-releases">
+
+    <dt class="portletHeader">
+        <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+           <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;review_state=alpha&amp;review_state=beta&amp;review_state=release-candidate&amp;review_state=final">
+              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                   tal:attributes="src string:$portal_url/rss.gif"
+                   src="rss.gif"
+                   alt="RSS Feed"
+                   title="RSS feed of the latest releases" />
+           </a>
+        </tal:syndicate>
+        <a href=""
+           tal:omit-tag="not: nocall:psc"
+           tal:attributes="href python:psc[0].getURL()"
+           i18n:translate="box_latest_releases">
+        Latest releases
+        </a>
+    </dt>
+
+    <tal:releases tal:repeat="obj results">
+    <dd tal:define="oddrow repeat/obj/odd"
+         tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+
+        <a href=""
+           tal:attributes="href python:here.findParentProjectURL(obj.getURL());
+                           title obj/Description">
+            <tal:block replace="structure here/product_icon.gif"/>
+            <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)">
+                Product
+            </span>
+        </a>
+        
+        <div class="discreet"
+             tal:define="categories obj/getCategoryTitles"
+             tal:condition="categories"
+             tal:content="python: ', '.join(categories)">
+            Category
+        </div>
+
+        <div class="portletDetails"
+        tal:content="python:here.toLocalizedTime(obj.Date)">
+            July 7, 08:11
+        </div>
+    </dd>
+    </tal:releases>
+
+    <dd class="portletFooter" tal:condition="nocall:psc">
+
+        <a href=""
+           class="portletMore"
+           tal:attributes="href python:psc[0].getURL()"
+           i18n:translate="box_more_projects">
+            More Releases&hellip;
+        </a>
+
+    </dd>
+</dl>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="psc_release_workflow"
+             title="PSC Release workflow"
+             state_variable="review_state"
+             initial_state="pre-release">
+ <permission>Access contents information</permission>
+ <permission>Modify portal content</permission>
+ <permission>View</permission>
+ <state state_id="alpha" title="Alpha release">
+  <exit-transition transition_id="re-release"/>
+  <exit-transition transition_id="release-beta"/>
+  <exit-transition transition_id="release-candidate"/>
+  <exit-transition transition_id="release-final"/>
+  <exit-transition transition_id="retract"/>
+  <exit-transition transition_id="hide"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="beta" title="Beta release">
+  <exit-transition transition_id="re-release"/>
+  <exit-transition transition_id="release-candidate"/>
+  <exit-transition transition_id="release-final"/>
+  <exit-transition transition_id="retract"/>
+  <exit-transition transition_id="hide"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="final" title="Final release">
+  <exit-transition transition_id="re-release"/>
+  <exit-transition transition_id="retract"/>
+  <exit-transition transition_id="hide"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="hidden" title="Hidden">
+  <exit-transition transition_id="unhide"/>
+  <permission-map name="Access contents information"
+                  acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Owner</permission-role>
+   <permission-role>Manager</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="pre-release" title="Unreleased">
+  <exit-transition transition_id="release-alpha"/>
+  <exit-transition transition_id="release-beta"/>
+  <exit-transition transition_id="release-candidate"/>
+  <exit-transition transition_id="release-final"/>
+  <exit-transition transition_id="hide"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <state state_id="release-candidate"
+        title="Release candidate">
+  <exit-transition transition_id="re-release"/>
+  <exit-transition transition_id="release-final"/>
+  <exit-transition transition_id="retract"/>
+  <exit-transition transition_id="hide"/>
+  <permission-map name="Access contents information"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="Modify portal content"
+                  acquired="True">
+  </permission-map>
+  <permission-map name="View" acquired="True">
+  </permission-map>
+ </state>
+ <transition transition_id="hide" title="Hide"
+             new_state="hidden" trigger="USER"
+             before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Hide release</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="re-release" title="Re-release"
+             new_state="" trigger="USER"
+             before_script="re_release_state"
+             after_script="">
+  <action url="" category="workflow">Re-release</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="release-alpha"
+             title="Release alpha" new_state="alpha"
+             trigger="USER" before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Release alpha</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="release-beta"
+             title="Release beta" new_state="beta"
+             trigger="USER" before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Release beta</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="release-candidate"
+             title="Release candidate"
+             new_state="release-candidate" trigger="USER"
+             before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Release candidate</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="release-final"
+             title="Release final" new_state="final"
+             trigger="USER" before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Release final release</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="Retract"
+             new_state="pre-release" trigger="USER"
+             before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Retract release</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="unhide" title="Unhide"
+             new_state="pre-release" trigger="USER"
+             before_script=""
+             after_script="release_new_state">
+  <action url="" category="workflow">Unhide release</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <worklist worklist_id="reviewer_queue" title="">
+  <description>Reviewer tasks</description>
+  <action url="%(portal_url)s/search?review_state=pending"
+          category="global">Pending (%(count)d)</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+  <match name="review_state" values="pending"/>
+ </worklist>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <script script_id="re_release_state" type="External Method"
+         filename=""
+         module="PloneSoftwareCenter.WorkflowScripts"
+         function="reReleaseState"/>
+ <script script_id="release_new_state"
+         type="External Method" filename=""
+         module="PloneSoftwareCenter.WorkflowScripts"
+         function="releaseNewState"/>
+</dc-workflow>

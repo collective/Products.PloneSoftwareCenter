@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+ <factorytypes>
+  <type portal_type="PSCImprovementProposal"/>
+  <type portal_type="PloneSoftwareCenter"/>
+  <type portal_type="PSCRelease"/>
+  <type portal_type="PSCFile"/>
+  <type portal_type="PSCReleaseFolder"/>
+  <type portal_type="PSCDocumentationFolder"/>
+  <type portal_type="PSCFileLink"/>
+  <type portal_type="PSCImprovementProposalFolder"/>
+  <type portal_type="PSCProject"/>
+ </factorytypes>
+</object>
