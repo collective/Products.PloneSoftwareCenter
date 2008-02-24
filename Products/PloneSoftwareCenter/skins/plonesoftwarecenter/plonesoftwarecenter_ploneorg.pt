@@ -161,7 +161,7 @@
     <div class="visualClear"><!----></div>
 
     <h2 style="margin-top:1em">
-      Add-on Product Releases
+      Add-on Package Releases
     </h2>
 
     <form id="product_select" class="even" style="padding: 1em" action="#" tal:attributes="action string:${here/absolute_url}">
