@@ -15,6 +15,7 @@
 	provides="Products.GenericSetup.interfaces.EXTENSION"
 	/>
 
+
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
        only show up because some base classes that we inherit from use
        them. -->
