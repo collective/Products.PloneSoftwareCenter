@@ -15,6 +15,14 @@
 	provides="Products.GenericSetup.interfaces.EXTENSION"
 	/>
 
+  <content class=".content.project.PSCProject">
+    <implements
+	interface="contentratings.interfaces.IEditorRatable
+		   zope.app.annotation.interfaces.IAttributeAnnotatable
+		   contentratings.interfaces.IUserRatable"
+	/>
+  </content>
+
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
        only show up because some base classes that we inherit from use
        them. -->
