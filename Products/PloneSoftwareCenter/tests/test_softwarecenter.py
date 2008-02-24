@@ -85,7 +85,11 @@ class TestSoftwareCenter(PSCTestCase):
           'Criterion 2',
           ),
           self.psc.getAvailableSelfCertificationCriteria())
-    
+        
+        self.assertEqual(False, self.psc.getUseClassifiers())
+        self.psc.setUseClassifiers(True)
+        self.assertEqual(True, self.psc.getUseClassifiers())
+         
     def testGetAvailableCategoriesAsDisplayList(self):
         self.psc.setAvailableCategories([
           'cat1|Category 1|Projects of category 1',

@@ -163,6 +163,20 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
+    BooleanField('useClassifiers',
+        required=0,
+        widget=BooleanWidget(
+            label="Use Classifier",
+            label_msgid="label_use_classifier",
+            description_msgid="description_use_classifier",
+            description=("Indicate whether the Software Center uses the "
+                         "classifiers field to display categories. " 
+                         "If true, the categories set will not be used "
+                         "in favor of the classifiers."),
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+
 ))
 
 
