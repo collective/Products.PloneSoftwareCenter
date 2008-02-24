@@ -28,6 +28,8 @@
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
 
+	  <span tal:replace="structure context/@@user_rating_view|nothing" />
+	  <span tal:replace="structure context/@@user_rating_set|nothing" />
         <tal:disabled replace="nothing">
         
             This is disabled until we have a consensus about what to do with
@@ -57,16 +59,9 @@
             <a href=""
                tal:attributes="href view/similar_search_url"
                >Other products by this author</a>
+	  
 
-	  Rating: <tal:editorialrating tal:define="edit_rating context/@@editorial_rating_set|nothing">
-  <span tal:condition="edit_rating"
-           tal:replace="structure edit_rating" />
-  <span tal:condition="not:edit_rating"
-            tal:replace="structure context/@@editorial_rating_view|nothing"/>
-</tal:editorialrating>
-<span tal:replace="structure context/@@user_rating_view|nothing" />
-<span tal:replace="structure context/@@user_rating_set|nothing" />
-        </div>
+	</div>
 
         <div class="visualIEFloatFix" style="margin-top: 1em;">
             <div style="float:right; text-align: center; margin: 0 0 1em 1em;"
