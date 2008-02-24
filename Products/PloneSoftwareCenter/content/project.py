@@ -342,13 +342,9 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         if not self.hasProperty('releaseCount'):
             self.manage_addProperty('releaseCount', 0, 'int')
 
-    security.declareProtected(permissions.ModifyPortalContent,
-                              'setCategories')
-    def setCategories(self, value):
-        """Overrides categories mutator so we can reindex internal content.
-        """
-        self.getField('categories').set(self, value)
-        self.reindexObject(idxs=['getCategories'])
+    def _setAndIndexField(self, field_name, index_name, value):
+        self.getField(field_name).set(self, value)
+        self.reindexObject(idxs=[index_name])
         catalog = getToolByName(self, 'portal_catalog')
         res = catalog.searchResults(
                           portal_type=['PSCRelease',
@@ -358,7 +354,22 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
                           path='/'.join(self.getPhysicalPath()))
         for r in res:
             o = r.getObject()
-            o.reindexObject(idxs=['getCategories'])
+            o.reindexObject(idxs=[index_name])
+
+   
+    security.declareProtected(permissions.ModifyPortalContent,
+                              'setClassifiers')
+    def setClassifiers(self, value):
+        """Overrides classifiers mutator so we can reindex internal content.
+        """
+        self._setAndIndexField('classifiers', 'getClassifiers', value)
+
+    security.declareProtected(permissions.ModifyPortalContent,
+                              'setCategories')
+    def setCategories(self, value):
+        """Overrides categories mutator so we can reindex internal content.
+        """
+        self._setAndIndexField('categories', 'getCategories', value)
 
     security.declareProtected(permissions.View, 'getCategoryTitles')
     def getCategoryTitles(self):

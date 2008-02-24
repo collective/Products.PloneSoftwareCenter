@@ -54,7 +54,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     ),
 
     SimpleDataGridField('availableCategories',
-        columns=3,
+            columns=3,
         column_names=('id', 'title', 'description'),
         default=[
             'standalone|Stand-alone products|Projects that are self-contained.', 
@@ -256,7 +256,15 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
 
 
     # Vocabulary methods
-    
+    security.declareProtected(permissions.View, 'getAvailableClassifiersAsDisplayList')
+    def getAvailableClassifiersAsDisplayList(self):
+        """Get categories in DisplayList form."""
+        classifiers = self.getField('classifiers')
+        # XXX for now, faking the same 3 row than categories
+        return DisplayList([(entry, entry, entry) 
+                            for entry in classifiers.get(classifiers) 
+                            if entry.startswith('Topic')])
+
     security.declareProtected(permissions.View, 'getAvailableCategoriesAsDisplayList')
     def getAvailableCategoriesAsDisplayList(self):
         """Get categories in DisplayList form."""

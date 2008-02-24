@@ -59,38 +59,54 @@ class SoftwareCenterView(BrowserView):
         
         releases is a list of dicts with keys title, description,
         parent_url, review_state, date
+
         """
         
         def parent_url(url):
             return '/'.join(url.split('/')[:-2])
-        
-        vocab = self.context.getAvailableCategoriesAsDisplayList() 
-        uniqueCategories = self.catalog.uniqueValuesFor('getCategories')
-        field = self.context.getField('availableCategories')
-        
+       
+        if self.context.getUseClassifiers():
+            uniqueCategories = self.catalog.uniqueValuesFor('getClassifiers')
+            vocab = self.context.getAvailableClassifiersAsDisplayList()
+            field = self.context.getField('classifiers')
+            field_name = 'getClassifiers'
+            def _lookup(cat):
+                return cat, cat, cat
+        else:
+            vocab = self.context.getAvailableCategoriesAsDisplayList() 
+            uniqueCategories = self.catalog.uniqueValuesFor('getCategories')
+            field = self.context.getField('availableCategories')
+            field_name = 'getCategories'
+            def _lookup(cat):
+                return (field.lookup(self.context, cat, 0),
+                        field.lookup(self.context, cat, 1),
+                        field.lookup(self.context, cat, 2))
+
         for cat in vocab.keys(): 
             if cat in uniqueCategories: 
-                id = field.lookup(self.context, cat, 0)
-                name = field.lookup(self.context, cat, 1)
-                description = field.lookup(self.context, cat, 2)
+                id, name, description = _lookup(cat)
                 rss_url = "%s/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=%s&getCategories=%s&review_state=alpha&review_state=beta&review_state=release-candidate&review_state=final" % (self.portal_url, self.context_path, cat,)
                 
                 releases = []
-                for r in self.catalog(path = self.context_path,
-                                      portal_type = 'PSCRelease',
-                                      getCategories = cat,
-                                      sort_on = 'Date',
-                                      sort_order = 'reverse',
-                                      sort_limit = 5)[:5]:
+                kw = {'path': self.context_path,
+                      'portal_type': 'PSCRelease', 
+                      field_name: cat,
+                      'sort_on': 'Date',
+                      'sort_order': 'reverse',
+                      'sort_limit': 5}
+                
+                pkw = {field_name: cat,  
+                       'portal_type': 'PSCProject',
+                       'path': self.context_path}
+
+                for r in self.catalog(**kw)[:5]:
                     releases.append(dict(title = r.Title,
                                          description = r.Description,
                                          parent_url = parent_url(r.getURL()),
                                          review_state = r.review_state,
                                          date = r.Date))
                 
-                num_projects = len(self.catalog(path = self.context_path, 
-                                                portal_type = 'PSCProject',
-                                                getCategories = cat))
+                num_projects = len(self.catalog(pkw))
         
                 yield dict(name = name, description = description,
                            rss_url = rss_url, releases = releases,

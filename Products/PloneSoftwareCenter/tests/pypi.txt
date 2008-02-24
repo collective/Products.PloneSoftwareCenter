@@ -214,3 +214,16 @@ The PSC provides a `simple` view that lists all releases that are in final state
     <BLANKLINE>
     <BLANKLINE>
 
+Visible changes in UI
+=====================
+
+When `useClassifiers` is checked, the UI is using classifiers instead of
+categories in all APIs::
+
+    >>> portal.psc.setUseClassifiers(True)
+    
+Let's view the PSC with the classifiers flavor::
+
+    >>> browser.open('http://localhost/plone/psc')
+    >>> print browser.contents
+
