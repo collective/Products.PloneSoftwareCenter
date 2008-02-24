@@ -24,7 +24,7 @@ PROJECT_MAP = {
     'title': 'name',
     'description': 'summary',
     'text': 'description',
-    'categories': 'classifiers',
+    'classifiers': 'classifiers',
     'contactAddress': 'author_email',
     'homepage': 'home_page',
     }
@@ -278,7 +278,8 @@ class PyPIView(BrowserView):
     def _get_classifiers(self):
         """returns current classifiers"""
         sc = self.context
-        return sc.getField('availableCategories').getColumn(sc, 1)
+        classifiers = sc.getField('classifiers')
+        return classifiers.get(classifiers)
 
     #
     # public API
@@ -436,6 +437,6 @@ class PyPIView(BrowserView):
         return '\n'.join(msg)
 
     def list_classifiers(self):
-        """returns categories titles"""
+        """returns classifiers titles"""
         return '\n'.join(self._get_classifiers())
 

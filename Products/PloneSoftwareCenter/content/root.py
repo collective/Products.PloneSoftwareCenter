@@ -41,11 +41,26 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
+    LinesField('classifiers',
+        default=sorted(DEFAULT_CLASSIFIERS),
+        widget=LinesWidget(
+            label='Classifiers',
+            label_msgid='label_classifiers_vocab',
+            description='Define the Trove classifiers',
+            description_msgid='help_classifiers_vocab',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
+
     SimpleDataGridField('availableCategories',
         columns=3,
         column_names=('id', 'title', 'description'),
-        default=sorted([('%s|%s|%s') % (key, key, key)
-                 for key in DEFAULT_CLASSIFIERS]),
+        default=[
+            'standalone|Stand-alone products|Projects that are self-contained.', 
+            'add-on|Add-on components|Projects that provide additional functionality.', 
+            'infrastructure|Infrastructure|Projects that provide services.',
+        ],
         widget=SimpleDataGridWidget(
             label='Categories',
             label_msgid='label_categories_vocab',

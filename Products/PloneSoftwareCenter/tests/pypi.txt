@@ -37,10 +37,10 @@ When a PloneSoftwareCenter is created, it will use this list by
 default (which is the recommended classification), but it can change 
 it in order to deal with a custom list::
 
-    >>> print '\n'.join(portal.psc.availableCategories)
-    Development Status :: 1 - Planning|...
+    >>> print '\n'.join(portal.psc.classifiers)
+    Development Status :: 1 - Planning
     ...
-    Topic :: Utilities|Topic :: Utilities|Topic :: Utilities
+    Topic :: Utilities
 
 This is also available in the view, as `list_classifiers`, in the shape
 waited by `register`::
@@ -94,8 +94,8 @@ Let's check the result. We should have a new project in the PSC::
 
 And the right classification list (PG-13 is not a known classifier in this PSC)::
 
-    >>> project.getCategoryTitles()
-    ['Programming Language :: Python', 'Topic :: Utilities']
+    >>> project.getClassifiers()
+    ('Programming Language :: Python', 'Topic :: Utilities')
 
 o download link was created because the field was set to UNKNOWN in the
 request. Let's define the download url and submit the package again::

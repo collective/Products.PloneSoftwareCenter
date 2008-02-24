@@ -86,6 +86,21 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
     
+    LinesField('classifiers',
+        multiValued=1,
+        required=1,
+        vocabulary='getClassifiersVocab',
+        enforceVocabulary=1,
+        index='KeywordIndex:schema',
+        widget=MultiSelectionWidget(
+            label='Classifiers',
+            label_msgid="label_classifiers",
+            description='Classifiers that this item should appear in.',
+            description_msgid="help_classifiers",
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+    
     LinesField('selfCertifiedCriteria',
         multiValued=1,
         required=0,
