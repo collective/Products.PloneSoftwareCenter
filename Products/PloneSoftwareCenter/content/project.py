@@ -70,6 +70,22 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=25,
         ),
     ),
+    
+    LinesField('classifiers',
+        multiValued=1,
+        required=1,
+        vocabulary='getClassifiersVocab',
+        enforceVocabulary=1,
+        index='KeywordIndex:schema',
+        widget=MultiSelectionWidget(
+            label='Classifiers',
+            label_msgid='label_classifiers',
+            description='Trove classifiers for this item.',
+            description_msgid='help_classifiers',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
 
     LinesField('categories',
         multiValued=1,
@@ -380,6 +396,13 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         values = [vocab.getValue(c) or c for c in self.getCategories()]
         values.sort()
         return values
+
+    security.declareProtected(permissions.View, 'getClassifiersVocab')
+    def getClassifiersVocab(self):
+        """Get classifiers vocabulary from parent project area via acquisition.
+        """
+        return self.getAvailableClassifiersAsDisplayList()
+    
 
     security.declareProtected(permissions.View, 'getCategoriesVocab')
     def getCategoriesVocab(self):

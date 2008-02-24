@@ -41,17 +41,38 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
-    LinesField('classifiers',
-        default=sorted(DEFAULT_CLASSIFIERS),
-        widget=LinesWidget(
+    SimpleDataGridField('availableClassifiers',
+            columns=3,
+        column_names=('id', 'title', 'trove-id'),
+        default=['%s|%s|%s' % (id, classifier.split(' :: ')[-1], classifier) 
+                 for id, classifier in enumerate(sorted(DEFAULT_CLASSIFIERS))],
+
+        widget=SimpleDataGridWidget(
             label='Classifiers',
-            label_msgid='label_classifiers_vocab',
-            description='Define the Trove classifiers',
+            label_msgid='label_classifiers',
+            description=('Define the Trove classifiers. '
+                         'The format is "Id | Title | Trove id". '
+                         'The Id must be unique, and Trove id corresponds '
+                         'to the Trove value'),
             description_msgid='help_classifiers_vocab',
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
     ),
+
+    BooleanField('useClassifiers',
+        required=0,
+        widget=BooleanWidget(
+            label="Use Classifiers to display.",
+            label_msgid="label_use_classifier",
+            description_msgid="description_use_classifier",
+            description=("Indicate whether the Software Center uses the "
+                         "Classifiers field to display projects. " 
+                         ),
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+
 
     SimpleDataGridField('availableCategories',
             columns=3,
@@ -163,21 +184,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
-    BooleanField('useClassifiers',
-        required=0,
-        widget=BooleanWidget(
-            label="Use Classifier",
-            label_msgid="label_use_classifier",
-            description_msgid="description_use_classifier",
-            description=("Indicate whether the Software Center uses the "
-                         "classifiers field to display categories. " 
-                         "If true, the categories set will not be used "
-                         "in favor of the classifiers."),
-            i18n_domain="plonesoftwarecenter",
-        ),
-    ),
-
-))
+    ))
 
 
 class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
@@ -254,21 +261,16 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
         else:
             return None
 
-
     # Vocabulary methods
-    security.declareProtected(permissions.View, 'getAvailableClassifiersAsDisplayList')
-    def getAvailableClassifiersAsDisplayList(self):
-        """Get categories in DisplayList form."""
-        classifiers = self.getField('classifiers')
-        # XXX for now, faking the same 3 row than categories
-        return DisplayList([(entry, entry, entry) 
-                            for entry in classifiers.get(classifiers) 
-                            if entry.startswith('Topic')])
-
     security.declareProtected(permissions.View, 'getAvailableCategoriesAsDisplayList')
     def getAvailableCategoriesAsDisplayList(self):
         """Get categories in DisplayList form."""
         return self.getField('availableCategories').getAsDisplayList(self)
+
+    security.declareProtected(permissions.View, 'getAvailableClassifiersAsDisplayList')
+    def getAvailableClassifiersAsDisplayList(self):
+        return self.getField('availableClassifiers').getAsDisplayList(self)
+
 
     security.declareProtected(permissions.View, 'getAvailableLicensesAsDisplayList')
     def getAvailableLicensesAsDisplayList(self):

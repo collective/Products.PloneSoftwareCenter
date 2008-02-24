@@ -210,6 +210,12 @@ class PyPIView(BrowserView):
             value = data.get(v)
             if not value:
                 continue
+            # XXX finding the classifier id
+            if k == 'classifiers':
+                classifiers = self.context.getField('availableClassifiers')
+                value = [classifiers.getRow(self.context, val, 2)['id']
+                         for val in value]
+
             project_data[k] = value
 
         project.update(**project_data)

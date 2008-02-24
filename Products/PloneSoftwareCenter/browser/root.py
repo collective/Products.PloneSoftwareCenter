@@ -50,7 +50,7 @@ class SoftwareCenterView(BrowserView):
         """Return number of releases
         """
         return len(self.catalog(portal_type = 'PSCRelease', path = self.context_path))
-        
+      
     def categories(self):
         """Get categories to list
         
@@ -67,24 +67,25 @@ class SoftwareCenterView(BrowserView):
        
         if self.context.getUseClassifiers():
             uniqueCategories = self.catalog.uniqueValuesFor('getClassifiers')
-            vocab = self.context.getAvailableClassifiersAsDisplayList()
-            field = self.context.getField('classifiers')
+            # filtering "Topic"
+            field = self.context.getField('availableClassifiers')
+            classifiers = field.getAsGrid(field)
+            vocab = {}
+            for id, title, trove_id in classifiers:
+                if trove_id.startswith('Topic'):
+                    vocab[id] = (title, trove_id)
             field_name = 'getClassifiers'
-            def _lookup(cat):
-                return cat, cat, cat
         else:
             vocab = self.context.getAvailableCategoriesAsDisplayList() 
             uniqueCategories = self.catalog.uniqueValuesFor('getCategories')
             field = self.context.getField('availableCategories')
             field_name = 'getCategories'
-            def _lookup(cat):
-                return (field.lookup(self.context, cat, 0),
-                        field.lookup(self.context, cat, 1),
-                        field.lookup(self.context, cat, 2))
 
         for cat in vocab.keys(): 
-            if cat in uniqueCategories: 
-                id, name, description = _lookup(cat)
+            if cat in uniqueCategories:
+                id = field.lookup(self.context, cat, 0)
+                name = field.lookup(self.context, cat, 1)
+                description = field.lookup(self.context, cat, 2)
                 rss_url = "%s/search_rss?portal_type=PSCRelease&sort_on=Date&sort_order=reverse&path=%s&getCategories=%s&review_state=alpha&review_state=beta&review_state=release-candidate&review_state=final" % (self.portal_url, self.context_path, cat,)
                 
                 releases = []
