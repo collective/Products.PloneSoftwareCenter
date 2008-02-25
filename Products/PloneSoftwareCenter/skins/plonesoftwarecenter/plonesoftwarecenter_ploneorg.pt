@@ -238,7 +238,8 @@
                                     item_wf_state_class python:'state-' + normalizeString(item_wf_state);"
                         tal:attributes="class item_wf_state_class"
                      >
-                        <a href="#" style="border-bottom: 1px solid #8CACBB" tal:attributes="href projectURL;" tal:content="result/pretty_title_or_id" />
+
+
                         <span class="discreet" tal:content="python:toLocalizedTime(result.ModificationDate, long_format=0)">
                             Modification Date
                         </span>
