@@ -37,10 +37,10 @@ When a PloneSoftwareCenter is created, it will use this list by
 default (which is the recommended classification), but it can change 
 it in order to deal with a custom list::
 
-    >>> print '\n'.join(portal.psc.classifiers)
-    Development Status :: 1 - Planning
+    >>> print '\n'.join(portal.psc.availableClassifiers)
+    1-planning|1 - Planning|Development Status :: 1 - Planning
     ...
-    Topic :: Utilities
+    utilities|Utilities|Topic :: Utilities
 
 This is also available in the view, as `list_classifiers`, in the shape
 waited by `register`::
@@ -48,9 +48,9 @@ waited by `register`::
     >>> from zope.publisher.browser import TestRequest
     >>> view = PyPIView(portal.psc, TestRequest())
     >>> print view.list_classifiers()
-    Development Status :: 1 - Planning
+    1-planning|1 - Planning|Development Status :: 1 - Planning
     ...
-    Topic :: Utilities
+    utilities|Utilities|Topic :: Utilities
 
 The initialization of a PloneSoftwareCenter will try to load the Trove
 from PyPI. If the call fails, it will use the TROVE.txt file. This is done
@@ -95,9 +95,11 @@ Let's check the result. We should have a new project in the PSC::
 And the right classification list (PG-13 is not a known classifier in this PSC)::
 
     >>> project.getClassifiers()
-    ('Programming Language :: Python', 'Topic :: Utilities')
+    ('python', 'utilities')
 
-o download link was created because the field was set to UNKNOWN in the
+(These are the ids of the trove classifiers)
+
+A download link was created because the field was set to UNKNOWN in the
 request. Let's define the download url and submit the package again::
 
     >>> form['download_url'] = 'http://example.com/package.tgz'
@@ -226,4 +228,14 @@ Let's view the PSC with the classifiers flavor::
 
     >>> browser.open('http://localhost/plone/psc')
     >>> print browser.contents
+    <!DOCTYPE ...>
+    ...
+    <a href="http://localhost/plone/psc/by-category/utilities">Utilities</a>
+    ...
+    <a href="http://localhost/plone/psc/iw.dist" ...>
+    ...
+    iw.dist 0.1.0dev-r6983
+    ...
+    </html>
+
 

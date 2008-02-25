@@ -16,7 +16,6 @@ from Products.Five import BrowserView
 
 import version_predicate
 import verify_filetype
-from Products.PloneSoftwareCenter.config import DEFAULT_CLASSIFIERS
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
@@ -116,7 +115,7 @@ class PyPIView(BrowserView):
                 raise ValueError, 'Bad "provides" syntax: %s' % message
 
         # check classifiers (filter them out)
-        cats = self._get_classifiers()
+        cats = [cols.split('|')[-1] for cols in self._get_classifiers()]
         filter_ = lambda key: key in cats
 
         if data.has_key('classifiers'):
@@ -284,7 +283,7 @@ class PyPIView(BrowserView):
     def _get_classifiers(self):
         """returns current classifiers"""
         sc = self.context
-        classifiers = sc.getField('classifiers')
+        classifiers = sc.getField('availableClassifiers')
         return classifiers.get(classifiers)
 
     #
@@ -321,7 +320,6 @@ class PyPIView(BrowserView):
 
         name = data['name']
         version = data['version']
-
         return self._store_package(name, version, data)
 
     def verify(self, data=None):
