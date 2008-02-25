@@ -260,7 +260,21 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
             return None
 
     # Vocabulary methods
-    security.declareProtected(permissions.View, 'getAvailableCategoriesAsDisplayList')
+    security.declareProtected(permissions.View, 
+                              'getAvailableTopicsFromClassifiers')
+    def getAvailableTopicsFromClassifiers(self):
+        """Get categories in DisplayList form, extracted from
+        all classifiers that starts with 'Topic'"""
+        field = self.getField('availableClassifiers')
+        classifiers = field.getAsGrid(field)
+        vocab = {}
+        for id, title, trove_id in classifiers:
+            if trove_id.startswith('Topic'):
+                vocab[id] = (title, trove_id)
+        return vocab
+
+    security.declareProtected(permissions.View, 
+                              'getAvailableCategoriesAsDisplayList')
     def getAvailableCategoriesAsDisplayList(self):
         """Get categories in DisplayList form."""
         return self.getField('availableCategories').getAsDisplayList(self)
