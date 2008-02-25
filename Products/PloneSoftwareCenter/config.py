@@ -51,28 +51,8 @@ if USE_EXTERNAL_STORAGE:
 
 import os
 from Globals import package_home
+from trove import TroveClassifier 
 
-# first, let's try to get the TROVE from PyPI
-PYPI_CLASSIFIERS_URL = 'http://pypi.python.org/pypi?%3Aaction=list_classifiers'
-
-from urllib2 import urlopen
-from urllib2 import URLError
-
-try:
-    import socket
-    old_timeout = socket.getdefaulttimeout()
-    socket.setdefaulttimeout(10)
-    try:
-        trove = urlopen(PYPI_CLASSIFIERS_URL)
-    finally:
-        socket.setdefaulttimeout(old_timeout)
-except URLError:  # no web connection
-    # if it has failed, we will use the saved one
-    trove = open(os.path.join(package_home(GLOBALS), 'TROVE.txt'))
-
-try:
-    DEFAULT_CLASSIFIERS = dict([(entry.strip(), entry.strip()) 
-                                for entry in trove.readlines()])
-finally:
-    trove.close()
+trove_default = os.path.join(package_home(GLOBALS), 'TROVE.txt')
+trove = TroveClassifier(trove_default)
 

@@ -23,7 +23,7 @@ from Products.ArchAddOn.Fields import SimpleDataGridField
 from Products.ArchAddOn.Widgets import SimpleDataGridWidget
 
 from Products.PloneSoftwareCenter.config import PROJECTNAME
-from Products.PloneSoftwareCenter.config import DEFAULT_CLASSIFIERS
+from Products.PloneSoftwareCenter.config import trove
 
 PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
@@ -44,9 +44,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     SimpleDataGridField('availableClassifiers',
             columns=3,
         column_names=('id', 'title', 'trove-id'),
-        default=['%s|%s|%s' % (id, classifier.split(' :: ')[-1], classifier) 
-                 for id, classifier in enumerate(sorted(DEFAULT_CLASSIFIERS))],
-
+        default=trove.get_datagrid(),
         widget=SimpleDataGridWidget(
             label='Classifiers',
             label_msgid='label_classifiers',
