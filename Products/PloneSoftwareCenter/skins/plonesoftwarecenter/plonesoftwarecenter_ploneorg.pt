@@ -178,11 +178,7 @@
         </select>
         <label>for</label>
         <select name="getCompatibility">
-            <option value="current" 
-                    tal:attributes="selected python:test(len(currentVersion)==2,'selected',nothing)">
-                Supported releases (3.0 or 2.5)
-            </option>
-            <tal:block tal:repeat="version python:('Plone 3.0','Plone 2.5','Plone 2.1', 'Plone 2.0')">
+            <tal:block tal:repeat="version here/getAvailableVersions">
                 <option tal:content="version"
                         tal:attributes="value version;
                                         selected python:test(currentVersion==version,'selected',nothing)">
