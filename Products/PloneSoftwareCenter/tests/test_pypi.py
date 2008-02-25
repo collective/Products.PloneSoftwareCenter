@@ -76,17 +76,24 @@ class TestPyPI(PSCTestCase):
 
         # now let the user 1 publish the project
         self.login('user1')
-        
         wf = self.portal.portal_workflow
         wf.doActionFor(iw_dist, 'publish')
 
         self.login('user2')
+        
         # and see how the submit works now
         view.submit()
         # check what has been created
         iw_dist = psc['iw.dist']
         rel = iw_dist.releases['0.1.0dev-r6983']
-        # we don't want any file or file link
+        # we don't want any file or file link 
+        self.assertEquals(rel.objectIds(), [])
+
+        # now let's provide an url
+        form['download_url'] = 'the_url'
+        form['platform'] = 'win32'
+        view = PyPIView(psc, Req(form))  
+        view.submit()
         self.assertEquals(rel.objectIds(), ['download'])
 
     def test_edit_project(self):

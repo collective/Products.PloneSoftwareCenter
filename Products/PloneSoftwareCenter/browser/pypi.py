@@ -162,7 +162,7 @@ class PyPIView(BrowserView):
 
         # Make a release if not released yet.
         self._maybe_release(release)
-    
+   
         # returns if not published yet
         if not self._is_published(project):
             return '\n'.join(msg)
