@@ -84,6 +84,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
     LinesField('availableVersions',
         default=[
+            'Plone 3.0',
             'Plone 2.5',
             'Plone 2.1',
             'Plone 2.0.5',
