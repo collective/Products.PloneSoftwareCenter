@@ -52,5 +52,9 @@
     color: #74AE0B;
 }
 
+.poweredBy { 
+    image: url(product_icon.gif);
+}
+
 
 /* </dtml-with> */
