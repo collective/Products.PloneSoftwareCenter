@@ -277,7 +277,8 @@
     <div class="visualClear"><!----></div>
     
     <div class="poweredBy">
-    Powered by <a class="link-plain" href="http://plone.org/products/plonesoftwarecenter">Plone Software Center</a>
+        Powered by <img src="product_icon.gif">
+            <a class="link-plain" href="http://plone.org/products/plonesoftwarecenter">Plone Software Center</a>
     </div>
 
   </div>
