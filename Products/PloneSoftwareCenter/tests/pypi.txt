@@ -238,4 +238,9 @@ Let's view the PSC with the classifiers flavor::
     ...
     </html>
 
+Let's go to the by-category view::
+
+    >>> browser.open('http://localhost/plone/psc/by-category/utilities')
+    >>> 'iw.dist' in browser.contents
+    True
 

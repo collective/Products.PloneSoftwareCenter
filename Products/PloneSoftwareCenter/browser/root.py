@@ -64,7 +64,8 @@ class SoftwareCenterView(BrowserView):
         
         def parent_url(url):
             return '/'.join(url.split('/')[:-2])
-       
+        
+        # XXX efactor this ugly part
         if self.context.getUseClassifiers():
             uniqueCategories = self.catalog.uniqueValuesFor('getClassifiers')
             # filtering "Topic"

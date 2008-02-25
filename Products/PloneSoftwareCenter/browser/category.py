@@ -32,7 +32,10 @@ class CategoryView(BrowserView):
         if states:
             query['review_state'] = states
         if category:
-            query['getCategories'] = category
+            if self.context.getUseClassifiers():
+                query['getClassifiers'] = category 
+            else:
+                query['getCategories'] = category
         if limit:
             query['sort_limit'] = limit
         if sort_on:
