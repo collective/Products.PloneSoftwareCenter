@@ -61,11 +61,13 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     BooleanField('useClassifiers',
         required=0,
         widget=BooleanWidget(
-            label="Use Classifiers to display.",
+            label="Use Classifiers to display Categories (with Topic :: *).",
             label_msgid="label_use_classifier",
             description_msgid="description_use_classifier",
             description=("Indicate whether the Software Center uses the "
                          "Classifiers field to display projects. " 
+                         "In that case it gets all lines starting with "
+                         "'Topic' and builds the category list with them." 
                          ),
             i18n_domain="plonesoftwarecenter",
         ),
