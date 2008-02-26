@@ -122,12 +122,44 @@ class TestPyPI(PSCTestCase):
         form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
                 'metadata_version': '1.0', 'author': 'Ingeniweb',
                 'version': '0.1.0dev-r6983'} 
-
+       
         view = PyPIView(psc, Req(form))
         view.submit()
         self.assertEquals(iw_dist.getText(),  '<p>xxx</p>\n')
 
+    def test_unexisting_classifier(self):
+        # make sure the server doesn't fail on unexisting
+        # classifiers
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
 
+        # making sure the project is correctly set
+        self.login('user2')
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
+                'metadata_version': '1.0', 'author': 'Ingeniweb', 
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+                'summary': 'The summary', 
+                'author_email': 'support@ingeniweb.com',
+                'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
+                'keywords': '', 
+                'classifiers': ['Programming Language :: Python',
+                                'Topic :: Utilities', 'Rated :: PG13',
+                                'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'], 
+                'description': 'xxx'}
+        view = PyPIView(psc, Req(form))
+
+        # adding a field
+        psc = self.portal.psc
+        pg = 'rated-pg13|Rated PG13|Rated :: PG13'
+        classifiers = psc.getField('availableClassifiers')
+        values = classifiers.get(classifiers) 
+        classifiers.set(psc, values + (pg,))  
+        
+        view.submit()
+        iw_dist = psc['iw.dist']
+        wanted = ('python', 'utilities', 'rated-pg13') 
+        self.assertEquals(iw_dist.getClassifiers(),  wanted)
 
 def test_suite():
     from unittest import TestSuite, makeSuite

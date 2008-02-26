@@ -283,8 +283,7 @@ class PyPIView(BrowserView):
     def _get_classifiers(self):
         """returns current classifiers"""
         sc = self.context
-        classifiers = sc.getField('availableClassifiers')
-        return classifiers.get(classifiers)
+        return sc.getField('availableClassifiers').get(sc)
 
     #
     # public API
