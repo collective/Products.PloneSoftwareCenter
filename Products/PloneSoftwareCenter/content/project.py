@@ -450,18 +450,15 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         projectPath = self.getPhysicalPath()
         if len(projectPath) > 1 and projectPath[-1] == 'portal_factory':
             projectPath = projectPath[:-2]
-            
+
         search = catalog.searchResults(portal_type = 'PSCImprovementProposal',
                                        path = '/'.join(projectPath))
-        
-        items = [s for s in search]
-        items.sort(lambda x, y: cmp(int(x.getId), int(y.getId)))
         lst = DisplayList()
-        for i in items:
+        for i in search:
             title = i.Title
             if len(title) > 40:
                 title = title[:40] + '...'
-                
+
             lst.add(i.UID, title)
         return lst
     
