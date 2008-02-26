@@ -92,8 +92,10 @@ class ProjectView(BrowserView):
     def display_categories(self):
         """Get a list of categories, separated by commas, for display
         """
-        
-        return ', '.join(self.context.getCategoryTitles())
+        if self.context.useClassifiers:
+            return ', '.join(self.context.getVocabularyTitlesFromCLassifiers())
+        else:
+            return ', '.join(self.context.getCategoryTitles())
         
     def similar_search_url(self):
         """Get a url to search for projects by the same author

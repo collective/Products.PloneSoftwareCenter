@@ -396,6 +396,17 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         values = [vocab.getValue(c) or c for c in self.getCategories()]
         values.sort()
         return values
+    
+    security.declareProtected(permissions.View,
+                              'getVocabularyTitlesFromCLassifiers')
+    def getVocabularyTitlesFromCLassifiers(self):
+        """Return selected categories as a list of category long names,
+        for the user interface. Uses the classifiers.
+        """
+        vocab = self.getClassifiersVocab()
+        values = [vocab.getValue(c) or c for c in self.getClassifiers()]
+        values.sort()
+        return values
 
     security.declareProtected(permissions.View, 'getClassifiersVocab')
     def getClassifiersVocab(self):
