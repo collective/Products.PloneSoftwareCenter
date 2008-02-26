@@ -212,9 +212,9 @@ class PyPIView(BrowserView):
             # XXX finding the classifier id
             if k == 'classifiers':
                 classifiers = self.context.getField('availableClassifiers')
-                value = [classifiers.getRow(self.context, val, 2)['id']
+                value = [classifiers.getRow(self.context, val, 2)
                          for val in value]
-
+                value = [val['id'] for val in value if val is not None]
             project_data[k] = value
 
         project.update(**project_data)

@@ -193,6 +193,20 @@ in the Cheeseshop::
     >>> 'this is <strong>rest</strong>' in browser.contents
     True
 
+Let's add an unknown classifier::
+
+    >>> form['classifiers'] = ['Programming Language :: Python', 'unkown']
+    >>> del form['md5_digest']
+
+And upload again::
+
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Updated Release File: project.tgz
+
+The Software Center ignored the unkown classifier. 
+
 Getting the release
 ===================
 
@@ -250,5 +264,4 @@ The project page category displays *all* categories in its header::
     >>> page = browser.contents
     >>> 'Category: Python, Utilities' in page
     True
-
 
