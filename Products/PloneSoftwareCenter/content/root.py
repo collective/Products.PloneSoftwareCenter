@@ -152,6 +152,18 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
+    StringField('featuredProject',
+        searchable=1,
+        storage=MetadataStorage(),
+        widget=StringWidget(
+            label_msgid='label_featured_project',
+            label='Featured Project',
+            description_msgid='help_featured_project',
+            description='Featured project for the software center.',
+            i18n_domain='plonesoftwarecenter',
+        ),
+    ),
+
 ))
 
 

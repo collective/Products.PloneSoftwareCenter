@@ -222,7 +222,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
 
     LinesField(
         name='compatibility',
-        required=0,
+        required=1,
         searchable=1,
         index='KeywordIndex:schema',
         vocabulary='getCompatibilityVocab',
