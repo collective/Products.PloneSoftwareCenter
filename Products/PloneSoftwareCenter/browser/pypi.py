@@ -271,12 +271,13 @@ class PyPIView(BrowserView):
                 if msg is not None:
                     msg.append('Created Release %s in Project %s' % \
                                 (version, name))
-
+                
             except Unauthorized:
                 if self._is_published(project): 
                     err = 'Could not create the release'
                     return self.fail(err, 401)
-        
+                raise
+
         release = releases._getOb(version)
         return project, release
 
