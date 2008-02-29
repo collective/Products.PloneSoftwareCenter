@@ -113,7 +113,17 @@ class TestProjectSecurity(PSCTestCase):
             self.proj.invokeFactory('PSCReleaseFolder', 'releases')
         except:
             self.fail('Project creator is unable to create Releases folder.')
-    
+   
+    def testReleaseCreation(self):
+        # a member can create a project and its releases
+        # even if it's not yet published
+        self.login('user2')
+        self.psc.invokeFactory('PSCProject', 'proj2')
+        try:
+            self.psc.proj2.releases.invokeFactory('PSCRelease', '0.1')
+        except:  
+            self.fail('Project creator is unable to create its releases')
+
 class TestPloneHelpCenterIntegration(PSCTestCase):
     def afterSetUp(self):
         # Definitions for convenience
@@ -144,11 +154,7 @@ class TestPloneHelpCenterIntegration(PSCTestCase):
         except AttributeError:
             self.fail('PloneHelpCenter integration tests cannot be run '
               'because the product is not installed.')
-        # At least in Plone 3 an AttributeError while installing
-        # PloneHelpCenter is swallowed.  So we have to do a better
-        # check.
-        self.failIf(qi_tool.PloneHelpCenter.error)
-
+    
     def testDocumentationFolderCreation(self):
         self.login('user1')
         try:

@@ -141,7 +141,7 @@ New functionality
         [ ] - Link to other reviews from this person, reviewer stats
 
     [ ] o Add ratings to products
-        [ ] - Simple thumbs up/down rating (also on documentation) or Amazon style star ratings
+        [ ] - Simple thumbs up/down rating (also on documentation)
 
     [ ] o Add development blog/press release type, aggregator?
         [ ] - How to avoid duplication of e.g. release notes?

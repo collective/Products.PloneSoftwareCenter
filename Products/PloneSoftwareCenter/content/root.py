@@ -22,8 +22,8 @@ except ImportError:
 from Products.ArchAddOn.Fields import SimpleDataGridField
 from Products.ArchAddOn.Widgets import SimpleDataGridWidget
 
-
 from Products.PloneSoftwareCenter.config import PROJECTNAME
+from Products.PloneSoftwareCenter.config import trove
 
 PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
@@ -41,8 +41,41 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
+    SimpleDataGridField('availableClassifiers',
+            columns=3,
+        column_names=('id', 'title', 'trove-id'),
+        default=trove.get_datagrid(),
+        widget=SimpleDataGridWidget(
+            label='Classifiers',
+            label_msgid='label_classifiers',
+            description=('Define the Trove classifiers. '
+                         'The format is "Id | Title | Trove id". '
+                         'The Id must be unique, and Trove id corresponds '
+                         'to the Trove value'),
+            description_msgid='help_classifiers_vocab',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
+
+    BooleanField('useClassifiers',
+        required=0,
+        widget=BooleanWidget(
+            label="Use Classifiers to display Categories (with Topic :: *).",
+            label_msgid="label_use_classifier",
+            description_msgid="description_use_classifier",
+            description=("Indicate whether the Software Center uses the "
+                         "Classifiers field to display projects. " 
+                         "In that case it gets all lines starting with "
+                         "'Topic' and builds the category list with them." 
+                         ),
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+
+
     SimpleDataGridField('availableCategories',
-        columns=3,
+            columns=3,
         column_names=('id', 'title', 'description'),
         default=[
             'standalone|Stand-alone products|Projects that are self-contained.', 
@@ -151,7 +184,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
-))
+    ))
 
 
 class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
@@ -228,13 +261,30 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
         else:
             return None
 
-
     # Vocabulary methods
-    
-    security.declareProtected(permissions.View, 'getAvailableCategoriesAsDisplayList')
+    security.declareProtected(permissions.View, 
+                              'getAvailableTopicsFromClassifiers')
+    def getAvailableTopicsFromClassifiers(self):
+        """Get categories in DisplayList form, extracted from
+        all classifiers that starts with 'Topic'"""
+        field = self.getField('availableClassifiers')
+        classifiers = field.getAsGrid(field)
+        vocab = {}
+        for id, title, trove_id in classifiers:
+            if trove_id.startswith('Topic'):
+                vocab[id] = (title, trove_id)
+        return vocab
+
+    security.declareProtected(permissions.View, 
+                              'getAvailableCategoriesAsDisplayList')
     def getAvailableCategoriesAsDisplayList(self):
         """Get categories in DisplayList form."""
         return self.getField('availableCategories').getAsDisplayList(self)
+
+    security.declareProtected(permissions.View, 'getAvailableClassifiersAsDisplayList')
+    def getAvailableClassifiersAsDisplayList(self):
+        return self.getField('availableClassifiers').getAsDisplayList(self)
+
 
     security.declareProtected(permissions.View, 'getAvailableLicensesAsDisplayList')
     def getAvailableLicensesAsDisplayList(self):

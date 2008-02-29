@@ -58,8 +58,7 @@
                tal:attributes="href view/similar_search_url"
                >Other products by this author</a>
 
-<span tal:replace="structure context/@@user_rating_view|nothing" />
-<span tal:replace="structure context/@@user_rating_set|nothing" />
+
         </div>
 
         <div class="visualIEFloatFix" style="margin-top: 1em;">

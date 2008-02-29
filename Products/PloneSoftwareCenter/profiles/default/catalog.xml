@@ -3,6 +3,9 @@
  <index name="getCategories" meta_type="KeywordIndex">
   <indexed_attr value="getCategories"/>
  </index>
+ <index name="getClassifiers" meta_type="KeywordIndex">
+  <indexed_attr value="getClassifiers"/>
+ </index>
  <index name="getCompatibility" meta_type="KeywordIndex">
   <indexed_attr value="getCompatibility"/>
  </index>
@@ -17,6 +20,7 @@
  </index>
  <column value="UID"/>
  <column value="getCategories"/>
+ <column value="getClassifiers"/>
  <column value="getCategoryTitles"/>
  <column value="getCompatibility"/>
  <column value="getProposalTypes"/>

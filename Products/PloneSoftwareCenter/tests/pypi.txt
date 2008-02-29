@@ -1,0 +1,267 @@
+================
+PyPI integration
+================
+
+..contents ::
+
+The test fixture provides a PloneSoftwareCenter instance in the root, 
+called 'psc'::
+
+    >>> portal.psc
+    <PloneSoftwareCenter at /plone/psc>
+
+PyPI api
+========
+
+The PyPI Api is bundled as a view in the software center::
+
+    >>> from Products.PloneSoftwareCenter.browser.pypi import PyPIView 
+
+This allows distutils to interact with PloneSoftwareCenter like it does
+with PyPI. The current implemented APIs are:
+
+- `file_upload`: called on `upload` command
+- `submit`: called on `register` command
+- `list_classifiers`: called on `register --list-classifiers` 
+- `verify`: called on `register --dry-run `
+
+- a `simple` page is provided through the view for easy_install to scan
+  the packages releases.
+
+Classifiers
+===========
+
+The classification of eggs are done by the Trove classification. This 
+classification has a default list of values managed by the official PyPI.
+When a PloneSoftwareCenter is created, it will use this list by
+default (which is the recommended classification), but it can change 
+it in order to deal with a custom list::
+
+    >>> print '\n'.join(portal.psc.availableClassifiers)
+    1-planning|1 - Planning|Development Status :: 1 - Planning
+    ...
+    utilities|Utilities|Topic :: Utilities
+
+This is also available in the view, as `list_classifiers`, in the shape
+waited by `register`::
+    
+    >>> from zope.publisher.browser import TestRequest
+    >>> view = PyPIView(portal.psc, TestRequest())
+    >>> print view.list_classifiers()
+    1-planning|1 - Planning|Development Status :: 1 - Planning
+    ...
+    utilities|Utilities|Topic :: Utilities
+
+The initialization of a PloneSoftwareCenter will try to load the Trove
+from PyPI. If the call fails, it will use the TROVE.txt file. This is done
+in order to keep an up-to-date Trove because it is changing from time
+to time.
+
+Registering a release
+=====================
+
+Let's create a setuptools-like request (using sdist)::
+    
+    >>> form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
+    ...         'metadata_version': '1.0', 'author': 'Ingeniweb', 
+    ...         'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+    ...         'summary': 'xxx', 'author_email': 'support@ingeniweb.com', 
+    ...         'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN', 
+    ...         'keywords': '', 
+    ...         'classifiers': ['Programming Language :: Python',
+    ...                         'Topic :: Utilities',
+    ...                         'Rated :: PG13'], 
+    ...         'description': 'xxx'}
+    >>> request = TestRequest(form=form)
+
+Let's call the `submit` method::
+
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.submit()
+    Created Project: iw.dist
+    Updated Project: iw.dist
+    Created Release 0.1.0dev-r6983 in Project iw.dist
+    Updated Project: iw.dist
+    Updated Release: 0.1.0dev-r6983
+
+Let's check the result. We should have a new project in the PSC::
+
+    >>> project = portal.psc['iw.dist']
+    >>> project
+    <PSCProject at /plone/psc/iw.dist>
+    >>> project.title
+    u'iw.dist'
+
+And the right classification list (PG-13 is not a known classifier in this PSC)::
+
+    >>> project.getClassifiers()
+    ('python', 'utilities')
+
+(These are the ids of the trove classifiers)
+
+A download link was created because the field was set to UNKNOWN in the
+request. Let's define the download url and submit the package again::
+
+    >>> form['download_url'] = 'http://example.com/package.tgz'
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request) 
+    >>> print view.submit()
+    Updated Project: iw.dist
+    Updated Project: iw.dist
+    Updated Release: 0.1.0dev-r6983
+    Created Download Link
+    Updated Download Link
+
+Verifying metadata before releasing
+===================================
+
+`register` has a `dry-run` mode that calls the `verify` API on the server.
+
+Let's try it::
+    >>> form = {'': 'verify', 'license': 'GPL', 'name': 'iw.dist', 
+    ...         'metadata_version': '1.0', 'author': 'Ingeniweb', 
+    ...         'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+    ...         'summary': 'summary', 'author_email': 
+    ...         'support@ingeniweb.com', 'version': '0.1.0dev-r6992', 
+    ...         'platform': 'UNKNOWN', 'keywords': '', 'classifiers': 
+    ...          ['Programming Language :: Python', ], 
+    ...          'description': 'desc'} 
+    >>> request = TestRequest(form=form)
+
+Let's call the `submit` method::
+
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.verify()
+    OK
+ 
+Uploading a release
+===================
+
+Let's create a setuptools-like request (using sdist)::
+
+    >>> from zope.publisher.browser import TestRequest
+    >>> form = {'comment': '', '': 'file_upload', 'protcol_version': '1', 
+    ...         'md5_digest': '26031b40e5bcc3e7966e503eed029a41',
+    ...         'filetype': 'sdist', 'pyversion': '', 
+    ...         'content': tarball, 'version': '0.1cdev-r6553', 
+    ...         'name': 'iw.recipe.fss', 
+    ...         'description': 'this is **rest**'}
+    >>> request = TestRequest(form=form)
+
+Let's call the `file_upload` method::
+
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Created Release File: project.tgz
+    Updated Release File: project.tgz
+ 
+Let's check the result. We should have a new project in the PSC::
+
+    >>> project = portal.psc['iw-recipe.fss']
+    >>> project
+    <PSCProject at /plone/psc/iw-recipe.fss>
+    >>> project.title
+    u'iw.recipe.fss'
+
+And a release with the file::
+
+    >>> releases = project.getReleaseFolder()
+    >>> release = releases['0.1cdev-r6553']
+    >>> release
+    <PSCRelease at /plone/psc/iw-recipe.fss/releases/0.1cdev-r6553>
+    >>> release.objectIds()
+    ['project.tgz']
+    >>> file_ = release['project.tgz']
+    >>> file_.Title()
+    'project.tgz'
+    >>> file_.platform
+    u'All platforms'
+
+The release is published as a final release when its uploaded::
+
+    >>> portal.portal_workflow.getInfoFor(release, 'review_state')
+    'final'
+
+And we should have a nice front page with a reStructuredText content. Let's
+check this with a test browser, to make sure it has been parsed like
+in the Cheeseshop::
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> browser.open('http://localhost/plone/psc/iw-recipe.fss')
+    >>> 'this is <strong>rest</strong>' in browser.contents
+    True
+
+Let's add an unknown classifier::
+
+    >>> form['classifiers'] = ['Programming Language :: Python', 'unkown']
+    >>> del form['md5_digest']
+
+And upload again::
+
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Updated Release File: project.tgz
+
+The Software Center ignored the unkown classifier. 
+
+Getting the release
+===================
+
+The PSC provides a `simple` view that lists all releases that are in final state::
+
+    >>> browser.open('http://localhost/plone/psc/simple')
+    >>> print browser.contents
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+     <head>
+      <title>Simple Index</title>
+     <body>
+    <BLANKLINE>
+       <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="...psc/iw-recipe.fss/releases/0.1cdev-r6553/project.tgz">project.tgz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+     </body>
+    </head></html>
+    <BLANKLINE>
+    <BLANKLINE>
+
+Visible changes in UI
+=====================
+
+When `useClassifiers` is checked, the UI is using classifiers instead of
+categories in all APIs::
+
+    >>> portal.psc.setUseClassifiers(True)
+    
+Let's view the PSC with the classifiers flavor::
+
+    >>> browser.open('http://localhost/plone/psc')
+    >>> print browser.contents
+    <!DOCTYPE ...>
+    ...
+    <a href="http://localhost/plone/psc/by-category/utilities">Utilities</a>
+    ...
+    <a href="http://localhost/plone/psc/iw.dist" ...>
+    ...
+    iw.dist 0.1.0dev-r6983
+    ...
+    </html>
+
+Let's go to the by-category view::
+
+    >>> browser.open('http://localhost/plone/psc/by-category/utilities')
+    >>> 'iw.dist' in browser.contents
+    True
+
+The project page category displays *all* categories in its header::
+
+    >>> browser.open('http://localhost/plone/psc/iw.dist')
+    >>> page = browser.contents
+    >>> 'Category: Python, Utilities' in page
+    True
+
