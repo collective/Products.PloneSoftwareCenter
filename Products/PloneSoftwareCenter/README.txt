@@ -62,3 +62,7 @@ Credits
 
   Development, Maintenance --
   "Alex Clark":http://aclark.net
+
+  PyPI integration, from an initial branch started by Sidnei --
+  "Tarek Ziadé":mailto:tarek@ziade.org, "Ingeniweb":http://ingeniweb.com
+
