@@ -219,8 +219,16 @@ class TestPloneHelpCenterIntegration(PSCTestCase):
         faq.q2.content_status_modify(workflow_action='publish')
         self.assertEqual(self.wf_tool.getInfoFor(faq.q2, 'review_state'),
           'published')
-    
-    
+
+    def testReleaseCreation(self):
+        # a member can create a project and its releases 
+        self.login('user2') 
+        self.psc.invokeFactory('PSCProject', 'proj2') 
+        try: 
+            self.psc.proj2.releases.invokeFactory('PSCRelease', '0.1') 
+        except:   
+            self.fail('Project creator is unable to create its releases') 
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite
