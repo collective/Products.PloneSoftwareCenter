@@ -2,6 +2,10 @@
 $Id$
 """
 from zLOG import LOG, PROBLEM
+import os
+from Globals import package_home
+from trove import TroveClassifier 
+
 
 # Use ExternalStorage for PSCFile?
 USE_EXTERNAL_STORAGE = False
@@ -51,3 +55,7 @@ if USE_EXTERNAL_STORAGE:
         LOG('PloneSoftwareCenter',
             PROBLEM, 'ExternalStorage N/A, falling back to AttributeStorage')
         USE_EXTERNAL_STORAGE = False
+
+trove_default = os.path.join(package_home(GLOBALS), 'TROVE.txt')
+trove = TroveClassifier(trove_default)
+

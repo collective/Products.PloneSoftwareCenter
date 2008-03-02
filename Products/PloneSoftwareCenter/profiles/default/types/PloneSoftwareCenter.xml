@@ -19,6 +19,7 @@
  <property name="default_view">plonesoftwarecenter_view</property>
  <property name="view_methods">
   <element value="plonesoftwarecenter_view"/>
+  <element value="plonesoftwarecenter_ploneorg"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>

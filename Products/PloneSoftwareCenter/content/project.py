@@ -70,6 +70,22 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=25,
         ),
     ),
+    
+    LinesField('classifiers',
+        multiValued=1,
+        required=1,
+        vocabulary='getClassifiersVocab',
+        enforceVocabulary=1,
+        index='KeywordIndex:schema',
+        widget=MultiSelectionWidget(
+            label='Classifiers',
+            label_msgid='label_classifiers',
+            description='Trove classifiers for this item.',
+            description_msgid='help_classifiers',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
 
     LinesField('categories',
         multiValued=1,
@@ -82,6 +98,21 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             label_msgid="label_categories",
             description='Categories that this item should appear in.',
             description_msgid="help_categories",
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+    
+    LinesField('classifiers',
+        multiValued=1,
+        required=1,
+        vocabulary='getClassifiersVocab',
+        enforceVocabulary=1,
+        index='KeywordIndex:schema',
+        widget=MultiSelectionWidget(
+            label='Classifiers',
+            label_msgid="label_classifiers",
+            description='Classifiers that this item should appear in.',
+            description_msgid="help_classifiers",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -327,13 +358,9 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         if not self.hasProperty('releaseCount'):
             self.manage_addProperty('releaseCount', 0, 'int')
 
-    security.declareProtected(permissions.ModifyPortalContent,
-                              'setCategories')
-    def setCategories(self, value):
-        """Overrides categories mutator so we can reindex internal content.
-        """
-        self.getField('categories').set(self, value)
-        self.reindexObject(idxs=['getCategories'])
+    def _setAndIndexField(self, field_name, index_name, value):
+        self.getField(field_name).set(self, value)
+        self.reindexObject(idxs=[index_name])
         catalog = getToolByName(self, 'portal_catalog')
         res = catalog.searchResults(
                           portal_type=['PSCRelease',
@@ -343,7 +370,22 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
                           path='/'.join(self.getPhysicalPath()))
         for r in res:
             o = r.getObject()
-            o.reindexObject(idxs=['getCategories'])
+            o.reindexObject(idxs=[index_name])
+
+   
+    security.declareProtected(permissions.ModifyPortalContent,
+                              'setClassifiers')
+    def setClassifiers(self, value):
+        """Overrides classifiers mutator so we can reindex internal content.
+        """
+        self._setAndIndexField('classifiers', 'getClassifiers', value)
+
+    security.declareProtected(permissions.ModifyPortalContent,
+                              'setCategories')
+    def setCategories(self, value):
+        """Overrides categories mutator so we can reindex internal content.
+        """
+        self._setAndIndexField('categories', 'getCategories', value)
 
     security.declareProtected(permissions.View, 'getCategoryTitles')
     def getCategoryTitles(self):
@@ -354,6 +396,24 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         values = [vocab.getValue(c) or c for c in self.getCategories()]
         values.sort()
         return values
+    
+    security.declareProtected(permissions.View,
+                              'getVocabularyTitlesFromCLassifiers')
+    def getVocabularyTitlesFromCLassifiers(self):
+        """Return selected categories as a list of category long names,
+        for the user interface. Uses the classifiers.
+        """
+        vocab = self.getClassifiersVocab()
+        values = [vocab.getValue(c) or c for c in self.getClassifiers()]
+        values.sort()
+        return values
+
+    security.declareProtected(permissions.View, 'getClassifiersVocab')
+    def getClassifiersVocab(self):
+        """Get classifiers vocabulary from parent project area via acquisition.
+        """
+        return self.getAvailableClassifiersAsDisplayList()
+    
 
     security.declareProtected(permissions.View, 'getCategoriesVocab')
     def getCategoriesVocab(self):
@@ -450,18 +510,15 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         projectPath = self.getPhysicalPath()
         if len(projectPath) > 1 and projectPath[-1] == 'portal_factory':
             projectPath = projectPath[:-2]
-            
+
         search = catalog.searchResults(portal_type = 'PSCImprovementProposal',
                                        path = '/'.join(projectPath))
-        
-        items = [s for s in search]
-        items.sort(lambda x, y: cmp(int(x.getId), int(y.getId)))
         lst = DisplayList()
-        for i in items:
+        for i in search:
             title = i.Title
             if len(title) > 40:
                 title = title[:40] + '...'
-                
+
             lst.add(i.UID, title)
         return lst
     

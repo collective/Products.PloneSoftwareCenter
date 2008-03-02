@@ -244,6 +244,7 @@ class TestProject(PSCTestCase):
         proposal1 = self.proj.proposals['1']
         proposal1.setTitle('Proposal 1')
         proposal1.reindexObject()
+        
         self.proj.proposals.invokeFactory('PSCImprovementProposal', '2')
         proposal2 = self.proj.proposals['2']
         proposal2.setTitle('Proposal 2')
@@ -253,15 +254,31 @@ class TestProject(PSCTestCase):
           (proposal2.UID(), 'Proposal 2')),
           self.proj.getAvailableFeaturesAsDisplayList().items())
         
-        proposal2.setTitle('Proposal 1')
-        proposal2.reindexObject()
+
+    def testGetAvailableFeaturesAsDisplayListBlockDupes(self):
+        """I test to see if you can change the title of a list item to match another list item.
+            You are not supposed to be able to do this sort of action without Plone throwing a failure."""
+        self.proj.invokeFactory('PSCImprovementProposalFolder', 'proposalDupes')
+
+        self.proj.proposalDupes.invokeFactory('PSCImprovementProposal', '3')
+        proposal3 = self.proj.proposalDupes['3']
+        proposal3.setTitle('Proposal 3')
+        proposal3.reindexObject()
+
+        self.proj.proposalDupes.invokeFactory('PSCImprovementProposal', '4')
+        proposal4 = self.proj.proposalDupes['4']
+        proposal4.setTitle('Proposal 3')
+        proposal4.reindexObject()
+        
         try:
-            self.assertEqual(((proposal1.UID(), 'Proposal 1'),
-              (proposal2.UID(), 'Proposal 1')),
+            self.assertEqual(((proposal4.UID(), proposal4.Title()),),
               self.proj.getAvailableFeaturesAsDisplayList().items())
         except:
-            self.fail('*** TODO: BUG: If two proposals have the same '
-              'title, the Related Features Vocabulary only displays one.')
+            statement = '*** TODO: BUG: If two proposals have the same '
+            statement += 'title, the Related Features Vocabulary only displays one.'
+            #self.fail(statement)
+            self.fail([((proposal4.UID(), proposal4.Title()),),
+              self.proj.getAvailableFeaturesAsDisplayList().items()])
 
 class TestProjectWithPloneHelpCenterIntegration(PSCTestCase):
     def afterSetUp(self):

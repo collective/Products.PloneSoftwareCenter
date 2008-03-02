@@ -112,4 +112,45 @@
       class=".migration.MigrationView"
       permission="cmf.ManagePortal" />
 
+  <!-- Pypi APIs -->
+  <page 
+      name="file_upload"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypi.PyPIView"
+      permission="zope2.View"
+      attribute="file_upload"
+    />
+ 
+  <page 
+      name="submit"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypi.PyPIView"
+      permission="zope2.View"
+      attribute="submit"
+    />
+
+  <page 
+      name="simple"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypisimple.PyPISimpleView"
+      permission="zope2.View"
+      template="pypisimple.pt"
+    />
+
+  <page 
+      name="list_classifiers"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypi.PyPIView"
+      permission="zope2.View"
+      attribute="list_classifiers"
+    />
+
+  <page 
+      name="verify"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypi.PyPIView"
+      permission="zope2.View"
+      attribute="verify"
+    />
+
 </configure>
