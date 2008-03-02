@@ -38,9 +38,10 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
             label='Version',
             label_msgid='label_release_version',
             description="This field is also used in the URL "
-                        "of the item, so don't use spaces and special "
-                        "characters. Do NOT include alpha/beta states, this is handled by the "
-                        "workflow states. Example: '0.4'.",
+                        "of the item, so please don't use spaces and special "
+                        "characters. Also, please do NOT include the alpha, beta, or release candidate "
+                        "state as this is handled by the "
+                        "workflow. Example: '0.1'.",
             description_msgid='help_release_version',
             i18n_domain='plonesoftwarecenter',
         ),
@@ -222,7 +223,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
 
     LinesField(
         name='compatibility',
-        required=0,
+        required=1,
         searchable=1,
         index='KeywordIndex:schema',
         vocabulary='getCompatibilityVocab',

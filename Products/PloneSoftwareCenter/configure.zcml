@@ -14,6 +14,15 @@
 	description="What's powering the products section on plone.org"
 	provides="Products.GenericSetup.interfaces.EXTENSION"
 	/>
+  <five:traversable class=".content.release.PSCRelease" />
+
+  <content class=".content.project.PSCProject">
+    <implements
+	interface="contentratings.interfaces.IUserRatable
+		   contentratings.interfaces.IEditorRatable
+		   zope.app.annotation.interfaces.IAttributeAnnotatable"
+	/>
+  </content>
 
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
        only show up because some base classes that we inherit from use
