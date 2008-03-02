@@ -20,6 +20,10 @@ Installation
 
   - Requires ArchAddOn (1.0-beta2 or higher).
 
+  - Requires contentratings
+    (https://svn.plone.org/svn/collective/contentratings/trunk/)
+    XXX: Can we make this an optional requirement somehow?
+
   - (Optionally requires) ExternalStorage (svn trunk) if you want files stored on FS 
     instead of in the ZODB.
 
