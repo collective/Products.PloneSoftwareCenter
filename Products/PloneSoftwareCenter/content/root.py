@@ -21,7 +21,7 @@ except ImportError:
     
 from Products.ArchAddOn.Fields import SimpleDataGridField
 from Products.ArchAddOn.Widgets import SimpleDataGridWidget
-
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 from Products.PloneSoftwareCenter.config import PROJECTNAME
 
@@ -152,14 +152,30 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
-    StringField('featuredProject',
-        searchable=1,
-        storage=MetadataStorage(),
-        widget=StringWidget(
-            label_msgid='label_featured_project',
+    ReferenceField('featuredProject',
+        multiValued=0,
+        allowed_types=('PSCProject',),
+        relationship='Rel1',
+        widget=ReferenceBrowserWidget(
+            default_search_index='SearchableText', 
             label='Featured Project',
-            description_msgid='help_featured_project',
+            label_msgid='label_featured_project',
             description='Featured project for the software center.',
+            description_msgid='help_featured_project',
+            i18n_domain='plonesoftwarecenter',
+        ),
+    ),
+
+    ReferenceField('featuredProjectRelease',
+        multiValued=0,
+        allowed_types=('PSCRelease',),
+        relationship='Rel2',
+        widget=ReferenceBrowserWidget(
+            default_search_index='SearchableText', 
+            label='Featured Project Release',
+            label_msgid='label_featured_project_release',
+            description='Featured project release for the featured project of the software center.',
+            description_msgid='help_featured_project',
             i18n_domain='plonesoftwarecenter',
         ),
     ),
