@@ -133,7 +133,12 @@
           <p class="discreet"
                 tal:define="fileSize file/@@file_view/file_size">
             For
+
+          <tal:comment replace="nothing">
             <span tal:replace="file/getPlatform" />
+          </tal:comment>
+
+            <span tal:replace="string: 'XXX: FIXME'" />
             <tal:size tal:condition="fileSize">
                  (<span tal:replace="fileSize">256KB</span>)
             </tal:size>

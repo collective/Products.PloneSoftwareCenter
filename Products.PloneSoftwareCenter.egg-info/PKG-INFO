@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: Products.PloneSoftwareCenter
-Version: 1.5dev
+Version: 1.5dev-r59109
 Summary: Plone Software Center is a tool to keep track of software projects and software releases, and is used to power the Products download area on plone.org. It was formerly called ArchPackage.
 Home-page: http://svn.plone.org/svn/collective/Products.PloneSoftwareCenter
 Author: Plone Foundation

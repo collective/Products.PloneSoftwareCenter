@@ -23,8 +23,9 @@ class DownloadableFileView(BrowserView):
         platform name, in lowercase, with all non-alpha-numeric characters
         (including whitespace) converted to underscores.
         """
-        return 'platform_%s.gif' % \
-                    re.sub(r'\W', '_', self.context.getPlatform()).lower()
+#        return 'platform_%s.gif' % \
+#                    re.sub(r'\W', '_', self.context.getPlatform()).lower()
+        return 'product_icon.gif'
 
     def file_size(self):
         """Return the file size of the download, or None if unknown.
