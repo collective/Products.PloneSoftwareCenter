@@ -1,10 +1,13 @@
-"""Module for parsing and testing package version predicate strings.
-
-$Id: version_predicate.py 18604 2006-01-28 03:39:52Z dreamcatcher $
 """
-import re
-import operator
+Contains utility functions
 
+$Id:$
+"""
+import os
+import re
+import zipfile
+import StringIO
+import operator
 import distutils.version
 
 re_validPackage = re.compile(r"(?i)^\s*([a-z_]\w*(?:\.[a-z_]\w*)*)(.*)")
@@ -13,6 +16,74 @@ re_validPackage = re.compile(r"(?i)^\s*([a-z_]\w*(?:\.[a-z_]\w*)*)(.*)")
 re_paren = re.compile(r"^\s*\((.*)\)\s*$") # (list) inside of parentheses
 re_splitComparison = re.compile(r"^\s*(<=|>=|<|>|!=|==)\s*([^\s,]+)\s*$")
 # (comp) (version)
+
+
+safe_zipnames = re.compile(r'(purelib|platlib|headers|scripts|data).+', re.I)
+
+def plat(name):
+    generic = r'^[\w\-\.]+\.%s\-[\w\-\.]+\.tar\.gz$'
+    return re.compile(generic % name, re.I)
+
+platform_catchers = ((plat('macosx'), 'Mac OS X'), 
+                     (plat('linux'), 'Linux'),
+                     (plat('win32'), 'Windows'))
+
+def which_platform(filename_or_url):
+    """Get the platform with the filename.
+    
+    - an egg will be considered as non-specific to a platform
+      even if it contains a specific compilation
+    - a tar.gz name will be scanned 
+    """
+    if '/' in filename_or_url:
+        filename = filename_or_url.split('/')[-1]
+    else:
+        filename = filename_or_url
+
+    for catcher, platform in platform_catchers:
+        if catcher.search(filename) is not None:
+            return platform
+    return 'All platforms'
+
+def is_distutils_file(content, filename, filetype):
+    """Perform some basic checks to see whether the indicated file could be
+    a valid distutils file.
+    """
+    if filename.endswith('.exe'):
+        # check for valid exe
+        if filetype != 'bdist_wininst':
+            return False
+
+        try:
+            t = StringIO.StringIO(content)
+            t.filename = filename
+            z = zipfile.ZipFile(t)
+            l = z.namelist()
+        except zipfile.error:
+            return False
+
+        for zipname in l:
+            if not safe_zipnames.match(zipname):
+                return False
+
+    elif filename.endswith('.zip'):
+        # check for valid zip
+        try:
+            t = StringIO.StringIO(content)
+            t.filename = filename
+            z = zipfile.ZipFile(t)
+            l = z.namelist()
+        except zipfile.error:
+            return False
+        for entry in l:
+            parts = os.path.split(entry)
+            if len(parts) == 2 and parts[1] == 'PKG-INFO':
+                # eg. "roundup-0.8.2/PKG-INFO"
+                break
+        else:
+            return False
+
+    return True
 
 def splitUp(pred):
    """Parse a single version comparison.
@@ -105,3 +176,4 @@ def check_provision(value):
     if not m:
         raise ValueError("illegal provides specification: %r" % value)
     return m.group(2)
+

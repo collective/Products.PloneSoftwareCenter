@@ -14,8 +14,9 @@ from Products.CMFCore.utils import SimpleItemWithProperties, UniqueObject
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five import BrowserView
 
-import version_predicate
-import verify_filetype
+from Products.PloneSoftwareCenter.utils import VersionPredicate
+from Products.PloneSoftwareCenter.utils import which_platform
+from Products.PloneSoftwareCenter.utils import is_distutils_file
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
@@ -100,7 +101,7 @@ class PyPIView(BrowserView):
         # check requires and obsoletes
         def validate_version_predicates(col, sequence):
             try:
-                map(versionpredicate.VersionPredicate, sequence)
+                map(VersionPredicate, sequence)
             except ValueError, message:
                 raise ValueError, 'Bad "%s" syntax: %s' % (col, message)
         for col in ('requires', 'obsoletes'):
@@ -194,6 +195,8 @@ class PyPIView(BrowserView):
 
             msg.append('Updated Download Link')
             rl.update(**rl_data)
+            self._setPlatform(rl, url)   
+
         return '\n'.join(msg)
     
     def _edit_project(self, project, data=None, msg=None):
@@ -401,7 +404,7 @@ class PyPIView(BrowserView):
             return self.fail(err)
 
         # check the file for valid contents based on the type
-        if not verify_filetype.is_distutils_file(content, filename, filetype):
+        if not is_distutils_file(content, filename, filetype):
             err = 'Not a distutils distribution file: %s (%s)' % (
                 filename, filetype)
             return self.fail(err)
@@ -432,13 +435,15 @@ class PyPIView(BrowserView):
         msg.append('Updated Release File: %s' % filename)
         rf.setDownloadableFile(content, filename=filename)
         rf.setTitle(filename)
-
-        # setting the platform 
-        # XXX todo: guess the platform
-        platforms = rf.getPlatformVocab()
-        rf.setPlatform(platforms[0])
-
+        self._setPlatform(rf, filename)
         return '\n'.join(msg)
+
+    def _setPlatform(self, release_file, filename):
+        platforms = release_file.getPlatformVocab()
+        founded = which_platform(filename)
+        if founded in platforms:
+            release_file.setPlatform(founded)
+        return release_file.setPlatform(platforms[0])
 
     def list_classifiers(self):
         """returns classifiers titles"""

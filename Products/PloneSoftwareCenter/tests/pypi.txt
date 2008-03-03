@@ -152,8 +152,8 @@ Let's call the `file_upload` method::
 
     >>> view = PyPIView(portal.psc, request)
     >>> print view.file_upload()
-    Created Release File: project.tgz
-    Updated Release File: project.tgz
+    Created Release File: project-macosx-10.3-fat.tar.gz
+    Updated Release File: project-macosx-10.3-fat.tar.gz
  
 Let's check the result. We should have a new project in the PSC::
 
@@ -170,10 +170,10 @@ And a release with the file::
     >>> release
     <PSCRelease at /plone/psc/iw-recipe.fss/releases/0.1cdev-r6553>
     >>> release.objectIds()
-    ['project.tgz']
-    >>> file_ = release['project.tgz']
+    ['project-macosx-10.3-fat.tar.gz']
+    >>> file_ = release['project-macosx-10.3-fat.tar.gz']
     >>> file_.Title()
-    'project.tgz'
+    'project-macosx-10.3-fat.tar.gz'
     >>> file_.platform
     u'All platforms'
 
@@ -203,7 +203,7 @@ And upload again::
     >>> request = TestRequest(form=form)
     >>> view = PyPIView(portal.psc, request)
     >>> print view.file_upload()
-    Updated Release File: project.tgz
+    Updated Release File: project-macosx-10.3-fat.tar.gz
 
 The Software Center ignored the unkown classifier. 
 
@@ -222,7 +222,7 @@ The PSC provides a `simple` view that lists all releases that are in final state
        <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="...psc/iw-recipe.fss/releases/0.1cdev-r6553/project.tgz">project.tgz</a><br />
+       <a href="...psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>

@@ -19,7 +19,6 @@ except ImportError:  # BBB
 from Products.ATContentTypes.content.base import ATCTMixin
 
 from Products.PloneSoftwareCenter.config import PROJECTNAME, DOCUMENTATION_ID
-
 try:
     from Products.PloneHelpCenter.interfaces import IHelpCenterContent
 except ImportError:
