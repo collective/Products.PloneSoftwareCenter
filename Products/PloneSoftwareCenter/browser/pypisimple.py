@@ -29,7 +29,7 @@ class PyPISimpleView(BrowserView):
         catalog = getToolByName(self.context, 'portal_catalog')
         sc_path = '/'.join(sc.getPhysicalPath())
         query = {'path': sc_path, 'portal_type': 'PSCRelease', 
-                'review_state': 'final'}
+                 'review_state': 'final'}
         return itertools.chain(*[self.get_urls_and_titles(brain)
                                  for brain in catalog(**query)])
        

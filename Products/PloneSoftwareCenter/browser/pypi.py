@@ -65,8 +65,10 @@ class PyPIView(BrowserView):
             except WorkflowException:
                 pass
 
-    def _maybe_release(self, release):
-        """publishing the release"""
+    def _maybe_release(self, project, release):
+        """Publishing the release, only of the project is published."""
+        if not self._is_published(project):
+            return 
         wf = self._get_portal_workflow()
         if wf is None:
             return
@@ -138,8 +140,11 @@ class PyPIView(BrowserView):
         name = putils.normalizeString(name)
 
         # getting project and release packages.
-        project, release = self._get_package(name, version, msg)
-	
+        try:
+            project, release = self._get_package(name, version, msg)
+        except Unauthorized, e:
+            return self.fail(str(e), 401)
+
         # Now, edit info
         self._edit_project(project, data, msg)
 
@@ -162,12 +167,8 @@ class PyPIView(BrowserView):
         release.update(**release_data)
 
         # Make a release if not released yet.
-        self._maybe_release(release)
+        self._maybe_release(project, release)
    
-        # returns if not published yet
-        if not self._is_published(project):
-            return '\n'.join(msg)
-
         # Now, check if there's a 'download_url', then create a file
         # link
         url = data.get('download_url')
@@ -244,11 +245,7 @@ class PyPIView(BrowserView):
             # let's create the project
             if msg is not None:
                 msg.append('Created Project: %s' % name)
-            try:
-                sc.invokeFactory('PSCProject', name)
-            except Unauthorized:
-            	err = 'Could not create the project'
-            	return self.fail(err, 401)
+            sc.invokeFactory('PSCProject', name)
             project = sc._getOb(name)
         else:
             project = projects[0].getObject()
@@ -269,17 +266,10 @@ class PyPIView(BrowserView):
 
         if not version in versions:
             # we need to create it
-            try:
-                releases.invokeFactory('PSCRelease', id=version)
-                if msg is not None:
-                    msg.append('Created Release %s in Project %s' % \
-                                (version, name))
-                
-            except Unauthorized:
-                if self._is_published(project): 
-                    err = 'Could not create the release'
-                    return self.fail(err, 401)
-                raise
+            releases.invokeFactory('PSCRelease', id=version)
+            if msg is not None:
+                msg.append('Created Release %s in Project %s' % \
+                            (version, name))
 
         release = releases._getOb(version)
         return project, release
@@ -365,13 +355,16 @@ class PyPIView(BrowserView):
         putils = getToolByName(self.context, 'plone_utils')
         name = putils.normalizeString(name)
 
-        project, release = self._get_package(name, version)
-
+        try:
+            project, release = self._get_package(name, version)
+        except Unauthorized, e:
+            return self.fail(str(e), 401)
+            
         # Submit project if not submitted yet.
         self._maybe_submit(project)
 
         # Make a release if not released yet.
-        self._maybe_release(release)
+        self._maybe_release(project, release)
 
         content = data.get('content')
         filetype = data.get('filetype')
