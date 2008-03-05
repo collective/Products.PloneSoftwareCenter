@@ -9,9 +9,11 @@ from trove import TroveClassifier
 
 # Use ExternalStorage for PSCFile?
 USE_EXTERNAL_STORAGE = False
+#USE_EXTERNAL_STORAGE = True
 
 # Use blob field for PSCFile?
 USE_BLOB_FIELD = True
+#USE_BLOB_FIELD = False
 
 # Change to point to where content should be stored, it can be an
 # absolute or a relative path.

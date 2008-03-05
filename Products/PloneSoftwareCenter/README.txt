@@ -60,7 +60,7 @@ Credits
   Testing, Feedback, and Bug Fixes --
   Michael Davis
 
-  Development, Maintenance --
+  Additional development, maintenance, and support --
   "Alex Clark":http://aclark.net
 
   PyPI integration, from an initial branch started by Sidnei --
