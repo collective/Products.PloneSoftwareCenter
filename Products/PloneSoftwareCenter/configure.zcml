@@ -1,7 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:five="http://namespaces.zope.org/five"
-	   xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:gs="http://namespaces.zope.org/genericsetup"
            xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
            i18n_domain="plonesoftwarecenter">
 
   <include package=".browser" />
@@ -16,12 +17,13 @@
 	/>
   <five:traversable class=".content.release.PSCRelease" />
 
-  <content class=".content.project.PSCProject">
+  <content class=".content.project.PSCProject"
+           zcml:condition="installed contentratings">
     <implements
-	interface="contentratings.interfaces.IUserRatable
-		   contentratings.interfaces.IEditorRatable
-		   zope.app.annotation.interfaces.IAttributeAnnotatable"
-	/>
+        interface="contentratings.interfaces.IUserRatable
+                   contentratings.interfaces.IEditorRatable
+                   zope.app.annotation.interfaces.IAttributeAnnotatable"
+        />
   </content>
 
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
