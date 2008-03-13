@@ -440,5 +440,6 @@ class PyPIView(BrowserView):
 
     def list_classifiers(self):
         """returns classifiers titles"""
-        return '\n'.join(self._get_classifiers())
+        field = self.context.getField('availableClassifiers')
+        return '\n'.join(field.getColumn(field, 2))
 

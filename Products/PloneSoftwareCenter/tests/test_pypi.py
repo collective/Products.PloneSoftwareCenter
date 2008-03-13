@@ -158,6 +158,20 @@ class TestPyPI(PSCTestCase):
         wanted = ('python', 'utilities', 'rated-pg13') 
         self.assertEquals(iw_dist.getClassifiers(),  wanted)
 
+    def test_list_classifiers(self):
+        # everyone can get the classifier list
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
+
+        self.login('user2')
+        view = PyPIView(psc, Req({})) 
+        res = view.list_classifiers()
+        res = res.split('\n')
+        self.assertEquals(res[0], 'Development Status :: 1 - Planning')
+        self.assertEquals(res[-1], 'Topic :: Utilities')
+
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
