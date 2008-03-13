@@ -37,36 +37,4 @@ Note for pre-1.0 users
     have to reinstall and create a new instance of the project area, since the
     storages are incompatible. Sorry about the inconvenience.
 
-Credits
-
-  Base code for original project --
-  Sidnei da Silva, "awkly.org":http://awkly.org
-
-  User Interface, concept, quality assurance and a tiny bit of Python --
-  Alexander Limi, "Plone Solutions":http://www.plonesolutions.com
-
-  Architecture, Development --
-  "Joel Burton":mailto:joel@joelburton.com
-
-  Archetypes fixes, workflow code, all-over greatness and dedication --
-  "Martin Aspeli":mailto:optilude@gmx.net
-
-  Additional code help, Archetypes fixes, clean-up of External Storage --
-  Dorneles Trem&eacute;a, "Plone Solutions":http://www.plonesolutions.com
-
-  Additional Assistance --
-  Christian Heimes
-  Daniel Nouri
-
-  Icons --
-  Vidar Andersen, "Black Tar":http://www.blacktar.com
-
-  Testing, Feedback, and Bug Fixes --
-  Michael Davis
-
-  Development, Maintenance --
-  "Alex Clark":http://aclark.net
-
-  PyPI integration, from an initial branch started by Sidnei --
-  "Tarek Ziadé":mailto:tarek@ziade.org, "Ingeniweb":http://ingeniweb.com
 

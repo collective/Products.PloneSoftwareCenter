@@ -2,11 +2,38 @@ from setuptools import setup, find_packages
 
 version = '1.5'
 
+long_description = (
+    read('README.txt')
+    + '\n' +
+    'Change history\n'
+    '**************\n'
+    + '\n' +
+    read('CHANGES.txt')
+    + '\n' +
+    'Detailed Documentation\n'
+    '**********************\n'
+    + '\n' +
+    read('Products', 'PloneSoftwareCenter', 'README.txt')
+    + '\n' +
+    'Contributors\n'
+    '************\n'
+    + '\n' +
+    read('CONTRIBUTORS.txt')
+    + '\n' +
+    'Download\n'
+    '********\n'
+    )
+
+description =  """\
+Plone Software Center is a tool to keep track of software projects and 
+software releases, and is used to power the Products download 
+area on plone.org. It was formerly called ArchPackage.
+"""
+
 setup(name='Products.PloneSoftwareCenter',
       version=version,
-      description="Plone Software Center is a tool to keep track of software projects and software releases, and is used to power the Products download area on plone.org. It was formerly called ArchPackage.",
-      long_description="""\
-""",
+      description=description,
+      long_description=long_description,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
@@ -32,3 +59,4 @@ setup(name='Products.PloneSoftwareCenter',
       # -*- Entry points: -*-
       """,
       )
+

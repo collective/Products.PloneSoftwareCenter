@@ -1,0 +1,6 @@
+1.5 (unreleased)
+================
+
+- Refactored long_description and reorganized text files. 
+  [tarek]
+
