@@ -191,9 +191,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     ReferenceField('featuredProject',
         multiValued=0,
         allowed_types=('PSCProject',),
-        relationship='Rel1',
+        relationship='featuredProject',
         widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText', 
             label='Featured Project',
             label_msgid='label_featured_project',
             description='Featured project for the software center '
@@ -206,9 +205,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     ReferenceField('featuredProjectRelease',
         multiValued=0,
         allowed_types=('PSCRelease',),
-        relationship='Rel2',
+        relationship='featuredProjectRelease',
         widget=ReferenceBrowserWidget(
-            default_search_index='SearchableText', 
             label='Featured Project Release',
             label_msgid='label_featured_project_release',
             description='Featured project release for the featured project of the software center '
