@@ -81,7 +81,7 @@
                     <h3><a tal:attributes="href project_url" 
                         style="border-bottom: 1px solid #8CACBB">Download&nbsp;<tal:featured_project
                         tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project></a></h3>
-                    <span class="discreet">Latest release: 
+                    <span tal:condition="here/getFeaturedProjectRelease" class="discreet">Latest release: 
                         <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"> 
                             Latest Release
                         </tal:latest_release>
