@@ -118,6 +118,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
     LinesField('availableVersions',
         default=[
+            'Plone 4.0',
+            'Plone 3.1',
             'Plone 3.0',
             'Plone 2.5',
             'Plone 2.1',
@@ -194,7 +196,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             default_search_index='SearchableText', 
             label='Featured Project',
             label_msgid='label_featured_project',
-            description='Featured project for the software center.',
+            description='Featured project for the software center '
+                        '(for use with the plonesoftwarecenter_ploneorg template).',
             description_msgid='help_featured_project',
             i18n_domain='plonesoftwarecenter',
         ),
@@ -208,7 +211,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             default_search_index='SearchableText', 
             label='Featured Project Release',
             label_msgid='label_featured_project_release',
-            description='Featured project release for the featured project of the software center.',
+            description='Featured project release for the featured project of the software center '
+                        '(for use with the plonesoftwarecenter_ploneorg template).',
             description_msgid='help_featured_project',
             i18n_domain='plonesoftwarecenter',
         ),
