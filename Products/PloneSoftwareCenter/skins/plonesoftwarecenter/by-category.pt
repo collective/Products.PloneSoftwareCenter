@@ -10,7 +10,7 @@
     </metal:top>
     <metal:css fill-slot="css_slot">
       <style type="text/css" media="all"
-             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+             tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
     </metal:css>
     <metal:override fill-slot="column_two_slot" />
 </head>

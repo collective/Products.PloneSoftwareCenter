@@ -6,7 +6,7 @@
 <head>
     <metal:css fill-slot="css_slot">
       <style type="text/css" media="all"
-             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+             tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
     </metal:css>
 </head>
 
@@ -137,7 +137,7 @@
         <span i18n:translate="heading_relmanager">Release Manager:</span>
         <a href=""
            tal:omit-tag="not: release/getReleaseManagerContact"
-           tal:attributes="href string: mailto:${release/getReleaseManagerContact}">
+           tal:attributes="href string:mailto:${release/getReleaseManagerContact}">
             <span tal:replace="release/getReleaseManager">Some Guy</span>
         </a>
     </p>

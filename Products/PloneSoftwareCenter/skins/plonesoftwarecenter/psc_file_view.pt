@@ -7,7 +7,7 @@
 <head>
     <metal:css fill-slot="css_slot">
       <style type="text/css" media="all"
-             tal:content="string: @import url($portal_url/plonesoftwarecenter.css);"></style>
+             tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
     </metal:css>
 </head>
 
@@ -56,7 +56,7 @@
             <a tal:attributes="href downloadURL"
                tal:define="filename python:here.getFilename('downloadableFile')">
                 Download<tal:filename condition="filename"
-                                      replace="string: $filename" />
+                                      replace="string:$filename" />
             </a>
             <tal:size define="fileSize view/file_size"
                       condition="fileSize">
