@@ -16,7 +16,7 @@ def test_edit_project_fields():
     First, in order to create PSCs in Member folders, we enable the
     creation of Member folders (disabled by default in Plone 3).
 
-        >>> self.portal.portal_membership.setMemberareaCreationFlag()
+        >>> null = self.portal.portal_membership.setMemberareaCreationFlag()
 
     First we do some basic setup
     
