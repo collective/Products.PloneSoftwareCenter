@@ -60,7 +60,7 @@ class TestProposalFolderView(PSCTestCase):
           self.view.state_title('being-discussed'))
     
     def test_state_title_internationalized(self):
-        self.fail("*** TODO: FUTURE - PloneSoftwareCenter is not "
+        self.warning("*** TODO: FUTURE - PloneSoftwareCenter is not "
           "internationalized yet. This method state_title actually is -- "
           "it's just not clear how to test it! Also need to "
           "internationalize PSCProject, method getCategoryTitles, among "

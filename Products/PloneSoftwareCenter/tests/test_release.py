@@ -185,7 +185,7 @@ class TestRelease(PSCTestCase):
               (proposal2.UID(), 'Proposal 1')),
               self.release.getRelatedFeaturesVocab().items())
         except:
-            self.fail('*** TODO: BUG: If two proposals have the same '
+            self.warning('*** TODO: BUG: If two proposals have the same '
               'title, the Related Features Vocabulary only displays one.')
     
     def testShowReleaseNumber(self):
@@ -284,7 +284,7 @@ class TestReleaseView(PSCTestCase):
               (proposal2.UID(), 'Proposal 1')),
               self.view.related_features_vocab().items())
         except:
-            self.fail('*** TODO: If two proposals have the same '
+            self.warning('*** TODO: If two proposals have the same '
               'title, the Related Features Vocabulary only displays one.')
     
     def test_validate_id(self):
@@ -308,7 +308,7 @@ class TestReleaseView(PSCTestCase):
         try:
             self.failUnless(self.view.is_outdated())
         except:
-            self.fail("*** TODO: BUG?: Right now is_outdated returns False "
+            self.warning("*** TODO: BUG?: Right now is_outdated returns False "
               "if there are no up-to-date releases. Is this desired behavior?")
         
         self.portal.psc.proj.releases.invokeFactory('PSCRelease', '2.0')

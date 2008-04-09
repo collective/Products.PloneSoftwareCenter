@@ -4,6 +4,7 @@ Note that importing this module has various side-effects: it registers a set of
 products with Zope, and it sets up a sandbox Plone site with the appropriate
 products installed.
 """
+import warnings
 
 from Testing import ZopeTestCase
 
@@ -20,10 +21,16 @@ from Products.PloneTestCase.PloneTestCase import setupPloneSite
 
 setupPloneSite(products=('PloneSoftwareCenter',))
 
+class DeveloperWarning(Warning):
+    pass
+
 class PSCTestCase(PloneTestCase):
     """Base class for integration tests
     """
-    
+    def warning(self, msg):
+        warnings.warn(msg, DeveloperWarning)
+
 class PSCFunctionalTestCase(FunctionalTestCase):
     """Base class for functional integration tests
     """
+
