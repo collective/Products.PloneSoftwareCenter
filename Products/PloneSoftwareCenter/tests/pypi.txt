@@ -48,9 +48,9 @@ waited by `register`::
     >>> from zope.publisher.browser import TestRequest
     >>> view = PyPIView(portal.psc, TestRequest())
     >>> print view.list_classifiers()
-    1-planning|1 - Planning|Development Status :: 1 - Planning
+    Development Status :: 1 - Planning
     ...
-    utilities|Utilities|Topic :: Utilities
+    Topic :: Utilities
 
 The initialization of a PloneSoftwareCenter will try to load the Trove
 from PyPI. If the call fails, it will use the TROVE.txt file. This is done
