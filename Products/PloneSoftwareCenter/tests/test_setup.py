@@ -66,10 +66,14 @@ class TestProductInstall(PSCTestCase):
         for t in ('PloneSoftwareCenter', 'PSCReleaseFolder', 'PSCImprovementProposalFolder', 'PSCRelease'):
             self.failUnless(t in pmntq)
     
-    def testDependenciesInstalled(self):
-        qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
-        for p in ['AddRemoveWidget', 'ArchAddOn', 'DataGridField']:
-            self.failUnless(qi_tool.isProductInstalled(p))
+    # XXX I don't think this is a good test because
+    # the dependencies are not automatically installed by PSC
+    # at this time. They are just installed in the test fixture.
+    # config.HARD_DEPS is defined but not used.
+    #def testDependenciesInstalled(self):
+    #    qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
+    #    for p in ['AddRemoveWidget', 'ArchAddOn', 'DataGridField']:
+    #        self.failUnless(qi_tool.isProductInstalled(p))
 
 def test_suite():
     from unittest import TestSuite, makeSuite
