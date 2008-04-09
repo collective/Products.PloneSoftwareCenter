@@ -81,14 +81,24 @@ def test_edit_project_fields():
         >>> browserLogin('member3', 'secret')
         >>> browser.open(self.proj.absolute_url())
         >>> browser.getLink('Edit').click()
-        >>> browser.getControl('Approved')
-        Traceback (most recent call last):
-        ...
-        LookupError: label 'Approved'
+
+    The `Approved` control does not exists anymore for approving the project
+    but still exists in the classifier list on the form::
+
+        >>> browser.getControl('Approved')   
+        <ItemControl name='classifiers:list' ...>
+
+    Review should not be present::
+
         >>> browser.getControl('Review Comment')
         Traceback (most recent call last):
         ...
         LookupError: label 'Review Comment'
+
+    We need to validate the screen so the object is not locked anymore::
+
+        >>> unlock_url = '%s/@@plone_lock_operations/force_unlock' % self.proj.absolute_url()
+        >>> browser.open(unlock_url)
     
     However, the software center creator and the PSCEvaluator can edit
     these fields.
@@ -96,19 +106,22 @@ def test_edit_project_fields():
         >>> browserLogin('member1', 'secret')
         >>> browser.open(self.proj.absolute_url())
         >>> browser.getLink('Edit').click()
-        >>> browser.getControl('Approved')
-        <ItemControl ...>
+        >>> 'Indicate whether this project is approved by product reviewers.' in browser.contents
+        True
         >>> browser.getControl('Review Comment')
         <Control ...>
-    
+        >>> browser.open(unlock_url)
+
         >>> browserLogin('member2', 'secret')
         >>> browser.open(self.proj.absolute_url())
         >>> browser.getLink('Edit').click()
-        >>> browser.getControl('Approved')
-        <ItemControl ...>
+        
+        >>> 'Indicate whether this project is approved by product reviewers.' in browser.contents
+        True
         >>> browser.getControl('Review Comment')
         <Control ...>
-    
+        >>> browser.open(unlock_url)
+
     Change who the PSCEvaluators are and see if the changes stick.
     
         >>> self.psc.setProjectEvaluators(['member3',])
@@ -123,8 +136,8 @@ def test_edit_project_fields():
         >>> browserLogin('member3', 'secret')
         >>> browser.open(self.proj.absolute_url())
         >>> browser.getLink('Edit').click()
-        >>> browser.getControl('Approved')
-        <ItemControl ...>
+        >>> 'Indicate whether this project is approved by product reviewers.' in browser.contents
+        True
         >>> browser.getControl('Review Comment')
         <Control ...>
 """
