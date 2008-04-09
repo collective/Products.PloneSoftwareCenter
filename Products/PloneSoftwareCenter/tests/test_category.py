@@ -73,8 +73,9 @@ class TestCategoryView(PSCTestCase):
 
         objs = [brain.getObject() for brain in self.view._contained(
           category='cat1', portal_type='PSCProject', states=['published'])]
-
-        self.assertEqual([self.psc.proj4, self.psc.proj3], objs)
+        
+        for proj in (self.psc.proj4, self.psc.proj3):
+            self.assert_(proj in objs)
 
         self.assertEqual([], self.view._contained(
           category='cat1', portal_type='DummyType', states=['published']))
