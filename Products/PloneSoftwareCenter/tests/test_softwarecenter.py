@@ -353,7 +353,7 @@ class TestSoftwareCenterView(PSCTestCase):
         self.assertEqual(['date', 'description', 'parent_url', 'review_state',
           'title'], keys)
         
-        self.assertEqual('2000-01-02 00:00:00', releaseDict['date'])
+        self.assert_(releaseDict['date'].startswith('2000-01-02'))
         self.assertEqual('A release', releaseDict['description'])
         self.assertEqual(
           'http://nohost/plone/psc/proj1', releaseDict['parent_url'])
