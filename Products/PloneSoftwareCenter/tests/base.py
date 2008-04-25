@@ -24,11 +24,15 @@ setupPloneSite(products=('PloneSoftwareCenter',))
 class DeveloperWarning(Warning):
     pass
 
+def developer_warning(msg):
+    warnings.warn(msg, DeveloperWarning)
+
+
 class PSCTestCase(PloneTestCase):
     """Base class for integration tests
     """
     def warning(self, msg):
-        warnings.warn(msg, DeveloperWarning)
+        developer_warning(msg)
 
 class PSCFunctionalTestCase(FunctionalTestCase):
     """Base class for functional integration tests

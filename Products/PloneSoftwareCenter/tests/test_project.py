@@ -1,4 +1,6 @@
 from base import PSCTestCase
+from base import developer_warning
+from Testing import ZopeTestCase
 
 from DateTime.DateTime import DateTime
 import os
@@ -519,6 +521,9 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestProject))
     suite.addTest(makeSuite(TestProjectView))
-    suite.addTest(makeSuite(TestProjectWithPloneHelpCenterIntegration))
+    if ZopeTestCase.hasProduct('PloneHelpCenter'):
+        suite.addTest(makeSuite(TestProjectWithPloneHelpCenterIntegration))
+    else:
+        developer_warning("PloneHelpCenter integration tests ignored.")
     #suite.addTest(makeSuite(TestProjectInternationalized))
     return suite

@@ -1,4 +1,6 @@
 from base import PSCTestCase
+from base import developer_warning
+from Testing import ZopeTestCase
 
 from AccessControl.Permission import Permission
 from DateTime.DateTime import DateTime
@@ -235,5 +237,8 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestCenterSecurity))
     suite.addTest(makeSuite(TestProjectSecurity))
-    suite.addTest(makeSuite(TestPloneHelpCenterIntegration))
+    if ZopeTestCase.hasProduct('PloneHelpCenter'):
+        suite.addTest(makeSuite(TestPloneHelpCenterIntegration))
+    else:
+        developer_warning("PloneHelpCenter integration tests ignored.")
     return suite
