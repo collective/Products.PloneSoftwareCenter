@@ -3,7 +3,6 @@ from base import developer_warning
 from Testing import ZopeTestCase
 
 from AccessControl.Permission import Permission
-from DateTime.DateTime import DateTime
 
 from Products.CMFCore.utils import getToolByName
 

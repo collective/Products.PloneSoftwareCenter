@@ -7,8 +7,6 @@ from tempfile import TemporaryFile
 
 from ZPublisher.HTTPRequest import FileUpload
 
-from Products.CMFCore.utils import getToolByName
-
 from Products.PloneSoftwareCenter.tests.utils import PACKAGE_HOME
 
 from Testing import ZopeTestCase

@@ -2,7 +2,6 @@ from base import PSCTestCase
 
 from AccessControl.Permission import Permission
 from AccessControl import Unauthorized
-from DateTime.DateTime import DateTime
 
 from Products.CMFCore.utils import getToolByName
 

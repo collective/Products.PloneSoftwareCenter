@@ -1,13 +1,11 @@
 """
 $Id: test_functional.py 18604 2006-01-28 03:39:52Z dreamcatcher $
 """
-import unittest
 import doctest
-import os, sys
+import os
 
 from ZPublisher.HTTPRequest import FileUpload
 
-from Testing import ZopeTestCase
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 from Products.PloneSoftwareCenter.tests.base import PSCFunctionalTestCase
 
@@ -18,7 +16,6 @@ OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
 
 def setUp(context):
     """creates a software center"""
-    from Testing.ZopeTestCase import user_name, user_password
     context.setRoles(['Manager'])
     context.portal.invokeFactory('PloneSoftwareCenter', id='psc')
 

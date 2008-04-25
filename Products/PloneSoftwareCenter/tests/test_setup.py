@@ -1,6 +1,5 @@
 from base import PSCTestCase
 
-from Products.CMFCore.utils import getToolByName
 
 class TestProductInstall(PSCTestCase):
 

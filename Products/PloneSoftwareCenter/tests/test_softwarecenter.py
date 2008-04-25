@@ -2,7 +2,6 @@ from base import PSCTestCase
 
 from DateTime.DateTime import DateTime
 
-from Products.Archetypes.atapi import DisplayList
 from Products.PloneSoftwareCenter.tests.utils import verifyURLWithRequestVars
 
 class TestSoftwareCenter(PSCTestCase):
