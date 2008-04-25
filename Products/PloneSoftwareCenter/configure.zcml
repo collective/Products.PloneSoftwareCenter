@@ -37,5 +37,15 @@
       class=".content.releasefolder.PSCReleaseFolder" />
   <five:deprecatedManageAddDelete
       class=".content.release.PSCRelease" />
+  <five:deprecatedManageAddDelete
+      class=".content.docfolder.PSCDocumentationFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.downloadablefile.PSCFile" />
+  <five:deprecatedManageAddDelete
+      class=".content.filelink.PSCFileLink" />
+  <five:deprecatedManageAddDelete
+      class=".content.proposalfolder.PSCImprovementProposalFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.proposal.PSCImprovementProposal" />
 
 </configure>
