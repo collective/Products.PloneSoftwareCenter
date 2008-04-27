@@ -18,6 +18,12 @@
  <index name="releaseCount" meta_type="FieldIndex">
   <indexed_attr value="releaseCount"/>
  </index>
+ <index name="distutilsMainId" meta_type="FieldIndex">
+  <indexed_attr value="getDistutilsMainId"/>
+ </index>
+ <index name="distutilsSecondaryIds" meta_type="KeywordIndex">
+  <indexed_attr value="getDistutilsSecondaryIds"/>
+ </index>
  <column value="UID"/>
  <column value="getCategories"/>
  <column value="getClassifiers"/>

@@ -1,9 +1,23 @@
+# Old Style
+ 
 from Products.validation.interfaces import ivalidator
 import re
 
+# New Style
+
+from zope.interface import implements
+from zope.component import adapts
+from Products.Archetypes.interfaces import IObjectPreValidation
+from Products.PloneSoftwareCenter.interfaces import IProjectContent
+
+from zope.i18nmessageid import MessageFactory
+
+_ = MessageFactory('plonesoftwarecenter')
 
 is_valid_contact = re.compile('[mailto:,http:]')
 
+
+# Old style validators
 
 class ProjectIdValidator:
     """Ensure that we don't get a value for the id of a project that is the same 
@@ -43,3 +57,44 @@ class ProjectContactValidator:
         #print is_valid_contact(value)
         #return 1
         return """Not a valid contact."""
+
+
+# New style validators
+
+class ValidateEggNameUnique(object):
+    """ Ensure that an egg is not already registered under a different project. """
+    
+    implements(IObjectPreValidation)
+    adapts(IProjectContent)
+    
+    def __init__(self, context):
+        super(ValidateEggNameUnique, self).__init__()
+        self.context = context
+    
+    def __call__(self, request):
+        """ Validate that the fields for egg name registrations do not conflict with existing names """
+        main = request.get("distutilsMainId", None)
+        secondary = request.get("distutilsSecondaryIds", None)
+        if (not main) and secondary:
+            return {"distutilsMainId":_("You must set the primary package before you can select secondary packages.")}
+
+        main = (main, )
+        
+        if isinstance(secondary, str):
+            secondary = (secondary, )
+        elif isinstance(secondary, list) or isinstance(secondary, tuple):
+            secondary = tuple(secondary)
+        else:
+            return {"distutilsSecondaryIds":_("You must provide a list of package names")}
+        
+        errors = {}
+        
+        if not self.context._distUtilsNameAvailable(main):
+            errors['distutilsMainId'] = _("This package is already claimed by another project.")
+        if not self.context._distUtilsNameAvailable(secondary):
+            errors['distutilsSecondaryIds'] = _("This contains packages already claimed by another project.")
+
+        if not errors:
+            return None
+        else:
+            return errors

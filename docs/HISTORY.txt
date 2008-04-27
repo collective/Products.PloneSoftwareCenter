@@ -2,8 +2,55 @@ Changelog for Products.PloneSoftwareCenter
 
     (name of developer listed in brackets)
 
-Products.PloneSoftwareCenter - 1.5 Unreleased
+1.5
+===
 
-    - Initial package structure.
-      [zopeskel]
+- Made the workflow of releases aware of development tags created by distutils
+  so if an egg has "dev" or an SVN revision it is marked as an alpha.
+  Various tidying of display to handle multiple eggs.
+  Switched from CHANGES.txt and CONTRIBUTORS.txt to docs/HISTORY.txt
+  [MatthewWilkes]
 
+- Refactoring multiple eggs in one project started by Tarek, added validators.
+  [MatthewWilkes]
+
+- Support for multiple eggs in one project
+  [tarek]
+
+- Refactored long_description and reorganized text files. 
+  [tarek]
+
+- PyPI integration, from an initial branch started by Sidnei, refactoring, 
+  beautification: 
+  [tarek]
+
+- Development, Maintenance: 
+  [aclark]
+  
+
+Before 1.5 (Taken from CONTRIBUTORS.txt)
+========================================
+
+- Base code for original project: 
+  Sidnei da Silva, `awkly.org <http://awkly.org>`_
+
+- User Interface, concept, quality assurance and a tiny bit of Python: 
+  Alexander Limi, `Plone Solutions <http://www.plonesolutions.com>`_
+
+- Architecture, Development: 
+  `Joel Burton <mailto:joel@joelburton.com>`_
+
+- Archetypes fixes, workflow code, all-over greatness and dedication: 
+  `Martin Aspeli <mailto:optilude@gmx.net>`_
+
+- Additional code help, Archetypes fixes, clean-up of External Storage: 
+  Dorneles Trem&eacute;a, `Plone Solutions <http://www.plonesolutions.com>`_
+
+- Additional Assistance: 
+  Christian Heimes, Daniel Nouri
+
+- Icons: 
+  Vidar Andersen, `Black Tar <http://www.blacktar.com>`_
+
+- Testing, Feedback, and Bug Fixes: 
+  Michael Davis

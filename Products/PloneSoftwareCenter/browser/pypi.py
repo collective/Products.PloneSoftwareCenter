@@ -17,11 +17,14 @@ from Products.Five import BrowserView
 from Products.PloneSoftwareCenter.utils import VersionPredicate
 from Products.PloneSoftwareCenter.utils import which_platform
 from Products.PloneSoftwareCenter.utils import is_distutils_file
+from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
+
+from zope.app.annotation.interfaces import IAnnotations
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
 PROJECT_MAP = {
-    'title': 'name',
+    #'title': 'name',
     'description': 'summary',
     'text': 'description',
     'classifiers': 'classifiers',
@@ -41,6 +44,11 @@ RELEASE_LINK_MAP = {
     'platform': 'platform',
     'externalURL': 'download_url',
     }
+
+devVersion = re.compile("([0-9]+(-)?dev)|(-[Rr]([0-9]+)$)")
+
+def isDevelopmentVersion(version):
+    return bool(devVersion.search(version))
 
 class PyPIView(BrowserView):
     """view that implements the PyPI API
@@ -75,7 +83,10 @@ class PyPIView(BrowserView):
         state = wf.getInfoFor(release, 'review_state', None)
         if state in ('pre-release',):
             try:
-                wf.doActionFor(release, 'release-final')
+                if isDevelopmentVersion(self.data['version']):
+                    wf.doActionFor(release, 'release-alpha')
+                else:
+                    wf.doActionFor(release, 'release-final')
             except WorkflowException:
                 pass
     
@@ -137,16 +148,18 @@ class PyPIView(BrowserView):
         user = getSecurityManager().getUser()
         sc = self.context
         putils = getToolByName(self.context, 'plone_utils')
-        name = putils.normalizeString(name)
+        normalized_name = putils.normalizeString(name)
 
         # getting project and release packages.
         try:
-            project, release = self._get_package(name, version, msg)
+            project, release = self._get_package(normalized_name,
+                                                 name, version, msg)
         except Unauthorized, e:
             return self.fail(str(e), 401)
 
         # Now, edit info
-        self._edit_project(project, data, msg)
+        self._edit_project(project, distutils_name=name, data=data, 
+                           msg=msg)
 
         # Submit project if not submitted yet.
         self._maybe_submit(project)
@@ -159,7 +172,7 @@ class PyPIView(BrowserView):
             if v in ('author_email',) and not value.startswith('mailto:'):
                 value = 'mailto:%s' % value
             release_data[k] = value
-
+        
         if not user.allowed(release.update):
             return self.fail('Unauthorized', 401)
 
@@ -200,7 +213,8 @@ class PyPIView(BrowserView):
 
         return '\n'.join(msg)
     
-    def _edit_project(self, project, data=None, msg=None):
+    def _edit_project(self, project, distutils_name=None,
+                      data=None, msg=None):
         """edit project infos"""
         user = getSecurityManager().getUser()
         if not user.allowed(project.update):
@@ -221,36 +235,55 @@ class PyPIView(BrowserView):
                 value = [val['id'] for val in value if val is not None]
             project_data[k] = value
 
-        project.update(**project_data)
+        priority = None
+        # setting up the distutils name
+        # XXX this could be put in the update() call
+        if distutils_name is not None:
+            if project.getDistutilsMainId() == '':
+                project.setDistutilsMainId(distutils_name)
+                priority = 'm'
+            elif not (distutils_name == project.getDistutilsMainId()):
+                secondary_ids = project.getDistutilsSecondaryIds()
+                if distutils_name not in secondary_ids:
+                    secondary_ids = secondary_ids + (distutils_name,) 
+                    project.setDistutilsSecondaryIds(secondary_ids)
+            else:
+                priority='m'
+
+            # setting the title in case it is empty
+            if project.Title() == '':
+                project_data['title'] = distutils_name
+        
+        if priority == 'm':
+            project.update(**project_data)
+
         if msg is not None:
-            msg.append('Updated Project: %s' % project.title)
+            msg.append('Updated Project: %s' % project.title_or_id())
 
         # XXX see how to pass this to update()
         # making description a x-rst
         description = data.get('description')
-        if description is not None:
+        if priority == 'm' and description is not None:
             project.setText(description,
                             mimetype='text/x-rst')
 
-    def _get_package(self, name, version, msg=None):
+    def _get_package(self, normalized_name, name, version, msg=None):
         sc = self.context
-        catalog = getToolByName(self.context, 'portal_catalog')
-        sc_path = '/'.join(sc.getPhysicalPath())
-        query = {'path'         : sc_path,
-                 'portal_type'  : 'PSCProject',
-                 'getId'        : name,
-                 }
-        projects = catalog(**query)
-        if not projects:
+        existing_projects = list(get_projects_by_distutils_ids(sc, [name]))
+
+        if existing_projects == []:
             # let's create the project
             if msg is not None:
                 msg.append('Created Project: %s' % name)
-            sc.invokeFactory('PSCProject', name)
-            project = sc._getOb(name)
+            sc.invokeFactory('PSCProject', normalized_name)
+            project = sc._getOb(normalized_name)
+            project.setTitle(name)
+            project.setDistutilsMainId(name)
         else:
-            project = projects[0].getObject()
-        
-        self._edit_project(project, msg=msg)
+            project_id = existing_projects[0]
+            project = sc[project_id]
+         
+        self._edit_project(project, msg=msg, distutils_name=name)
         versions = project.getVersionsVocab()
         releases = project.getReleaseFolder()
         if releases is None:
@@ -264,9 +297,18 @@ class PyPIView(BrowserView):
             releases = project.injectFolder('PSCReleaseFolder', 
                                             id=cid)
 
+        is_secondary = name != project.distutilsMainId
+
+        if is_secondary:
+            version = '%s-%s' % (normalized_name, version)
+
         if not version in versions:
             # we need to create it
             releases.invokeFactory('PSCRelease', id=version)
+            try:
+                IAnnotations(releases[version])['title_hint'] = normalized_name
+            except TypeError, KeyError:
+                pass
             if msg is not None:
                 msg.append('Created Release %s in Project %s' % \
                             (version, name))
@@ -351,12 +393,12 @@ class PyPIView(BrowserView):
 
         name = data['name']
         version = data['version']
-
         putils = getToolByName(self.context, 'plone_utils')
-        name = putils.normalizeString(name)
+        normalized_name = putils.normalizeString(name)
 
         try:
-            project, release = self._get_package(name, version)
+            project, release = self._get_package(normalized_name,
+                                                 name, version)
         except Unauthorized, e:
             return self.fail(str(e), 401)
             

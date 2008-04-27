@@ -25,6 +25,9 @@ from Products.AddRemoveWidget import AddRemoveWidget
 
 from Products.PloneSoftwareCenter import config
 
+from zope.app.annotation.interfaces import IAnnotations
+
+
 PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
 
     StringField('id',
@@ -315,7 +318,11 @@ class PSCRelease(ATCTMixin, OrderedBaseFolder):
         portal_workflow = None
         try:
             version = self.getId()
-            parentTitle = self.aq_inner.aq_parent.aq_parent.Title()
+            parentTitle = None
+            try:
+                parentTitle = IAnnotations(self)['title_hint']
+            except KeyError:
+                parentTitle = self.aq_inner.aq_parent.aq_parent.Title()
             portal_workflow = getToolByName(self, 'portal_workflow')
         except AttributeError:
             version = '?'

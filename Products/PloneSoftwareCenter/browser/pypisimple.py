@@ -28,8 +28,10 @@ class PyPISimpleView(BrowserView):
         sc = self.context
         catalog = getToolByName(self.context, 'portal_catalog')
         sc_path = '/'.join(sc.getPhysicalPath())
-        query = {'path': sc_path, 'portal_type': 'PSCRelease', 
-                 'review_state': 'final'}
+        query = {'path': sc_path, 'portal_type': 'PSCRelease',
+                 'sort_on': 'getId'}
         return itertools.chain(*[self.get_urls_and_titles(brain)
-                                 for brain in catalog(**query)])
+                                 for brain in catalog(**query) 
+                                 if brain.review_state not in 
+                                 ('unapproved', 'pending')])
        

@@ -14,10 +14,16 @@ OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
 
+def addMember(self, username, fullname="", email="", roles=('Member',)):
+    self.portal.portal_membership.addMember(username, 'secret', roles, [])
+    member = self.portal.portal_membership.getMemberById(username)
+    member.setMemberProperties({'fullname': fullname, 'email': email})
+
 def setUp(context):
     """creates a software center"""
     context.setRoles(['Manager'])
     context.portal.invokeFactory('PloneSoftwareCenter', id='psc')
+    addMember(context, 'member1', 'Member one')
 
 class FileHolder(object):
     def __init__(self, path):

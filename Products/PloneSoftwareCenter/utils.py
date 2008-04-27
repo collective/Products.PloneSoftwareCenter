@@ -1,7 +1,7 @@
 """
 Contains utility functions
 
-$Id:$
+$Id$
 """
 import os
 import re
@@ -9,6 +9,9 @@ import zipfile
 import StringIO
 import operator
 import distutils.version
+from itertools import chain
+
+from Products.CMFCore.utils import getToolByName
 
 re_validPackage = re.compile(r"(?i)^\s*([a-z_]\w*(?:\.[a-z_]\w*)*)(.*)")
 # (package) (rest)
@@ -176,4 +179,31 @@ def check_provision(value):
     if not m:
         raise ValueError("illegal provides specification: %r" % value)
     return m.group(2)
+
+def search_projects_by_field(center, field, value):
+    value = [v for v in value if v]
+    if not value:
+        # If there is no search to be done there's no point checking 
+        # the catalogue
+        raise StopIteration     
+    catalog = getToolByName(center, 'portal_catalog')
+    sc_path = '/'.join(center.getPhysicalPath())
+    query = {'path'         : sc_path,
+             'portal_type'  : 'PSCProject'}
+    if isinstance(value, tuple) or isinstance(value, list):
+        for name in value:
+            query[field] = name
+            projects = catalog(**query)
+            for brain in projects:
+                yield brain.getId
+    else:
+        query[field] = value
+        projects = catalog(**query)
+        for brain in projects:
+            yield brain.getId
+
+def get_projects_by_distutils_ids(sc, ids):
+    primary = search_projects_by_field(sc,'distutilsMainId', ids)
+    secondary = search_projects_by_field(sc, 'distutilsSecondaryIds', ids) 
+    return chain(primary, secondary)
 

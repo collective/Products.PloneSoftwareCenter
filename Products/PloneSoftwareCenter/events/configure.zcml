@@ -7,4 +7,7 @@
                    zope.app.container.interfaces.IObjectAddedEvent"
               handler=".softwarecenter.initializeSoftwareCenterSecurity" />
 
+  <subscriber provides="Products.Archetypes.interfaces.IObjectPreValidation"
+              factory="..content.validators.ValidateEggNameUnique" />
+
 </configure>

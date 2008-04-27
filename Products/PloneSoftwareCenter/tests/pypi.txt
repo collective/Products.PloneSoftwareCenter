@@ -118,6 +118,7 @@ Verifying metadata before releasing
 `register` has a `dry-run` mode that calls the `verify` API on the server.
 
 Let's try it::
+
     >>> form = {'': 'verify', 'license': 'GPL', 'name': 'iw.dist', 
     ...         'metadata_version': '1.0', 'author': 'Ingeniweb', 
     ...         'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
@@ -163,7 +164,12 @@ Let's check the result. We should have a new project in the PSC::
     >>> project.title
     u'iw.recipe.fss'
 
-And a release with the file::
+This project now is the owner of the distutils id `iw.recipe.fss`::
+
+    >>> project.getDistutilsMainId()
+    'iw.recipe.fss'
+
+And we have a release with the file::
 
     >>> releases = project.getReleaseFolder()
     >>> release = releases['0.1cdev-r6553']
@@ -177,10 +183,21 @@ And a release with the file::
     >>> file_.platform
     u'All platforms'
 
-The release is published as a final release when its uploaded::
+The release is published as an alpha release when it's uploaded as it has a
+development version number::
 
     >>> portal.portal_workflow.getInfoFor(release, 'review_state')
-    'final'
+    'alpha'
+
+Now we can modify our version to be a final release::
+
+    >>> form['version'] = '0.1c'
+    >>> form['md5_digest'] = 'd41d8cd98f00b204e9800998ecf8427e'
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Created Release File: project-macosx-10.3-fat.tar.gz
+    Updated Release File: project-macosx-10.3-fat.tar.gz
 
 And we should have a nice front page with a reStructuredText content. Let's
 check this with a test browser, to make sure it has been parsed like
@@ -192,6 +209,12 @@ in the Cheeseshop::
     >>> browser.open('http://localhost/plone/psc/iw-recipe.fss')
     >>> 'this is <strong>rest</strong>' in browser.contents
     True
+
+This release should be final
+
+    >>> release = releases['0.1c']
+    >>> portal.portal_workflow.getInfoFor(release, 'review_state')
+    'final'
 
 Let's add an unknown classifier::
 
@@ -207,10 +230,45 @@ And upload again::
 
 The Software Center ignored the unkown classifier. 
 
+Secondary eggs
+==============
+
+A project can hold more than one egg. This one doesn't 
+have any secondary eggs yet::
+
+    >>> project.getDistutilsSecondaryIds()
+    ()
+
+Let's make this project the owner of `iw.fss` as well::
+
+    >>> project.setDistutilsSecondaryIds(('iw.fss',)) 
+
+Now let's upload the egg::
+
+    >>> form = {'comment': '', '': 'file_upload', 'protcol_version': '1', 
+    ...         'md5_digest': 'd41d8cd98f00b204e9800998ecf8427e',
+    ...         'filetype': 'sdist', 'pyversion': '', 
+    ...         'content': tarball, 'version': '0.2.3', 
+    ...         'name': 'iw.fss', 
+    ...         'description': 'this is **not rest**'}
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Created Release File: project-macosx-10.3-fat.tar.gz
+    Updated Release File: project-macosx-10.3-fat.tar.gz
+
+We should have many releases now in this single project::
+
+    >>> project.releases.objectIds() 
+    ['0.1cdev-r6553', '0.1c', 'iw.fss-0.2.3']
+
+The main egg doesn't have a prefix so PloneHelpCenter works with it.
+Secondary eggs have the name of the package as a prefix for the release id.
+
 Getting the release
 ===================
 
-The PSC provides a `simple` view that lists all releases that are in final state::
+The PSC provides a `simple` view that lists all releases that are published::
 
     >>> browser.open('http://localhost/plone/psc/simple')
     >>> print browser.contents
@@ -222,7 +280,13 @@ The PSC provides a `simple` view that lists all releases that are in final state
        <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="...psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>
@@ -264,4 +328,31 @@ The project page category displays *all* categories in its header::
     >>> page = browser.contents
     >>> 'Category: Python, Utilities' in page
     True
+
+Distutils namespace owners
+==========================
+
+
+If you are not the owner of a distutils id, you cannot upload an egg 
+for this id in PSC. An owner in that case, is the manager of the project
+that holds this id in the `distutilsMainId` field *or* `secondaryDistutilsIds` one.
+
+So if another user tries to upload an egg, it will fail.
+Let's change the user::
+
+    >>> self.logout()
+
+Lets' try to upload `iw.fss`::
+ 
+    >>> form = {'comment': '', '': 'file_upload', 'protcol_version': '1', 
+    ...         'md5_digest': 'd41d8cd98f00b204e9800998ecf8427e',
+    ...         'filetype': 'sdist', 'pyversion': '', 
+    ...         'content': tarball, 'version': '0.2.3', 
+    ...         'name': 'iw.fss', 
+    ...         'description': 'this is **not rest**'}
+    >>> request = TestRequest(form=form)
+    >>> view = PyPIView(portal.psc, request)
+    >>> print view.file_upload()
+    Unauthorized
+
 

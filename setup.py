@@ -7,8 +7,6 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 long_description = (
-    read('README.txt')
-    + '\n' +
     'Change history\n'
     '**************\n'
     + '\n' +
@@ -18,14 +16,7 @@ long_description = (
     '**********************\n'
     + '\n' +
     read('Products', 'PloneSoftwareCenter', 'README.txt')
-    + '\n' +
-    'Contributors\n'
-    '************\n'
-    + '\n' +
-    read('CONTRIBUTORS.txt')
-    + '\n' +
-    'Download\n'
-    '********\n'
+    + '\n'
     )
 
 description =  """\

@@ -1,7 +1,6 @@
 """
 $Id: PSCProject.py 24623 2006-06-09 08:13:43Z optilude $
 """
-
 from zope.interface import implements
 
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
@@ -23,6 +22,10 @@ except ImportError:
 from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter.permissions import ApproveProject, \
   AddReviewComment
+from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
+
+from zExceptions import Unauthorized
+
 
 PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
 
@@ -113,6 +116,32 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             label_msgid="label_classifiers",
             description='Classifiers that this item should appear in.',
             description_msgid="help_classifiers",
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+
+    StringField('distutilsMainId',
+        required=0,
+        widget=StringWidget(
+            label="Distutils id",
+            label_msgid="label_project_distutils_main_id",
+            description=("When the package that has this id is uploaded"
+                         " or registered, the project description is "
+                         " updated consequently"),
+            description_msgid="help_project_distutils_main_id",
+            i18n_domain="plonesoftwarecenter",
+        ),
+    ),
+
+    LinesField('distutilsSecondaryIds',
+        multiValued=1,
+        required=0,
+        index='KeywordIndex:schema',
+        widget=LinesWidget(
+            label='Distutils secondary Ids',
+            label_msgid="label_project_distutils_secondary_ids",
+            description='Other Distutils names managed by this project.',
+            description_msgid="help_project_distutils_secondary_id",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -521,5 +550,34 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
 
             lst.add(i.UID, title)
         return lst
-    
+   
+    def _distUtilsNameAvailable(self, ids):
+        current_id = self.getId() 
+        sc = self.getParentNode()
+        existing_projects = get_projects_by_distutils_ids(sc, ids)
+
+        # make sure the names are not in another project already
+        for project_id in existing_projects:
+            if project_id != current_id:
+                return False
+        return True
+
+
+    security.declareProtected(permissions.ModifyPortalContent,  
+                              'setDistutilsSecondaryIds')
+    def setDistutilsSecondaryIds(self, names):
+        if not self._distUtilsNameAvailable(names):
+            raise Unauthorized
+        self.getField('distutilsSecondaryIds').set(self, names) 
+        self.reindexObject()
+
+    security.declareProtected(permissions.ModifyPortalContent,  
+                              'setDistutilsMainId')
+    def setDistutilsMainId(self, name):
+        if not self._distUtilsNameAvailable([name]):
+            raise Unauthorized
+        self.getField('distutilsMainId').set(self, name) 
+        self.reindexObject()
+        
 registerType(PSCProject, config.PROJECTNAME)
+

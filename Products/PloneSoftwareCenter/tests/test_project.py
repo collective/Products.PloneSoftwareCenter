@@ -10,6 +10,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneSoftwareCenter.tests.utils import PACKAGE_HOME
 from Products.PloneSoftwareCenter.tests.utils import verifyURLWithRequestVars
 
+from zExceptions import Unauthorized
+
 def loadImage(name, size=0):
     """Load image from testing directory
     """
@@ -502,6 +504,51 @@ class TestProjectView(PSCTestCase):
         r = res[1]
         self.assertEqual(True, r['selected'])
         self.assertEqual('Criterion 2', r['text'])
+
+    def test_distutils_ids(self):
+
+        # each project holds distutils names
+        main = self.proj.getDistutilsMainId()
+        self.assertEquals(main, '')
+
+        secondaries = self.proj.getDistutilsSecondaryIds()
+        self.assertEquals(secondaries, ())
+
+        # we can set them
+        self.proj.setDistutilsMainId('my.egg')
+        main = self.proj.getDistutilsMainId()
+        self.assertEquals(main, 'my.egg')
+
+        self.proj.setDistutilsSecondaryIds(['iw.recipe.one', 'iw.recipe.two'])
+        secondaries = self.proj.getDistutilsSecondaryIds()
+        self.assertEquals(secondaries, ('iw.recipe.one', 'iw.recipe.two'))
+
+
+        self.portal.psc.invokeFactory('PSCProject', 'proj2')
+
+        proj2 = self.portal.psc.proj2
+        
+        # Unrelated projects can be in the repository
+        
+        proj2.setDistutilsMainId('circulartriangle.recipe.two')
+        main = proj2.getDistutilsMainId()
+        self.assertEquals(main, 'circulartriangle.recipe.two')
+        
+        proj2.setDistutilsSecondaryIds(['circulartriangle.recipe.three',
+                                        'circulartriangle.recipe.one'])
+        secondaries = proj2.getDistutilsSecondaryIds()
+        self.assertEquals(secondaries, ('circulartriangle.recipe.three',
+                                        'circulartriangle.recipe.one'))
+
+        # but if a name is already taken by someone else
+        # it has to fail
+
+        self.assertRaises(Unauthorized, proj2.setDistutilsMainId,
+                          'iw.recipe.two')
+        
+        self.assertRaises(Unauthorized, proj2.setDistutilsSecondaryIds,
+                          ['iw.recipe.three', 'iw.recipe.one'])
+
 
 class TestProjectInternationalized(PSCTestCase):
 
