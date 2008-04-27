@@ -10,12 +10,12 @@ long_description = (
     'Change history\n'
     '**************\n'
     + '\n' +
-    read('CHANGES.txt')
+    open(os.path.join('docs','HISTORY.txt')).read()
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
     + '\n' +
-    read('Products', 'PloneSoftwareCenter', 'README.txt')
+    open(os.path.join('Products','PloneSoftwareCenter','README.txt')).read()
     + '\n'
     )
 
