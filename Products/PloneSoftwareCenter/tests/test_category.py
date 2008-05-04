@@ -49,8 +49,10 @@ class TestCategoryView(PSCTestCase):
     def test_by_category(self):
         objs = [brain.getObject() for brain in self.view.by_category(
           'cat1')]
-        self.assertEqual([self.psc.proj4, self.psc.proj3, self.psc.proj1],
-          objs)
+        objs.sort()
+        wanted = [self.psc.proj4, self.psc.proj3, self.psc.proj1]
+        wanted.sort()
+        self.assertEqual(wanted, objs)
 
         objs = [brain.getObject() for brain in self.view.by_category(
           'cat1', states=['published',])]
@@ -58,7 +60,10 @@ class TestCategoryView(PSCTestCase):
         
         objs = [brain.getObject() for brain in self.view.by_category(
           'cat1', limit=2)]
-        self.assertEqual([self.psc.proj4, self.psc.proj3], objs)    
+        objs.sort()
+        wanted = [self.psc.proj4, self.psc.proj3]
+        wanted.sort()
+        self.assertEqual(wanted, objs)    
     
     def test_contained(self):
 
