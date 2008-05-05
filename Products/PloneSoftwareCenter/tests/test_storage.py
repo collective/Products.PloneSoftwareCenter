@@ -1,8 +1,8 @@
 from Products.PloneSoftwareCenter.tests.base import PSCTestCase
-from Products.PloneSoftwareCenter.interfaces import IPSCFileStorage
+from Products.PloneSoftwareCenter.storage.interfaces import IPSCFileStorage
 
-from Products.PloneSoftwareCenter.storage import getFileStorage
 from Products.PloneSoftwareCenter.storage import getFileStorageNames
+from Products.PloneSoftwareCenter.storage import DynamicStorage
 
 class TestStorage(PSCTestCase):
 
@@ -19,22 +19,15 @@ class TestStorage(PSCTestCase):
 
     def test_basic_storage(self):
         # try the registery
-        wanted = ['zodb', ]
+        wanted = ['archetype',]
         for w in wanted:
             self.assert_(w in getFileStorageNames(self.release))
 
     def test_adapters(self):
         # try various storage
-        for st_name in ('zodb',):
-            for name, content in (('weird, name.tgz', 'xxx'), 
-                                  ('regular.tgz', 'xxx'),):
-                storage = getFileStorage(self.release, st_name)
-                storage.setFileContent(content, name)
-                self.assertEquals(storage.getFileContent(name), content)
-            stored = storage.getFileNames()
-            stored.sort()
-            self.assertEquals(stored,  ['regular.tgz', 'weird, name.tgz'])
-            
+        storage = DynamicStorage()
+        self.assertEquals(storage.getName(self.release), 'archetype')
+   
 
 def test_suite():
     from unittest import TestSuite, makeSuite

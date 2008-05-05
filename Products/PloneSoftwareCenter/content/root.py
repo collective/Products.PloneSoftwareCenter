@@ -5,6 +5,7 @@ $Id: PloneSoftwareCenter.py 24613 2006-06-08 23:40:22Z optilude $
 from zope.interface import implements
 
 from Products.PloneSoftwareCenter.interfaces import ISoftwareCenterContent
+from Products.PloneSoftwareCenter.storage import getFileStorageNames
 
 from AccessControl import ClassSecurityInfo
 
@@ -216,6 +217,18 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
 
+    StringField('storageStrategy',
+        default='archetype',
+        vocabulary='getFileStorageStrategyVocab',
+        widget=SelectionWidget(   
+            label="Storage strategy",
+            label_msgid="label_storage_strategy",
+            description="Defines the storage strategies for files",
+            description_msgid="help_storage_strategy",
+            i18n_domain="plonesoftwarecenter",
+        ),
+),             
+
 ))
 
 class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
@@ -357,5 +370,11 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
             if 'PSCEvaluator' not in roles:
                 roles.append('PSCEvaluator')
             self.manage_setLocalRoles(id, roles)
+
+    security.declareProtected(permissions.View, 
+                              'getFileStorageStrategyVocab')
+    def getFileStorageStrategyVocab(self):
+        """returns registered storage strategies"""
+        return getFileStorageNames()
 
 registerType(PloneSoftwareCenter, PROJECTNAME)
