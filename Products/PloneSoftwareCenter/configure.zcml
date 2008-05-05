@@ -48,4 +48,13 @@
   <five:deprecatedManageAddDelete
       class=".content.proposal.PSCImprovementProposal" />
 
+  <!-- release storage adapters -->
+  <adapter
+      name="zodb"  
+      for=".interfaces.IReleaseContent"
+      factory=".storage.ZODBStorage"
+      provides=".interfaces.IPSCFileStorage"
+      />
+
 </configure>
+
