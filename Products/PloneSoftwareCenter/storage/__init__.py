@@ -18,8 +18,8 @@ class DynamicStorage(object):
     def unset(self, name, instance, **kwargs):
         return self._getStorage(instance).get(name, instance, **kwargs)
 
-    def getName(self, instance):
-        return self._getStorage(instance).getName()
+    def getName(self):
+        return 'dynamic'
 
     def _getStorage(self, instance):
         """returns the storage name, which is stored at PSC level"""
@@ -39,6 +39,6 @@ class DynamicStorage(object):
 def getFileStorageNames(context):
     """return registered class for IPSCFileStorage""" 
     sm = getGlobalSiteManager()
-    return (name for name, adapter in 
-            getAdapters((context,), IPSCFileStorage))
+    return [name for name, adapter in 
+            getAdapters((context,), IPSCFileStorage)]
 

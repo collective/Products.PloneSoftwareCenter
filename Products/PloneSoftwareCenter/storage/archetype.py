@@ -10,7 +10,7 @@ class ArchetypeStorage(AttributeStorage):
     """adapts a release folder as a dummy storage
     """ 
     name = 'archetype'
-    adapts(IPSCFileStorage)
+    implements(IPSCFileStorage)
 
     def __init__(self, context):
         self.context = context

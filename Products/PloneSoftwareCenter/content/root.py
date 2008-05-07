@@ -375,6 +375,6 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
                               'getFileStorageStrategyVocab')
     def getFileStorageStrategyVocab(self):
         """returns registered storage strategies"""
-        return getFileStorageNames()
+        return getFileStorageNames(self)
 
 registerType(PloneSoftwareCenter, PROJECTNAME)
