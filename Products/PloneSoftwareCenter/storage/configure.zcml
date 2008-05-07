@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           i18n_domain="plonesoftwarecenter">
+
+  <!-- release storage adapters -->
+  <adapter
+      name="archetype"  
+      for="*"
+      factory=".archetype.ArchetypeStorage"
+      provides=".interfaces.IPSCFileStorage"
+      />
+
+</configure>
+

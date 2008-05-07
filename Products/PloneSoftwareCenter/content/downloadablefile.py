@@ -14,19 +14,21 @@ from Products.CMFCore import permissions
 from Products.Archetypes.atapi import * 
 
 from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter.storage import DynamicStorage
+
 from Products.ATContentTypes.content.base import ATCTFileContent
 
 # We need to make sure that the right storage is set at Field
 # creation to correctly trigger the layer registration process
-if config.USE_EXTERNAL_STORAGE:
-    from Products.ExternalStorage.ExternalStorage import ExternalStorage
-    downloadableFileStorage = ExternalStorage(
-        prefix=config.EXTERNAL_STORAGE_PATH,
-        archive=False,
-        rename=False,
-    )
-else:
-    downloadableFileStorage = AttributeStorage()
+#if config.USE_EXTERNAL_STORAGE:
+#    from Products.ExternalStorage.ExternalStorage import ExternalStorage
+#    downloadableFileStorage = ExternalStorage(
+#        prefix=config.EXTERNAL_STORAGE_PATH,
+#        archive=False,
+#        rename=False,
+#    )
+#else:
+#    downloadableFileStorage = AttributeStorage()
 
 PSCFileSchema = BaseSchema.copy() + Schema((
 
@@ -57,7 +59,7 @@ PSCFileSchema = BaseSchema.copy() + Schema((
             description_msgid="help_file_description",
             i18n_domain="plonesoftwarecenter",
         ),
-        storage=downloadableFileStorage,
+        storage=DynamicStorage(),
     ),
 
     StringField('platform',

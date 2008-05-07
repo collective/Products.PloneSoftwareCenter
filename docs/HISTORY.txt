@@ -5,6 +5,17 @@ Changelog for Products.PloneSoftwareCenter
 1.5
 ===
 
+- added a pluggable storage mechanism for downloadable files.
+  This can be used to define new storage strategies in independant
+  packages. They will then be available in PloneSoftwareCenter
+  instances, under the new "storage strategy" field.
+
+  PSC provides a default strategy called `archetype` that uses
+  a regular ZODB persistency.
+
+  Other strategies are available like collective.psc.externalstorage.
+  [tarek]
+
 - Made the workflow of releases aware of development tags created by distutils
   so if an egg has "dev" or an SVN revision it is marked as an alpha.
   Various tidying of display to handle multiple eggs.
