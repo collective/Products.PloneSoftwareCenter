@@ -1,6 +1,6 @@
 from base import PSCTestCase
 
-from Products.PloneSoftwareCenter.content.validators import ProjectIdValidator
+from Products.PloneSoftwareCenter.validators import ProjectIdValidator
 
 class TestValidators(PSCTestCase):
 

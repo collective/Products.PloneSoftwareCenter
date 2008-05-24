@@ -11,6 +11,7 @@ from Testing import ZopeTestCase
 
 ZopeTestCase.installProduct('ArchAddOn')
 ZopeTestCase.installProduct('AddRemoveWidget')
+ZopeTestCase.installProduct('DataGridField')
 ZopeTestCase.installProduct('ExternalStorage')
 # If PloneHelpCenter is available, initialize it.
 ZopeTestCase.installProduct('PloneHelpCenter')
