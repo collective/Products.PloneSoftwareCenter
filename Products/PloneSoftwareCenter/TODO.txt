@@ -9,7 +9,7 @@ Bugs
    only display one. The DisplayList should use "#1: My Title" instead of
    "My Title".
  
- [ ] * Three validators are disabled because the widgets using them are being
+ [X] * Three validators are disabled because the widgets using them are being
    initialized before the validators are registered.
  
  [ ] * Projects without releases are not listed in the by-category pulldown menu

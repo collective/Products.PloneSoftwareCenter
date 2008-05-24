@@ -8,6 +8,6 @@
               handler=".softwarecenter.initializeSoftwareCenterSecurity" />
 
   <subscriber provides="Products.Archetypes.interfaces.IObjectPreValidation"
-              factory="..content.validators.ValidateEggNameUnique" />
+              factory="..validators.ValidateEggNameUnique" />
 
 </configure>

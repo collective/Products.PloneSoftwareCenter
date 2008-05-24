@@ -1,6 +1,3 @@
-import zope.deprecation
-zope.deprecation.moved('Products.PloneSoftwareCenter.validators', 'version 1.6')
-
 # Old Style
  
 from Products.validation.interfaces import ivalidator

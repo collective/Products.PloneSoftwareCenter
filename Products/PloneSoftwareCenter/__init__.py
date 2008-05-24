@@ -12,14 +12,13 @@ from Products.PloneSoftwareCenter import permissions as psc_permissions
 from Products.CMFCore import permissions
 
 from Products.validation import validation
-from Products.PloneSoftwareCenter.content import validators
+from Products.PloneSoftwareCenter import validators
+validation.register(validators.ProjectIdValidator('isNonConflictingProjectId'))
+validation.register(validators.ProjectContactValidator('isValidContact'))
 
 registerDirectory(config.SKINS_DIR, config.GLOBALS)
 
 def initialize(context):
-    validation.register(validators.ProjectIdValidator('isNonConflictingProjectId'))
-    validation.register(validators.ProjectContactValidator('isValidContact'))
-
     # Kick content registration and sys.modules mangling
     from Products.PloneSoftwareCenter import content
 

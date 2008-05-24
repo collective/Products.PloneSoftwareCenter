@@ -5,6 +5,10 @@ Changelog for Products.PloneSoftwareCenter
 1.5
 ===
 
+- Moved content/validators.py to validators.py (with deprecation) as
+  otherwise the registering of validators was too late due to the
+  order of imports.  [maurits]
+
 - Added Products.ArchAddon, Products.AddRemoveWidget and
   Products.DataGridField to the install_requires in setup.py.
   [maurits]
