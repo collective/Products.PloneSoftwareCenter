@@ -5,6 +5,9 @@ Changelog for Products.PloneSoftwareCenter
 1.5
 ===
 
+- Added Products.ArchAddon to the install_requires in setup.py.
+  [maurits]
+
 - added a pluggable storage mechanism for downloadable files.
   This can be used to define new storage strategies in independant
   packages. They will then be available in PloneSoftwareCenter
