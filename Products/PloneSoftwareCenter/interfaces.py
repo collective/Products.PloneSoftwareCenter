@@ -35,17 +35,3 @@ class IFileContent(Interface):
 class IFileLinkContent(Interface):
     """A link to a downloadable file
     """
-
-class IPSCFileStorage(Interface):
-    """Interface that knows how to deal with stored files
-    """
-    def getName():
-        """return storage name"""
-
-    def setFileContent(content, filename): 
-        """sets the file content"""
-
-    def getFileContent(filename):
-        """gets the file content"""
-
-

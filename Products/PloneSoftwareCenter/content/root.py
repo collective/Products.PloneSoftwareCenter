@@ -5,7 +5,7 @@ $Id: PloneSoftwareCenter.py 24613 2006-06-08 23:40:22Z optilude $
 from zope.interface import implements
 
 from Products.PloneSoftwareCenter.interfaces import ISoftwareCenterContent
-from Products.PloneSoftwareCenter.storage import getFileStorageNames
+from Products.PloneSoftwareCenter.storage import getFileStorageVocab
 
 from AccessControl import ClassSecurityInfo
 
@@ -375,6 +375,6 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
                               'getFileStorageStrategyVocab')
     def getFileStorageStrategyVocab(self):
         """returns registered storage strategies"""
-        return getFileStorageNames(self)
+        return getFileStorageVocab(self)
 
 registerType(PloneSoftwareCenter, PROJECTNAME)

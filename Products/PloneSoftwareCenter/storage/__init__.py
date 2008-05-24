@@ -36,9 +36,11 @@ class DynamicStorage(object):
         name = psc.getStorageStrategy()
         return getAdapter(psc, IPSCFileStorage, name)
 
-def getFileStorageNames(context):
-    """return registered class for IPSCFileStorage""" 
-    sm = getGlobalSiteManager()
-    return [name for name, adapter in 
-            getAdapters((context,), IPSCFileStorage)]
-
+def getFileStorageAdapters(context):
+    return getAdapters((context,), IPSCFileStorage)
+    
+def getFileStorageVocab(context):
+    """return a vocab for the psc edit form. should probably go on a view somewhere eventually"""
+    adapters = getFileStorageAdapters(context)
+    return [ (name, "%s (%s)" % (storage.title, storage.description)) for name, storage in adapters ]
+    

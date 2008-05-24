@@ -1,4 +1,5 @@
 from zope.interface import Interface
+import zope.schema
 
 class IPSCFileStorage(Interface):
     """adapter for storing file"""
@@ -12,6 +13,10 @@ class IPSCFileStorage(Interface):
     def unset(name, instance, **kwargs):
         """removes the file `name` in an archetype instance"""
     
-    def getName(instance):
-        """returns the storage name"""
+    title = zope.schema.TextLine(
+                title=u"Title",
+                required=True)
 
+    description = zope.schema.TextLine(
+                title=u"Description",
+                required=True)

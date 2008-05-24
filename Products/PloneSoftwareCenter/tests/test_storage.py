@@ -1,7 +1,7 @@
 from Products.PloneSoftwareCenter.tests.base import PSCTestCase
 from Products.PloneSoftwareCenter.storage.interfaces import IPSCFileStorage
-
-from Products.PloneSoftwareCenter.storage import getFileStorageNames
+from Products.PloneSoftwareCenter.storage.archetype import ArchetypeStorage
+from Products.PloneSoftwareCenter.storage import getFileStorageVocab
 from Products.PloneSoftwareCenter.storage import DynamicStorage
 
 class TestStorage(PSCTestCase):
@@ -17,21 +17,22 @@ class TestStorage(PSCTestCase):
         releases.invokeFactory('PSCRelease', '1.0')
         self.release = releases['1.0']
 
-    def test_basic_storage(self):
-        # try the registery
-        wanted = ['archetype',]
-        for w in wanted:
-            self.assert_(w in getFileStorageNames(self.release))
-
     def test_adapters(self):
         # try various storage
         storage = DynamicStorage()
         self.assertEquals(storage.getName(), 'dynamic')
         
         pluggable_storage = storage._getStorage(self.psc)
-        name = pluggable_storage.getName()
-        self.assertEquals(name, 'archetype')
+        self.failUnless(pluggable_storage.__class__ is ArchetypeStorage)
+        # name = pluggable_storage.getName()
+        # self.assertEquals(name, 'archetype')
 
+    def test_storage_vocab(self):
+        """Test the test storage vocab"""
+        vocab = getFileStorageVocab(self.release)
+        self.failUnless(vocab[0][0] == u'archetype')
+        self.failUnless(vocab[0][1].startswith('Archetypes'))
+        
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()

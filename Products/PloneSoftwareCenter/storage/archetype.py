@@ -9,13 +9,12 @@ from Products.Archetypes.interfaces.storage import IStorage
 class ArchetypeStorage(AttributeStorage):
     """adapts a release folder as a dummy storage
     """ 
-    name = 'archetype'
     implements(IPSCFileStorage)
 
+    title = u"Archetypes"
+    description = u"stores releases via Archetype's AttributeStorage"
+    
     def __init__(self, context):
         self.context = context
-
-    def getName(self):
-        return self.name
 
 
