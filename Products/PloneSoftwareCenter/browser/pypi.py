@@ -13,6 +13,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import SimpleItemWithProperties, UniqueObject
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.Five import BrowserView
+from Products.Archetypes.event import ObjectEditedEvent
 
 from Products.PloneSoftwareCenter.utils import VersionPredicate
 from Products.PloneSoftwareCenter.utils import which_platform
@@ -20,6 +21,7 @@ from Products.PloneSoftwareCenter.utils import is_distutils_file
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 
 from zope.app.annotation.interfaces import IAnnotations
+from zope.event import notify 
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
@@ -209,7 +211,10 @@ class PyPIView(BrowserView):
 
             msg.append('Updated Download Link')
             rl.update(**rl_data)
-            self._setPlatform(rl, url)   
+            self._setPlatform(rl, url)
+
+            # notify we did add a file
+            notify(ObjectEditedEvent(rl))
 
         return '\n'.join(msg)
     
@@ -471,6 +476,8 @@ class PyPIView(BrowserView):
         rf.setDownloadableFile(content, filename=filename)
         rf.setTitle(filename)
         self._setPlatform(rf, filename)
+        # notify
+        notify(ObjectEditedEvent(rf))
         return '\n'.join(msg)
 
     def _setPlatform(self, release_file, filename):
