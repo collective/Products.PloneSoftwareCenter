@@ -49,6 +49,8 @@ setup(name='Products.PloneSoftwareCenter',
       install_requires=[
           'setuptools',
           'Products.ArchAddon',
+          'Products.AddRemoveWidget',
+          'Products.DataGridField',
       ],
       entry_points="""
       # -*- Entry points: -*-
