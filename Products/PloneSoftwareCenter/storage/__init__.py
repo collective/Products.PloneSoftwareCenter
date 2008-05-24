@@ -1,15 +1,14 @@
-from zope.interface import implements
-from zope.component import adapts
 from zope.component import getAdapter
 from zope.component import getAdapters
-from zope.component import getGlobalSiteManager
 from Acquisition import aq_parent
 
 from Products.PloneSoftwareCenter.storage.interfaces import IPSCFileStorage
 
+
 class DynamicStorage(object):
     """This storage will trigger the right kind of storage
     given the user settings at root level"""
+
     def get(self, name, instance, **kwargs):
         return self._getStorage(instance).get(name, instance, **kwargs)
 
@@ -27,7 +26,7 @@ class DynamicStorage(object):
         # XXX crawl back up - what if the node in not in a PSC instance ?
         # need a better code here
         from Products.PloneSoftwareCenter.content.root import PloneSoftwareCenter
-        
+
         psc = instance
         while not isinstance(psc, PloneSoftwareCenter) and psc is not None:
             # Walk up the acquisition chain to the
@@ -44,11 +43,15 @@ class DynamicStorage(object):
         name = psc.getStorageStrategy()
         return getAdapter(psc, IPSCFileStorage, name)
 
+
 def getFileStorageAdapters(context):
-    return getAdapters((context,), IPSCFileStorage)
-    
+    return getAdapters((context, ), IPSCFileStorage)
+
+
 def getFileStorageVocab(context):
-    """return a vocab for the psc edit form. should probably go on a view somewhere eventually"""
+    """Return a vocab for the psc edit form.
+
+    Should probably go on a view somewhere eventually"""
     adapters = getFileStorageAdapters(context)
-    return [ (name, "%s (%s)" % (storage.title, storage.description)) for name, storage in adapters ]
-    
+    return [(name, "%s (%s)" % (storage.title, storage.description))
+            for name, storage in adapters]
