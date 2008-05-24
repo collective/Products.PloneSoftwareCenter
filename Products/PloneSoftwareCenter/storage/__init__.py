@@ -32,7 +32,7 @@ class DynamicStorage(object):
         while not isinstance(psc, PloneSoftwareCenter):
             if isinstance(psc, BrowserView):
                 psc = psc.context
-            psc = psc.aq_inner.aq_parent
+            psc = psc.aq_parent # previously psc.aq_inner.aq_parent but that didn't work inside portal_factory
         name = psc.getStorageStrategy()
         return getAdapter(psc, IPSCFileStorage, name)
 
