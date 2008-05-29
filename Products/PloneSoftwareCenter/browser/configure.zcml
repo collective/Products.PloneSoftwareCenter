@@ -123,11 +123,11 @@
     />
 
   <page 
-      name="simple"
+      name="links"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
-      class=".pypisimple.PyPISimpleView"
+      class=".pypilinks.PyPILinksView"
       permission="zope2.View"
-      template="pypisimple.pt"
+      template="pypilinks.pt"
     />
 
   <page 

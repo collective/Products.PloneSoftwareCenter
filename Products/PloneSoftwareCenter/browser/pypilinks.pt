@@ -2,8 +2,9 @@
       xml:lang="en"
       lang="en">
  <head>
-  <title>Simple Index</title>
+  <title>List of available downloads</title>
  <body>
+  <p>This page is generated automatically by PloneSoftwareCenter</p>
   <tal:block tal:repeat="file_ view/get_files">
    <a tal:attributes="href file_/url" 
       tal:content="file_/title">file</a><br/>

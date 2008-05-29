@@ -1,6 +1,6 @@
 """
- View that provides a simple cheeseshop-like page
- This allows easy_install to browse packages
+ View that provides a page of links compatible
+ with easy_install.
 
 $Id:$
 """
@@ -9,7 +9,7 @@ import itertools
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
-class PyPISimpleView(BrowserView):
+class PyPILinksView(BrowserView):
     """view used for the main index page"""
 
     def get_urls_and_titles(self, brain):

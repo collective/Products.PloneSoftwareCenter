@@ -25,7 +25,7 @@ with PyPI. The current implemented APIs are:
 - `list_classifiers`: called on `register --list-classifiers` 
 - `verify`: called on `register --dry-run `
 
-- a `simple` page is provided through the view for easy_install to scan
+- a `links` page is provided through the view for easy_install to scan
   the packages releases.
 
 Classifiers
@@ -268,14 +268,15 @@ Secondary eggs have the name of the package as a prefix for the release id.
 Getting the release
 ===================
 
-The PSC provides a `simple` view that lists all releases that are published::
+The PSC provides a `links` view that lists all releases that are published::
 
-    >>> browser.open('http://localhost/plone/psc/simple')
+    >>> browser.open('http://localhost/plone/psc/links')
     >>> print browser.contents
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
      <head>
-      <title>Simple Index</title>
+      <title>List of available downloads</title>
      <body>
+      <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
        <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
