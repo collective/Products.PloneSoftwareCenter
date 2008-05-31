@@ -71,6 +71,10 @@ class PSCTestCase(PloneTestCase):
 
             fiveconfigure.debug_mode = False
 
+        @classmethod
+        def tearDown(cls):
+            pass
+
 class PSCFunctionalTestCase(FunctionalTestCase):
     """Base class for functional integration tests
     """
