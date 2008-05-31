@@ -181,9 +181,7 @@ class PyPIView(BrowserView):
         msg.append('Updated Release: %s' % version)
         release.update(**release_data)
 
-        # Make a release if not released yet.
-        self._maybe_release(project, release)
-   
+  
         # Now, check if there's a 'download_url', then create a file
         # link
         url = data.get('download_url')
@@ -215,7 +213,10 @@ class PyPIView(BrowserView):
 
             # notify we did add a file
             notify(ObjectEditedEvent(rl))
-
+ 
+        # Make a release if not released yet.
+        self._maybe_release(project, release)
+  
         return '\n'.join(msg)
     
     def _edit_project(self, project, distutils_name=None,
@@ -410,9 +411,6 @@ class PyPIView(BrowserView):
         # Submit project if not submitted yet.
         self._maybe_submit(project)
 
-        # Make a release if not released yet.
-        self._maybe_release(project, release)
-
         content = data.get('content')
         filetype = data.get('filetype')
         if not content or not filetype:
@@ -478,6 +476,11 @@ class PyPIView(BrowserView):
         self._setPlatform(rf, filename)
         # notify
         notify(ObjectEditedEvent(rf))
+        
+        # Make a release if not released yet.
+        self._maybe_release(project, release)
+
+
         return '\n'.join(msg)
 
     def _setPlatform(self, release_file, filename):
