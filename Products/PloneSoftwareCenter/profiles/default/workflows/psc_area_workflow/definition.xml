@@ -16,7 +16,7 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
-  <permission-map name="Add portal content" acquired="True">
+  <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
@@ -26,7 +26,7 @@
    <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="PloneSoftwareCenter: Add Project"
-                  acquired="True">
+                  acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>

@@ -10,7 +10,7 @@ from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 from Products.PloneSoftwareCenter.tests.base import PSCFunctionalTestCase
 
 
-OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
+OPTIONFLAGS = (doctest.REPORT_NDIFF |
                doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE)
 
@@ -43,6 +43,7 @@ def test_suite():
     globs['egg'] = egg
 
     return Suite(os.path.basename('pypi.txt'),
+                 os.path.basename('permissions.txt'),
                  optionflags=OPTIONFLAGS,
                  package='Products.PloneSoftwareCenter.tests',
                  test_class=PSCFunctionalTestCase,

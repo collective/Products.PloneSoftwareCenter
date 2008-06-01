@@ -1,0 +1,71 @@
+===========
+Permissions
+===========
+
+Create the browser object we'll be using.
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+
+By default the PSC is visible to anonymous users.
+
+    >>> browser.open(portal.psc.absolute_url())
+    >>> print browser.contents
+    <...
+    ...Currently listing 0 projects with 0 releases...
+
+Anonymous users can't add projects.
+
+    >>> browser.getLink('Add Software Project')
+    Traceback (most recent call last):
+    LinkNotFoundError
+    >>> browser.getControl('Add New Software Project')
+    Traceback (most recent call last):
+    LookupError: label 'Add New Software Project'
+
+Log in as a normal member.
+
+    >>> from Products.PloneTestCase import ptc
+    >>> browser.getLink('Log in').click()
+    >>> browser.getControl('Login Name').value = 'member1'
+    >>> browser.getControl(
+    ...     'Password').value = ptc.default_password
+    >>> browser.getControl('Log in').click()
+    >>> print browser.contents
+    <...
+    ...Welcome! You are now logged in...
+
+By default the PSC is in the open workflow state so normal members can
+add projects.
+
+    >>> browser.getLink('Add Software Project')
+    <Link text='[IMG] Add Software Project'
+    url='http://nohost/plone/psc/createObject?type_name=PSCProject'>
+    >>> browser.getControl('Add New Software Project').click()
+    >>> browser.getControl('Title').value = 'Foo Project Title'
+    >>> browser.getControl(
+    ...     'Project Summary').value = 'Foo Project Summary'
+    >>> browser.getControl(
+    ...     'Full Project Description'
+    ...     ).value = 'Foo Project Description'
+    >>> browser.getControl('1 - Planning').selected = True
+    >>> browser.getControl('Stand-alone products').selected = True
+    >>> browser.getControl(
+    ...     'Contact address'
+    ...     ).value = 'http://nohost/plone/psc/foo-project-title'
+    >>> browser.getControl('Save').click()
+    >>> print browser.contents
+    <...
+    ...Changes saved...
+
+If the PSC is in the closed state, members can't add projects.
+
+    >>> portal.portal_workflow.doActionFor(portal.psc, 'retract')
+    >>> browser.open(portal.psc.absolute_url())
+    >>> browser.getLink('Add Software Project')
+    Traceback (most recent call last):
+    LinkNotFoundError
+    >>> browser.getControl('Add New Software Project')
+    Traceback (most recent call last):
+    LookupError: label 'Add New Software Project'
