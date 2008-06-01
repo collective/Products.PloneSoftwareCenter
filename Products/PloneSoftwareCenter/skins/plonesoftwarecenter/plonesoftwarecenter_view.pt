@@ -38,15 +38,17 @@
        tal:content="context/Description">
       Description.
     </p>
-    
-    <select style="float: right; clear: right"
-            onchange="window.location.href=this.options[this.selectedIndex].value">
+
+    <form>
+      <select style="float: right; clear: right"
+              onchange="window.location.href=this.options[this.selectedIndex].value">
         <option value="">Go directly to project&hellip;</option>
         <option  tal:repeat="project view/active_projects" 
                  tal:content="python:project.Title[:30]"
                  tal:attributes="value project/getURL">
         </option>
-    </select>
+      </select>
+    </form>
 
     <form action="createObject"
           tal:condition="view/can_add_project">
