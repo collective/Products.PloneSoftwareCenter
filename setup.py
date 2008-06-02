@@ -51,6 +51,8 @@ setup(name='Products.PloneSoftwareCenter',
           'Products.ArchAddon',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
+          'plone.contentratings',
+          'plone.app.blob',
       ],
       entry_points="""
       # -*- Entry points: -*-

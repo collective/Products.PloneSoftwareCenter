@@ -63,7 +63,7 @@ class TestProductInstall(PSCTestCase):
     def testNavtreePropertiesConfigured(self):
         pmntq = self.portal.portal_properties.navtree_properties.parentMetaTypesNotToQuery
         for t in ('PloneSoftwareCenter', 'PSCReleaseFolder', 'PSCImprovementProposalFolder', 'PSCRelease'):
-            self.failUnless(t in pmntq)
+            self.failUnless(t in pmntq, "%s not in parentMetaTypesNotToQuery" % t)
     
     # XXX I don't think this is a good test because
     # the dependencies are not automatically installed by PSC

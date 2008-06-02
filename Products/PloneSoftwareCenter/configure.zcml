@@ -9,6 +9,13 @@
   <include package=".storage" />
   <include package=".events" file="configure.zcml" />
 
+  <!-- include product's dependent zcml -->
+  <include package="plone.contentratings"/>
+  <include package="Products.ArchAddOn"/>
+  
+  <include zcml:condition="installed Products.PloneHelpCenter"
+    package="Products.PloneHelpCenter" />
+    
   <gs:registerProfile
 	name="default"
         title="Plone Software Center"

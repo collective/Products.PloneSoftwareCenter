@@ -13,9 +13,6 @@ ZopeTestCase.installProduct('ArchAddOn')
 ZopeTestCase.installProduct('AddRemoveWidget')
 ZopeTestCase.installProduct('DataGridField')
 ZopeTestCase.installProduct('ExternalStorage')
-# If PloneHelpCenter is available, initialize it.
-ZopeTestCase.installProduct('PloneHelpCenter')
-ZopeTestCase.installProduct('PloneSoftwareCenter')
 
 from Products.PloneTestCase.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.PloneTestCase import FunctionalTestCase
@@ -28,10 +25,40 @@ from Products.PloneTestCase.layer import onsetup
 from Products.PloneTestCase.layer import PloneSite
 
 @onsetup
+def install_psc():
+    import Products.PloneSoftwareCenter
+    fiveconfigure.debug_mode = True
+    try:
+        zcml.load_config('configure.zcml', Products.PloneSoftwareCenter)
+        ZopeTestCase.installProduct('PloneHelpCenter')
+        ZopeTestCase.installProduct('PloneSoftwareCenter')
+        
+        # try:
+        #     # If PloneHelpCenter is available, initialize it.
+        #     import Products.PloneHelpCenter
+        # except ImportError:
+        #     # Plone Help Center not available
+        #     pass
+    finally:
+        fiveconfigure.debug_mode = False
+        
+@onsetup
 def install_plugins():
+    # TODO, move all externalstorage testing to collective.psc.externalstorage
+    import collective.psc.externalstorage
+    fiveconfigure.debug_mode = True
+    zcml.load_config('configure.zcml', collective.psc.externalstorage)
     ZopeTestCase.installPackage('collective.psc.externalstorage')
+    fiveconfigure.debug_mode = False
 
-install_plugins()
+    from zope.component import getGlobalSiteManager
+    from collective.psc.externalstorage.config import ESConfiguration
+    from collective.psc.externalstorage.interfaces import IESConfiguration
+    gsm = getGlobalSiteManager()
+    gsm.registerUtility(ESConfiguration, IESConfiguration)
+
+install_psc()
+# install_plugins()
 setupPloneSite(products=('PloneSoftwareCenter',))
 
 class DeveloperWarning(Warning):
@@ -45,32 +72,6 @@ class PSCTestCase(PloneTestCase):
     """
     def warning(self, msg):
         developer_warning(msg)
-
-    class layer(PloneSite):
-        @classmethod
-        def setUp(cls):
-            import Products.PloneSoftwareCenter
-            fiveconfigure.debug_mode = True
-            zcml.load_config('configure.zcml', Products.PloneSoftwareCenter)
-
-            # loading externalstorage if present in the environment
-            try:
-                import collective.psc.externalstorage
-            except ImportError:
-                pass
-            else:
-                ext = os.path.dirname(collective.psc.externalstorage.__file__)
-                config = os.path.join(ext, 'configure.zcml')
-                zcml.load_config(config,
-                                 collective.psc.externalstorage)
-                from zope.component import getGlobalSiteManager
-                from collective.psc.externalstorage.config import ESConfiguration
-                from collective.psc.externalstorage.interfaces import IESConfiguration
-                gsm = getGlobalSiteManager()
-                gsm.registerUtility(ESConfiguration, IESConfiguration)
-
-            fiveconfigure.debug_mode = False
-
         @classmethod
         def tearDown(cls):
             pass

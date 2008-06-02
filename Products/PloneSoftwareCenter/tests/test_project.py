@@ -306,7 +306,8 @@ class TestProjectWithPloneHelpCenterIntegration(PSCTestCase):
         self.failIf(qi_tool.PloneHelpCenter.error)
 
     def testGetNotAddableTypes(self):
-        self.failUnless('PSCDocumentationFolder' not in self.proj.getNotAddableTypes())
+        # After we add a documentation folder it should not be addable again
+        self.failIf('PSCDocumentationFolder' in self.proj.getNotAddableTypes())
         self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')
         self.failUnless('PSCDocumentationFolder' in self.proj.getNotAddableTypes())
     
