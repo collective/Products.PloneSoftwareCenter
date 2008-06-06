@@ -1,0 +1,19 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="psc">
+
+  <adapter 
+     name="simple"
+     for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+     factory=".pypisimple.PyPISimpleTraverser"
+     provides="zope.traversing.interfaces.ITraversable" />
+
+  <view
+    name="simple"
+    for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+    type="zope.interface.Interface"
+    provides="zope.traversing.interfaces.ITraversable" 
+    factory=".pypisimple.PyPISimpleTraverser"  
+    />
+
+</configure>

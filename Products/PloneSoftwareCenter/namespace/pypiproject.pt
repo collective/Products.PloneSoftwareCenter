@@ -1,0 +1,15 @@
+<html
+    tal:define="title python:'Links for '+view.get_name()">
+ <head>
+  <title tal:content="title">Links for the project</title>
+ </head>
+ <body>
+  <h1 tal:content="title">Links for the project</h1>
+  <tal:block tal:repeat="project view/get_links">
+  <a tal:attributes="href project/url;
+                     rel  project/rel|nothing" 
+     tal:content="project/title">project</a> 
+  </tal:block>
+ </body>
+</html> 
+  

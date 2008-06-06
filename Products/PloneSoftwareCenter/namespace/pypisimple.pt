@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en">
+ <head>
+  <title>Simple Index</title>
+ <body>
+  <p>This page is generated automatically by PloneSoftwareCenter</p>
+  <tal:block tal:repeat="project view/get_projects">
+   <a tal:attributes="href python:'++simple++'+project['distutilsMainId']" 
+      tal:content="project/distutilsMainId">Project</a><br/>
+ </tal:block>
+
+ </body>
+</html>
+

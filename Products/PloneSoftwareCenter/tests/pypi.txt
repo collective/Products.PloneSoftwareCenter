@@ -295,6 +295,54 @@ The PSC provides a `links` view that lists all releases that are published::
     <BLANKLINE>
     <BLANKLINE>
 
+Simple Index
+============
+
+A simple index is also provided, that implements the package index API
+(see http://peak.telecommunity.com/DevCenter/EasyInstall#package-index-api). It is available through a namespace::
+
+    >>> browser.open('http://localhost/plone/psc/++simple++')
+    >>> print browser.contents
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+     <head>
+      <title>Simple Index</title>
+     <body>
+      <p>This page is generated automatically by PloneSoftwareCenter</p>
+    <BLANKLINE>
+       <a href="++simple++iw.dist">iw.dist</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="++simple++iw.recipe.fss">iw.recipe.fss</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+     </body>
+    </head></html>
+    <BLANKLINE>
+    <BLANKLINE>
+
+`easy_install` visits the link for a given project, and gets its links::
+
+    >>> browser.open('http://localhost/plone/psc/++simple++iw.recipe.fss')
+    >>> print browser.contents 
+    <html>
+     <head>
+      <title>Links for iw.recipe.fss</title>
+     </head>
+     <body>
+      <h1>Links for iw.recipe.fss</h1>
+    <BLANKLINE>  
+      <a href=".../iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+    <BLANKLINE>
+    <BLANKLINE>
+      <a href=".../iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+    <BLANKLINE>
+    <BLANKLINE>
+      <a href=".../iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+    <BLANKLINE>
+     </body>
+    </html> 
+
+
 Visible changes in UI
 =====================
 
