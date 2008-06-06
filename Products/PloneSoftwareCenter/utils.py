@@ -203,7 +203,7 @@ def search_projects_by_field(center, field, value):
             yield brain.getId
 
 def get_projects_by_distutils_ids(sc, ids):
-    primary = search_projects_by_field(sc,'distutilsMainId', ids)
-    secondary = search_projects_by_field(sc, 'distutilsSecondaryIds', ids) 
+    primary = search_projects_by_field(sc, 'getDistutilsMainId', ids)
+    secondary = search_projects_by_field(sc, 'getDistutilsSecondaryIds', ids) 
     return chain(primary, secondary)
 
