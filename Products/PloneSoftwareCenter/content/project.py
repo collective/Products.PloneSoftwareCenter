@@ -122,6 +122,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
 
     StringField('distutilsMainId',
         required=0,
+        index='KeywordIndex:schema',
         widget=StringWidget(
             label="Distutils id",
             label_msgid="label_project_distutils_main_id",
