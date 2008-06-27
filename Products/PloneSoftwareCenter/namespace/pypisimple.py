@@ -2,7 +2,7 @@
  View that provides the package index API
  for easy_install.
 
-$Id:$
+$Id$
 """
 import itertools
 import os
@@ -72,8 +72,8 @@ class PyPISimpleView(object):
         with links to the published files"""
         
         query = {'path': self.sc_path, 'portal_type': 'PSCProject',
-                 'sort_on': 'getDistutilsMainId',
-                 'review_state': 'published'}
+                 'review_state': 'published', 
+                 'sortOn': 'getId'}
 
         return itertools.chain(*[self.get_url_and_distutils_ids(brain)
                                  for brain in self.catalog(**query) ])
@@ -88,6 +88,9 @@ class PyPIProjectView(PyPISimpleView):
         self.projects = self._get_projects(name) 
         if self.projects == []:
             raise TraversalError(self.context, name)
+
+    def _sort_files(self, f1, f2):
+        return cmp(f1['url'], f2['url'])
 
     def _get_released_files(self, project):
         project_path = '/'.join(project.getPhysicalPath()) 
@@ -116,7 +119,8 @@ class PyPIProjectView(PyPISimpleView):
             project = self.context[project_name]
             
             # archives first
-            for archive in self._get_released_files(project):
+            for archive in sorted(self._get_released_files(project),
+                                  self._sort_files):
                 links.append(archive)           
             
             # then url links 

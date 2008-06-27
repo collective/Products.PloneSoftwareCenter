@@ -22,6 +22,9 @@ class PyPILinksView(BrowserView):
                 info['url'] = element.absolute_url()
             yield info
 
+    def _sort_releases(self, r1, r2):
+        return cmp(r1['url'], r2['url'])
+
     def get_files(self):
         """provides the simple view over the projects
         with links to the published files"""
@@ -29,8 +32,8 @@ class PyPILinksView(BrowserView):
         catalog = getToolByName(self.context, 'portal_catalog')
         sc_path = '/'.join(sc.getPhysicalPath())
         query = {'path': sc_path, 'portal_type': 'PSCRelease',
-                 'sort_on': 'getId',
                  'review_state': ('alpha', 'beta', 'pre-release', 'final')}
-        return itertools.chain(*[self.get_urls_and_titles(brain)
-                                 for brain in catalog(**query)])
+        return sorted(itertools.chain(*[self.get_urls_and_titles(brain)
+                                        for brain in catalog(**query)]), 
+                      self._sort_releases)
        

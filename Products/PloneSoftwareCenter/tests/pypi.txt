@@ -330,18 +330,20 @@ A simple index is also provided, that implements the package index API
      </head>
      <body>
       <h1>Links for iw.recipe.fss</h1>
-    <BLANKLINE>  
-      <a href=".../iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href=".../iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+      <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href=".../iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a> 
+      <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
      </body>
-    </html> 
-
+    </html>
+    <BLANKLINE>
+    <BLANKLINE>
+    
 
 Visible changes in UI
 =====================
