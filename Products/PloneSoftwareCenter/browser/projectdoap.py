@@ -123,7 +123,15 @@ class ProjectDOAPView(ProjectView):
             thisRelease['name'] = releaseObj.getCodename()
             releaseDate = releaseObj.getExpectedReleaseDate()
             if releaseDate:
-                releaseDate = DateTime(releaseDate)
+                # removed the conversion: releaseDate is already a DateTime
+                # and depending on your location.
+                #
+                # For instance this code:
+                #   >>> DateTime(DateTime('1/12/2007'))
+                #
+                # will lead to a date that is at 1/11/2007 23:00
+                #
+                # releaseDate = DateTime(releaseDate)
                 thisRelease['date'] = '%s-%s-%s' % (releaseDate.year(), releaseDate.mm(), releaseDate.dd())
             else:
                 thisRelease['date'] = ''
