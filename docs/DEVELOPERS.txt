@@ -1,0 +1,18 @@
+Note to developers
+==================
+
+If you want to develop on PSC, you can use the buildout::
+
+    $ python bootstrap.py
+    $ bin/buildout
+
+You will get a `test` script that can be use as-is to run all
+tests over PSC::
+
+    $ bin/test
+    ...
+
+This test is used for instance by a buildbot everytime a commit is
+made in PSC. See http://buildbot.ingeniweb.com/waterfall, 
+Products.PloneSoftwareCenter track.
+
