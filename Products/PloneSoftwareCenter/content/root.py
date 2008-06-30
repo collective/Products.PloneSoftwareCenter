@@ -3,9 +3,12 @@ $Id: PloneSoftwareCenter.py 24613 2006-06-08 23:40:22Z optilude $
 """
 
 from zope.interface import implements
+from zope import event
 
 from Products.PloneSoftwareCenter.interfaces import ISoftwareCenterContent
 from Products.PloneSoftwareCenter.storage import getFileStorageVocab
+from Products.PloneSoftwareCenter.events.softwarecenter import \
+        StorageStrategyChanging
 
 from AccessControl import ClassSecurityInfo
 
@@ -376,5 +379,16 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
     def getFileStorageStrategyVocab(self):
         """returns registered storage strategies"""
         return getFileStorageVocab(self)
+
+    security.declareProtected(permissions.ModifyPortalContent, 'setStorageStrategy')
+    def setStorageStrategy(self, value, **kw):
+        """triggers an event before changing the field"""
+        # the event will raise an error if any
+        # project failed to migrate from one storage
+        # to another
+        old = self.getStorageStrategy()
+        if old != value:
+            event.notify(StorageStrategyChanging(self, old, value))
+        self.getField('storageStrategy').set(self, value, **kw)
 
 registerType(PloneSoftwareCenter, PROJECTNAME)

@@ -5,6 +5,10 @@ Changelog for Products.PloneSoftwareCenter
 1.5
 ===
 
+- added an event that gets triggered if you change the storage
+  strategy. It will migrate all files to the new storage.
+  [tarek]
+
 - added a ++simple++ namespace to provide a package index API.
   [tarek] 
 

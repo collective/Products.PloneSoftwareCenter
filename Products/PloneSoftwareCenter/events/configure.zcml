@@ -10,4 +10,8 @@
   <subscriber provides="Products.Archetypes.interfaces.IObjectPreValidation"
               factory="..validators.ValidateEggNameUnique" />
 
+  <subscriber for="..interfaces.ISoftwareCenterContent
+                   .interfaces.IStorageStrategyChanging"
+              handler=".softwarecenter.changeStorageStrategy" />
+
 </configure>
