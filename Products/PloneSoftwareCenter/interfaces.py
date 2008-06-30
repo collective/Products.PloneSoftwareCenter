@@ -35,3 +35,4 @@ class IFileContent(Interface):
 class IFileLinkContent(Interface):
     """A link to a downloadable file
     """
+
