@@ -1,6 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:five="http://namespaces.zope.org/five"
-           xmlns:gs="http://namespaces.zope.org/genericsetup"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:zcml="http://namespaces.zope.org/zcml"
            i18n_domain="plonesoftwarecenter">
@@ -9,14 +8,8 @@
   <include package=".browser" />
   <include package=".storage" />
   <include package=".events" file="configure.zcml" />
+  <include file="profiles.zcml"/>
 
-  <gs:registerProfile
-	name="default"
-        title="Plone Software Center"
-	directory="profiles/default"
-	description="What's powering the products section on plone.org"
-	provides="Products.GenericSetup.interfaces.EXTENSION"
-	/>
   <five:traversable class=".content.release.PSCRelease" />
 
   <content class=".content.project.PSCProject"
