@@ -95,7 +95,8 @@ class PyPIProjectView(PyPISimpleView):
     def _get_released_files(self, project):
         project_path = '/'.join(project.getPhysicalPath()) 
         query = {'path': project_path, 'portal_type': 'PSCRelease',
-                 'review_state': ('alpha', 'beta', 'pre-release', 'final')}
+                 'review_state': ('alpha', 'beta', 'pre-release', 'final', 
+                                  'hidden')}
         for brain in self.catalog(**query):
             for id_, file_ in brain.getObject().objectItems():
                 yield {'url': file_.absolute_url(), 

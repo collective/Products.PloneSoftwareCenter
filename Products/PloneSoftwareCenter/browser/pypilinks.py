@@ -32,7 +32,8 @@ class PyPILinksView(BrowserView):
         catalog = getToolByName(self.context, 'portal_catalog')
         sc_path = '/'.join(sc.getPhysicalPath())
         query = {'path': sc_path, 'portal_type': 'PSCRelease',
-                 'review_state': ('alpha', 'beta', 'pre-release', 'final')}
+                 'review_state': ('alpha', 'beta', 'pre-release', 'final', 
+                                  'hidden')}
         return sorted(itertools.chain(*[self.get_urls_and_titles(brain)
                                         for brain in catalog(**query)]), 
                       self._sort_releases)
