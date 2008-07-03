@@ -5,6 +5,9 @@ Changelog for Products.PloneSoftwareCenter
 1.5.1 (unreleased)
 ==================
 
+- introduced a deprecation warning for the simple
+  view. [tarek]
+
 - fixed a bug in uploads of packages to existing
   projects that does not have a distutils id yet
   [tarek]

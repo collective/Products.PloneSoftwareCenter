@@ -131,6 +131,14 @@
     />
 
   <page 
+      name="simple"
+      for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+      class=".pypilinks.PyPILinksViewDeprecated"
+      permission="zope2.View"
+      template="pypilinks.pt"
+    />
+
+  <page 
       name="list_classifiers"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypi.PyPIView"

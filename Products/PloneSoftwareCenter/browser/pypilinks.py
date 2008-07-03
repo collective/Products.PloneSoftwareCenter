@@ -6,6 +6,8 @@ $Id:$
 """
 import itertools
 
+from zope.deprecation import deprecation
+
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
@@ -37,4 +39,12 @@ class PyPILinksView(BrowserView):
         return sorted(itertools.chain(*[self.get_urls_and_titles(brain)
                                         for brain in catalog(**query)]), 
                       self._sort_releases)
-       
+
+class PyPILinksViewDeprecated(PyPILinksView):
+    """view with deprecation warnings"""
+
+    @deprecation.deprecate(("The 'simple' view is deprecated, "
+                            "use the 'links' view instead"))
+    def get_files(self):
+        return PyPILinksView.get_files(self)
+

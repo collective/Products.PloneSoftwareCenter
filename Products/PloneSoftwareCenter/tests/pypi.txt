@@ -295,6 +295,33 @@ The PSC provides a `links` view that lists all releases that are published::
     <BLANKLINE>
     <BLANKLINE>
 
+The old `simple` view is kept for compatibility::
+
+    >>> browser.open('http://localhost/plone/psc/simple')
+    >>> print browser.contents
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+     <head>
+      <title>List of available downloads</title>
+     <body>
+      <p>This page is generated automatically by PloneSoftwareCenter</p>
+    <BLANKLINE>
+       <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+    <BLANKLINE>
+    <BLANKLINE>
+     </body>
+    </head></html>
+    <BLANKLINE>
+    <BLANKLINE>
+
 Simple Index
 ============
 
