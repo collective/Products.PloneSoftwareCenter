@@ -2,8 +2,8 @@ Changelog for Products.PloneSoftwareCenter
 
     (name of developer listed in brackets)
 
-1.5
-===
+1.5.1 (unreleased)
+==================
 
 - fixed a bug in uploads of packages to existing
   projects that does not have a distutils id yet
@@ -34,6 +34,10 @@ Changelog for Products.PloneSoftwareCenter
 
   Other strategies are available like collective.psc.externalstorage.
   [tarek]
+
+
+1.5 (2008-04-27)
+================
 
 - Made the workflow of releases aware of development tags created by distutils
   so if an egg has "dev" or an SVN revision it is marked as an alpha.
