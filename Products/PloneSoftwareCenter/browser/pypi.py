@@ -239,6 +239,10 @@ class PyPIView(BrowserView):
                 value = [classifiers.getRow(self.context, val, 2)
                          for val in value]
                 value = [val['id'] for val in value if val is not None]
+
+            if v == 'author_email':
+                value  = 'mailto:%s' % value
+
             project_data[k] = value
 
         priority = None

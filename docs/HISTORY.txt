@@ -5,6 +5,9 @@ Changelog for Products.PloneSoftwareCenter
 1.5.1 (unreleased)
 ==================
 
+- now adds 'mailto:' to contact address on uploads
+  [tarek]
+
 - introduced a deprecation warning for the simple
   view. [tarek]
 

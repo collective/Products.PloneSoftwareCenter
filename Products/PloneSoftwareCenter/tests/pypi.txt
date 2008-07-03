@@ -91,6 +91,9 @@ Let's check the result. We should have a new project in the PSC::
     <PSCProject at /plone/psc/iw.dist>
     >>> project.title
     u'iw.dist'
+   
+    >>> project.getContactAddress()
+    'mailto:support@ingeniweb.com'
 
 And the right classification list (PG-13 is not a known classifier in this PSC)::
 
