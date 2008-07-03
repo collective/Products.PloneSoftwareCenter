@@ -5,6 +5,10 @@ Changelog for Products.PloneSoftwareCenter
 1.5
 ===
 
+- fixed a bug in uploads of packages to existing
+  projects that does not have a distutils id yet
+  [tarek]
+
 - added an event that gets triggered if you change the storage
   strategy. It will migrate all files to the new storage.
   [tarek]

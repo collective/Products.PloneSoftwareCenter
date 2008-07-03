@@ -170,6 +170,62 @@ class TestPyPI(PSCTestCase):
         self.assertEquals(res[0], 'Development Status :: 1 - Planning')
         self.assertEquals(res[-1], 'Topic :: Utilities')
 
+    def test_distutils_id_missing(self):
+
+        # let's create a PSC with a project that 
+        # has the same name but no distutils fixed 
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
+        psc.invokeFactory('PSCProject', 'iw.dist')
+        self.assertEquals(['iw.dist'], list(psc.objectIds()))
+
+        # making sure the project is correctly set
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
+                'metadata_version': '1.0', 'author': 'Ingeniweb', 
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+                'summary': 'The summary', 
+                'author_email': 'support@ingeniweb.com',
+                'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
+                'keywords': '', 
+                'classifiers': ['Programming Language :: Python',
+                                'Topic :: Utilities', 'Rated :: PG13'], 
+                'description': 'xxx'}
+        view = PyPIView(psc, Req(form))
+
+        view.submit()
+        iw_dist = psc['iw.dist']
+        self.assertEquals(iw_dist.getDistutilsMainId(),  'iw.dist')
+
+    def test_distutils_id_missing2(self):
+
+        # let's create a PSC with a project that 
+        # has the same name but no distutils fixed 
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
+        psc.invokeFactory('PSCProject', 'iw.dist')
+        self.assertEquals(['iw.dist'], list(psc.objectIds()))
+        
+        psc['iw.dist'].setDistutilsMainId('another.one')
+
+        # making sure the project is correctly set
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
+                'metadata_version': '1.0', 'author': 'Ingeniweb', 
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+                'summary': 'The summary', 
+                'author_email': 'support@ingeniweb.com',
+                'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
+                'keywords': '', 
+                'classifiers': ['Programming Language :: Python',
+                                'Topic :: Utilities', 'Rated :: PG13'], 
+                'description': 'xxx'}
+        view = PyPIView(psc, Req(form))
+
+        view.submit()
+        iw_dist = psc['iw.dist']
+        self.assertEquals(iw_dist.getDistutilsSecondaryIds(),  ('iw.dist',))
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

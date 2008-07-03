@@ -278,6 +278,21 @@ class PyPIView(BrowserView):
         existing_projects = list(get_projects_by_distutils_ids(sc, [name]))
 
         if existing_projects == []:
+            # checking if the project already exists
+            if normalized_name in sc.objectIds():
+                project = sc[normalized_name]
+                existing_projects = [normalized_name]
+                # empty distutils id ? let's take it !
+                if project.getDistutilsMainId() == '':
+                    project.setDistutilsMainId(normalized_name)
+                else:
+                    # main id is taken, let's add it 
+                    # as a secondary id
+                    secondids = project.getDistutilsSecondaryIds()
+                    secondids = secondids + (normalized_name,)
+                    project.setDistutilsSecondaryIds(secondids)
+
+        if existing_projects == []:
             # let's create the project
             if msg is not None:
                 msg.append('Created Project: %s' % name)
