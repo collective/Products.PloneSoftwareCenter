@@ -5,6 +5,9 @@ Changelog for Products.PloneSoftwareCenter
 1.5.1 (unreleased)
 ==================
 
+- fixed a gs bug: propertiestool.xml now uses purge=False
+  [mr_savage]
+
 - now adds 'mailto:' to contact address on uploads
   [tarek]
 
