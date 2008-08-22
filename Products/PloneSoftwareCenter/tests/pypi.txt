@@ -339,10 +339,10 @@ A simple index is also provided, that implements the package index API
      <body>
       <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
-       <a href="++simple++iw.dist">iw.dist</a><br />
+       <a href="++simple++/iw.dist">iw.dist</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="++simple++iw.recipe.fss">iw.recipe.fss</a><br />
+       <a href="++simple++/iw.recipe.fss">iw.recipe.fss</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>
@@ -352,7 +352,7 @@ A simple index is also provided, that implements the package index API
 
 `easy_install` visits the link for a given project, and gets its links::
 
-    >>> browser.open('http://localhost/plone/psc/++simple++iw.recipe.fss')
+    >>> browser.open('http://localhost/plone/psc/++simple++/iw.recipe.fss')
     >>> print browser.contents 
     <html>
      <head>

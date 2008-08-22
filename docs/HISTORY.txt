@@ -6,6 +6,7 @@ Changelog for Products.PloneSoftwareCenter
 ==================
 
 - added a migration step to synchronize projects with PyPI.
+  [tarek]
 
 - fixed a gs bug: propertiestool.xml now uses purge=False
   [mr_savage]

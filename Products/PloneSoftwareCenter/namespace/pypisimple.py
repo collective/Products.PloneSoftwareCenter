@@ -17,6 +17,7 @@ from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IBrowserPublisher
+from zope.publisher.interfaces.browser import IPublishTraverse
 from zope.traversing.namespace import SimpleHandler
 from zope.app.traversing.interfaces import TraversalError
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
@@ -24,15 +25,21 @@ from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 class PyPISimpleTraverser(SimpleHandler):
     """ Custom traverser for the Simple Index
     """
-    implements(IBrowserView)
+    implements(IBrowserView, IPublishTraverse)
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
+	
+    def __of__(self, context):
+        return self
+
+    def publishTraverse(self, request, name):
+	return PyPIProjectView(self.context, request, name)
 
     def traverse(self, name, ignored):
         if name == '':
-            return PyPISimpleView(self.context, self.request)
+            return PyPISimpleTraverser(self.context, self.request)
         path = name.split('/')
         if len(path) == 1:
             return PyPIProjectView(self.context, self.request, path[0])
