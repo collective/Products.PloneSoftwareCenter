@@ -5,6 +5,9 @@ Changelog for Products.PloneSoftwareCenter
 1.5.1 (unreleased)
 ==================
 
+- Tidying of schema to make base_edit less daunting.
+  [MatthewWilkes]
+
 - added a migration step to synchronize projects with PyPI.
   [tarek]
 

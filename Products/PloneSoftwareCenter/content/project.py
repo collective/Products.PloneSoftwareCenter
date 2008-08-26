@@ -57,7 +57,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     ),
 
     TextField('text',
-        default='What problem is being solved?',
+        default='',
         required=1,
         searchable=1,
         primary=1,
@@ -79,6 +79,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         required=1,
         vocabulary='getClassifiersVocab',
         enforceVocabulary=1,
+        schemata="metadata",
         index='KeywordIndex:schema',
         widget=MultiSelectionWidget(
             label='Classifiers',
@@ -95,6 +96,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         required=1,
         vocabulary='getCategoriesVocab',
         enforceVocabulary=1,
+        schemata="metadata",
         index='KeywordIndex:schema',
         widget=MultiSelectionWidget(
             label='Categories',
@@ -105,23 +107,9 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         ),
     ),
     
-    LinesField('classifiers',
-        multiValued=1,
-        required=1,
-        vocabulary='getClassifiersVocab',
-        enforceVocabulary=1,
-        index='KeywordIndex:schema',
-        widget=MultiSelectionWidget(
-            label='Classifiers',
-            label_msgid="label_classifiers",
-            description='Classifiers that this item should appear in.',
-            description_msgid="help_classifiers",
-            i18n_domain="plonesoftwarecenter",
-        ),
-    ),
-
     StringField('distutilsMainId',
         required=0,
+        schemata="distutils",
         index='KeywordIndex:schema',
         widget=StringWidget(
             label="Distutils id",
@@ -137,6 +125,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     LinesField('distutilsSecondaryIds',
         multiValued=1,
         required=0,
+        schemata="distutils",
         index='KeywordIndex:schema',
         widget=LinesWidget(
             label='Distutils secondary Ids',
@@ -153,6 +142,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         vocabulary='getSelfCertificationCriteriaVocab',
         enforceVocabulary=1,
         index='KeywordIndex:schema',
+        schemata="review",
         widget=MultiSelectionWidget(
             label="Self-Certification Checklist",
             label_msgid="label_self_certification_checklist",
@@ -166,6 +156,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     BooleanField('isApproved',
         required=0,
         write_permission=ApproveProject,
+        schemata="review",
         widget=BooleanWidget(
             label="Approved",
             label_msgid="label_approved",
@@ -178,6 +169,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     TextField('reviewComment',
         searchable=1,
         required=0,
+        schemata="review",
         write_permission=AddReviewComment,
         widget=TextAreaWidget(
             label="Review Comment",
@@ -191,6 +183,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     LinesField('unsupportedVersions',
         required=0,
         multiValued=1,
+        schemata="metadata",
         vocabulary='getVersionsVocab',
         widget=InAndOutWidget(
             label="Unsupported versions",
@@ -318,6 +311,13 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     ),
 
 ))
+
+
+
+PSCProjectSchema['subject'].widget.visible={"view":False,"edit":False}
+PSCProjectSchema.moveField("categories",before="allowDiscussion")
+PSCProjectSchema.moveField("classifiers",after="categories")
+PSCProjectSchema.moveField("unsupportedVersions",after="classifiers")
 
 class PSCProject(ATCTMixin, OrderedBaseFolder):
     """Project class that holds the information about the Software Project.
