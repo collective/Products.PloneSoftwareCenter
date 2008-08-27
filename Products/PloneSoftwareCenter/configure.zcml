@@ -10,16 +10,14 @@
   <include package=".events" file="configure.zcml" />
   <include file="profiles.zcml"/>
 
-  <five:traversable class=".content.release.PSCRelease" />
-
-  <content class=".content.project.PSCProject"
+  <class class=".content.project.PSCProject"
            zcml:condition="installed contentratings">
     <implements
         interface="contentratings.interfaces.IUserRatable
                    contentratings.interfaces.IEditorRatable
                    zope.app.annotation.interfaces.IAttributeAnnotatable"
         />
-  </content>
+  </class>
 
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
        only show up because some base classes that we inherit from use

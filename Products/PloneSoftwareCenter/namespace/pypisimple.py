@@ -19,7 +19,7 @@ from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.browser import IPublishTraverse
 from zope.traversing.namespace import SimpleHandler
-from zope.app.traversing.interfaces import TraversalError
+from zope.traversing.interfaces import TraversalError
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
 class PyPISimpleTraverser(SimpleHandler):
