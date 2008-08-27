@@ -10,7 +10,6 @@ import os
 from zope.interface import implements
 
 from Products.Five import BrowserView
-from Products.Five.traversable import FiveTraversable
 from Products.CMFCore.utils import getToolByName
 
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
