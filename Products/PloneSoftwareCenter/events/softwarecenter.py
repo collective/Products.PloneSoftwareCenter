@@ -53,7 +53,7 @@ def changeStorageStrategy(psc, event):
     # at this stage the storage hasn't changed yet
     new_adapter = getAdapter(psc, IPSCFileStorage, event.new_storage)
 
-    def _getStorage(self):
+    def _getStorage(*args):
         return new_adapter
     
     # now for each file we want to set the 
