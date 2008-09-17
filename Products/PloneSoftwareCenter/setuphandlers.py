@@ -15,10 +15,18 @@ import urllib2
 import socket
 
 from StringIO import StringIO
+from OFS.Image import File
 
+from Products.Archetypes.atapi import *
 from Products.CMFCore.utils import getToolByName
+from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter.content.downloadablefile import PSCFile
 
 NAME = re.compile('Name: (.*)')
+
+# if your previous instance had 
+WAS_EXTERNAL_STORAGE = True
+EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',)
 
 def temp(function):
     def _temp(*args, **kw):
@@ -73,6 +81,12 @@ def before_1_5(portal_setup):
     def _upgrade_psc(psc):
         logging.info('Upgrading %s' % psc.title_or_id())
         # we might want to do something else here
+	strategy = StringField('storageStrategy',
+        	default='archetype',
+        	vocabulary='getFileStorageStrategyVocab',
+        )
+
+	psc.schema['storageStrategy'] = strategy
 
     def _discovering_dist_ids(project):
         # for each file in the project we 
@@ -82,13 +96,60 @@ def before_1_5(portal_setup):
                        'path': project_path})
         ids = []
         for file_ in files:
-            if file_.portal_type == 'PSCFileLink':
+	    portal_type = file_.portal_type
+            if portal_type == 'PSCFileLink':
 	        # the file is somewhere else, let's scan it
 		file_ = file_.getObject()
                 file_ = DistantFile(file_.getExternalURL())	
-            else:	    
+            else:
                 file_ = file_.getObject()
-		
+	    
+	    # trying to get back from old 
+	    # storage
+	    
+	    # ExternalStorage here
+	    #
+	    if WAS_EXTERNAL_STORAGE and portal_type != 'PSCFileLink':
+		from Products.ExternalStorage.ExternalStorage import ExternalStorage
+		storage = ExternalStorage(
+		  prefix=EXTERNAL_STORAGE_PATHS[0],
+		  archive=False,
+		  rename=False,
+		  )
+		# transferring old data to new AT container
+	        fs = file_.schema['downloadableFile'] 
+	    	old = fs.storage
+	    	fs.storage = storage	
+	   	dfile = file_.getDownloadableFile()
+	    	portal_url = getToolByName(file_, 'portal_url')
+
+	    	real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
+	    	for path in EXTERNAL_STORAGE_PATHS:
+                    real_file = os.path.join(path, real_file)
+		    if os.path.exists(real_file):
+		        break
+                if not os.path.exists(real_file):
+                    raise ValueError('File not found %s' % real_file) 
+	    	filename = dfile.filename
+	    	fs.storage = old
+	   
+	    	f = File(filename, filename, open(real_file)) 
+	  
+	    elif portal_type != 'PSCFileLink':
+		storage = AttributeStorage()
+	        fs = file_.schema['downloadableFile']
+	        old = fs.storage
+		fs.storage = storage
+		dfile = file_.getDownloadableFile()
+		data = dfile.get_data()
+		filename = dfile.filename 
+		fs.storage = old 
+
+		f = File(filename, filename, StringIO(data))
+
+            if portal_type != 'PSCFileLink':
+	        file_.setDownloadableFile(f)
+            
             id_ = extract_distutils_id(file_) 
             if id_ is not None and id_ not in ids:
                 ids.append(id_)
@@ -104,6 +165,7 @@ def before_1_5(portal_setup):
     # checking all PloneSoftwareCenter instances
     for psc in pscs:
         psc = psc.getObject()
+
         _upgrade_psc(psc)
         # for each instance we want to
         # synchronize distutils ids
@@ -140,7 +202,8 @@ def extract_distutils_id(egg_or_tarball):
 
     fileobj = StringIO(data)
     # is it a tarfile (let's trust the extension)
-    if filename.split('.')[-2:] == ['tar', 'gz']:
+    if (filename.split('.')[-2:] == ['tar', 'gz'] or
+        filename.split('.')[-1] == 'tgz'):
         logging.info('We have a tarball')
         # Python 2.4's tarfile should be too buggy
         # to extract setup.py
