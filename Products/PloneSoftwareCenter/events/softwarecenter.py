@@ -1,5 +1,5 @@
 from Products.CMFCore.utils import getToolByName
-
+import logging
 import transaction
 
 from zope.component import getAdapter
@@ -63,6 +63,7 @@ def changeStorageStrategy(psc, event):
         for key, f in enumerate(files):
             if key != 0 and float(key) / 100. % 1 == 1:
                 transaction.savepoint()
+            logging.info('Changing strategy for %s' % key)
             f = f.getObject()
             field = f.getPrimaryField()
             content = f.getDownloadableFile()
