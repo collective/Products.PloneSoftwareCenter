@@ -26,7 +26,13 @@ NAME = re.compile('Name: (.*)')
 
 # if your previous instance had 
 WAS_EXTERNAL_STORAGE = True
-EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',)
+EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',
+			  '/srv/plone.org/buildout/parts/instance01/var/files/',
+			  '/srv/plone.org/buildout/parts/instance02/var/files/',
+			  '/srv/plone.org/buildout/parts/instance03/var/files/',
+			  '/srv/plone.org/buildout/parts/instance04/var/files/',
+			  '/srv/test.plone.org/zope/files',
+			  '/srv/backup.plone.org/rsync/antiloop/plone.org/zope/files')
 
 def temp(function):
     def _temp(*args, **kw):
@@ -78,6 +84,22 @@ def before_1_5(portal_setup):
     
     before the product switched to migration.xml
     """
+    def _upgrade_project(project):
+        
+	main = StringField('distutilsMainId',
+          required=0,
+          schemata="distutils",
+          index='KeywordIndex:schema',
+          )
+        project.schema['distutilsMainId'] = main
+
+        sec = LinesField('distutilsSecondaryIds',
+              multiValued=1,
+              required=0,
+              schemata="distutils",
+              index='KeywordIndex:schema')
+	project.schema['distutilsSecondaryIds'] = sec      
+     
     def _upgrade_psc(psc):
         logging.info('Upgrading %s' % psc.title_or_id())
         # we might want to do something else here
@@ -125,15 +147,15 @@ def before_1_5(portal_setup):
 
 	    	real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
 	    	for path in EXTERNAL_STORAGE_PATHS:
-                    real_file = os.path.join(path, real_file)
-		    if os.path.exists(real_file):
+                    final_file = os.path.join(path, real_file)
+		    if os.path.exists(final_file):
 		        break
-                if not os.path.exists(real_file):
-                    raise ValueError('File not found %s' % real_file) 
+                if not os.path.exists(final_file):
+                    raise ValueError('File not found %s' % final_file) 
 	    	filename = dfile.filename
 	    	fs.storage = old
 	   
-	    	f = File(filename, filename, open(real_file)) 
+	    	f = File(filename, filename, open(final_file)) 
 	  
 	    elif portal_type != 'PSCFileLink':
 		storage = AttributeStorage()
@@ -175,12 +197,12 @@ def before_1_5(portal_setup):
                 logging.info('Skipping %s' % project.getId())
 		continue
             logging.info('Working on %s' % project.getId())
-
+            _upgrade_project(project)
+   
             # trying to find distutils ids
             ids = _discovering_dist_ids(project)
         
             for id_ in ids:
-	        logging.info('Found id %s' % id_)
                 old = distutils_ids.get(id_, ())
                 if project in old:
                     continue
@@ -195,7 +217,6 @@ def extract_distutils_id(egg_or_tarball):
     """gives the disutils id"""
     file_ = egg_or_tarball.getDownloadableFile()
     filename = egg_or_tarball.getId()
-    logging.info('Extracting %s' % filename)
     data = file_.get_data()
     if data == '':
         return None
@@ -204,7 +225,6 @@ def extract_distutils_id(egg_or_tarball):
     # is it a tarfile (let's trust the extension)
     if (filename.split('.')[-2:] == ['tar', 'gz'] or
         filename.split('.')[-1] == 'tgz'):
-        logging.info('We have a tarball')
         # Python 2.4's tarfile should be too buggy
         # to extract setup.py
         try:
@@ -214,12 +234,18 @@ def extract_distutils_id(egg_or_tarball):
         first_member = tar.getnames()[0]
         folder = os.path.split(first_member)[0]
         for tarinfo in tar:
-            tar.extract(tarinfo)
+            try:
+	        tar.extract(tarinfo)
+	    except TypeError:
+	        pass
         tar.close()
         # let's get into the extracted package
         old = os.getcwd()
 	folder = os.path.join(old, folder)
-        os.chdir(folder)
+        try:
+  	    os.chdir(folder)
+	except TypeError:
+            return None	
 	# if the file does not have a setup.py, let's quit
 	if 'setup.py' not in os.listdir(folder):
             return None
@@ -228,10 +254,11 @@ def extract_distutils_id(egg_or_tarball):
                                     stdout=subprocess.PIPE).communicate()[0]
         finally:
             os.chdir(old)
+
+	logging.info('Found a distutils name : %s' % str(name))
         return name.strip() 
     # its an egg (a zip)
     elif os.path.splitext(filename)[-1] == '.egg':
-        logging.info('We have a zipped egg')
         zip = zipfile.ZipFile(fileobj, 'r')
         try:
             for info in zip.infolist():
@@ -239,6 +266,7 @@ def extract_distutils_id(egg_or_tarball):
                     continue
                 res = NAME.search(zip.read(info.filename))
                 if res is not None and len(res.groups()) == 1:
+	            logging.info('Found a distutils name : %s' % str(res.groups()[0]))	
                     return res.groups()[0]
         finally:       
             zip.close()
