@@ -17,6 +17,7 @@ import socket
 from StringIO import StringIO
 from OFS.Image import File
 
+from zExceptions import Unauthorized
 from Products.Archetypes.atapi import *
 from Products.CMFCore.utils import getToolByName
 from Products.PloneSoftwareCenter import config
@@ -30,9 +31,7 @@ EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',
 			  '/srv/plone.org/buildout/parts/instance01/var/files/',
 			  '/srv/plone.org/buildout/parts/instance02/var/files/',
 			  '/srv/plone.org/buildout/parts/instance03/var/files/',
-			  '/srv/plone.org/buildout/parts/instance04/var/files/',
-			  '/srv/test.plone.org/zope/files',
-			  '/srv/backup.plone.org/rsync/antiloop/plone.org/zope/files')
+			  '/srv/plone.org/buildout/parts/instance04/var/files/')
 
 def temp(function):
     def _temp(*args, **kw):
@@ -151,7 +150,9 @@ def before_1_5(portal_setup):
 		    if os.path.exists(final_file):
 		        break
                 if not os.path.exists(final_file):
-                    raise ValueError('File not found %s' % final_file) 
+                    logging.info('could not get %s' % real_file)
+		    continue    
+		    #raise ValueError('File not found %s' % final_file) 
 	    	filename = dfile.filename
 	    	fs.storage = old
 	   
@@ -275,14 +276,18 @@ def extract_distutils_id(egg_or_tarball):
     return None
 
 def _attribute_distid(project, distid):
-    if not project.getDistutilsMainId():
-        logging.info('%s owns %s (main id)' % (project.getId(), distid))     
-        project.setDistutilsMainId(distid)
-    else:
-        logging.info('%s owns %s (secondary id)' % (project.getId(), distid))
-        project.setDistutilsSecondaryIds(distid)
-    project.reindexObject()
-    logging.info('%s owns %s' % (project.getId(), distid))
+    try:
+        if not project.getDistutilsMainId():
+            logging.info('%s owns %s (main id)' % (project.getId(), distid))     
+            project.setDistutilsMainId(distid)
+        else:
+            logging.info('%s owns %s (secondary id)' % (project.getId(), distid))
+            project.setDistutilsSecondaryIds(distid)
+        project.reindexObject()
+        logging.info('%s owns %s' % (project.getId(), distid))
+    except Unauthorized:
+        logging.info('%s is already owned, cannot give it to %s' % \
+	               (project.getId(), distid))
 
 tiny_cache = {}
 
