@@ -172,7 +172,8 @@ def before_1_5(portal_setup):
 
             if portal_type != 'PSCFileLink':
 	        file_.setDownloadableFile(f)
-            
+           	file._schema = PSCFile
+
             id_ = extract_distutils_id(file_) 
             if id_ is not None and id_ not in ids:
                 ids.append(id_)
