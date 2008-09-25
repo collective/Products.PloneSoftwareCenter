@@ -21,7 +21,7 @@ from zExceptions import Unauthorized
 from Products.Archetypes.atapi import *
 from Products.CMFCore.utils import getToolByName
 from Products.PloneSoftwareCenter import config
-from Products.PloneSoftwareCenter.content.downloadablefile import PSCFile
+from Products.PloneSoftwareCenter.content.downloadablefile import PSCFile, PSCFileSchema
 
 NAME = re.compile('Name: (.*)')
 
@@ -85,29 +85,30 @@ def before_1_5(portal_setup):
     """
     def _upgrade_project(project):
         
-	main = StringField('distutilsMainId',
-          required=0,
-          schemata="distutils",
-          index='KeywordIndex:schema',
-          )
-        project.schema['distutilsMainId'] = main
+	#main = StringField('distutilsMainId',
+        #  required=0,
+        #  schemata="distutils",
+        #  index='KeywordIndex:schema',
+        #  )
+        #project.schema['distutilsMainId'] = main
 
-        sec = LinesField('distutilsSecondaryIds',
-              multiValued=1,
-              required=0,
-              schemata="distutils",
-              index='KeywordIndex:schema')
-	project.schema['distutilsSecondaryIds'] = sec      
-     
+        #sec = LinesField('distutilsSecondaryIds',
+        #      multiValued=1,
+        #      required=0,
+        #      schemata="distutils",
+        #      index='KeywordIndex:schema')
+	#project.schema['distutilsSecondaryIds'] = sec      
+    	pass
+
     def _upgrade_psc(psc):
         logging.info('Upgrading %s' % psc.title_or_id())
         # we might want to do something else here
-	strategy = StringField('storageStrategy',
-        	default='archetype',
-        	vocabulary='getFileStorageStrategyVocab',
-        )
+	#strategy = StringField('storageStrategy',
+        # 	default='archetype',
+        #	vocabulary='getFileStorageStrategyVocab',
+        #)
 
-	psc.schema['storageStrategy'] = strategy
+	#psc.schema['storageStrategy'] = strategy
 
     def _discovering_dist_ids(project):
         # for each file in the project we 
@@ -116,7 +117,7 @@ def before_1_5(portal_setup):
         files = cat(**{'portal_type': ['PSCFile', 'PSCFileLink'],
                        'path': project_path})
         ids = []
-        for file_ in files:
+	for file_ in files:
 	    portal_type = file_.portal_type
             if portal_type == 'PSCFileLink':
 	        # the file is somewhere else, let's scan it
@@ -138,11 +139,10 @@ def before_1_5(portal_setup):
 		  rename=False,
 		  )
 		# transferring old data to new AT container
-	        fs = file_.schema['downloadableFile'] 
+                fs = file_.schema['downloadableFile'] 
 	    	old = fs.storage
 	    	fs.storage = storage	
-	   	dfile = file_.getDownloadableFile()
-	    	portal_url = getToolByName(file_, 'portal_url')
+	   	portal_url = getToolByName(file_, 'portal_url')
 
 	    	real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
 	    	for path in EXTERNAL_STORAGE_PATHS:
@@ -150,13 +150,15 @@ def before_1_5(portal_setup):
 		    if os.path.exists(final_file):
 		        break
                 if not os.path.exists(final_file):
-                    logging.info('could not get %s' % real_file)
+                    logging.info('******** could not get %s on the file system !!' % real_file)
 		    continue    
-		    #raise ValueError('File not found %s' % final_file) 
-	    	filename = dfile.filename
+		    #raise ValueError('File not found %s' % final_file)
 	    	fs.storage = old
-	   
-	    	f = File(filename, filename, open(final_file)) 
+	   	dfile = file_.getDownloadableFile()
+		
+		filename = dfile.filename
+		data = open(final_file).read()
+	    	#f = File(filename, filename, open(final_file)) 
 	  
 	    elif portal_type != 'PSCFileLink':
 		storage = AttributeStorage()
@@ -167,13 +169,14 @@ def before_1_5(portal_setup):
 		data = dfile.get_data()
 		filename = dfile.filename 
 		fs.storage = old 
-
-		f = File(filename, filename, StringIO(data))
+		#file_.getDownloadableFile().data = data
+		#f = File(filename, filename, StringIO(data))
 
             if portal_type != 'PSCFileLink':
-	        file_.setDownloadableFile(f)
-           	file_.schema = PSCFile
-
+	        
+		#file_.setDownloadableFile(f)
+           	file_.schema = PSCFileSchema
+		file_.setDownloadableFile(File(filename, filename, StringIO(data)))
             id_ = extract_distutils_id(file_) 
             if id_ is not None and id_ not in ids:
                 ids.append(id_)
@@ -198,7 +201,7 @@ def before_1_5(portal_setup):
             if project.getId() in ('plone',):
                 logging.info('Skipping %s' % project.getId())
 		continue
-            logging.info('Working on %s' % project.getId())
+            logging.info('Working on %s' % project.getId()) 
             _upgrade_project(project)
    
             # trying to find distutils ids
@@ -221,6 +224,7 @@ def extract_distutils_id(egg_or_tarball):
     filename = egg_or_tarball.getId()
     data = file_.get_data()
     if data == '':
+        logging.info('Could not get the file for %s' % filename)
         return None
 
     fileobj = StringIO(data)
