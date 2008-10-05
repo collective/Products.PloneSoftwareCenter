@@ -34,15 +34,20 @@ class PyPISimpleTraverser(SimpleHandler):
         return self
 
     def publishTraverse(self, request, name):
-	return PyPIProjectView(self.context, request, name)
-
+        """publish a project"""
+        return PyPIProjectView(self.context, request, name)
+        
     def traverse(self, name, ignored):
         if name == '':
             return PyPISimpleTraverser(self.context, self.request)
+
         path = name.split('/')
         if len(path) == 1:
             return PyPIProjectView(self.context, self.request, path[0])
         raise TraversalError(self.context, name)
+
+    def __call__(self):
+        return PyPISimpleView(self.context, self.request)()
 
 SIMPLE = os.path.join(os.path.dirname(__file__), 'pypisimple.pt')
 PROJECT = os.path.join(os.path.dirname(__file__), 'pypiproject.pt')
