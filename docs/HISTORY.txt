@@ -1,9 +1,10 @@
-Changelog for Products.PloneSoftwareCenter
+Changelog
+=========
 
-    (name of developer listed in brackets)
+(name of developer listed in brackets)
 
 1.5.1 (unreleased)
-==================
+::::::::::::::::::
 
 - Tidying of schema to make base_edit less daunting.
   [MatthewWilkes]
@@ -11,7 +12,7 @@ Changelog for Products.PloneSoftwareCenter
 - added a migration step to synchronize projects with PyPI.
   [tarek]
 
-- fixed a gs bug: propertiestool.xml now uses purge=False
+- fixed a gs bug: propertiestool.xml now uses purge:False
   [mr_savage]
 
 - now adds 'mailto:' to contact address on uploads
@@ -55,7 +56,7 @@ Changelog for Products.PloneSoftwareCenter
 
 
 1.5 (2008-04-27)
-================
+::::::::::::::::
 
 - Made the workflow of releases aware of development tags created by distutils
   so if an egg has "dev" or an SVN revision it is marked as an alpha.
@@ -81,7 +82,7 @@ Changelog for Products.PloneSoftwareCenter
   
 
 Before 1.5 (Taken from CONTRIBUTORS.txt)
-========================================
+::::::::::::::::::::::::::::::::::::::::
 
 - Base code for original project: 
   Sidnei da Silva, `awkly.org <http://awkly.org>`_

@@ -1,3 +1,8 @@
+Detailed Documentation
+======================
+
+XXX Out of date !  to be fixed before release
+
 Overview
 
   Plone Software Center is a tool to keep track of software projects and

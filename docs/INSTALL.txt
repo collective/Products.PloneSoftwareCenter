@@ -1,5 +1,5 @@
-Products.PloneSoftwareCenter Installation
-==========================
+Installation
+============
 
 To install Products.PloneSoftwareCenter into the global Python environment (or a workingenv),
 using a traditional Zope 2 instance, you can do this:
@@ -9,8 +9,8 @@ using a traditional Zope 2 instance, you can do this:
    (and EasyInstall) here:
    http://peak.telecommunity.com/DevCenter/EasyInstall
 
- * If you are using Zope 2.9 (not 2.10), get `pythonproducts`_ and install it 
-   via::
+ * If you are using Zope 2.9 (not 2.10), get pythonproducts at http://plone.org/products/pythonproducts
+   and install it via::
 
        python setup.py install --home /path/to/instance
 
@@ -21,9 +21,6 @@ using a traditional Zope 2 instance, you can do this:
    should only contain this::
 
        <include package="Products.PloneSoftwareCenter" />
-
-.. _pythonproducts: http://plone.org/products/pythonproducts
-
 
 Alternatively, if you are using zc.buildout and the plone.recipe.zope2instance
 recipe to manage your project, you can do this:
@@ -61,3 +58,4 @@ the Zope instance it has to be installed for, and restart the server.
 
 You can also skip the ZCML slug if you install this package the **Zope 2
 Product** way.
+

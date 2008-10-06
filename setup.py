@@ -4,20 +4,19 @@ from setuptools import setup, find_packages
 version = '1.5.1'
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read() + '\n\n'
 
 long_description = (
-    'Change history\n'
-    '**************\n'
-    + '\n' +
-    open(os.path.join('docs','HISTORY.txt')).read()
-    + '\n' +
-    'Detailed Documentation\n'
-    '**********************\n'
-    + '\n' +
-    open(os.path.join('Products','PloneSoftwareCenter','README.txt')).read()
-    + '\n'
-    )
+    """
+    ===================
+    PloneSoftwareCenter
+    ===================
+
+    """ + 
+    read('Products', 'PloneSoftwareCenter', 'README.txt') +
+    read('docs', 'INSTALL.txt'),
+    read('docs', 'HISTORY.txt')
+)
 
 description =  """\
 Plone Software Center is a tool to keep track of software projects and 
