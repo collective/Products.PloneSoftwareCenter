@@ -31,8 +31,12 @@ class TestStorage(PSCTestCase):
     def test_storage_vocab(self):
         """Test the test storage vocab"""
         vocab = getFileStorageVocab(self.release)
-        self.failUnless(vocab[0][0] == u'archetype')
-        self.failUnless(vocab[0][1].startswith('Archetypes'))
+        found = False
+        for index, title in vocab:
+            if index == u'archetype' and title == 'Archetypes':
+                found = True
+                break
+        self.assert_(found)
        
     def test_storage_change(self):
 
@@ -69,7 +73,9 @@ class TestStorage(PSCTestCase):
         # let's see what kind of strategies are available
         strats = sorted([s for s, a in 
                   getFileStorageAdapters(self.portal.psc)])
-        self.assertEquals(strats, ['archetype', 'dummy'])
+        
+        for s in ['archetype', 'dummy']:
+            self.assert_(s in strats)
 
         # let's add some content in the file
         self.release.file.setDownloadableFile('xxxx')
