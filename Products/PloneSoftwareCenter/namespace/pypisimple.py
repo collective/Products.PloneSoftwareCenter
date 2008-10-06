@@ -62,6 +62,7 @@ class PyPISimpleView(object):
         self.sc = self.context
         self.catalog = getToolByName(self.context, 'portal_catalog')
         self.sc_path = '/'.join(self.sc.getPhysicalPath())
+        self.index_root = '%s/++simple++' % self.sc.absolute_url()
 
     def browserDefault(self, request):
         return self, ()
@@ -73,21 +74,33 @@ class PyPISimpleView(object):
         template = ViewPageTemplateFile(SIMPLE)
         return template(self)
 
-    def get_url_and_distutils_ids(self, brain):
+    def get_url_and_distutils_ids(self, project):
         """returns url and title"""
-        element = brain.getObject()
-        yield {'distutilsMainId': element.distutilsMainId}
+
+        yield {'distutilsMainId': project.distutilsMainId,
+               'url': '%s/%s' % (self.index_root,
+                                 project['distutilsMainId'])}
 
     def get_projects(self):
         """provides the simple view over the projects
         with links to the published files"""
         
-        query = {'path': self.sc_path, 'portal_type': 'PSCProject',
+        query = {'path': self.sc_path, 
+                 'portal_type': 'PSCProject',
                  'review_state': 'published', 
                  'sortOn': 'getId'}
 
-        return itertools.chain(*[self.get_url_and_distutils_ids(brain)
-                                 for brain in self.catalog(**query) ])
+        def _filter_id(brain):
+            element = brain.getObject()
+            if element.distutilsMainId == '':
+                return None
+            return element
+
+        projects = (_filter_id(brain) for brain 
+                    in self.catalog(**query))
+
+        return itertools.chain(*[self.get_url_and_distutils_ids(p)
+                                 for p in projects if p is not None])
 
 class PyPIProjectView(PyPISimpleView):
 

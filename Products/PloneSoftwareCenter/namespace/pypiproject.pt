@@ -4,11 +4,12 @@
   <title tal:content="title">Links for the project</title>
  </head>
  <body>
+  <p>This page is generated automatically by PloneSoftwareCenter</p>
   <h1 tal:content="title">Links for the project</h1>
-  <tal:block tal:repeat="project view/get_links">
-  <a tal:attributes="href project/url;
-                     rel  project/rel|nothing" 
-     tal:content="project/title">project</a> 
+  <tal:block tal:repeat="release view/get_links">
+  <a tal:attributes="href release/url;
+                     rel  release/rel|nothing" 
+     tal:content="release/title">project</a> 
   </tal:block>
  </body>
 </html> 

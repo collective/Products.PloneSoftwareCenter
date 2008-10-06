@@ -6,7 +6,7 @@
  <body>
   <p>This page is generated automatically by PloneSoftwareCenter</p>
   <tal:block tal:repeat="project view/get_projects">
-   <a tal:attributes="href python:'%s/++simple++/%s' % (context.absolute_url(), project['distutilsMainId'])" 
+   <a tal:attributes="href project/url" 
       tal:content="project/distutilsMainId">Project</a><br/>
  </tal:block>
 
