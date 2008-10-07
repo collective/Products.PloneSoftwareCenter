@@ -1,4 +1,5 @@
 """Tests for migration."""
+from socket import gaierror
 import os
 from Products.PloneSoftwareCenter.tests.base import PSCTestCase
 from Products.CMFCore.utils import getToolByName
@@ -58,12 +59,15 @@ class TestMigration(PSCTestCase):
             self.assertEquals(extract_distutils_id(egg), wanted)
 
     def test_pypi_certified_owner(self):
-        
         # testing the real server
         # XXX this is not optimal 
-        contacts = _pypi_certified_owner('Products.PloneSoftwareCenter')
-        wanted = (None, 'plone-developers@lists.sourceforge.net')
-        self.assertEquals(contacts, wanted)
+        try:
+            contacts = _pypi_certified_owner('Products.PloneSoftwareCenter')
+        except gaierror:
+            pass
+        else:
+            wanted = (None, 'plone-developers@lists.sourceforge.net')
+            self.assertEquals(contacts, wanted)
 
     def test_migration(self):
         # patching _pypi_certified_owner
