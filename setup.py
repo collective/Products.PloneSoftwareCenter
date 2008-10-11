@@ -14,7 +14,7 @@ long_description = (
 
     """ + 
     read('Products', 'PloneSoftwareCenter', 'README.txt') +
-    read('docs', 'INSTALL.txt'),
+    read('docs', 'INSTALL.txt')+
     read('docs', 'HISTORY.txt')
 )
 
