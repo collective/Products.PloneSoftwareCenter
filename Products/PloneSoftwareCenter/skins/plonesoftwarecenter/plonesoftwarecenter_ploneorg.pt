@@ -183,6 +183,9 @@
             </select>
             <label>for</label>
             <select name="getCompatibility">
+                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
+                    Any version
+                </option>
                 <tal:block tal:repeat="version here/getAvailableVersions">
                     <option tal:content="version"
                             tal:attributes="value version;
@@ -190,9 +193,6 @@
                         Plone 3.0
                     </option>
                 </tal:block>
-                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
-                    Any version
-                </option>
                 <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
                     <option tal:content="version"
                             tal:attributes="value version;
