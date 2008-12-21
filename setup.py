@@ -47,7 +47,7 @@ setup(name='Products.PloneSoftwareCenter',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.ArchAddon',
+          'Products.ArchAddOn',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
       ],
