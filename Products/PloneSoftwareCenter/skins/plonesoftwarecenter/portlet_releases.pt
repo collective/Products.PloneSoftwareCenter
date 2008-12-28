@@ -55,7 +55,7 @@
         </a>
         
         <div class="discreet"
-             tal:define="categories obj/getCategoryTitles"
+             tal:define="categories obj/getCategoryTitles | nothing"
              tal:condition="categories"
              tal:content="python: ', '.join(categories)">
             Category
