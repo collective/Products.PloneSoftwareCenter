@@ -10,7 +10,11 @@ class DynamicStorage(object):
     given the user settings at root level"""
 
     def get(self, name, instance, **kwargs):
-        return self._getStorage(instance).get(name, instance, **kwargs)
+        # XXX Can we do this for now to get through a catalog clear and rebuild ? 
+        try:
+            return self._getStorage(instance).get(name, instance, **kwargs)
+        except:
+            pass
 
     def set(self, name, instance, value, **kwargs):
         return self._getStorage(instance).set(name, instance, value, **kwargs)
