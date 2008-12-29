@@ -65,7 +65,7 @@
         
         <div class="visualClear"><!-- --></div>
     
-        <tal:featured_project tal:define="featured_project here/getFeaturedProject | nothing" tal:condition="featured_project">
+        <tal:featured_project tal:define="featured_project view/featured_project|nothing" tal:condition="featured_project">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
                     Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">
