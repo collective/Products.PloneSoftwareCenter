@@ -66,7 +66,7 @@
         
         <div class="visualClear"><!-- --></div>
     
-        <tal:featured_project_wrapper tal:define="featured_project category_view/featured_project|nothing" tal:condition="featured_project">
+        <tal:featured_project_wrapper tal:define="featured_project softwarecenter_view/featured_project|nothing" tal:condition="featured_project">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
                     Get <tal:featured_project tal:replace="featured_project/Title|nothing">
@@ -74,7 +74,7 @@
                     for your platform
                 </dt>
                 <dd class="portletItem" style="text-align: center" 
-                    tal:define="project_url category_view/project_url|nothing" tal:condition="project_url">
+                    tal:define="project_url softwarecenter_view/project_url|nothing" tal:condition="project_url">
                     <a tal:attributes="href project_url"><img 
                         height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
                         height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 

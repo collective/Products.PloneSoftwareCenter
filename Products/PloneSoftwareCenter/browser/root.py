@@ -121,3 +121,22 @@ class SoftwareCenterView(BrowserView):
                            rss_url = rss_url, releases = releases,
                            num_projects = num_projects, id = id)
 
+
+    def featured_project(self):
+        """See if we have a featured project 
+        """
+        try:
+            return self.context.getField('featuredProject')
+        except:
+            #XXX Debug
+            return self.context
+
+    def project_url(self):
+        """See if we have a featured project_url
+        """
+        try:
+            return self.context.getField('featuredProject').absolute_url()
+        except:
+            #XXX Debug
+            return self.context
+
