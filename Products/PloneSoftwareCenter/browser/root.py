@@ -66,7 +66,12 @@ class SoftwareCenterView(BrowserView):
             return '/'.join(url.split('/')[:-2])
         
         # we are using either classifiers, either categories
-        if self.context.getUseClassifiers():
+
+        try:
+            use_classifiers = self.context.getUseClassifiers():
+        except:
+            use_classifiers = False
+        if use_classifiers:
             filtered_values = self.catalog.uniqueValuesFor('getClassifiers')
             field = self.context.getField('availableClassifiers')
             vocab = self.context.getAvailableTopicsFromClassifiers()
