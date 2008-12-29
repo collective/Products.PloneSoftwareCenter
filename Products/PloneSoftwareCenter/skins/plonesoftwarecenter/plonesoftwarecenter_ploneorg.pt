@@ -68,7 +68,7 @@
         <tal:featured_project tal:define="featured_project view/featured_project|nothing" tal:condition="featured_project">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
-                    Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">
+                    Get <tal:featured_project tal:replace="featured_project/Title|nothing">
                         Featured Project </tal:featured_project> 
                     for your platform
                 </dt>
@@ -80,7 +80,10 @@
                         height="40" width="40" alt="Linux" src="platform_linux.gif" /></a>
                     <h3><a tal:attributes="href project_url" 
                         style="border-bottom: 1px solid #8CACBB">Download&nbsp;<tal:featured_project
-                        tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project></a></h3>
+                        tal:replace="featured_project/Title|nothing">Featured Project</tal:featured_project></a></h3>
+
+
+
                     <span tal:condition="here/getFeaturedProjectRelease" class="discreet">Latest release: 
                         <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"> 
                             Latest Release
