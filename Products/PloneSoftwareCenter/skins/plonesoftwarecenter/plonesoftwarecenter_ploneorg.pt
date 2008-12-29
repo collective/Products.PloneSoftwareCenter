@@ -73,7 +73,7 @@
                     for your platform
                 </dt>
                 <dd class="portletItem" style="text-align: center" 
-                    tal:define="project_url python: here.getFeaturedProject().absolute_url()">
+                    tal:define="project_url view/project_url|nothing" tal:condition="project_url">
                     <a tal:attributes="href project_url"><img 
                         height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
                         height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 
