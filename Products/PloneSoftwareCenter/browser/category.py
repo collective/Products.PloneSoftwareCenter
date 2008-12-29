@@ -62,3 +62,10 @@ class CategoryView(BrowserView):
         """
         return self.context.getField('availableCategories').lookup(self.context, category, 2)
 
+    def featured_project(self, category):
+        """See if we have a featured project field
+        """
+        try: 
+            return self.context.getField('featuredProject')
+        except:
+            return False
