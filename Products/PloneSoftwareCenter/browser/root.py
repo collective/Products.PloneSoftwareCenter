@@ -128,8 +128,7 @@ class SoftwareCenterView(BrowserView):
         try:
             return self.context.getField('featuredProject')
         except:
-            #XXX Debug
-            return self.context
+            return False
 
     def project_url(self):
         """See if we have a featured project_url
@@ -137,6 +136,5 @@ class SoftwareCenterView(BrowserView):
         try:
             return self.context.getField('featuredProject').absolute_url()
         except:
-            #XXX Debug
-            return self.context
+            return False
 
