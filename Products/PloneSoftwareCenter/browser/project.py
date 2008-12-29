@@ -92,7 +92,11 @@ class ProjectView(BrowserView):
     def display_categories(self):
         """Get a list of categories, separated by commas, for display
         """
-        if self.context.useClassifiers:
+        try:
+            use_classifiers = self.context.getUseClassifiers()
+        except:
+            use_classifiers = False
+        if use_classifiers:
             return ', '.join(self.context.getVocabularyTitlesFromCLassifiers())
         else:
             return ', '.join(self.context.getCategoryTitles())
