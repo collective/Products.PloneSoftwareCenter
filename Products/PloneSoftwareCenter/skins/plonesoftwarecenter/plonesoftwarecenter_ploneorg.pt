@@ -29,7 +29,8 @@
 
 <body>
     <div metal:fill-slot="main"
-        tal:define="view context/@@category_view;
+        tal:define="softwarecenter_view context/@@softwarecenter_view;
+            category_view context/@@category_view;
             global getInfoFor nocall:here/portal_workflow/getInfoFor;
             catalog nocall:here/portal_catalog;
             herePath python:'/'.join(here.getPhysicalPath());
@@ -37,7 +38,7 @@
             currentVersion request/getCompatibility | string:current;
             currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
             currentVersion python:test(currentVersion=='any','',currentVersion);
-            getCategoryName nocall:view/category_name">
+            getCategoryName nocall:category_view/category_name">
                      
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
@@ -65,7 +66,7 @@
         
         <div class="visualClear"><!-- --></div>
     
-        <tal:featured_project tal:define="featured_project view/featured_project|nothing" tal:condition="featured_project">
+        <tal:featured_project_wrapper tal:define="featured_project category_view/featured_project|nothing" tal:condition="featured_project">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
                     Get <tal:featured_project tal:replace="featured_project/Title|nothing">
@@ -73,7 +74,7 @@
                     for your platform
                 </dt>
                 <dd class="portletItem" style="text-align: center" 
-                    tal:define="project_url view/project_url|nothing" tal:condition="project_url">
+                    tal:define="project_url category_view/project_url|nothing" tal:condition="project_url">
                     <a tal:attributes="href project_url"><img 
                         height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
                         height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 
@@ -82,8 +83,6 @@
                         style="border-bottom: 1px solid #8CACBB">Download&nbsp;<tal:featured_project
                         tal:replace="featured_project/Title|nothing">Featured Project</tal:featured_project></a></h3>
 
-
-
                     <span tal:condition="here/getFeaturedProjectRelease" class="discreet">Latest release: 
                         <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"> 
                             Latest Release
@@ -91,7 +90,7 @@
                     </span>
                 </dd>
             </dl>
-        </tal:featured_project >
+        </tal:featured_project_wrapper>
 
         <dl class="portlet" style="float:right; width: 23em;">
             <dt class="portletHeader">Search for add-on packages</dt>
