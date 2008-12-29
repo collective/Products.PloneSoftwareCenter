@@ -65,7 +65,7 @@
         
         <div class="visualClear"><!-- --></div>
     
-        <tal:featured_project_exists tal:condition="python: here.getFeaturedProject()">
+        <tal:featured_project tal:define="featured_project here/getFeaturedProject | nothing" tal:condition="featured_project">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
                     Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">
@@ -88,7 +88,7 @@
                     </span>
                 </dd>
             </dl>
-        </tal:featured_project_exists>
+        </tal:featured_project >
 
         <dl class="portlet" style="float:right; width: 23em;">
             <dt class="portletHeader">Search for add-on packages</dt>
