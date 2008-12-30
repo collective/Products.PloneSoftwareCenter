@@ -201,9 +201,7 @@
             <input class="context" type="submit" name="product_search" value="Update" />
         </form>
 
-        <div tal:define="results python:catalog(getCategories=currentCategory,
-                                                getCompatibility=currentVersion, 
-                                                portal_type='PSCRelease',
+        <div tal:define="results python:catalog(portal_type='PSCRelease',
                                                 sort_on='effective',
                                                 sort_order='reverse');
                          Batch python:modules['Products.CMFPlone'].Batch;
