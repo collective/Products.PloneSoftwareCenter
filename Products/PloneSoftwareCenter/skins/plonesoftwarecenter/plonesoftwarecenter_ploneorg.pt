@@ -29,8 +29,7 @@
 
 <body>
     <div metal:fill-slot="main"
-        tal:define="softwarecenter_view context/@@softwarecenter_view;
-            category_view context/@@category_view;
+        tal:define="view context/@@category_view;
             global getInfoFor nocall:here/portal_workflow/getInfoFor;
             catalog nocall:here/portal_catalog;
             herePath python:'/'.join(here.getPhysicalPath());
@@ -38,12 +37,8 @@
             currentVersion request/getCompatibility | string:current;
             currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
             currentVersion python:test(currentVersion=='any','',currentVersion);
-            getCategoryName nocall:category_view/category_name">
+            getCategoryName nocall:view/category_name">
                      
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
             Title or id
         </h1>
@@ -66,24 +61,23 @@
         
         <div class="visualClear"><!-- --></div>
     
-        <tal:featured_project_wrapper tal:define="featured_project softwarecenter_view/featured_project|nothing" tal:condition="featured_project">
+        <tal:featured_project_wrapper tal:condition="python: here.getFeaturedProject()">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader">
-                    Get <tal:featured_project tal:replace="featured_project/Title|nothing">
+                    Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">
                         Featured Project </tal:featured_project> 
                     for your platform
                 </dt>
                 <dd class="portletItem" style="text-align: center" 
-                    tal:define="project_url softwarecenter_view/project_url|nothing" tal:condition="project_url">
+                    tal:define="project_url python: here.getFeaturedProject().absolute_url()">
                     <a tal:attributes="href project_url"><img 
                         height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
                         height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 
                         height="40" width="40" alt="Linux" src="platform_linux.gif" /></a>
                     <h3><a tal:attributes="href project_url" 
                         style="border-bottom: 1px solid #8CACBB">Download&nbsp;<tal:featured_project
-                        tal:replace="featured_project/Title|nothing">Featured Project</tal:featured_project></a></h3>
-
-                    <span tal:condition="here/getFeaturedProjectRelease" class="discreet">Latest release: 
+                        tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project></a></h3>
+                    <span class="discreet">Latest release: 
                         <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"> 
                             Latest Release
                         </tal:latest_release>
@@ -185,9 +179,6 @@
             </select>
             <label>for</label>
             <select name="getCompatibility">
-                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
-                    Any version
-                </option>
                 <tal:block tal:repeat="version here/getAvailableVersions">
                     <option tal:content="version"
                             tal:attributes="value version;
@@ -195,6 +186,9 @@
                         Plone 3.0
                     </option>
                 </tal:block>
+                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
+                    Any version
+                </option>
                 <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
                     <option tal:content="version"
                             tal:attributes="value version;
@@ -207,7 +201,9 @@
             <input class="context" type="submit" name="product_search" value="Update" />
         </form>
 
-        <div tal:define="results python:catalog(portal_type='PSCRelease',
+        <div tal:define="results python:catalog(getCategories=currentCategory,
+                                                getCompatibility=currentVersion, 
+                                                portal_type='PSCRelease',
                                                 sort_on='effective',
                                                 sort_order='reverse');
                          Batch python:modules['Products.CMFPlone'].Batch;
