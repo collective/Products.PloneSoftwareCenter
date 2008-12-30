@@ -34,7 +34,7 @@
             catalog nocall:here/portal_catalog;
             herePath python:'/'.join(here.getPhysicalPath());
             currentCategory request/getCategories | string:;
-            currentVersion request/getCompatibility | string:current;
+            currentVersion request/getCompatibility | string:any;
             currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
             currentVersion python:test(currentVersion=='any','',currentVersion);
             getCategoryName nocall:view/category_name">
