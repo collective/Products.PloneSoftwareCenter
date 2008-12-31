@@ -23,10 +23,6 @@
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
 
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-
         <a href=""
            class="link-parent"
            i18n:translate="label_up_to_product_page"
@@ -36,10 +32,10 @@
             Up to Product page
         </a>
 
-        <div class="documentDescription"
+        <p class="documentDescription"
              tal:content="here/Description">
             description
-        </div>
+        </p>
 
         <h2 i18n:translate="heading_available_categories">
             Available categories

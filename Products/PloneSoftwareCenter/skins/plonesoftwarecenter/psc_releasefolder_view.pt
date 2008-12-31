@@ -18,19 +18,15 @@
 
   <div metal:define-macro="main">
 
-        <div metal:use-macro="context/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-  
         <h1 class="documentFirstHeading">
             <img tal:replace="structure context/product_icon.gif" />
             <span tal:replace="context/title_or_id">Title or id</span>
         </h1>
 
-        <div class="documentDescription"
+        <p class="documentDescription"
              tal:content="context/Description">
             description
-        </div>
+        </p>
 
         <p class="portalMessage"
            tal:condition="python: is_editable and wtool.getInfoFor(context.aq_parent, 'review_state')!='published'">

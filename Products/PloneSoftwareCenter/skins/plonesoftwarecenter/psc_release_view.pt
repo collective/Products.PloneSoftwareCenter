@@ -23,10 +23,6 @@
                     outdated view/is_outdated;
                     wftool here/portal_workflow">
 
-    <div metal:use-macro="here/document_actions/macros/document_actions">
-      Document actions (print, sendto etc)
-    </div>
-
     <h1 class="documentFirstHeading">
       <img tal:replace="structure here/product_icon.gif" />
       <span tal:replace="here/title_or_id">Title or id</span>
@@ -60,10 +56,10 @@
     sure you have proper backups before installing.
     </p>
 
-    <div class="documentDescription"
+    <p class="documentDescription"
       tal:content="here/Description">
       description
-    </div>
+    </p>
 
     <p class="discreet"
        tal:condition="python: is_editable and not released">

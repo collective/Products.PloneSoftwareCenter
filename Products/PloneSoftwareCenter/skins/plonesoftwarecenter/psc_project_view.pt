@@ -19,10 +19,6 @@
   <div metal:define-macro="main" tal:define="latestRelease view/latest_release;
                                              upcomingReleases view/upcoming_releases | nothing">
 
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
-
         <h1 class="documentFirstHeading">
             <img tal:replace="structure here/product_icon.gif" />
             <span tal:replace="here/title_or_id">Title or id</span>
@@ -77,10 +73,10 @@
             </div>
         </div>
 
-        <div class="documentDescription"
+        <p class="documentDescription"
              tal:content="here/Description">
             description
-        </div>
+        </p>
         
         <div class="visualClear"></div>
 

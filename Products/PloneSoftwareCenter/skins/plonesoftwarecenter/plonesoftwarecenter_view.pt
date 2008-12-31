@@ -16,10 +16,6 @@
   <div metal:fill-slot="main"
        tal:define="view context/@@softwarecenter_view">
 
-    <div metal:use-macro="context/document_actions/macros/document_actions">
-        Document actions (print, sendto etc)
-    </div>
-
     <h1 tal:content="context/title_or_id" class="documentFirstHeading">
       Title or id
     </h1>

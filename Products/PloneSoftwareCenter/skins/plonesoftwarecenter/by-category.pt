@@ -29,10 +29,6 @@
         <tal:projects condition="category"
                       define="packages python: view.by_category(category)">
         
-            <div metal:use-macro="here/document_actions/macros/document_actions">
-              Document actions (print, sendto etc)
-            </div>
-
             <h1 class="documentFirstHeading">
               Projects in category <span tal:replace="python:view.category_name(category)" />
             </h1>

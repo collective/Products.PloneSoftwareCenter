@@ -16,10 +16,6 @@
      tal:define="view context/@@roadmap_view;
                  upcoming view/upcoming_releases;">
 
-    <div metal:use-macro="here/document_actions/macros/document_actions">
-        Document actions (print, sendto etc)
-    </div>
-    
     <h1>Roadmap for <span tal:replace="here/aq_parent/Title" /></h1>
 
     <dl class="portlet"
@@ -44,10 +40,10 @@
         </dd>
     </dl>
 
-    <div class="documentDescription">
+    <p class="documentDescription">
     An overview of the upcoming releases for this project. Participants in the
     project can add new features to the list.
-    </div>
+    </p>
     
     <p class="portalMessage"
        tal:condition="python: is_editable and wtool.getInfoFor(here.aq_parent, 'review_state')!='published'">
