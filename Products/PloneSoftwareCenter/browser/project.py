@@ -80,7 +80,6 @@ class ProjectView(BrowserView):
           ['sort_on', 'Date'],
           ['sort_order', 'reverse'],
           ['path', self.context_path],
-          ['review_state', 'published'],
           ]
         
         req_vars_str = '&'.join(
