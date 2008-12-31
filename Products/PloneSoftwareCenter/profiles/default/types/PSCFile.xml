@@ -24,7 +24,7 @@
  <alias from="index.html" to="(dynamic view)"/>
  <alias from="properties" to="base_metadata"/>
  <alias from="sharing" to="folder_localrole_form"/>
- <alias from="view" to="(selected layout)"/>
+ <alias from="view" to="psc_file_view"/>
  <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}/view" visible="True">
   <permission value="View"/>
