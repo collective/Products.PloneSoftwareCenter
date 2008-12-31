@@ -1,6 +1,5 @@
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
 
 from Products.Archetypes.atapi import DisplayList
 import re
@@ -89,8 +88,12 @@ class ReleaseView(BrowserView):
     
     def release_date(self):
         """Gets the release date."""
-        if self.is_released():        
-            return self.context.toLocalizedTime(self.context.effective())
+        if self.is_released():
+            try:
+                return self.context.toLocalizedTime(self.context.effective())
+            except ValueError:
+                # no release date set for some reason
+                return ''
         elif self.context.getExpectedReleaseDate():
                 return self.context.toLocalizedTime(
                   self.context.getExpectedReleaseDate())
