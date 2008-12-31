@@ -118,7 +118,7 @@ def before_1_5(portal_setup):
                        'path': project_path})
         ids = []
 	for file_ in files:
-	    portal_type = file_.portal_type
+	    portal_type = file_.portal_type 
             if portal_type == 'PSCFileLink':
 	        # the file is somewhere else, let's scan it
 		file_ = file_.getObject()
@@ -158,6 +158,8 @@ def before_1_5(portal_setup):
 		
 		filename = dfile.filename
 		data = open(final_file).read()
+		if data == '':
+		    logging.info('empty file ! %s' % final_file)
 	    	#f = File(filename, filename, open(final_file)) 
 	  
 	    elif portal_type != 'PSCFileLink':
@@ -171,12 +173,16 @@ def before_1_5(portal_setup):
 		fs.storage = old 
 		#file_.getDownloadableFile().data = data
 		#f = File(filename, filename, StringIO(data))
-
+	
             if portal_type != 'PSCFileLink':
-	        
-		#file_.setDownloadableFile(f)
-           	file_.schema = PSCFileSchema
-		file_.setDownloadableFile(File(filename, filename, StringIO(data)))
+                #file_.setDownloadableFile(f)
+                file_.schema = PSCFileSchema
+                if filename == '' and data == '':
+                    logging.info('file empty for %s' % file_) 
+                else:
+                    if filename is None:
+                        filename = file_.getId()
+                    file_.setDownloadableFile(File(filename, filename, StringIO(data)))
             id_ = extract_distutils_id(file_) 
             if id_ is not None and id_ not in ids:
                 ids.append(id_)
@@ -222,7 +228,11 @@ def extract_distutils_id(egg_or_tarball):
     """gives the disutils id"""
     file_ = egg_or_tarball.getDownloadableFile()
     filename = egg_or_tarball.getId()
-    data = file_.get_data()
+    try:
+        data = file_.get_data()
+    except socket.timeout:
+        data = ''
+    
     if data == '':
         logging.info('Could not get the file for %s' % filename)
         return None
