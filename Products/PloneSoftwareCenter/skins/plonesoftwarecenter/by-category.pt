@@ -39,7 +39,7 @@
               tal:define="parent_url here/absolute_url"
               tal:condition="parent_url"
               tal:attributes="href parent_url">
-              Up to project overview
+              &laquo; Back to project overview
             </a>
 
             <tal:nopackages condition="not:nocall:packages">

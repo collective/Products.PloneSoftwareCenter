@@ -213,7 +213,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         widget=StringWidget(
             label="Home page ",
             label_msgid="label_package_homepage",
-            description="The project's home page - if different from this.",
+            description="If the project has an external home page, enter its URL.",
             description_msgid="help_package_homepage",
             i18n_domain="plonesoftwarecenter",
         ),
@@ -226,7 +226,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         widget=StringWidget(
             label="URL of documentation repository",
             label_msgid="label_package_documentation",
-            description="Either the documentation itself, or a documentation page, if it exists.",
+            description="If the project has externally hosted documentation, enter its URL.",
             description_msgid="help_package_documentation",
             i18n_domain="plonesoftwarecenter",
         ),
@@ -239,7 +239,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         widget=StringWidget(
             label="URL of version control repository",
             label_msgid="label_package_repository",
-            description="Either the repository itself, or a repository page, if it exists.",
+            description="If the project has a code repository, enter its URL.",
             description_msgid="help_package_repository",
             i18n_domain="plonesoftwarecenter",
         ),
@@ -252,7 +252,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         widget=StringWidget(
             label="Issue tracker URL",
             label_msgid="label_package_tracker",
-            description="URL of issue tracker, if the project has one.",
+            description="If the project has an external issue tracker, enter its URL.",
             description_msgid="help_package_tracker",
             i18n_domain="plonesoftwarecenter",
         ),

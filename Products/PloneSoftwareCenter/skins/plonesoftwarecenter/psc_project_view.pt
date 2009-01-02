@@ -20,58 +20,9 @@
                                              upcomingReleases view/upcoming_releases | nothing">
 
         <h1 class="documentFirstHeading">
-            <img tal:replace="structure here/product_icon.gif" />
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
 
-	  <span tal:replace="structure context/@@user_rating_view|nothing" />
-	  <span tal:replace="structure context/@@user_rating_set|nothing" />
-        <tal:disabled replace="nothing">
-        
-            This is disabled until we have a consensus about what to do with
-            recommended projects (politically, practically). If this is re-
-            enabled, it must also be re-enabled in schemata.py and
-            psc_releasefolder_view.pt.
-            
-            <div tal:condition="here/isRecommended">
-                This is a recommended project.
-            </div>
-        </tal:disabled>
-
-        <div class="discreet">
-
-            <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-               <a class="feedButton" href="" tal:attributes="href view/release_rss_url">
-                  <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
-                       tal:attributes="src string:$portal_url/rss.gif"
-                       src="rss.gif"
-                       alt="RSS Feed"
-                       title="RSS feed of the releases for this project" />
-               </a>
-            </tal:syndicate>
-
-            Category: <span tal:replace="view/display_categories" />
-            &mdash;
-            <a href=""
-               tal:attributes="href view/similar_search_url"
-               >Other products by this author</a>
-	  
-
-	</div>
-
-        <div class="visualIEFloatFix" style="margin-top: 1em;">
-            <div style="float:right; text-align: center; margin: 0 0 1em 1em;"
-                 tal:condition="here/screenshot_thumb | nothing">
-                <a class="discreet"
-                   tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-                    <img tal:replace="structure here/screenshot_thumb" />
-                    <br />
-                    <span i18n:translate="label_screenshot_click_to_enlarge">
-                        Screenshot &mdash; click to enlarge
-                    </span>
-                </a>
-            </div>
-        </div>
 
         <p class="documentDescription"
              tal:content="here/Description">
@@ -145,10 +96,10 @@
 
         <div style="width: 47%; float: left;">
            <h2>
+              Current release: <br />
               <a href="#"
                i18n:translate="heading_latest_release_project"
                tal:attributes="href latestRelease/absolute_url">
-              Current release:
               <span tal:replace="latestRelease/Title"
                     i18n:name="project">Ploneboard 1.0</span></a>
             </h2>
@@ -172,19 +123,13 @@
                 </p>
                 
                 <p>
-                    <a tal:define="releaseFolder here/getReleaseFolder"
-                       tal:condition="releaseFolder"
-                       i18n:translate="label_show_all_releases"
-                       tal:attributes="href releaseFolder/absolute_url"
-                       style="float: right;">
-                       List all releases&hellip;</a>
-
                     <a href="#"
                        i18n:translate="label_release_details"
-                       tal:attributes="href latestRelease/absolute_url">Full release announcement&hellip;</a>
+                       tal:attributes="href latestRelease/absolute_url">More about this release&hellip;</a>
                 </p>
-                  <div style="border-top: 1px solid #ccc; padding-top: 0.5em;clear: left; margin-bottom: 1em"
-                       tal:repeat="file latestRelease/contentValues">
+                <dl>
+                  <tal:downloads repeat="file latestRelease/contentValues">
+                  <dt>
                       <a class="link-plain"
                          tal:attributes="href file/@@file_view/direct_url">
                         <img src="" alt="" 
@@ -198,24 +143,25 @@
                         <span tal:replace="here/Title">Ploneboard 1.0</span>
                         for
                         <span tal:replace="file/getPlatform" /></a>
-                        
-                      <span class="discreet"
-                            tal:define="fileSize file/@@file_view/file_size">
-                        <tal:size tal:condition="fileSize">
-                             (<span tal:replace="fileSize">256KB</span>)
-                        </tal:size>
-                        <tal:extsize condition="not: fileSize">
-                            <tal:extfile condition="file/getExternalFileSize">
-                            (<span tal:replace="file/getExternalFileSize">256KB</span>)
-                            </tal:extfile>
-                        </tal:extsize>
-                      </span>
+                        <span class="discreet"
+                                  tal:define="fileSize file/@@file_view/file_size">
+                              <tal:size tal:condition="fileSize">
+                                   (<span tal:replace="fileSize">256KB</span>)
+                              </tal:size>
+                              <tal:extsize condition="not: fileSize">
+                                  <tal:extfile condition="file/getExternalFileSize">
+                                  (<span tal:replace="file/getExternalFileSize">256KB</span>)
+                                  </tal:extfile>
+                              </tal:extsize>
+                        </span>
+                        </dt>
 
-                        <p class="discreet" tal:content="file/Title">
+                  <dd class="discreet" tal:content="file/Title">
                           Windows installer.
-                        </p>
+                  </dd>
 
-                  </div>
+                  </tal:downloads>
+                </dl>
             </div>
 
         </tal:stable>
@@ -295,87 +241,6 @@
         </a>
     </div>
 
-    <dl class="portlet"
-         style="margin: 0.5em 0 0 1em; width: 35%; float: right; clear: right;">
-        <dt class="portletHeader">Project resources</dt>
-        <dd class="portletItem">
-
-            <ul style="list-style-type: none; list-style-image: none; margin: 0;">
-                
-                <li tal:condition="view/has_documentation_link">
-                    <a href=""
-                       title="Documentation for this project"
-                       tal:attributes="href view/documentation_url;
-                                       class view/documentation_link_class">
-                        <img src="" alt=""
-                          tal:attributes="src string:${portal_url}/documentation_icon.gif" />
-                    Documentation
-                    </a>
-                </li>
-                
-                
-                <li tal:repeat="resource view/additional_resources">
-                    <a href=""
-                       class="link-plain"
-                       tal:attributes="href resource/getId;
-                                       title resource/Description;">
-                        <img tal:attributes="src resource/getIcon" 
-                             alt="" />
-                       <span tal:replace="resource/Title">Additional resource</span></a>
-                </li>
-                
-                <li tal:condition="here/getContactAddress">
-                    <a href=""
-                       class="link-plain"
-                       title="Contact address for this project"
-                       tal:attributes="href here/getContactAddress">
-                        <img src="" alt=""
-                             tal:attributes="src string:${portal_url}/mail_icon.gif" />
-                       Contact address</a>
-                </li>
-                <li tal:condition="here/getHomepage">
-                    <a href=""
-                       class="link-plain"
-                       title="Additional home page for this project"
-                       tal:attributes="href here/getHomepage">
-                        <img src="" alt=""
-                             tal:attributes="src string:${portal_url}/link_icon.gif" />
-                       Project page</a>
-                </li>
-
-                <li tal:condition="here/getTracker">
-                    <a href=""
-                       class="link-plain"
-                       title="A place to submit bug reports and feature requests for this project"
-                       tal:attributes="href here/getTracker">
-                        <img src="" alt=""
-                             tal:attributes="src string:${portal_url}/issuetracker_icon.gif" />
-                       Issue tracker</a>
-                </li>
-
-                <li tal:condition="here/getMailingList">
-                    <a href=""
-                       class="link-plain"
-                       title="Support options for this product"
-                       tal:attributes="href here/getMailingList">
-                        <img src="" alt=""
-                             tal:attributes="src string:${portal_url}/info_icon.gif" />
-                       Support</a>
-                </li>
-
-                <li tal:condition="here/getRepository">
-                    <a href=""
-                       class="link-plain"
-                       title="Version control repository location for this project"
-                       tal:attributes="href here/getRepository">
-                        <img src="" alt=""
-                             tal:attributes="src string:${portal_url}/sitemap_icon.gif" />
-                       Code repository</a>
-                </li>
-    
-            </ul>
-        </dd>
-    </dl>
 
         <div tal:replace="structure here/getText" />
 
@@ -402,9 +267,6 @@
         
         <div class="visualClear"></div>
 
-        <div metal:use-macro="here/document_byline/macros/byline">
-            Get the byline - contains details about author and modification date.
-        </div>
 
     </div>
 

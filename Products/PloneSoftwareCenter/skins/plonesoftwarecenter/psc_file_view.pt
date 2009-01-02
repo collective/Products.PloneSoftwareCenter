@@ -30,7 +30,7 @@
            tal:define="parent_url python:here.navigationParent(here, template.getId())"
            tal:condition="parent_url"
            tal:attributes="href parent_url">
-             Up to Release page
+             &laquo; Back to release page
         </a>
 
         <p class="documentDescription"

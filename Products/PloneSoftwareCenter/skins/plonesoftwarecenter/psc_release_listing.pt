@@ -17,7 +17,6 @@
             <dl>
 
                 <dt>
-                    <img tal:replace="structure here/product_icon.gif" />
                     <a href="#"
                        tal:content="release/Title"
                        tal:attributes="href release/absolute_url">Ploneboard 1.0</a>
@@ -29,7 +28,6 @@
                     </span>
 
                     <br />
-                    <img tal:replace="structure here/document_icon.gif" />
                     <a href="#"
                        i18n:translate="label_read_more"
                        tal:attributes="href release/absolute_url">Read more&hellip;</a>

@@ -28,15 +28,6 @@
       <span tal:replace="here/title_or_id">Title or id</span>
     </h1>
 
-    <a href=""
-      class="link-parent"
-      i18n:translate="label_up_to_product_page"
-      tal:define="parent_url python:here.aq_parent.aq_parent.absolute_url()"
-      tal:condition="parent_url"
-      tal:attributes="href parent_url">
-      Up to Product page
-    </a>
-
     <div style="float:right; margin: 1em 0 1em 1em; border: 1px solid black;"
          tal:condition="here/getLogo | nothing">
         <a tal:omit-tag="not: here/getLogoURL"

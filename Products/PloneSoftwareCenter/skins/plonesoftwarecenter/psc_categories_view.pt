@@ -29,7 +29,7 @@
            tal:define="parent_url python:here.navigationParent(here, template.getId())"
            tal:condition="parent_url"
            tal:attributes="href parent_url">
-            Up to Product page
+            &laquo; Back to project overview
         </a>
 
         <p class="documentDescription"
