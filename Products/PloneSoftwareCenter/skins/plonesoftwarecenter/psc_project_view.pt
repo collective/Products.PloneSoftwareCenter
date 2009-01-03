@@ -94,9 +94,11 @@
 
         <tal:stable condition="nocall:latestRelease">
 
-        <div style="width: 47%; float: left;">
+        <div style="width: 47%; float: left;"
+             tal:omit-tag="nocall:not:upcomingReleases">
+
            <h2>
-              Current release: <br />
+              Current release <br />
               <a href="#"
                i18n:translate="heading_latest_release_project"
                tal:attributes="href latestRelease/absolute_url">
@@ -166,17 +168,10 @@
 
         </tal:stable>
         
-        <div style="width: 47%; float: left; margin-left: 2em;">
+        <div style="width: 47%; float: left; margin-left: 2em;"
+             tal:condition="nocall:upcomingReleases">
            <h2>Experimental releases</h2>
            
-
-        <tal:noupcoming condition="nocall:not:upcomingReleases">
-                <p class="discreet" style="text-align: center; margin: 5em 0">
-                    There are no experimental releases available at the moment.
-                </p>
-        </tal:noupcoming>
-           
-        <tal:upcoming condition="nocall:upcomingReleases">
            <p class="discreet">
                Upcoming and alpha/beta/candidate releases
            </p>
@@ -225,15 +220,13 @@
                    </dd>
                </tal:block>
            </tal:release>
-        </tal:upcoming>
-           
         </div>
 
         <div class="visualClear"></div>
 
         <h2>Project Description</h2>
 
-    <div style="float:left; margin: 0.5em 1em 0.5em 0; border: 1px solid #ccc;"
+    <div style="float:right; margin: 0 0 0.5em 1em; border: 1px solid #eee;"
          tal:condition="here/getLogo | nothing">
         <a tal:omit-tag="not: here/getLogoURL"
            tal:attributes="href here/getLogoURL">
