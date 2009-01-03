@@ -13,18 +13,6 @@
         <dt class="portletHeader">Info</dt>
         <dd class="portletItem">
 
-            <tal:disabled replace="nothing">
-            
-                This is disabled until we have a consensus about what to do with
-                recommended projects (politically, practically). If this is re-
-                enabled, it must also be re-enabled in schemata.py and
-                psc_releasefolder_view.pt.
-                
-                <div tal:condition="here/isRecommended">
-                    This is a recommended project.
-                </div>
-                </tal:disabled>
-
             <p style="text-align: center"
                  tal:condition="here/screenshot_thumb | nothing">
                 <a class="discreet"
@@ -57,17 +45,32 @@
             </p>
             </tal:syndicate>
 
-<!--             <p>
-	            <a href=""
-	               tal:attributes="href project_view/similar_search_url"
-	               >Other products by this author</a>
-            </p> -->
+            <tal:disabled replace="nothing">
+              <p>
+                <a href=""
+                   tal:attributes="href project_view/similar_search_url"
+                   >Other products by this author</a>
+              </p>
+            </tal:disabled>
+
+            <tal:disabled replace="nothing">
+                This is disabled until we have a consensus about what to do with
+                recommended projects (politically, practically). If this is re-
+                enabled, it must also be re-enabled in schemata.py and
+                psc_releasefolder_view.pt.
+                
+                <div tal:condition="here/isRecommended">
+                    This is a recommended project.
+                </div>
+            </tal:disabled>
         </dd>  
 
         <dt class="portletHeader">Resources</dt>
         <dd class="portletItem">
             <ul>
-                <!--
+
+            <tal:disabled replace="nothing">
+                Crashes(!)
                 <tal:block tal:define="release_folder here/getReleaseFolder|nothing">
                 <li tal:condition="release_folder">
                     <a i18n:translate="label_show_all_releases"
@@ -75,7 +78,8 @@
                        Available releases</a>
                 </li>
                 </tal:block>
-                -->
+            </tal:disabled>
+
                 <li tal:repeat="resource project_view/additional_resources">
                     <a href=""
                        class="link-plain"
