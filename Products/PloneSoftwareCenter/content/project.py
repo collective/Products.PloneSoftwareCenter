@@ -2,6 +2,7 @@
 $Id: PSCProject.py 24623 2006-06-09 08:13:43Z optilude $
 """
 from zope.interface import implements
+from zope.component import getMultiAdapter
 
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
 
@@ -402,6 +403,11 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
             o = r.getObject()
             o.reindexObject(idxs=[index_name])
 
+
+    security.declareProtected(permissions.View, 'getView')
+    def getView(self):
+        """returns the view object"""
+        return getMultiAdapter((self, self.REQUEST), name='project_view')
    
     security.declareProtected(permissions.ModifyPortalContent,
                               'setClassifiers')

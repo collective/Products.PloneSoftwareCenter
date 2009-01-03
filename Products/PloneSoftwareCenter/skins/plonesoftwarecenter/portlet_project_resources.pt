@@ -6,7 +6,8 @@
 
 <!-- Release portlet -->
 
-<div metal:define-macro="portlet">
+<div metal:define-macro="portlet"
+     tal:define="project_view context/getView">
 
     <dl class="portlet">
         <dt class="portletHeader">Info</dt>
@@ -26,7 +27,7 @@
             <span tal:replace="structure context/@@user_rating_set|nothing" />
 
             <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-               <a class="feedButton" href="" tal:attributes="href view/release_rss_url">
+               <a class="feedButton" href="" tal:attributes="href project_view/release_rss_url">
                   <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                        tal:attributes="src string:$portal_url/rss.gif"
                        src="rss.gif"
@@ -34,11 +35,10 @@
                        title="RSS feed of the releases for this project" />
                </a>
             </tal:syndicate>
-
-            Category: <span tal:replace="view/display_categories" />
+            Category: <span tal:replace="project_view/display_categories" />
             &mdash;
             <a href=""
-               tal:attributes="href view/similar_search_url"
+               tal:attributes="href project_view/similar_search_url"
                >Other products by this author</a>
 
             <tal:disabled replace="nothing">
@@ -51,31 +51,32 @@
                 <div tal:condition="here/isRecommended">
                     This is a recommended project.
                 </div>
-            </tal:disabled>
+                </tal:disabled>
         </dd>  
 
         <dd class="portletItem">
 
             <ul style="list-style-type: none; list-style-image: none; margin: 0;">
-                <li tal:define="releaseFolder here/getReleaseFolder"
-                    tal:condition="releaseFolder">
+                <!--
+                <tal:block tal:define="release_folder here/getReleaseFolder|nothing">
+                <li tal:condition="release_folder">
                     <a i18n:translate="label_show_all_releases"
-                       tal:attributes="href releaseFolder/absolute_url">
+                       tal:attributes="href release_folder/absolute_url">
                        Available releases</a>
                 </li>
-
-                <li tal:condition="view/has_documentation_link">
+                </tal:block>
+                -->
+                <li tal:condition="project_view/has_documentation_link">
                     <a href=""
                        title="Documentation for this project"
-                       tal:attributes="href view/documentation_url;
-                                       class view/documentation_link_class">
+                       tal:attributes="href project_view/documentation_url;
+                                       class project_view/documentation_link_class">
                         <img src="" alt=""
                           tal:attributes="src string:${portal_url}/documentation_icon.gif" />
                     Documentation
                     </a>
                 </li>
-                
-                <li tal:repeat="resource view/additional_resources">
+                <li tal:repeat="resource project_view/additional_resources">
                     <a href=""
                        class="link-plain"
                        tal:attributes="href resource/getId;
@@ -133,11 +134,9 @@
                              tal:attributes="src string:${portal_url}/sitemap_icon.gif" />
                        Code repository</a>
                 </li>
-    
             </ul>
         </dd>
     </dl>
-
 </div>
 </body>
 </html>
