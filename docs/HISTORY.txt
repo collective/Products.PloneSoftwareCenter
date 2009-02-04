@@ -6,6 +6,10 @@ Changelog
 1.5.1 (unreleased)
 ::::::::::::::::::
 
+- Don't wipe out list of allowable contained types within
+  a PSCProject when PSC is reinstalled.
+  [davisagli]
+
 - Tidying of schema to make base_edit less daunting.
   [MatthewWilkes]
 

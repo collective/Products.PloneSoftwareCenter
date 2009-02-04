@@ -13,7 +13,7 @@
  <property name="immediate_view">psc_project_view</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types">
+ <property name="allowed_content_types" purge="False">
   <element value="PSCReleaseFolder"/>
   <element value="PSCImprovementProposalFolder"/>
   <element value="PSCDocumentationFolder"/>
