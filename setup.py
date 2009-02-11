@@ -8,11 +8,11 @@ def read(*rnames):
 
 long_description = (
     """
-    ===================
-    PloneSoftwareCenter
-    ===================
+===================
+PloneSoftwareCenter
+===================
 
-    """ + 
+""" + 
     read('Products', 'PloneSoftwareCenter', 'README.txt') +
     read('docs', 'INSTALL.txt')+
     read('docs', 'HISTORY.txt')
