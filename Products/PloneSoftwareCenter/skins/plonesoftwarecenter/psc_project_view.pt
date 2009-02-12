@@ -31,7 +31,7 @@
         
         <div class="visualClear"></div>
 
-        <p class="portalMessage"
+        <p class="portalMessage info"
            i18n:translate="description_cannot_add_before_approved"
            tal:condition="python: is_editable and not view.is_public()">
            You can not add releases, documentation or feature proposals until the

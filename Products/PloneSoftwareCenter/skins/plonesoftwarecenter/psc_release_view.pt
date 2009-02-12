@@ -35,12 +35,12 @@
         </a>
     </div>
 
-    <p class="portalMessage" tal:condition="python:outdated and released">
+    <p class="portalMessage warning" tal:condition="python:outdated and released">
     This release is no longer supported! If you are using this release,
     please upgrade to a newer version if possible. 
     </p>
     
-    <p class="portalMessage" tal:condition="not:final">
+    <p class="portalMessage info" tal:condition="not:final">
     This is not a final release. Experimental releases should only be used for 
     testing and development. Do not use these on production sites, and make 
     sure you have proper backups before installing.
