@@ -77,7 +77,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
     
     LinesField('classifiers',
         multiValued=1,
-        required=1,
+        required=0,
         vocabulary='getClassifiersVocab',
         enforceVocabulary=1,
         schemata="metadata",
@@ -97,7 +97,6 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         required=1,
         vocabulary='getCategoriesVocab',
         enforceVocabulary=1,
-        schemata="metadata",
         index='KeywordIndex:schema',
         widget=MultiSelectionWidget(
             label='Categories',
