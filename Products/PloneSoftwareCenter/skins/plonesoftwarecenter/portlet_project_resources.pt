@@ -9,39 +9,25 @@
 
     <dl class="portlet">
         <dt class="portletHeader">Info</dt>
-        <dd class="portletItem">
+        <dd class="portletItem" style="text-align: center"
+            tal:condition="here/screenshot_thumb | nothing">
+            <a class="discreet"
+               tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
+                <img tal:replace="structure here/screenshot_thumb" />
+                <br />
+                <span i18n:translate="label_screenshot_click_to_enlarge">
+                    Screenshot &mdash; click to enlarge
+                </span>
+            </a>
+        </dd>
 
-            <p style="text-align: center"
-                 tal:condition="here/screenshot_thumb | nothing">
-                <a class="discreet"
-                   tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-                    <img tal:replace="structure here/screenshot_thumb" />
-                    <br />
-                    <span i18n:translate="label_screenshot_click_to_enlarge">
-                        Screenshot &mdash; click to enlarge
-                    </span>
-                </a>
-            </p>
-
-            <p style="text-align: center">
+        <dd class="portletItem even" style="text-align: center">
             <strong>Category:</strong> <span tal:replace="project_view/display_categories" />
-            </p>
 
             <span tal:replace="structure context/@@user_rating_view|nothing" />
             <span tal:replace="structure context/@@user_rating_set|nothing" />
+        </dd>
 
-            <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-            <p style="text-align: center">
-               <a class="feedButton" href="" tal:attributes="href project_view/release_rss_url">
-                  <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
-                       tal:attributes="src string:$portal_url/rss.gif"
-                       src="rss.gif"
-                       alt="RSS Feed"
-                       title="RSS feed of the releases for this project" />
-               Subscribe to updates for this project
-               </a>
-            </p>
-            </tal:syndicate>
 
             <tal:disabled replace="nothing">
               <p>
@@ -61,9 +47,22 @@
                     This is a recommended project.
                 </div>
             </tal:disabled>
-        </dd>  
+
+        <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+        <dd class="portletItem" style="text-align: center">
+           <a href="" tal:attributes="href project_view/release_rss_url">
+              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                   tal:attributes="src string:$portal_url/rss.gif"
+                   src="rss.gif"
+                   alt="RSS" />
+           Subscribe to updates for this project
+           </a>
+        </dd>
+        </tal:syndicate>
+
     </dl>
 
+<div class="visualClear"></div>
 
 
     <dl class="portlet">

@@ -43,14 +43,13 @@
         
             <div style="width: 47%; float: left; margin">
                 <h2>Current release</h2>
-                <p class="discreet" style="text-align: center; margin: 5em 0">
+                <p class="discreet">
                     No stable release available yet.
                 </p>
 
                 <tal:noreleases tal:condition="python:latestRelease is None and not upcomingReleases">
 
                     <p class="discreet"
-                       style="margin-top: -4em; text-align: center"
                        tal:condition="here/getRepository">
                         If you are interested in getting the source code of 
                         this project, you can get it from the 
@@ -62,7 +61,6 @@
                     </p>
 
                     <p class="discreet"
-                       style="text-align: center"
                        tal:condition="python: is_editable and view.is_public()">
                         <a i18n:translate="label_goto_release_folder"
                            tal:attributes="href view/release_folder_url">
@@ -71,7 +69,6 @@
                     </p>
 
                     <p class="discreet"
-                       style="text-align: justify"
                        tal:condition="python:is_editable and view.is_public()">
                          <tal:noreleases i18n:translate="description_no_available_releases">
                             There are no published releases in this project yet.
@@ -93,9 +90,6 @@
         </tal:nostable>
 
         <tal:stable condition="nocall:latestRelease">
-
-        <div style="width: 47%; float: left;"
-             tal:omit-tag="nocall:not:upcomingReleases">
 
            <h2>
               Current release <br />
@@ -164,63 +158,8 @@
 
                   </tal:downloads>
                 </dl>
-            </div>
 
         </tal:stable>
-        
-        <div style="width: 47%; float: left; margin-left: 2em;"
-             tal:condition="nocall:upcomingReleases">
-           <h2>Experimental releases</h2>
-           
-           <p class="discreet">
-               Upcoming and alpha/beta/candidate releases
-           </p>
-           <ul>
-           <li>Alpha releases should only be used for testing and 
-           development.</li>
-           <li>Beta releases and Release Candidates are normally 
-           released for production testing, but should not be used on 
-           mission-critical sites.</li>
-           <li>Always install on a separate test server first, and make sure
-           you have proper backups before installing.</li>
-           </ul>
-           
-           <p tal:define="roadmapFolder here/getRoadmapFolder"
-              tal:condition="roadmapFolder">
-                <a i18n:translate="label_show_upcoming_releases"
-                   tal:attributes="href roadmapFolder/absolute_url">
-                    Release roadmap for 
-                    <tal:projectname tal:replace="here/title_or_id">
-                        Project
-                    </tal:projectname>&hellip;</a>
-                    
-            </p>
-
-           <tal:release repeat="upcoming upcomingReleases">
-               <tal:block define="upcoming_view upcoming/@@release_view">
-                   <dt style="border-top: 1px solid #ccc; padding-top: 0.5em;">
-                      <a href="" 
-                        tal:content="upcoming/Title"
-                        tal:attributes="href upcoming/absolute_url">Release 1.2.2</a>
-    
-                      <tal:releasedate condition="upcoming_view/is_released">
-                          <span class="discreet">
-                            Released <tal:date replace="upcoming_view/release_date" />
-                          </span>
-                      </tal:releasedate>
-    
-                      <tal:norelease condition="not: upcoming_view/is_released">
-                          <span class="discreet" tal:condition="upcoming_view/release_date">
-                            Planned release: <tal:date replace="upcoming_view/release_date" />
-                          </span>
-                      </tal:norelease>
-                   </dt>
-                   <dd tal:content="upcoming/Description">
-                       Release description
-                   </dd>
-               </tal:block>
-           </tal:release>
-        </div>
 
         <div class="visualClear"></div>
 

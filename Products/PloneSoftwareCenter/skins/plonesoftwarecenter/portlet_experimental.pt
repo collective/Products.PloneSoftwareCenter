@@ -7,62 +7,63 @@
 <!-- Experimental releases portlet -->
 
 <div metal:define-macro="portlet"
-     tal:define="project_view context/getView">
+     tal:define="project_view context/getView;
+                 upcomingReleases project_view/upcoming_releases | nothing">
 
     <dl class="portlet"
         tal:condition="nocall:upcomingReleases">
 
         <dt class="portletHeader">Experimental releases</dt>
-        <dd class="portletItem">
+        <dd class="portletItem"
+            tal:define="roadmapFolder here/getRoadmapFolder"
+            tal:condition="roadmapFolder">
            
-            <p class="discreet">
-                Upcoming and alpha/beta/candidate releases
-            </p>
-            <ul>
-            <li>Alpha releases should only be used for testing and 
-            development.</li>
-            <li>Beta releases and Release Candidates are normally 
-            released for production testing, but should not be used on 
-            mission-critical sites.</li>
-            <li>Always install on a separate test server first, and make sure
-            you have proper backups before installing.</li>
-            </ul>
-            
-            <p tal:define="roadmapFolder here/getRoadmapFolder"
-               tal:condition="roadmapFolder">
                  <a i18n:translate="label_show_upcoming_releases"
                     tal:attributes="href roadmapFolder/absolute_url">
                      Release roadmap for 
                      <tal:projectname tal:replace="here/title_or_id">
                          Project
                      </tal:projectname>&hellip;</a>
-                     
-             </p>
-
-             <tal:release repeat="upcoming upcomingReleases">
-                 <tal:block define="upcoming_view upcoming/@@release_view">
-                     <dt style="border-top: 1px solid #ccc; padding-top: 0.5em;">
-                        <a href="" 
-                          tal:content="upcoming/Title"
-                          tal:attributes="href upcoming/absolute_url">Release 1.2.2</a>
-      
-                        <tal:releasedate condition="upcoming_view/is_released">
-                            <span class="discreet">
-                              Released <tal:date replace="upcoming_view/release_date" />
-                            </span>
-                        </tal:releasedate>
-      
-                        <tal:norelease condition="not: upcoming_view/is_released">
-                            <span class="discreet" tal:condition="upcoming_view/release_date">
-                              Planned release: <tal:date replace="upcoming_view/release_date" />
-                            </span>
-                        </tal:norelease>
-                     </dt>
-                     <dd tal:content="upcoming/Description">
-                         Release description
-                     </dd>
-                 </tal:block>
-             </tal:release>
         </dd>
+
+        <dd class="portletItem">
+            <ul>
+            <li><strong>Alpha</strong> releases should only be used for testing and 
+            development.</li>
+            <li><strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally 
+            released for production testing, but should not be used on 
+            mission-critical sites.</li>
+            <li>Always install on a separate test server first, and 
+                <strong>make sure you have proper backups</strong> before installing.</li>
+            </ul>
+        </dd>
+
+        <tal:release repeat="upcoming upcomingReleases">
+        <tal:block define="upcoming_view upcoming/@@release_view">
+        <dd class="portletItem">
+            <a href="" 
+              tal:content="upcoming/Title"
+              tal:attributes="href upcoming/absolute_url">Release 1.2.2</a><br />
+    
+            <tal:releasedate condition="upcoming_view/is_released">
+                <span class="discreet">
+                  Released <tal:date replace="upcoming_view/release_date" />
+                </span><br />
+            </tal:releasedate>
+    
+            <tal:norelease condition="not: upcoming_view/is_released">
+                <span class="discreet" tal:condition="upcoming_view/release_date">
+                  Planned release: <tal:date replace="upcoming_view/release_date" />
+                </span><br />
+            </tal:norelease>
+            <span tal:content="upcoming/Description">
+                Release description
+            </span>
+        </dd>
+        </tal:block>
+        </tal:release>
     </dl>
 </div>
+
+</body>
+</html>
