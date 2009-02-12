@@ -8,7 +8,7 @@
      tal:define="project_view context/getView">
 
     <dl class="portlet">
-        <dt class="portletHeader hiddenStructure">Resources</dt>
+        <dt class="portletHeader hiddenStructure">Project Resources</dt>
         <dd class="portletItem">
             <ul>
                 <li tal:repeat="resource project_view/additional_resources">
@@ -69,7 +69,6 @@
             </ul>
 
         <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-        <dd class="portletItem" style="text-align: center">
            <a href="" tal:attributes="href project_view/release_rss_url">
               <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                    tal:attributes="src string:$portal_url/rss.gif"
@@ -77,7 +76,6 @@
                    alt="RSS" />
            Subscribe to updates for this project
            </a>
-        </dd>
         </tal:syndicate>
 
         </dd>
