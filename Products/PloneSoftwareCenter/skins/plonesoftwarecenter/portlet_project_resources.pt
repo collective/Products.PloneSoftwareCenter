@@ -4,8 +4,6 @@
 
 <body>
 
-<!-- Release portlet -->
-
 <div metal:define-macro="portlet"
      tal:define="project_view context/getView">
 
@@ -64,7 +62,11 @@
                 </div>
             </tal:disabled>
         </dd>  
+    </dl>
 
+
+
+    <dl class="portlet">
         <dt class="portletHeader">Resources</dt>
         <dd class="portletItem">
             <ul>
