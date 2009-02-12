@@ -67,9 +67,19 @@
                        Contact</a>
                 </li>
             </ul>
-        </dd>
 
-        <dd class="portletItem" style="text-align: center"
+        <span style="text-align: center; display: block"
+               tal:condition="syntool/isSiteSyndicationAllowed">
+               <a href=""
+                  tal:attributes="href project_view/release_rss_url">
+                  <img tal:replace="structure here/rss.gif" />
+               Subscribe to updates for this project
+               </a>
+        </span>
+        </dd>
+    </dl>
+
+        <div style="text-align: center; margin-bottom: 1em"
             tal:condition="here/screenshot_thumb | nothing">
             <a class="discreet"
                tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
@@ -79,17 +89,8 @@
                     Screenshot &mdash; click to enlarge
                 </span>
             </a>
+        </div>
 
-            <span style="text-align: center; display: block"
-               tal:condition="syntool/isSiteSyndicationAllowed">
-               <a href=""
-                  tal:attributes="href project_view/release_rss_url">
-                  <img tal:replace="structure here/rss.gif" />
-               Subscribe to updates for this project
-               </a>
-            </span>
-        </dd>
-    </dl>
 
 </div>
 </body>
