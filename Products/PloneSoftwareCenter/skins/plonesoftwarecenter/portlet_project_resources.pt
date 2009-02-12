@@ -69,7 +69,8 @@
             </ul>
 
         <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-           <a href="" tal:attributes="href project_view/release_rss_url">
+           <a href="" style="text-align: center"
+              tal:attributes="href project_view/release_rss_url">
               <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                    tal:attributes="src string:$portal_url/rss.gif"
                    src="rss.gif"
