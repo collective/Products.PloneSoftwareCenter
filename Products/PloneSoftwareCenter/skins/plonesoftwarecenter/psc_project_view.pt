@@ -135,7 +135,7 @@
                       <a class="link-plain"
                          tal:attributes="href file/@@file_view/direct_url">
                         <img src="" alt="" 
-                             style="float: left; display: block; margin: 0 0.5em 0.5em 0;"
+                             style="float: left; clear:left; display: block; margin: 0 0.5em 0.5em 0;"
                              tal:attributes="src string:${here/portal_url}/${file/@@file_view/downloadicon_name}" />
                       </a>
                       
