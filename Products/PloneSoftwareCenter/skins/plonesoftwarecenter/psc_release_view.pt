@@ -24,11 +24,10 @@
                     wftool here/portal_workflow">
 
     <h1 class="documentFirstHeading">
-      <img tal:replace="structure here/product_icon.gif" />
       <span tal:replace="here/title_or_id">Title or id</span>
     </h1>
 
-    <div style="float:right; margin: 1em 0 1em 1em; border: 1px solid black;"
+    <div style="float:right; margin: 0 0 1em 1em;"
          tal:condition="here/getLogo | nothing">
         <a tal:omit-tag="not: here/getLogoURL"
            tal:attributes="href here/getLogoURL">
@@ -60,11 +59,8 @@
     files have been added. There is no approval required to make a release.
     </p>
 
-    <div class="visualClear"></div>
-
     <p tal:define="parent_url python:here.aq_parent.aq_parent.absolute_url()"
        tal:condition="parent_url">
-       <img tal:replace="structure here/info_icon.gif" />
        <a href="" tal:attributes="href parent_url">
        For additional information about this project, please visit the 
        project page</a>.

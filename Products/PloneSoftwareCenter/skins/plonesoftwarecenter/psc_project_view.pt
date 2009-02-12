@@ -226,7 +226,7 @@
 
         <h2>Project Description</h2>
 
-    <div style="float:right; margin: 0 0 0.5em 1em; border: 1px solid #eee;"
+    <div style="float:right; margin: 0 0 0.5em 1em;"
          tal:condition="here/getLogo | nothing">
         <a tal:omit-tag="not: here/getLogoURL"
            tal:attributes="href here/getLogoURL">
