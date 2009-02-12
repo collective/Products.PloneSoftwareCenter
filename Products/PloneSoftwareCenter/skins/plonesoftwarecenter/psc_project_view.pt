@@ -29,8 +29,6 @@
             description
         </p>
         
-        <div class="visualClear"></div>
-
         <p class="portalMessage info"
            i18n:translate="description_cannot_add_before_approved"
            tal:condition="python: is_editable and not view.is_public()">
@@ -38,6 +36,17 @@
            project itself is approved, make sure you submit it for approval when
            the relevant project information has been entered.
         </p>
+
+        <a class="discreet"
+           style="float:right; margin: 0 0 0.5em 1em"
+           tal:condition="here/screenshot_thumb | nothing"
+           tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
+            <img tal:replace="structure here/screenshot_thumb" />
+            <br />
+            <span i18n:translate="label_screenshot_click_to_enlarge">
+                Screenshot &mdash; click to enlarge
+            </span>
+        </a>
 
         <tal:nostable condition="nocall:not:latestRelease">
         
