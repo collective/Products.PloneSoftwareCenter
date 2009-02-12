@@ -68,17 +68,15 @@
                 </li>
             </ul>
 
-        <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-           <a href="" style="text-align: center"
-              tal:attributes="href project_view/release_rss_url">
-              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
-                   tal:attributes="src string:$portal_url/rss.gif"
-                   src="rss.gif"
-                   alt="RSS" />
-           Subscribe to updates for this project
-           </a>
-        </tal:syndicate>
-
+            <p style="text-align: center"
+               tal:condition="syntool/isSiteSyndicationAllowed">
+               <a href=""
+                  tal:attributes="href project_view/release_rss_url">
+                  <img tal:replace="structure here/rss.gif" />
+               Subscribe to updates for this project
+               </a>
+            </p>
+    
         </dd>
     </dl>
 </div>
