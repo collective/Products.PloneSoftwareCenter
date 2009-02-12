@@ -67,6 +67,18 @@
                        Contact</a>
                 </li>
             </ul>
+        </dd>
+
+        <dd class="portletItem" style="text-align: center"
+            tal:condition="here/screenshot_thumb | nothing">
+            <a class="discreet"
+               tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
+                <img tal:replace="structure here/screenshot_thumb" />
+                <br />
+                <span i18n:translate="label_screenshot_click_to_enlarge">
+                    Screenshot &mdash; click to enlarge
+                </span>
+            </a>
 
             <span style="text-align: center; display: block"
                tal:condition="syntool/isSiteSyndicationAllowed">
@@ -76,6 +88,8 @@
                Subscribe to updates for this project
                </a>
             </span>
+        </dd>
+
     
         </dd>
     </dl>
