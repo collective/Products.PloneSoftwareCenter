@@ -36,7 +36,7 @@ TEXT_TYPES = (
 )
 
 IMAGE_SIZES = {
-    'preview': (400, 400),
+    'preview': (256, 256),
     'thumb': (128, 128),
     'tile': (64, 64),
     'icon': (32, 32),
