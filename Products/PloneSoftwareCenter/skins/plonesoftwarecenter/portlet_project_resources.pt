@@ -8,7 +8,7 @@
      tal:define="project_view context/getView">
 
     <dl class="portlet">
-        <dt class="portletHeader hiddenStructure">Project Resources</dt>
+        <dt class="portletHeader">Project Resources</dt>
         <dd class="portletItem">
             <ul>
                 <li tal:repeat="resource project_view/additional_resources">
