@@ -34,7 +34,8 @@
             released for production testing, but should not be used on 
             mission-critical sites.</li>
             <li>Always install on a separate test server first, and 
-                <strong>make sure you have proper backups</strong> before installing.</li>
+                <a href="/documentation/faq/plone-backup-move">make
+                sure you have proper backups</a> before installing.</li>
             </ul>
         </dd>
 
