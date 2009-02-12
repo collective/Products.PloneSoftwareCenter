@@ -8,85 +8,15 @@
      tal:define="project_view context/getView">
 
     <dl class="portlet">
-        <dt class="portletHeader">Info</dt>
-        <dd class="portletItem" style="text-align: center"
-            tal:condition="here/screenshot_thumb | nothing">
-            <a class="discreet"
-               tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-                <img tal:replace="structure here/screenshot_thumb" />
-                <br />
-                <span i18n:translate="label_screenshot_click_to_enlarge">
-                    Screenshot &mdash; click to enlarge
-                </span>
-            </a>
-        </dd>
-
-        <dd class="portletItem even" style="text-align: center">
-            <strong>Category:</strong> <span tal:replace="project_view/display_categories" />
-
-            <span tal:replace="structure context/@@user_rating_view|nothing" />
-            <span tal:replace="structure context/@@user_rating_set|nothing" />
-        </dd>
-
-
-            <tal:disabled replace="nothing">
-              <p>
-                <a href=""
-                   tal:attributes="href project_view/similar_search_url"
-                   >Other products by this author</a>
-              </p>
-            </tal:disabled>
-
-            <tal:disabled replace="nothing">
-                This is disabled until we have a consensus about what to do with
-                recommended projects (politically, practically). If this is re-
-                enabled, it must also be re-enabled in schemata.py and
-                psc_releasefolder_view.pt.
-                
-                <div tal:condition="here/isRecommended">
-                    This is a recommended project.
-                </div>
-            </tal:disabled>
-
-        <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
-        <dd class="portletItem" style="text-align: center">
-           <a href="" tal:attributes="href project_view/release_rss_url">
-              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
-                   tal:attributes="src string:$portal_url/rss.gif"
-                   src="rss.gif"
-                   alt="RSS" />
-           Subscribe to updates for this project
-           </a>
-        </dd>
-        </tal:syndicate>
-
-    </dl>
-
-<div class="visualClear"></div>
-
-
-    <dl class="portlet">
-        <dt class="portletHeader">Resources</dt>
+        <dt class="portletHeader hiddenStructure">Resources</dt>
         <dd class="portletItem">
             <ul>
-
-            <tal:disabled replace="nothing">
-                Crashes(!)
-                <tal:block tal:define="release_folder here/getReleaseFolder|nothing">
-                <li tal:condition="release_folder">
-                    <a i18n:translate="label_show_all_releases"
-                       tal:attributes="href release_folder/absolute_url">
-                       Available releases</a>
-                </li>
-                </tal:block>
-            </tal:disabled>
-
                 <li tal:repeat="resource project_view/additional_resources">
                     <a href=""
                        class="link-plain"
                        tal:attributes="href resource/getId;
                                        title resource/Description;">
-                       <span tal:replace="resource/Title">Additional resource</span></a>
+                       <span tal:replace="resource/Title">Folder resource</span></a>
                 </li>
                 <li tal:condition="project_view/has_documentation_link">
                     <a href=""

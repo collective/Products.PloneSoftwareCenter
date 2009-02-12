@@ -41,9 +41,8 @@
 
         <tal:nostable condition="nocall:not:latestRelease">
         
-            <div style="width: 47%; float: left; margin">
                 <h2>Current release</h2>
-                <p class="discreet">
+                <p>
                     No stable release available yet.
                 </p>
 
@@ -84,8 +83,6 @@
                     </p>
 
                 </tal:noreleases>
-
-            </div>
 
         </tal:nostable>
 
