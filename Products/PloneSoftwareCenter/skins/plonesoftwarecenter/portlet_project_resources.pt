@@ -14,7 +14,7 @@
                 <li tal:repeat="resource project_view/additional_resources">
                     <a href=""
                        class="link-plain"
-                       tal:attributes="href resource/getId;
+                       tal:attributes="href resource/absolute_url;
                                        title resource/Description;">
                        <span tal:replace="resource/Title">Folder resource</span></a>
                 </li>
