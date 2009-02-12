@@ -70,20 +70,7 @@
       Available downloads
     </h2>
 
-    <div class="visualIEFloatFix" style="margin-top: 1em;">
-
-      <div style="float:right; text-align: center; margin: 1em 0 1em 1em;"
-        tal:condition="here/screenshot_thumb | nothing">
-        <a class="discreet"
-          tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-          <img tal:replace="structure here/screenshot_thumb" />
-          <br />
-          <img tal:replace="structure here/search_icon.gif" />
-          <span i18n:translate="label_click_to_enlarge">
-            Click to enlarge
-          </span>
-        </a>
-      </div>
+    <div style="margin-top: 1em;">
 
       <tal:nodownloads tal:condition="not: here/contentValues">
 
