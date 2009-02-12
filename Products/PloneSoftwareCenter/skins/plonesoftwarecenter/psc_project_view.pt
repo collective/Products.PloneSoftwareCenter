@@ -85,7 +85,7 @@
         </tal:nostable>
 
         <tal:stable condition="nocall:latestRelease">
-
+        <div class="pane">
            <h2>
               Current release <br />
               <a href="#"
@@ -109,7 +109,7 @@
                 </tal:compatibility>
             </p>
 
-                <p>
+                <p tal:condition="latestRelease/Description">
                 <span tal:replace="latestRelease/Description">
                  Main focus for this release is blah blah.
                 </span><br />
@@ -153,7 +153,7 @@
 
                   </tal:downloads>
                 </dl>
-
+        </div>
         </tal:stable>
 
         <div class="visualClear"></div>
