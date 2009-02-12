@@ -58,10 +58,10 @@
 
 <div class="pane">
 
-		<h1>Add on Product Releases <a href="" class="versions">for Plone 3 ▼</a></h1>
+		<h1>Add on Product Releases <a href="" class="versions">for Plone 3 &#9660;</a></h1>
 
 	<div class="downloadssearch">
-		<input type="search" value="Search Downloads…" size="25" />
+		<input type="search" value="Search Downloads" size="25" />
 		&nbsp;
 		<a href="">Advanced search</a>
 	</div>
