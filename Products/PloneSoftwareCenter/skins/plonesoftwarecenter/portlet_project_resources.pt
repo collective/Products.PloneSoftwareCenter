@@ -68,14 +68,14 @@
                 </li>
             </ul>
 
-            <p style="text-align: center"
+            <span style="text-align: center; display: block"
                tal:condition="syntool/isSiteSyndicationAllowed">
                <a href=""
                   tal:attributes="href project_view/release_rss_url">
                   <img tal:replace="structure here/rss.gif" />
                Subscribe to updates for this project
                </a>
-            </p>
+            </span>
     
         </dd>
     </dl>
