@@ -58,12 +58,35 @@
 
 <div class="pane">
 
-		<h1>Add on Product Releases <a href="" class="versions">for Plone 3 &#9660;</a></h1>
+		<h1>Add-on Product Releases <a href="" class="versions">for Plone 3 &#9660;</a></h1>
 
 	<div class="downloadssearch">
-		<input type="search" value="Search Downloads" size="25" />
+		<!-- <input type="search" value="Search Downloads" size="25" /> -->
+
+<form name="searchform" id="searchform"
+	action="/search" tal:attributes="action string:${portal_url}/search">
+
+	<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
+	<input type="hidden" name="portal_type" value="PSCProject" />
+	<input name="SearchableText" 
+	  type="search"
+		size="25"
+		title="Search add-ons"
+	/>
+
 		&nbsp;
 		<a href="">Advanced search</a>
+
+	<!-- <input class="searchButton" name="Search"
+		style="font-size: 150%; background-position: 3px 5px; padding-left: 25px; padding-right: 10px"
+		type="submit" value="Search"
+	/> -->
+</form>
+
+
+
+
+
 	</div>
 
 	<div id="sort-by">
