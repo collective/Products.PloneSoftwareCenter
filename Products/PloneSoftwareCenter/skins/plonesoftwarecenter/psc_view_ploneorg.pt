@@ -198,11 +198,13 @@
 				tal:content="python:here.cropText(project.Description(), desc_length, desc_ellipsis)">
 				Project Description.
 			</p>
+			<tal:new condition="result/Description">
 			<p class="new-in-this-release">New in this release: </p>
 			<p class="new-details"
 				tal:content="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
 				Now compatible with any editor.
 			</p>
+			</tal:new>
 
 			</div>
 
