@@ -189,13 +189,6 @@
 
     <div class="visualClear"></div>
 
-
-      <!-- XXX: The sort below should probably make it into a function
-      on the object 
-      <tal:proposals define="proposals here/getRelatedFeatures;
-        dummy python:proposals.sort (lambda x,y: cmp (x.getId (), y.getId ()))"
-        condition="nocall:proposals"> -->
-
       <tal:proposals define="proposals here/getRelatedFeatures;"
         condition="nocall:proposals"> 
 
