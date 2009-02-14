@@ -25,6 +25,9 @@
 
     <h1 class="documentFirstHeading">
       <span tal:replace="here/title_or_id">Title or id</span>
+      <span tal:condition="view/release_date">
+       (<span tal:replace="view/release_date">Feb 1, 2009</span>)
+      </span>
     </h1>
 
     <div style="float:right; margin: 0 0 1em 1em;"
@@ -86,8 +89,7 @@
 
       </tal:nodownloads>
 
-        <div style="border-top: 1px solid #ccc; padding-top: 0.5em;clear: left; margin-bottom: 1em"
-           tal:repeat="file here/contentValues">
+        <div tal:repeat="file here/contentValues">
           <a class="link-plain"
              tal:attributes="href file/@@file_view/direct_url">
             <img src="" alt="" 
