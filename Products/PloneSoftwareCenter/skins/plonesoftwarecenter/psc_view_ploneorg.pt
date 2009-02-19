@@ -199,12 +199,12 @@
 						Project Description.
 					</p>
 					<p tal:condition="result/Description">
-					<strong>New in this release:</strong>
-					<span class="new-details"
-						tal:replace="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
-						Now compatible with any editor.
-					</span>
-				</tal:new>
+						<strong>New in this release:</strong>
+						<span class="new-details"
+							tal:replace="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
+							Now compatible with any editor.
+						</span>
+					</p>
 
 				</div>
 
