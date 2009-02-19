@@ -186,27 +186,27 @@
 						tal:attributes="href projectURL;"
 						tal:content="result/pretty_title_or_id">Product One</a>
 				</h3>
-			<div id="product-details">
-				<span class="product-leadin">
-					<span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=0)">
-						Sept. 3, 2008
-					</span> 
-					in 
-					<span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
-				</span>
-			<p class="product-description"
-				tal:content="python:here.cropText(project.Description(), desc_length, desc_ellipsis)">
-				Project Description.
-			</p>
-			<tal:new condition="result/Description">
-			<p class="new-in-this-release">New in this release: </p>
-			<p class="new-details"
-				tal:content="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
-				Now compatible with any editor.
-			</p>
-			</tal:new>
+				<div id="product-details">
+					<span class="product-leadin">
+						<span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=0)">
+							Sept. 3, 2008
+						</span> 
+						in 
+						<span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
+					</span>
+					<p class="product-description"
+						tal:content="python:here.cropText(project.Description(), desc_length, desc_ellipsis)">
+						Project Description.
+					</p>
+					<p tal:condition="result/Description">
+					<strong>New in this release:</strong>
+					<span class="new-details"
+						tal:replace="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
+						Now compatible with any editor.
+					</span>
+				</tal:new>
 
-			</div>
+				</div>
 
 			</tal:entry>
 			</li>
