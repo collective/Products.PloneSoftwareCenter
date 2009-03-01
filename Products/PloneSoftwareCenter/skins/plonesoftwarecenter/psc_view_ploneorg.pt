@@ -15,6 +15,7 @@
 <body>
 <div metal:fill-slot="main"
 	tal:define="view context/@@category_view;
+		psc context/@@softwarecenter_view;
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
@@ -29,10 +30,12 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="pullout">
-			<h2>Plone Add-ons!</h2>
-			<p>Add-ons extend your Plone site with additional functionality. Currently there are 850 projects with a total of 2218 releases available.</p>
-			<h3>Submit your add-ons</h3>
-			<span class="list-your-addon"><img alt="" src="../images/list-your-addon.png" /></span>
+			<h2>Add-on Products</h2>
+			<p>Add-ons extend your Plone site with additional functionality. 
+				Currently there are <span tal:replace="psc/project_count" /> projects 
+				with a total of <span tal:replace="psc/release_count" /> releases available.
+			</p>
+			<h3>Submit your add-on</h3>
 		</div>
 	</div>
 
@@ -85,7 +88,8 @@
 			</div>
 
 			<div id="sort-by">
-				<form id="product_select" style="margin-bottom: 1em" action="#" tal:attributes="action string:${here/absolute_url}">
+				<form id="product_select" style="margin-bottom: 1em" action="#" 
+					tal:attributes="action string:${here/absolute_url}">
 					<label class="hiddenStructure">Show</label>
 
 					<select name="getCategories">
@@ -97,30 +101,6 @@
 								selected python:test(cid==currentCategory,'selected',nothing)" />
 						</tal:block>
 					</select>
-
-		<!--
-					<select name="getCompatibility">
-						<tal:block tal:repeat="version here/getAvailableVersions">
-							<option tal:content="version"
-								tal:attributes="value version;
-									selected python:test(currentVersion==version,'selected',nothing)">
-								Plone 3.0
-							</option>
-						</tal:block>
-						<option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
-							Any version
-						</option>
-						<tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
-						<option tal:content="version"
-							tal:attributes="value version;
-								selected python:test(currentVersion==version,'selected',nothing)">
-							Plone 3.0
-						</option>
-						</tal:block>
-					</select>
-
-					<input class="context" type="submit" name="product_search" value="Update" />
-		-->
 				</form>
 			</div>
 
@@ -139,8 +119,6 @@
 				<p tal:condition="not: results">
 					<strong i18n:translate="description_no_results_found">No results were found.</strong>
 				</p>
-
-				<h2>All Categories</h2>
 
 				<div id="numreleases">
 					<span tal:replace="python:len(results)">234</span> releases matching your criteria, most recent releases first.
