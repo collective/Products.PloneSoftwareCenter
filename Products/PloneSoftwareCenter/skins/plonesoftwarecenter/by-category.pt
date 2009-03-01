@@ -18,7 +18,8 @@
 <body>
 
   <div metal:fill-slot="main" 
-                   tal:define="view context/@@category_view;
+       id="content"
+       tal:define="view context/@@category_view;
                    global getInfoFor nocall:here/portal_workflow/getInfoFor;
                    category python:request.traverse_subpath and request.traverse_subpath[0] or nothing;">
 

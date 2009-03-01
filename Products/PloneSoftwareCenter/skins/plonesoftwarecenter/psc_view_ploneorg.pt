@@ -63,7 +63,7 @@
 
 
 		<div class="pane">
-			<h1>Add-on Product Releases <a href="" class="versions">for Plone 3 &#9660;</a></h1>
+			<h1>Add-on Product Releases <!-- <a href="" class="versions">for Plone 3 &#9660;</a> --></h1>
 
 			<div class="downloadssearch">
 				<form name="searchform" id="searchform"
@@ -76,8 +76,11 @@
 						size="25"
 						title="Search add-ons"
 				/>
+
+<!--
 					&nbsp;
 					<a href="">Advanced search</a>
+ -->
 				</form>
 			</div>
 
@@ -196,14 +199,16 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="sidebar">
-			<h2 class="add-on-categories-hdr">Add-on Categories</h2>
+			<h2 class="add-on-categories-hdr">Browse add-ons by category</h2>
 
 			<ol id="add-on-categories">
-				<li>All categories</li>
-				<li><a href="">Plone releases</a></li>
-				<li><a href="">Themes</a></li>
-				<li><a href="">Theming Tools</a></li>
-				<li>...etc. </li>
+				<tal:categories repeat="cat here/availableCategories">
+				<li><a href=""
+							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
+							tal:attributes="href string:${here/absolute_url}/by-category/${cid}"
+							tal:content="python:csplit[1]"
+							>Plone releases</a></li>
+				</tal:categories>
 			</ol>
 
 		</div>
