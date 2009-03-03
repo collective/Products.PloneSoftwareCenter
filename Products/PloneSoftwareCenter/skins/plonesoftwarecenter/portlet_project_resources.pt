@@ -97,10 +97,10 @@
     </dl>
 
         <div style="text-align: center; margin-bottom: 1em"
-            tal:condition="here/screenshot_thumb | nothing">
+            tal:condition="here/screenshot_preview | nothing">
             <a class="discreet"
                tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-                <img tal:replace="structure here/screenshot_thumb" />
+                <img tal:replace="structure here/screenshot_preview" />
                 <br />
                 <span i18n:translate="label_screenshot_click_to_enlarge">
                     Screenshot &mdash; click to enlarge
