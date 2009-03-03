@@ -45,11 +45,11 @@
                        Code repository</a>
                 </li>
 
-                <li tal:condition="project_view/tracker_url">
+                <li tal:condition="here/getTracker">
                     <a href=""
                        class="link-plain"
                        title="A place to submit bug reports and feature requests for this project"
-                       tal:attributes="href project_view/tracker_url">
+                       tal:attributes="href here/getTracker">
                        Issue tracker</a>
                 </li>
 
