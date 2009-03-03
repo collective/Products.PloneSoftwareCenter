@@ -50,6 +50,7 @@ setup(name='Products.PloneSoftwareCenter',
           'Products.ArchAddOn',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
+          'collective.fancyzoomview',
       ],
       entry_points="""
       # -*- Entry points: -*-

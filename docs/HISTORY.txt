@@ -6,6 +6,9 @@ Changelog
 1.5.1 (unreleased)
 ::::::::::::::::::
 
+- Added fancyzoom for screenshots.
+  [davisagli]
+
 - Don't wipe out list of allowable contained types within
   a PSCProject when PSC is reinstalled.
   [davisagli]

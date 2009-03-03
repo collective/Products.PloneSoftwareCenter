@@ -1,4 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/browser"
+           xmlns:zope="http://namespaces.zope.org/zope"
            i18n_domain="psc">
 
   <page
@@ -153,5 +154,25 @@
       permission="zope2.View"
       attribute="verify"
     />
+
+    <!-- fancyzoom -->
+    <resource
+        name="Products.PloneSoftwareCenter.fancyzoom.js"
+        file="fancyzoom.js"
+        />
+
+    <zope:configure package="collective.fancyzoomview.browser">
+        <!-- resource directory for images -->
+        <resourceDirectory
+            name="Products.PloneSoftwareCenter.fancyzoom.images"
+            directory="images"
+            />
+
+        <!-- resource directory for javascript -->
+        <resourceDirectory
+    		name="Products.PloneSoftwareCenter.fancyzoom.javascript"
+            directory="javascript"
+            />
+    </zope:configure>
 
 </configure>

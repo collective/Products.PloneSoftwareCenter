@@ -45,11 +45,11 @@
                        Code repository</a>
                 </li>
 
-                <li tal:condition="here/getTracker">
+                <li tal:condition="project_view/tracker_url">
                     <a href=""
                        class="link-plain"
                        title="A place to submit bug reports and feature requests for this project"
-                       tal:attributes="href here/getTracker">
+                       tal:attributes="href project_view/tracker_url">
                        Issue tracker</a>
                 </li>
 
@@ -98,14 +98,18 @@
 
         <div style="text-align: center; margin-bottom: 1em"
             tal:condition="here/screenshot_preview | nothing">
-            <a class="discreet"
-               tal:attributes="href string:${here/absolute_url}/screenshot/image_view_fullscreen">
-                <img tal:replace="structure here/screenshot_preview" />
+            <a class="discreet zoom"
+                href="#screenshot_zoom">
+                <img tal:attributes="src here/screenshot/absolute_url" width="240" />
                 <br />
                 <span i18n:translate="label_screenshot_click_to_enlarge">
                     Screenshot &mdash; click to enlarge
                 </span>
             </a>
+            
+            <div id="screenshot_zoom">
+                <img tal:replace="structure here/screenshot" />
+            </div>
         </div>
 
 
