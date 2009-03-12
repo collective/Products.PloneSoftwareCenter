@@ -29,7 +29,7 @@
 <div class="grid-row">
 
 	<div class="grid-cell position-two-thirds width-third">
-		<div class="pullout">
+		<div class="splash pullout">
 			<h2>Add-on Products</h2>
 			<p>Add-ons extend your Plone site with additional functionality. 
 				Currently there are <span tal:replace="psc/project_count" /> projects 
@@ -66,24 +66,21 @@
 
 
 		<div class="pane">
-			<h1>Add-on Product Releases <!-- <a href="" class="versions">for Plone 3 &#9660;</a> --></h1>
 
-			<div class="downloadssearch">
+
+			<h2>Add-on Product Releases <!-- <a href="" class="versions">for Plone 3 &#9660;</a> --></h2>
+
+			<div class="pagesearch">
 				<form name="searchform" id="searchform"
 					action="/search" tal:attributes="action string:${portal_url}/search">
-
 					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
 					<input type="hidden" name="portal_type" value="PSCProject" />
 					<input name="SearchableText" 
 					  type="search"
+						class="inputLabel"
 						size="25"
-						title="Search add-ons"
+						title="Search add-ons…"
 				/>
-
-<!--
-					&nbsp;
-					<a href="">Advanced search</a>
- -->
 				</form>
 			</div>
 
@@ -112,7 +109,7 @@
 					sort_on='effective',
 					sort_order='reverse');
 				Batch python:modules['Products.CMFPlone'].Batch;
-				b_size python:20;b_start python:0;b_start request/b_start | b_start;
+				b_size python:10;b_start python:0;b_start request/b_start | b_start;
 				desc_length site_properties/search_results_description_length;
 				desc_ellipsis site_properties/ellipsis;">
 
@@ -120,9 +117,9 @@
 					<strong i18n:translate="description_no_results_found">No results were found.</strong>
 				</p>
 
-				<div id="numreleases">
+				<p id="numreleases">
 					<span tal:replace="python:len(results)">234</span> releases matching your criteria, most recent releases first.
-				</div>
+				</p>
 
 				<tal:results condition="results"
 					define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
@@ -170,6 +167,9 @@
 					</tal:entry>
 					</li>
 				</ul>
+
+				<div metal:use-macro="here/batch_macros/macros/navigation" />
+
 				</tal:results>
 			</div>
 		</div> <!-- End pane -->
@@ -177,7 +177,7 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="sidebar">
-			<h2 class="add-on-categories-hdr">Browse add-ons by category</h2>
+			<h2>Browse add-ons by category</h2>
 
 			<ol id="add-on-categories">
 				<tal:categories repeat="cat here/availableCategories">
