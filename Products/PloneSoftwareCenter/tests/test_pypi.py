@@ -226,6 +226,31 @@ class TestPyPI(PSCTestCase):
         iw_dist = psc['iw.dist']
         self.assertEquals(iw_dist.getDistutilsSecondaryIds(),  ('iw.dist',))
 
+    def test_filename_normalization(self):
+        """ Make sure product ids are following our conventions. 
+            http://plone.org/products/plonesoftwarecenter/issues/81
+        """
+        
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
+        
+        def createProductWithName(name):
+            view = PyPIView(psc, Req({'': 'submit', 'name': name, 'version': '1.0'}))
+            view.submit()
+        
+        # Use dotted product names when creating ids
+        createProductWithName('collective.something')
+        self.failUnless('collective.something' in psc.objectIds(), 'Product "collective.something" should be created as "collective.something". Existing ids are %s' % [a for a in psc.objectIds()])
+
+        # Use lowercase
+        createProductWithName('collective.BargainingAgreement')
+        self.failUnless('collective.bargainingagreement' in psc.objectIds(), 'Product "collective.BargainingAgreement" should be created as "collective.bargainingagreement", using lowercase. Existing ids are %s' % [a for a in psc.objectIds()])
+        
+        # Don't repeat "products" for the Products.* namespace
+        createProductWithName('Products.ImageRepository')
+        self.failUnless('imagerepository' in  psc.objectIds(), 'Product "Products.ImageRepository" should be created as "imagerepository". Existing ids are %s' % [a for a in psc.objectIds()])
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

@@ -20,7 +20,10 @@ from Products.PloneSoftwareCenter.utils import which_platform
 from Products.PloneSoftwareCenter.utils import is_distutils_file
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 
+from plone.i18n.normalizer.interfaces import IFileNameNormalizer
+
 from zope.app.annotation.interfaces import IAnnotations
+from zope.component import queryUtility
 from zope.event import notify 
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
@@ -149,8 +152,7 @@ class PyPIView(BrowserView):
         msg = []
         user = getSecurityManager().getUser()
         sc = self.context
-        putils = getToolByName(self.context, 'plone_utils')
-        normalized_name = putils.normalizeString(name)
+        normalized_name = self.normalizeName(name)
 
         # getting project and release packages.
         try:
@@ -418,8 +420,7 @@ class PyPIView(BrowserView):
 
         name = data['name']
         version = data['version']
-        putils = getToolByName(self.context, 'plone_utils')
-        normalized_name = putils.normalizeString(name)
+        normalized_name = self.normalizeName(name)
 
         try:
             project, release = self._get_package(normalized_name,
@@ -514,3 +515,17 @@ class PyPIView(BrowserView):
         field = self.context.getField('availableClassifiers')
         return '\n'.join(field.getColumn(field, 2))
 
+    def normalizeName(self, text):
+        """ Generate an id that
+            1) is url-valid
+            2) is lowercase
+            3) ignores "products." in a Products.* namespace
+        """
+        # Remove Products, as applicable
+        if text.startswith('Products.'):
+            text = text[9:]
+        
+        # Convert to lowercase
+        text = text.lower()
+        
+        return queryUtility(IFileNameNormalizer).normalize(text)
