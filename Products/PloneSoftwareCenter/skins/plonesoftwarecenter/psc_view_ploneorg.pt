@@ -41,7 +41,6 @@
 
 	<div class="grid-cell position-leftmost width-two-thirds">
 		<div class="splash" id="splash-downloads"
-			tal:define="download_url python: here.getFeaturedProject().absolute_url()"
 			tal:condition="python: here.getFeaturedProject()">
 
 			<h1>Get <span tal:replace="python: here.getFeaturedProject().Title()">Project</span> for Your Platform</h1>
@@ -53,7 +52,7 @@
 			<div id="download-plone">
 				<a id="download-plone-hdr"
 					href=""
-					tal:attributes="href download_url">Download Plone</a>
+					tal:attributes="href python: here.getFeaturedProject().absolute_url()">Download Plone</a>
 			</div>
 		</div>
 	</div>
