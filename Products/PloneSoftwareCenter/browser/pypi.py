@@ -333,7 +333,7 @@ class PyPIView(BrowserView):
             # we need to create it
             releases.invokeFactory('PSCRelease', id=version)
             try:
-                IAnnotations(releases[version])['title_hint'] = normalized_name
+                IAnnotations(releases[version])['title_hint'] = name
             except TypeError, KeyError:
                 pass
             if msg is not None:
