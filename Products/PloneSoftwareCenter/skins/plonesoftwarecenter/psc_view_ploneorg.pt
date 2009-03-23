@@ -29,7 +29,7 @@
 <div class="grid-row">
 
 	<div class="grid-cell position-two-thirds width-third">
-		<div class="splash pullout">
+		<div class="splash pullout" id="sidebar-downloads">
 			<h2>Add-on Products</h2>
 			<p>Add-ons extend your Plone site with additional functionality. 
 				Currently there are <span tal:replace="psc/project_count" /> projects 
@@ -41,6 +41,7 @@
 
 	<div class="grid-cell position-leftmost width-two-thirds">
 		<div class="splash" id="splash-downloads"
+			tal:define="download_url python: here.getFeaturedProject().absolute_url()"
 			tal:condition="python: here.getFeaturedProject()">
 
 			<h1>Get <span tal:replace="python: here.getFeaturedProject().Title()">Project</span> for Your Platform</h1>
@@ -49,11 +50,10 @@
 				<span tal:replace="python: here.getFeaturedProject().Title()">Project</span> 
 				<span tal:replace="python: here.getFeaturedProjectRelease().getId()">3.4.5</span>
 				(<span tal:replace="python: here.getFeaturedProjectRelease().effective_date.strftime('%B %Y')">December 2008</span>) </p>
-			<div id="download-plone">
-				<a id="download-plone-hdr"
-					href=""
-					tal:attributes="href python: here.getFeaturedProject().absolute_url()">Download Plone</a>
-			</div>
+			<a id="splash-download-plone"
+				href=""
+				tal:attributes="href download_url">Download Plone</a>
+			<div id="splash-download-package"></div>
 		</div>
 	</div>
 	
