@@ -251,6 +251,39 @@ class TestPyPI(PSCTestCase):
         createProductWithName('Products.ImageRepository')
         self.failUnless('imagerepository' in  psc.objectIds(), 'Product "Products.ImageRepository" should be created as "imagerepository". Existing ids are %s' % [a for a in psc.objectIds()])
 
+    def test_workflow_by_version(self):
+        """ Make sure that release workflow state is being properly set using the upload's version as a guide. """
+
+        self.login('user1')
+        self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
+        psc = self.portal.psc
+        wf = self.portal.portal_workflow
+
+        def createProductWithNameAndVersion(name, version):
+            view = PyPIView(psc, Req({'': 'submit', 'name': name, 'version': version}))
+            view.submit()
+            return psc[name].releases[version]
+
+        rel = createProductWithNameAndVersion('collective.something', '1.0dev')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'alpha')
+
+        rel = createProductWithNameAndVersion('collective.something', '1.0a1')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'alpha')
+
+        rel = createProductWithNameAndVersion('collective.something', '1.0alpha1')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'alpha')
+        
+        rel = createProductWithNameAndVersion('collective.something', '1.0b1')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'beta')
+        
+        rel = createProductWithNameAndVersion('collective.something', '1.0beta')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'beta')
+
+        rel = createProductWithNameAndVersion('collective.something', '1.0rc5')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'release-candidate')
+        
+        rel = createProductWithNameAndVersion('collective.something', '1.0')
+        self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'final')
 
 def test_suite():
     from unittest import TestSuite, makeSuite

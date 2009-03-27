@@ -90,6 +90,12 @@ class PyPIView(BrowserView):
             try:
                 if isDevelopmentVersion(self.data['version']):
                     wf.doActionFor(release, 'release-alpha')
+                elif bool(re.compile("([0-9]+(-)?a([0-9]*))").search(self.data['version'])):
+                    wf.doActionFor(release, 'release-alpha')
+                elif bool(re.compile("([0-9]+(-)?b([0-9]*))").search(self.data['version'])):
+                    wf.doActionFor(release, 'release-beta')
+                elif bool(re.compile("([0-9]+(-)?rc([0-9]*))").search(self.data['version'])):                
+                    wf.doActionFor(release, 'release-candidate')
                 else:
                     wf.doActionFor(release, 'release-final')
             except WorkflowException:
