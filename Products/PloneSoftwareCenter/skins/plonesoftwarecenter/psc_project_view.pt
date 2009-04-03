@@ -89,10 +89,8 @@
            <h2>
               Current release <br />
               <a href="#"
-               i18n:translate="heading_latest_release_project"
-               tal:attributes="href latestRelease/absolute_url">
-              <span tal:replace="latestRelease/Title"
-                    i18n:name="project">Ploneboard 1.0</span></a>
+               tal:attributes="href latestRelease/absolute_url"
+               tal:content="latestRelease/Title">Ploneboard 1.0</a>
             </h2>
 
             <p class="discreet">

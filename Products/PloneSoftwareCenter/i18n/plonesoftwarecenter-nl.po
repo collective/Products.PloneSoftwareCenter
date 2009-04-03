@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter\n"
-"POT-Creation-Date: 2009-04-03 20:04+0000\n"
+"POT-Creation-Date: 2009-04-03 20:32+0000\n"
 "PO-Revision-Date: 2009-04-03 22:09+0200\n"
 "Last-Translator: Maurits van Rees <maurits@vanrees.org>\n"
 "Language-Team: Plone Nederlands <plone-nl@lists.plone.org>\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plonesoftwarecenter\n"
 "X-Is-Fallback-For: nl-be nl-nl\n"
-
 
 #: ../content/validators.py:98
 msgid "This contains packages already claimed by another project."
@@ -94,11 +93,6 @@ msgstr "Verwachte releases"
 msgid "heading_experimental_releases"
 msgstr "Experimentele releases"
 
-#. Default: "${project}"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:94
-msgid "heading_latest_release_project"
-msgstr ""
-
 #. Default: "License"
 #: ../skins/plonesoftwarecenter/psc_release_view.pt:153
 msgid "heading_license"
@@ -130,7 +124,7 @@ msgid "heading_tested_with"
 msgstr "Getest met"
 
 #. Default: "Get"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:133
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:131
 msgid "label_get"
 msgstr "Download"
 
@@ -145,7 +139,7 @@ msgid "label_read_more"
 msgstr "Lees meer…"
 
 #. Default: "More about this release…"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:116
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:114
 msgid "label_release_details"
 msgstr "Meer over deze release…"
 
@@ -159,10 +153,10 @@ msgstr "RSS feed"
 msgid "label_screenshot_click_to_enlarge"
 msgstr "Screenshot - klik om te vergroten"
 
-#. Default: "Release roadmap for ${DYNAMIC_CONTENT}…"
+#. Default: "Release roadmap for ${project}…"
 #: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:50
 msgid "label_show_upcoming_releases"
-msgstr ""
+msgstr "Tijdtabel voor releases van ${project}…"
 
 #. Default: "&laquo; Back to project overview"
 #: ../skins/plonesoftwarecenter/psc_categories_view.pt:26

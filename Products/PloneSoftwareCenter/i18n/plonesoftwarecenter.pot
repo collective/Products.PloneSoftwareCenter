@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter\n"
-"POT-Creation-Date: 2009-04-03 20:04+0000\n"
+"POT-Creation-Date: 2009-04-03 20:32+0000\n"
 "PO-Revision-Date: 2006-01-26 20:51+0100\n"
 "Last-Translator: Hanno Schlichting <schlichting@bakb.net>\n"
 "Language-Team: Plone-i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -91,11 +91,6 @@ msgstr ""
 msgid "heading_experimental_releases"
 msgstr ""
 
-#. Default: "${project}"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:94
-msgid "heading_latest_release_project"
-msgstr ""
-
 #. Default: "License"
 #: ../skins/plonesoftwarecenter/psc_release_view.pt:153
 msgid "heading_license"
@@ -127,7 +122,7 @@ msgid "heading_tested_with"
 msgstr ""
 
 #. Default: "Get"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:133
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:131
 msgid "label_get"
 msgstr ""
 
@@ -142,7 +137,7 @@ msgid "label_read_more"
 msgstr ""
 
 #. Default: "More about this release…"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:116
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:114
 msgid "label_release_details"
 msgstr ""
 
@@ -156,7 +151,7 @@ msgstr ""
 msgid "label_screenshot_click_to_enlarge"
 msgstr ""
 
-#. Default: "Release roadmap for ${DYNAMIC_CONTENT}…"
+#. Default: "Release roadmap for ${project}…"
 #: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:50
 msgid "label_show_upcoming_releases"
 msgstr ""

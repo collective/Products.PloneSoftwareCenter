@@ -47,7 +47,8 @@
                  <a i18n:translate="label_show_upcoming_releases"
                     tal:attributes="href roadmapFolder/absolute_url">
                      Release roadmap for 
-                     <tal:projectname tal:replace="here/title_or_id">
+                     <tal:projectname tal:replace="here/title_or_id"
+                                      i18n:name="project">
                          Project
                      </tal:projectname>&hellip;</a>
         </dd>
