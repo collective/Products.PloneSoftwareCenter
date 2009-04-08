@@ -35,7 +35,7 @@
 				Currently there are <span tal:replace="psc/project_count" /> projects 
 				with a total of <span tal:replace="psc/release_count" /> releases available.
 			</p>
-			<h3>Submit your add-on</h3>
+			<h3><a href="/products/createObject?type_name=PSCProject">Submit your add-on</a></h3>
 		</div>
 	</div>
 
