@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <object name="PSCProject"
    meta_type="Factory-based Type Information with dynamic views"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Software Project</property>
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="plone">
+
+ <property name="title" i18n:translate="">Software Project</property>
  <property
-    name="description">Project class that holds the information about the Software Project.
+    name="description" i18n:translate="">Project class that holds the information about the Software Project.
       </property>
  <property name="content_icon">product_icon.gif</property>
  <property name="content_meta_type">PSCProject</property>

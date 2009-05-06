@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <object name="PSCFileLink"
    meta_type="Factory-based Type Information with dynamic views"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Externally Hosted File</property>
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="plone">
+
+ <property name="title" i18n:translate="">Externally Hosted File</property>
  <property
-    name="description">Contains a link to a downloadable file for a Release.</property>
+    name="description" i18n:translate="">Contains a link to a downloadable file for a Release.</property>
  <property name="content_icon">link_icon.gif</property>
  <property name="content_meta_type">PSCFileLink</property>
  <property name="product">PloneSoftwareCenter</property>
