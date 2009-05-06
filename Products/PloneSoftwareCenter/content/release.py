@@ -56,7 +56,9 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         mode='r',
         widget=ComputedWidget(
             label='Release title',
+            label_msgid="label_release_title",
             description="The title of the release, computed from the title of the project and the version number.",
+            description_msgid="help_release_title",
             i18n_domain='plonesoftwarecenter',
             modes=('view',),
             visible={
@@ -73,14 +75,14 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         widget=StringWidget(
             condition="object/showReleaseNumber",
             label='Release number',
-            label_msgid='help_release_number_label',
+            label_msgid='label_release_number',
             description='The release number. You do normally NOT need to adjust this manually. '
                         'For example, if this is a beta and the release number is 2, ' 
                         'the release will be titled "beta 2". Note that this does not apply to final '
                         'releases, nor to the first release (so beta 1 is just called "beta"). '
                         'Also note that this number ' 
                         'will be automatically adjusted if you re-release using the "state" menu.',
-            description_msgid='help_release_number_description',
+            description_msgid='help_release_number',
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -90,9 +92,9 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         widget=StringWidget(
             label='Codename',
-            label_msgid='help_release_codename_label',
+            label_msgid='label_release_codename',
             description='Codename for this release, if you have one.',
-            description_msgid='help_release_codename_description',
+            description_msgid='help_release_codename',
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -105,12 +107,12 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         storage=MetadataStorage(),
         widget=TextAreaWidget(
             label='Release Summary',
-            label_msgid='label_release_description',
+            label_msgid='label_release_summary',
             description='A short description of the most important '
                         'focus of this release. Not a version history, '
                         'but in plain text what the main benefit of '
                         'this release is.',
-            description_msgid='help_release_description',
+            description_msgid='help_release_summary',
             i18n_domain='plonesoftwarecenter',
             rows=5,
         ),
@@ -153,9 +155,9 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         widget=StringWidget(
             label='Release Manager',
-            label_msgid='help_release_relmgr_label',
+            label_msgid='label_release_relmgr',
             description='Release manager for this release.',
-            description_msgid='help_release_relmgr_description',
+            description_msgid='help_release_relmgr',
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -165,7 +167,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=0,
         widget=StringWidget(
             label='Release Manager Contact E-mail',
-            label_msgid='help_release_relmgr_label',
+            label_msgid='label_release_relmgr_email',
             description='Contact e-mail for Release Manager.',
             description_msgid='help_release_relmgr_email',
             i18n_domain='plonesoftwarecenter',
@@ -246,7 +248,9 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         relationship='RelatedFeatures',
         widget=AddRemoveWidget(
             label='Associated feature proposals',
+            label_msgid="label_release_associated_feature_proposals",
             description="Please select related improvement proposals for features going into this release.",
+            description_msgid="help_release_associated_feature_proposals",
             i18n_domain='plonesoftwarecenter',
         ),
         vocabulary='getRelatedFeaturesVocab',

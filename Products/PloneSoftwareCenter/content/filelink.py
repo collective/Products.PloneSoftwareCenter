@@ -31,7 +31,7 @@ PSCFileLinkSchema = BaseSchema.copy() + Schema((
                         "or 'Product Bundle' - if you have several packages "
                         "in one archive. The uploaded filename will not "
                         "be changed.",
-            description_msgid="help_file_title",
+            description_msgid="help_file_title_filelink",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -44,7 +44,7 @@ PSCFileLinkSchema = BaseSchema.copy() + Schema((
         widget=SelectionWidget(
             label="Platform",
             label_msgid="label_file_platform",
-            description="",
+            description="List of platforms available for selection",
             description_msgid="help_file_platform",
             i18n_domain="plonesoftwarecenter",
         ),

@@ -69,7 +69,7 @@ PSCFileSchema = BaseSchema.copy() + Schema((
         widget=SelectionWidget(
             label="Platform",
             label_msgid="label_file_platform",
-            description="",
+            description="List of platforms available for selection",
             description_msgid="help_file_platform",
             i18n_domain="plonesoftwarecenter",
         ),

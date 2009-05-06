@@ -29,7 +29,9 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         mode='r', # Leave the custom auto-generated ID
         widget=StringWidget (
             label="Short name",
+            label_msgid="label_releasefolder_short_name",
             description="Short name of the container - this should be 'release' to comply with the standards.",
+            description_msgid="help_releasefolder_short_name",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -41,7 +43,9 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor="Title",
         widget=StringWidget(
             label="Title",
+            label_msgid="label_release_title",
             description="Enter a title for the container",
+            description_msgid="help_release_title",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -53,7 +57,9 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor="Description",
         widget=TextAreaWidget(
             label="Description",
+            label_msgid="label_release_description",
             description="Enter a description of the container",
+            description_msgid="help_release_description",
             i18n_domain="plonesoftwarecenter",
         ),
     ),

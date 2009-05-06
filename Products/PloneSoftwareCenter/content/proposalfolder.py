@@ -32,7 +32,9 @@ PSCImprovementProposalFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         mode='r', # Leave the custom auto-generated ID
         widget=StringWidget (
             label="Short name",
+            label_msgid="label_proposalfolder_short_name",
             description="Short name of the container - this should be 'roadmap' to comply with the standards.",
+            description_msgid="help_proposalfolder_short_name",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -44,7 +46,9 @@ PSCImprovementProposalFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor="Title",
         widget=StringWidget(
             label="Title",
+            label_msgid="label_proposalfolder_title",
             description="Enter a title for the container",
+            description_msgid="help_proposalfolder_title",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -56,7 +60,9 @@ PSCImprovementProposalFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor="Description",
         widget=TextAreaWidget(
             label="Description",
+            label_msgid="label_proposalfolder_description",
             description="Enter a description of the container",
+            description_msgid="help_proposalfolder_description",
             i18n_domain="plonesoftwarecenter",
         ),
     ),

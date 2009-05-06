@@ -36,7 +36,9 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         validators=('isNonConflictingProjectId',),
         widget=IdWidget (
             label="Short name",
+            label_msgid="label_project_short_name",
             description="Should not contain spaces, underscores or mixed case. Short Name is part of the item's web address.",
+            description_msgid="help_project_short_name",
             i18n_domain="plonesoftwarecenter",
         ),
     ),
