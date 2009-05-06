@@ -1,0 +1,469 @@
+# translation of plonesoftwarecenter.po to Spanish
+# Carlos Marrero <cdmarrero2040@gmail.com>, 2008, 2009.
+# Leonardo Caballero <leonardocaballero@gmail.com>, 2009.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneSoftwareCenter 1.5\n"
+"POT-Creation-Date: 2009-05-06 01:41+0000\n"
+"PO-Revision-Date: 2009-05-05 16:20-0400\n"
+"Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
+"Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plonesoftwarecenter\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+
+#. Default: "Download file"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:132
+msgid "Download file"
+msgstr "Descargar archivo"
+
+#. Default: "Log in to add Software Project"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:72
+msgid "Log in to add Software Project"
+msgstr "Iniciar sesión para agregar Proyecto de Software"
+
+#: ./content/validators.py:98
+msgid "This contains packages already claimed by another project."
+msgstr "Este contiene paquetes ya reclamados por otro proyecto."
+
+#: ./content/validators.py:96
+msgid "This package is already claimed by another project."
+msgstr "Este paquete está reclamado por otro proyecto."
+
+#: ./content/validators.py:91
+msgid "You must provide a list of package names"
+msgstr "Debe proveer una lista de nombre de paquetes"
+
+#: ./content/validators.py:82
+msgid "You must set the primary package before you can select secondary packages."
+msgstr "Debe definir el paquete primario antes de que usted seleccione los paquetes secundarios."
+
+#. Default: "The available projects in this category, alphabetized."
+#: ./skins/plonesoftwarecenter/by-category.pt:61
+msgid "available_projects_category"
+msgstr "Los proyectos disponibles en esta categoría, esta ordenado alfabéticamente."
+
+#. Default: "Latest releases"
+#: ./skins/plonesoftwarecenter/portlet_releases.pt:40
+msgid "box_latest_releases"
+msgstr "Últimas versiones"
+
+#. Default: "More Releases…"
+#: ./skins/plonesoftwarecenter/portlet_releases.pt:77
+msgid "box_more_projects"
+msgstr "Más versiones..."
+
+#. Default: "There are no available software files in this release yet."
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:90
+msgid "description_no_available_files"
+msgstr "No se han publicado archivos en esta versión aún."
+
+#. Default: "No releases found."
+#: ./skins/plonesoftwarecenter/psc_releasefolder_view.pt:56
+msgid "description_no_available_releases"
+msgstr "Sin versiones encontradas."
+
+#. Default: "This listing will prioritize final releases, but will list the latest published release of any other type if no final release exists. If you list the source code repository in this project, it will show up, so people know where to go to check out in the code in the meantime."
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:81
+msgid "description_prioritize_releases"
+msgstr "Este listado dará prioridad a la versión final, pero listará la última versión publicada de cualquier tipo si no existe una versión final disponible. Si usted lista el código fuente del repositorio en este proyecto, será mostrado, mucha gente sabe donde ir a comprobar en el código in the meantime."
+
+#. Default: "Use the Add menu to add software files."
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:93
+msgid "description_use_add_menu_to_add_files"
+msgstr "Use el menú para agregar archivos."
+
+#. Default: "Use the Add menu to add releases."
+#: ./skins/plonesoftwarecenter/psc_releasefolder_view.pt:59
+msgid "description_use_add_menu_to_add_releases"
+msgstr "Use el menú para añadir nuevas versiones."
+
+#. Default: "Available categories"
+#: ./skins/plonesoftwarecenter/psc_categories_view.pt:43
+msgid "heading_available_categories"
+msgstr "Categorías disponibles"
+
+#. Default: "Available downloads"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:81
+msgid "heading_available_downloads"
+msgstr "Descargas disponibles"
+
+#. Default: "Change log"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:233
+msgid "heading_change_log"
+msgstr "Registro de cambios"
+
+#. Default: "Expected Release"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:184
+msgid "heading_expecteddate"
+msgstr "Versión esperada"
+
+#. Default: "Experimental Releases"
+#: ./skins/plonesoftwarecenter/psc_releasefolder_view.pt:67
+msgid "heading_experimental_releases"
+msgstr "Versiones experimentales"
+
+#. Default: "Feature enhancements in this release"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:204
+msgid "heading_feature_enhancements_release"
+msgstr "Caracteristicas habilitadas en esta versión"
+
+#. Default: "License"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:162
+msgid "heading_license"
+msgstr "Licencia"
+
+#. Default: "Release Notes"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:139
+msgid "heading_release_notes"
+msgstr "Notas de la versión"
+
+#. Default: "Released"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:187
+msgid "heading_released"
+msgstr "Liberada"
+
+#. Default: "Release Manager"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:174
+msgid "heading_relmanager"
+msgstr "Administrador de versión"
+
+#. Default: "Stable Releases"
+#: ./skins/plonesoftwarecenter/psc_releasefolder_view.pt:72
+msgid "heading_stable_releases"
+msgstr "Versiones estables"
+
+#. Default: "State"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:154
+msgid "heading_state"
+msgstr "Estado"
+
+#. Default: "Tested with"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:143
+msgid "heading_tested_with"
+msgstr "Probado con"
+
+#. Default: "The following features are associated with this release:"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:209
+msgid "help_feature_enhancements_release"
+msgstr "Las siguientes características son asociadas con esta versión:"
+
+#. Default: "This project has been approved via independent review."
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:201
+msgid "help_independent_review"
+msgstr "Este proyecto ha sido aprobado vía una revisión independiente."
+
+#. Default: "The latest releases in each category. To see all projects in a specific category, click \"Show all\"."
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:87
+msgid "help_latest_releases_each_category"
+msgstr "La ultima versión en cada categoría. Para ver todos los proyectos en cada categoría especifica, haga clic en \"Mostrar todos\"."
+
+#. Default: "going back to the release page"
+#: ./skins/plonesoftwarecenter/psc_file_view.pt:48
+msgid "help_message_remember_back_release_page"
+msgstr " regresar a la página de versión"
+
+#. Default: "Remember to publish your release once all files have been added by"
+#: ./skins/plonesoftwarecenter/psc_file_view.pt:46
+msgid "help_message_remember_is_editable"
+msgstr "Recuerde publicar su versión una ves todos los archivos han sido agregados "
+
+#. Default: "No stable release available yet."
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:46
+msgid "help_not_stable_release"
+msgstr "Sin versión estable disponible aún."
+
+#. Default: "<strong>Alpha</strong> releases should only be used for testing and development."
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:66
+msgid "help_show_upcoming_alpha_releases"
+msgstr "Versiones <strong>Alfa</strong>: deben ser solamente usada para pruebas y desarrollo."
+
+#. Default: "<strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally released for production testing, but should not be used on mission-critical sites."
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:68
+msgid "help_show_upcoming_beta_releases"
+msgstr "<strong>Versiones Beta</strong> y <strong>Versiones Candidatas</strong> son versiones normalmente publicado para la producción de pruebas, pero no debe ser utilizado en sitios de misión crítica."
+
+#. Default: "Always install on a separate test server first, and <a href=\"/documentation/faq/plone-backup-move\">make sure you have proper backups</a> before installing."
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:71
+msgid "help_show_upcoming_test_releases"
+msgstr "Siempre se instala en un servidor separado de prueba en primer lugar, y <a href=\"/documentation/faq/plone-backup-move\">asegúrese de tener copias de seguridad adecuadas</a> antes de la instalación."
+
+#. Default: "Add New Software Project"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:58
+msgid "label_add_new_software_project"
+msgstr "Agregar Nuevo Proyecto de Software"
+
+#. Default: "Current release"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:45
+msgid "label_current_stable_release"
+msgstr "Versiones actuales"
+
+#. Default: "Currently listing ${label_project_count} projects with ${label_release_count} releases."
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:83
+msgid "label_currently_listing_projects_releases"
+msgstr "Actualmente ${label_project_count} proyectos con ${label_release_count} versiones."
+
+#. Default: "Experimental Releases"
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:20
+msgid "label_experimental_releases"
+msgstr "Versiones Experimentales"
+
+#. Default: "Get"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:142
+msgid "label_get"
+msgstr "Obtener"
+
+#. Default: "Go directly to project…"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:44
+msgid "label_go_directly_project"
+msgstr "Ir directamente a proyecto..."
+
+#. Default: "Go to the release folder to add or publish a release."
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:70
+msgid "label_goto_release_folder"
+msgstr "Ir a la carpeta de versiones para añadir o publicar una versión."
+
+#. Default: "Independent Review"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:198
+msgid "label_independent_review"
+msgstr "Revisión Independiente"
+
+#. Default: "This release is no longer supported! If you are using this release, please upgrade to a newer version if possible."
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:44
+msgid "label_message_no_longer_supported"
+msgstr "¡Esta versión is no longer soportado!. Si usted esta usando esta versión, por favor actualice a una nueva versión si es posible."
+
+#. Default: "This is not a final release. Experimental releases should only be used for testing and development. Do not use these on production sites, and make sure you have proper backups before installing."
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:50
+msgid "label_message_not_final_release"
+msgstr "Esta no es la versión final. Versiones experimentales deben ser solamente usadas por pruebas y desarrollo. No usar en entornos de producción, y hacer sus respectivas copias de respaldo antes de instalar."
+
+#. Default: "A release needs to be published before it will show up in the download listings of the software center. You should make a release using the 'state' drop-down when work on the release is completed and downloadable files have been added. There is no approval required to make a release."
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:62
+msgid "label_message_not_released"
+msgstr "Una versión necesita ser publicada antes de ser mostrada en la lista de descarga del centro de software. Usted debe hacer una publicación usando el elemento del menú desplegable 'Estado' cuando este trabajando sobre la versión que esta completada y tiene agregado los archivos para descargar. Ese no requiere aprobar para hacer una versión."
+
+#. Default: "Category:"
+#: ./skins/plonesoftwarecenter/portlet_project_info.pt:24
+msgid "label_portlet_project_info_category"
+msgstr "Categoria:"
+
+#. Default: "Project owner: ${name_portlet_project_resources_owner}"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:95
+msgid "label_portlet_project_resources_owner"
+msgstr "Dueño de proyecto: ${name_portlet_project_resources_owner}"
+
+#. Default: "Powered by"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:158
+msgid "label_powered_by"
+msgstr "Basado en "
+
+#. Default: "Plone Software Center"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:162
+msgid "label_powered_by_psc"
+msgstr "Plone Software Center"
+
+#. Default: "Project Description"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:171
+msgid "label_project_description"
+msgstr "Descripción de proyecto"
+
+#. Default: "Project Resources"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:15
+msgid "label_project_resources"
+msgstr "Recursos de proyecto"
+
+#. Default: "Documentation"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:34
+msgid "label_project_resources_documentation"
+msgstr "Documentación"
+
+#. Default: "Projects in category ${label_projects_category_name}"
+#: ./skins/plonesoftwarecenter/by-category.pt:37
+msgid "label_projects_by_category"
+msgstr "Proyectos en la categoría ${label_projects_category_name}"
+
+#. Default: "Show all"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:144
+msgid "label_psc_show_all_projects"
+msgstr "Mostrar todos los "
+
+#. Default: "projects in this category…"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:146
+msgid "label_psc_show_all_projects_category"
+msgstr " proyectos en esta categoría..."
+
+#. Default: "Read more…"
+#: ./skins/plonesoftwarecenter/psc_release_listing.pt:42
+msgid "label_read_more"
+msgstr "Leer más..."
+
+#. Default: "For additional information about this project, please visit the project page"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:75
+msgid "label_release_additional_information"
+msgstr "Para información adicional acerca de este proyecto, por favor visite la página de proyecto"
+
+#. Default: "More about this release…"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:124
+msgid "label_release_details"
+msgstr "Más acerca de esta versión..."
+
+#. Default: "code repository"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:64
+msgid "label_resource_code_repository"
+msgstr "Repositorio de código fuente"
+
+#. Default: "Contact address"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:84
+msgid "label_resource_contact_address"
+msgstr "Dirección de correo electrónico"
+
+#. Default: "If you are interested in getting the source code of this project, you can get it from the"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:55
+#, fuzzy
+msgid "label_resource_getting_code"
+msgstr "Si usted esta interesado en obtener el código fuente de este proyecto, usted puede obtenerlo desde el <a href=\"${DYNAMIC_CONTENT}\" class=\"link-plain\" title=\"x\"> <span>x</span> </a>."
+
+#. Default: "Issue tracker"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:64
+msgid "label_resource_issue_tracker"
+msgstr "Registro de incidencias"
+
+#. Default: "External project page"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:44
+msgid "label_resource_project_page"
+msgstr "Página Web externa"
+
+#. Default: "Support"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:74
+msgid "label_resource_support"
+msgstr "Soporte"
+
+#. Default: "RSS Feed"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:28
+msgid "label_rss_feed"
+msgstr "Canal RSS"
+
+#. Default: "Screenshot — click to enlarge"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:124
+msgid "label_screenshot_click_to_enlarge"
+msgstr "Captura de pantalla - clic para ampliar"
+
+#. Default: "Self-Certification"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:187
+msgid "label_self_certification"
+msgstr "Certificación propia"
+
+#. Default: "Release roadmap for ${project}…"
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:57
+msgid "label_show_upcoming_releases"
+msgstr "Mapa de ruta para próximas versiones de ${project}..."
+
+#. Default: "&laquo; Back to project overview"
+#: ./skins/plonesoftwarecenter/psc_categories_view.pt:29
+msgid "label_up_to_product_page"
+msgstr "&laquo; Volver al resumen del proyecto"
+
+#. Default: "&laquo; Back to project overview"
+#: ./skins/plonesoftwarecenter/by-category.pt:40
+msgid "label_up_to_project_overview"
+msgstr "&laquo; Volver al resumen del proyecto"
+
+#. Default: "&laquo; Back to release page"
+#: ./skins/plonesoftwarecenter/psc_file_view.pt:30
+msgid "label_up_to_release_page"
+msgstr "&laquo; Volver a la página de versiones"
+
+#. Default: "No projects found in this category."
+#: ./skins/plonesoftwarecenter/by-category.pt:50
+msgid "no_packages_found"
+msgstr "No se encontraron proyectos en esta categoría."
+
+#. Default: "No releases made in this category yet"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:134
+msgid "no_releases_found"
+msgstr "Sin versiones hechas en esta categoría aun"
+
+#. Default: "Released ${name_released_date}<br />"
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:33
+msgid "portlet_project_roadmap_released_date"
+msgstr "Publicado ${name_released_date}<br />"
+
+#. Default: "Planned release: ${name_upcoming_release}<br />"
+#: ./skins/plonesoftwarecenter/portlet_project_roadmap.pt:40
+msgid "portlet_project_roadmap_upcoming_release"
+msgstr "Versión planeada: ${name_upcoming_release}<br />"
+
+#. Default: "Read More…"
+#: ./skins/plonesoftwarecenter/by-category.pt:93
+msgid "read_more"
+msgstr "Leer más..."
+
+#. Default: "Current release for the project"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:99
+#, fuzzy
+msgid "title_latest_release_project"
+msgstr "Actual versión para este proyecto"
+
+#. Default: "Subscribe to updates for this project"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:105
+msgid "title_portlet_project_resources_subscribe_updates"
+msgstr "Suscribirse a las actualizaciones de este proyecto"
+
+#. Default: "Documentation for this project"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:29
+msgid "title_project_resources_documentation"
+msgstr "Documentación para este proyecto"
+
+#. Default: "Plone Software Center's Home Page"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:159
+msgid "title_psc_homepage"
+msgstr "Página principal del producto Plone Software Center"
+
+#. Default: "Show all the projects in this category"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:141
+msgid "title_psc_show_all_projects"
+msgstr "Mostrar todos los proyectos en esta categoría"
+
+#. Default: "The project page"
+#: ./skins/plonesoftwarecenter/psc_release_view.pt:73
+msgid "title_release_additional_information"
+msgstr "La página de proyecto"
+
+#. Default: "Version control repository location for this project"
+#: ./skins/plonesoftwarecenter/psc_project_view.pt:59
+msgid "title_resource_code_repository"
+msgstr "Ubicación del repositorio de control de versión para este proyecto"
+
+#. Default: "Contact address for this project"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:79
+msgid "title_resource_contact_address"
+msgstr "Dirección de contacto para este proyecto"
+
+#. Default: "A place to submit bug reports and feature requests for this project"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:59
+msgid "title_resource_issue_tracker"
+msgstr "Un lugar para suministrar reportes de errores y solicitudes de características para este proyecto."
+
+#. Default: "Additional home page for this project"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:39
+msgid "title_resource_project_page"
+msgstr "Página principal adicional para este producto"
+
+#. Default: "Support options for this product"
+#: ./skins/plonesoftwarecenter/portlet_project_resources.pt:69
+msgid "title_resource_support"
+msgstr "Opciones de soporte para este producto"
+
+#. Default: "RSS feed of the latest releases"
+#: ./skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:28
+msgid "title_rss_feed"
+msgstr "Canal RSS de las ultimas versiones"
+
