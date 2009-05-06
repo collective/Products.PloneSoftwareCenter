@@ -1,7 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonesoftwarecenter">
 
 <head>
@@ -30,8 +33,8 @@
         <tal:projects condition="category"
                       define="packages python: view.by_category(category)">
         
-            <h1 class="documentFirstHeading">
-              Projects in category <span tal:replace="python:view.category_name(category)" />
+            <h1 class="documentFirstHeading" i18n:translate="label_projects_by_category">
+              Projects in category <span i18n:name="label_projects_category_name" tal:replace="python:view.category_name(category)" />
             </h1>
 
             <a href=""
@@ -55,7 +58,7 @@
                 Description
                 </p>
 
-                <p class="discreet">
+                <p class="discreet" i18n:translate="available_projects_category">
                     The available projects in this category, alphabetized.
                 </p>
 

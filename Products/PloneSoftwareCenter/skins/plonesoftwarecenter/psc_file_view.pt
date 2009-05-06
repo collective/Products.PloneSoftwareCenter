@@ -1,8 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
-      i18n:domain="plonesoftwarecenter"
-      metal:use-macro="here/main_template/macros/master">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plonesoftwarecenter">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -40,8 +43,10 @@
 
         <p class="discreet"
            tal:condition="python: is_editable">
-        Remember to publish your release once all files have been added by
-        <a href="" tal:attributes="href here/aq_parent/absolute_url">going back to the release page</a>. 
+            <span i18n:translate="help_message_remember_is_editable">Remember to publish your release once all files have been added by </span>
+            <a href="" tal:attributes="href here/aq_parent/absolute_url">
+                  <span i18n:translate="help_message_remember_back_release_page"> going back to the release page</span>
+            </a>. 
         </p>
 
         <p tal:define="downloadURL view/direct_url">
@@ -51,7 +56,7 @@
             </a>
             <a tal:attributes="href downloadURL"
                tal:define="filename python:here.getFilename('downloadableFile')">
-                Download<tal:filename condition="filename"
+                Download <tal:filename condition="filename"
                                       replace="string:$filename" />
             </a>
             <tal:size define="fileSize view/file_size"

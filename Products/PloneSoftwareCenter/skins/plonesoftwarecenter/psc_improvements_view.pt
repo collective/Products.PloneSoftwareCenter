@@ -1,6 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en-US"
-      metal:use-macro="here/main_template/macros/master">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -35,7 +39,7 @@
                                             'participants']">
 
     <dl class="portlet" style="margin-left: 0.5em; width: 40%; float: right; clear: right;">
-        <dt class="portletHeader">Contents</dt>
+        <dt class="portletHeader" i18n:translate="heading_improvements_contents">Contents</dt>
         <dd class="portletItem">
             <ol>
                 <tal:section tal:repeat="f fieldNames"> 
@@ -60,15 +64,15 @@
     </p>
 
     <dl>
-        <dt>Proposed by</dt> <dd tal:content="here/getProposer" />
+        <dt i18n:translate="label_improvements_proposed_by">Proposed by</dt> <dd tal:content="here/getProposer" />
         <tal:seconder tal:condition="here/getSeconder">
-        <dt>Seconded by</dt> <dd tal:content="here/getSeconder" />
+        <dt i18n:translate="label_improvements_seconded_by">Seconded by</dt> <dd tal:content="here/getSeconder" />
         </tal:seconder>
-        <dt>Proposal type</dt> <dd tal:content="python: ', '.join(here.getProposalTypes())" />     
+        <dt i18n:translate="label_improvements_proposal_type">Proposal type</dt> <dd tal:content="python: ', '.join(here.getProposalTypes())" />     
     
         <tal:releases define="releases here/getBackReferences"
                       condition="releases">
-            <dt>Assigned to release</dt> 
+            <dt i18n:translate="label_improvements_assigned_release">Assigned to release</dt> 
             <dd>
                 <ul>
                     <li tal:repeat="release releases">
@@ -80,12 +84,12 @@
         </tal:releases>
     
         <tal:branch condition="here/getBranch">
-        <dt>Repository branch</dt> 
+        <dt i18n:translate="label_improvements_repository_branch">Repository branch</dt> 
         <dd> <a tal:content="python: here.getBranch().split('/')[-1]"
                 tal:attributes="href here/getBranch">Branch name</a> </dd>
         </tal:branch>
 
-        <dt>State</dt> <dd tal:content="python: wtool.getInfoFor(context, 'review_state')" />
+        <dt i18n:translate="label_improvements_state">State</dt> <dd tal:content="python: wtool.getInfoFor(context, 'review_state')" />
     </dl>
 
     <div class="visualClear"></div>    

@@ -1,7 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
-      i18n:domain="plone"
-      metal:use-macro="here/main_template/macros/master">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -16,12 +19,14 @@
      tal:define="view context/@@roadmap_view;
                  upcoming view/upcoming_releases;">
 
-    <h1>Roadmap for <span tal:replace="here/aq_parent/Title" /></h1>
+    <h1 i18n:translate="label_roadmap_title_project">
+      Roadmap for <span i18n:name="title_project" tal:replace="here/aq_parent/Title" />
+    </h1>
 
     <dl class="portlet"
          style="margin-left: 0.5em; width: 35%; float: right; clear: right;"
          tal:condition="upcoming">
-        <dt class="portletHeader">Roadmap index</dt>
+        <dt class="portletHeader" i18n:translate="label_roadmap_index">Roadmap index</dt>
         <dd class="portletItem">
             <ul>
                 <tal:release repeat="release upcoming">
@@ -34,19 +39,30 @@
                 </li>
                 </tal:release>
 
-                <li><a href="" tal:attributes="href string:${current_page_url}#discussion">Proposals being discussed</a></li>
-                <li><a href="" tal:attributes="href string:${current_page_url}#rejected">Rejected/deferred/draft proposals</a></li>
+                <li>
+                  <a href="" tal:attributes="href string:${current_page_url}#discussion"
+                     i18n:translate="label_roadmap_proposals_being_discussed">
+                        Proposals being discussed
+                  </a>
+                </li>
+                <li>
+                  <a href="" tal:attributes="href string:${current_page_url}#rejected"
+                     i18n:translate="label_roadmap_rejected_deferred_draft_proposals">
+                        Rejected/deferred/draft proposals
+                  </a>
+                </li>
             </ul>
         </dd>
     </dl>
 
-    <p class="documentDescription">
+    <p class="documentDescription" i18n:translate="help_roadmap_title_project">
     An overview of the upcoming releases for this project. Participants in the
     project can add new features to the list.
     </p>
     
     <p class="portalMessage"
-       tal:condition="python: is_editable and wtool.getInfoFor(here.aq_parent, 'review_state')!='published'">
+       tal:condition="python: is_editable and wtool.getInfoFor(here.aq_parent, 'review_state')!='published'"
+       i18n:translate="description_cannot_add_before_approved">
     You can not add releases, documentation or feature proposals until the 
     project itself is approved, make sure you submit it for approval when 
     the relevant project information has been entered.
@@ -143,14 +159,16 @@
     </p>
 
     <p>
-        <a href="" tal:attributes="href release/absolute_url">Read more&hellip;</a>
+        <a href="" tal:attributes="href release/absolute_url"
+           i18n:translate="label_roadmap_read_more">Read more&hellip;</a>
     </p>
 
     <tal:header condition="nocall:features">
-        <h3>Associated feature proposals</h3>
+        <h3 i18n:translate="label_roadmap_associated_feature_proposals">Associated feature proposals</h3>
     </tal:header>
 
-    <p class="discreet" tal:condition="not:nocall:features">
+    <p class="discreet" tal:condition="not:nocall:features"
+       i18n:translate="label_roadmap_not_improvement_proposals">
     No improvement proposals associated with this release.
     </p>
 
@@ -191,8 +209,8 @@
     </tal:release>
     </tal:releases>
 
-    <h2><a name="discussion">Proposals being discussed</a></h2>
-    <p>
+    <h2><a name="discussion" i18n:translate="label_proposals_being_discussed">Proposals being discussed</a></h2>
+    <p i18n:translate="help_proposals_being_discussed">
     These proposals are currently under consideration for inclusion in an 
     upcoming release.
     </p>
@@ -200,11 +218,11 @@
     <table class="listing">
         <thead>
             <tr>
-                <th>Proposal</th>
-                <th>Type</th>
-                <th>Proposed by</th>
-                <th>Added</th>
-                <th>Target Release</th>
+                <th i18n:translate="label_pbd_proposal">Proposal</th>
+                <th i18n:translate="label_pbd_type">Type</th>
+                <th i18n:translate="label_pbd_proposed_by">Proposed by</th>
+                <th i18n:translate="label_pbd_added">Added</th>
+                <th i18n:translate="label_pbd_target_release">Target Release</th>
             </tr>
         </thead>
         
@@ -243,19 +261,35 @@
     </table>
     
     
-    <h2><a name="rejected">Rejected and Deferred Proposals</a></h2>
+    <h2>
+      <a name="rejected"
+         i18n:translate="label_rejected_and_deferred_proposals">
+            Rejected and Deferred Proposals
+      </a>
+    </h2>
     
     <p>
-      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=rejected&state=deferred">
-        Rejected and deferred proposals</a> have been moved to a separate page.
+      <a href="" title="View rejected and deferred proposals"
+         tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=rejected&state=deferred"
+         i18n:attributes="title title_roadmap_rejected_deferred_proposals">
+            <span i18n:translate="label_roadmap_rejected_deferred_proposals">Rejected and deferred proposals</span>
+      </a>
+      <span i18n:translate="label_roadmap_rejected_deferred_proposals_moved"> have been moved to a separate page.</span>
     </p>
     
     <p>
-      You can also 
-      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing">
-        view all proposals</a> or
-      <a href="" tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=draft">
-        draft proposals</a>.
+      <span i18n:translate="label_roadmap_all_proposals">You can also </span>
+      <a href="" title="View all proposals"
+         tal:attributes="href string:${here/absolute_url}/psc_improvements_listing"
+         i18n:attributes="title title_roadmap_view_all_proposals">
+        <span i18n:translate="label_roadmap_view_all_proposals">view all proposals</span>
+      </a>
+      <span i18n:translate="label_roadmap_all_proposals1"> or </span>
+      <a href="" title="View only draft proposals"
+         tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=draft"
+         i18n:attributes="title title_roadmap_view_draft_proposals">
+        <span i18n:translate="label_roadmap_view_draft_proposals">draft proposals</span>
+      </a>.
     </p>
 
     

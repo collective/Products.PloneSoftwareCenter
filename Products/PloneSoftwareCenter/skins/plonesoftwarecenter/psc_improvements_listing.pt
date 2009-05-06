@@ -1,7 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
       lang="en-US"
-      i18n:domain="plone"
-      metal:use-macro="here/main_template/macros/master">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -23,15 +26,23 @@
            releaseFolderUrl python:'/'.join(here.absolute_url().split('/')[:-1]) + '/releases';
            ">
 
-    <h1><span tal:replace="python:(', ').join(state).capitalize()" /> 
-        Improvement Proposals for 
-        <span tal:replace="here/aq_parent/Title" /></h1>
+    <h1>
+      <span i18n:translate="label_improvements_listing">Improvement Proposals </span>
+      <span tal:condition="state">"</span><span tal:replace="python:(', ').join(state).capitalize()" /><span tal:condition="state">"</span>
+      <span i18n:translate="label_improvements_proposals_for"> for </span>        
+      <span tal:replace="here/aq_parent/Title" />
+    </h1>
 
         <p class="documentDescription"
            tal:condition="plips">
-        If you want to see the feature proposals displayed according to what release
-        they are assigned to, go to the
-        <a href="psc_roadmap">Roadmap page</a>.
+           <span i18n:translate="help_improvements_listing">
+            If you want to see the feature proposals displayed according
+            to what release they are assigned to, go to the
+           </span>            
+        <a href="psc_roadmap" title="Roadmap page"
+           i18n:attributes="title title_improvements_listing_roadmap_page">
+           <span i18n:translate="title_improvements_listing_roadmap_page">Roadmap page</span>
+        </a>.
         </p>
 
 
@@ -60,7 +71,7 @@
                     <th>&nbsp;<tal:state i18n:translate="listingheader_status"
                     >Status</tal:state>&nbsp;</th>
 
-                    <th>&nbsp;<tal:version
+                    <th>&nbsp;<tal:version i18n:translate="listingheader_target_release"
                     >Target Release</tal:version>&nbsp;</th>
                 </tr>
             </thead>
@@ -96,10 +107,13 @@
                         </a>
                     </td>
 
-                    <td i18n:translate="">&nbsp;
+                    <td>&nbsp;
 
                         <span tal:repeat="release item/getRelatedReleases">
-                        <a tal:content="release" tal:attributes="href string:${releaseFolderUrl}/${release}">[item]</a>
+                           <a tal:content="release" 
+                              tal:attributes="href string:${releaseFolderUrl}/${release}">
+                              [item]
+                           </a>
                         </span>
                     </td>
                 </tr>
@@ -108,14 +122,16 @@
         </table>
 
         <a style="display:block; text-align:right"
-            href="" 
+            href="" title="Show all"
             tal:condition="state"
-            tal:attributes="href string:${here/absolute_url}/${template/id}">
-           Show all
+            tal:attributes="href string:${here/absolute_url}/${template/id}"
+            i18n:attributes="title title_improvements_listing_show_all">
+            <span i18n:translate="label_improvements_listing_show_all">Show all</span>
         </a>
         
         <p class="discreet"
-           tal:condition="not: plips">
+           tal:condition="not: plips"
+           i18n:translate="label_improvements_listing_no_proposals_added">
         There are no improvement proposals added for any versions. Use the add
         menu to add proposals and/or feature specifications to be used in the
         roadmap.

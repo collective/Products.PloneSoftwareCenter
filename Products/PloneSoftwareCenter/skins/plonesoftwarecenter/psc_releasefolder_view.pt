@@ -1,8 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
-      i18n:domain="plonesoftwarecenter"
-      metal:use-macro="context/main_template/macros/master">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plonesoftwarecenter">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -38,7 +41,8 @@
             </a>
         </p>
         <p class="portalMessage"
-           tal:condition="python: is_editable and wtool.getInfoFor(context.aq_parent, 'review_state')!='published'">
+           tal:condition="python: is_editable and wtool.getInfoFor(context.aq_parent, 'review_state')!='published'"
+           i18n:domain="plone" i18n:translate="description_cannot_add_before_approved">
         You can not add releases, documentation or feature proposals until the 
         project itself is approved, make sure you submit it for approval when 
         the relevant project information has been entered.

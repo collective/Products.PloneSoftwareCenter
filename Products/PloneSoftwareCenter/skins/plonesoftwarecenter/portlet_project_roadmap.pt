@@ -1,5 +1,9 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonesoftwarecenter">
 
 <body>
@@ -13,7 +17,8 @@
     <dl class="portlet"
         tal:condition="nocall:upcomingReleases">
 
-        <dt class="portletHeader">Experimental Releases</dt>
+        <dt class="portletHeader"
+            i18n:translate="label_experimental_releases">Experimental Releases</dt>
 
         <tal:release repeat="upcoming upcomingReleases">
         <tal:block define="upcoming_view upcoming/@@release_view">
@@ -23,14 +28,16 @@
               tal:attributes="href upcoming/absolute_url">Release 1.2.2</a><br />
     
             <tal:releasedate condition="upcoming_view/is_released">
-                <span class="discreet">
-                  Released <tal:date replace="upcoming_view/release_date" /><br />
+                <span class="discreet"
+                      i18n:translate="portlet_project_roadmap_released_date">
+                  Released <tal:date i18n:name="name_released_date" replace="upcoming_view/release_date" /><br />
                 </span>
             </tal:releasedate>
     
             <tal:norelease condition="not: upcoming_view/is_released">
-                <span class="discreet" tal:condition="upcoming_view/release_date">
-                  Planned release: <tal:date replace="upcoming_view/release_date" /><br />
+                <span class="discreet" tal:condition="upcoming_view/release_date"
+                      i18n:translate="portlet_project_roadmap_upcoming_release">
+                  Planned release: <tal:date i18n:name="name_upcoming_release" replace="upcoming_view/release_date" /><br />
                 </span>
             </tal:norelease>
             <span tal:content="upcoming/Description">
@@ -56,12 +63,12 @@
 
         <dd class="portletItem">
             <ul>
-            <li><strong>Alpha</strong> releases should only be used for testing and 
+            <li i18n:translate="help_show_upcoming_alpha_releases"><strong>Alpha</strong> releases should only be used for testing and 
             development.</li>
-            <li><strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally 
+            <li i18n:translate="help_show_upcoming_beta_releases"><strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally 
             released for production testing, but should not be used on 
             mission-critical sites.</li>
-            <li>Always install on a separate test server first, and 
+            <li i18n:translate="help_show_upcoming_test_releases">Always install on a separate test server first, and 
                 <a href="/documentation/faq/plone-backup-move">make
                 sure you have proper backups</a> before installing.</li>
             </ul>

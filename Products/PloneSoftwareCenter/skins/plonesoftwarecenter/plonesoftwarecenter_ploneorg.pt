@@ -1,7 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonehelpcenter">
 
 <head>
@@ -51,8 +54,9 @@
         </div>
 
         <p class="discreet" tal:define="projectsCount python:len(catalog(portal_type = 'PSCProject', path = herePath));
-            releasesCount python:len(catalog(portal_type = 'PSCRelease', path = herePath))">
-                Currently listing <span tal:replace="projectsCount" /> projects with <span tal:replace="releasesCount" /> releases.
+            releasesCount python:len(catalog(portal_type = 'PSCRelease', path = herePath))"
+            i18n:translate="help_download_currently_listing">
+                Currently listing <span i18n:name="results_projects_count" tal:replace="projectsCount" /> projects with <span i18n:name="results_releases_count" tal:replace="releasesCount" /> releases.
         </p>
 
         <p class="documentDescription" tal:content="here/Description">
@@ -63,8 +67,9 @@
     
         <tal:featured_project_wrapper tal:condition="python: here.getFeaturedProject()">
             <dl class="portlet" style="width: 23em; float: left">
-                <dt class="portletHeader">
-                    Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">
+                <dt class="portletHeader" i18n:translate="label_psc_ploneorg_featured_project">
+                    Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()"
+                    i18n:name="label_psc_ploneorg_get_featured_project">
                         Featured Project </tal:featured_project> 
                     for your platform
                 </dt>
@@ -74,11 +79,18 @@
                         height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
                         height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 
                         height="40" width="40" alt="Linux" src="platform_linux.gif" /></a>
-                    <h3><a tal:attributes="href project_url" 
-                        style="border-bottom: 1px solid #8CACBB">Download&nbsp;<tal:featured_project
-                        tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project></a></h3>
-                    <span class="discreet">Latest release: 
-                        <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"> 
+                    <h3>
+                        <a tal:attributes="href project_url" title="Download projects"
+                           style="border-bottom: 1px solid #8CACBB"
+                           i18n:attributes="title title_psc_ploneorg_get_download">
+                              <span i18n:translate="label_psc_ploneorg_get_download">Download</span>&nbsp;
+                              <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project>
+                        </a>
+                    </h3>
+                    <span class="discreet"
+                          i18n:translate="label_psc_ploneorg_latest_release">Latest release: 
+                        <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"
+                        i18n:name="title_psc_ploneorg_latest_release"> 
                             Latest Release
                         </tal:latest_release>
                     </span>
@@ -87,7 +99,8 @@
         </tal:featured_project_wrapper>
 
         <dl class="portlet" style="float:right; width: 23em;">
-            <dt class="portletHeader">Search for add-on packages</dt>
+            <dt class="portletHeader"
+                i18n:translate="heading_search_addon_packages">Search for add-on packages</dt>
 
             <dd class="portletItem">
                 <form style="text-align: center;"
@@ -105,11 +118,12 @@
                                style="font-size: 150%"
                                title="Search add-ons"
                                accesskey="accesskeys-search"
+                               i18n:attributes="title label_search_addon"
                                tabindex="0" />
         
                         <input class="searchButton" name="Search"
                                style="font-size: 150%; background-position: 3px 5px; padding-left: 25px; padding-right: 10px"
-                               type="submit" value="Search"
+                               type="submit" value="Search" i18n:attributes="value label_search_package_releases"
                                accesskey="accesskeys-search" />
                 </form>
             </dd>
@@ -117,7 +131,8 @@
 
         <dl class="portlet" style="float:right; clear: right; width: 23em">
 
-            <dt class="portletHeader">Want to list your add-on package?</dt>
+            <dt class="portletHeader"
+                i18n:translate="heading_want_addon_package">Want to list your add-on package?</dt>
             <dd class="portletItem" style="text-align: center">
                 <form action="createObject" 
                       tal:condition="python: user.has_permission('PloneSoftwareCenter: Add Project', context)">
@@ -129,6 +144,7 @@
                            type="submit"
                            style="font-size: 110%; padding: 3px 5px 3px 26px; background-position: 10px 5px"
                            value="Add new project"
+                           i18n:attributes="value label_add_new_project"
                            />
                 </form>
 
@@ -142,7 +158,7 @@
                            type="submit"
                            style="font-size: 110%; padding: 3px 5px 3px 26px; background-position: 10px 5px"
                            value="Log in to add your project"
-                           i18n:attributes="value"
+                           i18n:attributes="value label_login_add_project"
                            />
                 </form>
             </dd>
@@ -161,14 +177,14 @@
           
         <div class="visualClear"><!----></div>
 
-        <h2 style="margin-top:1em">
+        <h2 style="margin-top:1em" i18n:translate="heading_addon_package_releases">
           Add-on Package Releases
         </h2>
 
         <form id="product_select" class="even" style="padding: 1em" action="#" tal:attributes="action string:${here/absolute_url}">
-            <label>Show</label>
+            <label i18n:translate="label_show">Show</label>
             <select name="getCategories">
-                <option value="">All categories</option>
+                <option value="" i18n:translate="label_all_categories">All categories</option>
                 <tal:block tal:repeat="cat here/availableCategories">
                     <option tal:define="csplit python:[s.strip() for s in cat.split('|')];
                                         cid python:csplit[0]"
@@ -177,7 +193,7 @@
                                             selected python:test(cid==currentCategory,'selected',nothing)" />
                 </tal:block>
             </select>
-            <label>for</label>
+            <label i18n:translate="label_for">for</label>
             <select name="getCompatibility">
                 <tal:block tal:repeat="version here/getAvailableVersions">
                     <option tal:content="version"
@@ -186,7 +202,8 @@
                         Plone 3.0
                     </option>
                 </tal:block>
-                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
+                <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)"
+                        i18n:translate="label_any_version">
                     Any version
                 </option>
                 <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
@@ -198,7 +215,8 @@
                 </tal:block>
             </select>
              
-            <input class="context" type="submit" name="product_search" value="Update" />
+            <input class="context" type="submit" name="product_search" value="Update"
+                   i18n:attributes="value label_update_form_package_releases" />
         </form>
 
         <div tal:define="results python:catalog(getCategories=currentCategory,
@@ -215,8 +233,8 @@
                 <strong i18n:translate="description_no_results_found">No results were found.</strong>
             </p>
         
-            <p class="discreet">
-                <span tal:replace="python:len(results)">234</span> releases matching your criteria, sorted with latest releases first.
+            <p class="discreet" i18n:translate="help_releases_matching_criteria">
+                <span i18n:name="results_releases_matching_criteria" tal:replace="python:len(results)">234</span> releases matching your criteria, sorted with latest releases first.
             </p>
         
             <div tal:condition="results"
@@ -258,7 +276,7 @@
                                 Project Description
                             </p>
                             <p>
-                                <strong>New in this release:</strong> <br />
+                                <strong i18n:translate="label_new_this_release">New in this release:</strong> <br />
                                 <span tal:content="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
                                     Release Description
                                 </span>
@@ -277,9 +295,13 @@
 
         <div class="visualClear"><!----></div>
         
-        <div class="poweredBy">
-            Powered by <img src="product_icon.gif"><a class="link-plain" 
-                href="http://plone.org/products/plonesoftwarecenter">Plone Software Center</a>
+        <div class="poweredBy" i18n:translate="label_powered_by_ploneorg">
+            Powered by <img src="product_icon.gif" alt="Plone Software Center's Home Page"
+                        i18n:attributes="alt label_psc_homepage">
+            <a class="link-plain" 
+               href="http://plone.org/products/plonesoftwarecenter"
+               title="Plone Software Center's Home Page"
+               i18n:attributes="title title_psc_homepage">Plone Software Center</a>
         </div>
 
     </div>

@@ -1,5 +1,9 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonesoftwarecenter">
 
 <body>
@@ -17,7 +21,7 @@
         </dd>
 
         <dd class="portletItem even" style="text-align: center">
-            <strong>Category:</strong> <span tal:replace="project_view/display_categories" />
+            <strong i18n:translate="label_portlet_project_info_category">Category:</strong> <span tal:replace="project_view/display_categories" />
 
             <span tal:replace="structure context/@@user_rating_view|nothing" />
             <span tal:replace="structure context/@@user_rating_set|nothing" />
@@ -28,6 +32,7 @@
               <p>
                 <a href=""
                    tal:attributes="href project_view/similar_search_url"
+                   i18n:translate="label_other_products_author"
                    >Other products by this author</a>
               </p>
             </tal:disabled>
@@ -38,7 +43,8 @@
                 enabled, it must also be re-enabled in schemata.py and
                 psc_releasefolder_view.pt.
                 
-                <div tal:condition="here/isRecommended">
+                <div tal:condition="here/isRecommended"
+                     i18n:translate="label_portlet_project_info_recommended">
                     This is a recommended project.
                 </div>
             </tal:disabled>

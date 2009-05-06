@@ -1,8 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xml:lang="en"
   lang="en"
-  i18n:domain="plonesoftwarecenter"
-  metal:use-macro="here/main_template/macros/master">
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="here/main_template/macros/master"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="plonesoftwarecenter">
 
 <head>
     <metal:css fill-slot="css_slot">
@@ -38,12 +41,14 @@
         </a>
     </div>
 
-    <p class="portalMessage warning" tal:condition="python:outdated and released">
+    <p class="portalMessage warning" tal:condition="python:outdated and released"
+       i18n:translate="label_message_no_longer_supported">
     This release is no longer supported! If you are using this release,
     please upgrade to a newer version if possible. 
     </p>
     
-    <p class="portalMessage info" tal:condition="not:final">
+    <p class="portalMessage info" tal:condition="not:final"
+       i18n:translate="label_message_not_final_release">
     This is not a final release. Experimental releases should only be used for 
     testing and development. Do not use these on production sites, and make 
     sure you have proper backups before installing.
@@ -55,7 +60,8 @@
     </p>
 
     <p class="discreet"
-       tal:condition="python: is_editable and not released">
+       tal:condition="python: is_editable and not released"
+       i18n:translate="label_message_not_released">
     A release needs to be published before it will show up in the download
     listings of the software center. You should make a release using the 
     'state' drop-down when work on the release is completed and downloadable
@@ -64,9 +70,12 @@
 
     <p tal:define="parent_url python:here.aq_parent.aq_parent.absolute_url()"
        tal:condition="parent_url">
-       <a href="" tal:attributes="href parent_url">
-       For additional information about this project, please visit the 
-       project page</a>.
+       <a href="" tal:attributes="href parent_url" title="The project page"
+          i18n:attributes="title title_release_additional_information">
+        <span i18n:translate="label_release_additional_information">
+          For additional information about this project, please visit the project page
+        </span>
+       </a>.
     </p>
 
     <h2 i18n:translate="heading_available_downloads">
@@ -127,7 +136,7 @@
     <div class="visualClear"></div>
 
     <tal:relnotes condition="here/getText">
-    <h2>Release Notes</h2>
+    <h2 i18n:translate="heading_release_notes">Release Notes</h2>
 
     <table class="vertical listing" style="float: right; margin: 0 0 1em 1em;">
         <tr tal:condition="here/compatibility">
@@ -192,9 +201,12 @@
       <tal:proposals define="proposals here/getRelatedFeatures;"
         condition="nocall:proposals"> 
 
-        <h2>Feature enhancements in this release</h2>
+        <h2
+            i18n:translate="heading_feature_enhancements_release">
+          Feature enhancements in this release
+        </h2>
 
-        <p>
+        <p i18n:translate="help_feature_enhancements_release">
         The following features are associated with this release:
         </p>
 
@@ -218,7 +230,7 @@
       </tal:proposals>
 
     <tal:changelog condition="here/getChangelog">
-      <h2>Change log</h2>
+      <h2 i18n:translate="heading_change_log">Change log</h2>
 
       <div tal:replace="structure here/getChangelog"></div>
     </tal:changelog>
