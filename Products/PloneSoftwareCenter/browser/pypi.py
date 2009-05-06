@@ -22,7 +22,10 @@ from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 
 from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 
-from zope.app.annotation.interfaces import IAnnotations
+try:
+    from zope.app.annotation.interfaces import IAnnotations
+except ImportError:
+    from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
 from zope.event import notify 
 
