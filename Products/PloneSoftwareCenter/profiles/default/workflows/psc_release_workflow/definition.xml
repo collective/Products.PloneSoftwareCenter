@@ -1,12 +1,14 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="psc_release_workflow"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="plone"
+             workflow_id="psc_release_workflow"
              title="PSC Release workflow"
              state_variable="review_state"
              initial_state="pre-release">
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <state state_id="alpha" title="Alpha release">
+ <state state_id="alpha" title="Alpha release" i18n:attributes="title">
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-beta"/>
   <exit-transition transition_id="release-candidate"/>
@@ -22,7 +24,7 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
- <state state_id="beta" title="Beta release">
+ <state state_id="beta" title="Beta release" i18n:attributes="title">
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-candidate"/>
   <exit-transition transition_id="release-final"/>
@@ -37,7 +39,7 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
- <state state_id="final" title="Final release">
+ <state state_id="final" title="Final release" i18n:attributes="title">
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="hide"/>
@@ -65,7 +67,7 @@
    <permission-role>Manager</permission-role>
   </permission-map>
  </state>
- <state state_id="pre-release" title="Unreleased">
+ <state state_id="pre-release" title="Unreleased" i18n:attributes="title">
   <exit-transition transition_id="release-alpha"/>
   <exit-transition transition_id="release-beta"/>
   <exit-transition transition_id="release-candidate"/>
@@ -81,7 +83,8 @@
   </permission-map>
  </state>
  <state state_id="release-candidate"
-        title="Release candidate">
+        title="Release candidate"
+        i18n:attributes="title">
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-final"/>
   <exit-transition transition_id="retract"/>
@@ -99,44 +102,50 @@
              new_state="hidden" trigger="USER"
              before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Hide release</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_hide_release">Hide release</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
  <transition transition_id="re-release" title="Re-release"
+             i18n:attributes="title"
              new_state="" trigger="USER"
              before_script="re_release_state"
-             after_script="">
-  <action url="" category="workflow">Re-release</action>
+             after_script="" >
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_re_release">Re-release</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="release-alpha"
-             title="Release alpha" new_state="alpha"
-             trigger="USER" before_script=""
+ <transition transition_id="release-alpha" 
+             title="Release alpha" i18n:attributes="title"
+             new_state="alpha" trigger="USER" before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Release alpha</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_alpha_release">Release alpha</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
  <transition transition_id="release-beta"
-             title="Release beta" new_state="beta"
-             trigger="USER" before_script=""
+             title="Release beta" i18n:attributes="title"
+             new_state="beta" trigger="USER" before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Release beta</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_release_beta">Release beta</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
  <transition transition_id="release-candidate"
-             title="Release candidate"
+             title="Release candidate" i18n:attributes="title"
              new_state="release-candidate" trigger="USER"
              before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Release candidate</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_release_candidate">Release candidate</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
@@ -145,7 +154,8 @@
              title="Release final" new_state="final"
              trigger="USER" before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Release final release</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_release_final_release">Release final release</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
@@ -154,7 +164,8 @@
              new_state="pre-release" trigger="USER"
              before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Retract release</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_retract_release">Retract release</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
@@ -163,7 +174,8 @@
              new_state="pre-release" trigger="USER"
              before_script=""
              after_script="release_new_state">
-  <action url="" category="workflow">Unhide release</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_unhide_release">Unhide release</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>

@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="psc_area_workflow"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="plone"
+             workflow_id="psc_area_workflow"
              title="PSC Area workflow"
              state_variable="review_state"
              initial_state="published">
@@ -8,7 +10,8 @@
  <permission>Modify portal content</permission>
  <permission>Add portal content</permission>
  <permission>PloneSoftwareCenter: Add Project</permission>
- <state state_id="closed" title="Closed to the public">
+ <state state_id="closed" title="Closed to the public"
+        i18n:attributes="title">
   <exit-transition transition_id="publish"/>
   <permission-map name="Access contents information"
                   acquired="True">
@@ -36,7 +39,8 @@
    <permission-role>Owner</permission-role>
   </permission-map>
  </state>
- <state state_id="published" title="Open for submissions">
+ <state state_id="published" title="Open for submissions"
+        i18n:attributes="title">
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information"
                   acquired="True">
@@ -72,7 +76,8 @@
              title="Open area to submissions"
              new_state="published" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Publish</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_publish">Publish</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
@@ -80,7 +85,8 @@
  <transition transition_id="retract" title="Close area"
              new_state="closed" trigger="USER"
              before_script="" after_script="">
-  <action url="" category="workflow">Retract</action>
+  <action url="" category="workflow"
+          i18n:translate="title_psc_wf_retract">Retract</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>

@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="psc_package_workflow"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="plone"
+             workflow_id="psc_package_workflow"
              title="PSC Project workflow"
              state_variable="review_state"
              initial_state="unapproved">
@@ -7,7 +9,8 @@
  <permission>View</permission>
  <permission>Modify portal content</permission>
  <permission>Add portal content</permission>
- <state state_id="pending" title="Pending approval">
+ <state state_id="pending" title="Pending approval"
+        i18n:attributes="title">
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="retract"/>
@@ -33,7 +36,8 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="published" title="Public">
+ <state state_id="published" title="Public"
+        i18n:attributes="title">
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information"
@@ -61,7 +65,8 @@
    <permission-role>Owner</permission-role>
   </permission-map>
  </state>
- <state state_id="unapproved" title="Unapproved project">
+ <state state_id="unapproved" title="Unapproved project"
+        i18n:attributes="title">
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="submit"/>
   <permission-map name="Access contents information"
@@ -120,7 +125,8 @@
              new_state="pending" trigger="USER"
              before_script="" after_script="">
   <action url="%(content_url)s/content_submit_form"
-          category="workflow">Submit for approval</action>
+          category="workflow"
+          i18n:translate="title_psc_wf_submit_approval">Submit for approval</action>
   <guard>
    <guard-permission>Request review</guard-permission>
   </guard>
