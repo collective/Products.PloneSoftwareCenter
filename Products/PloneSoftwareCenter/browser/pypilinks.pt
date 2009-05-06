@@ -1,12 +1,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
-      lang="en">
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plonehelpcenter">
+      
  <head>
   <title>List of available downloads</title>
  <body>
-  <p>This page is generated automatically by PloneSoftwareCenter</p>
+  <p i18n:translate="label_pypi_links">This page is generated automatically by PloneSoftwareCenter</p>
   <tal:block tal:repeat="file_ view/get_files">
-   <a tal:attributes="href file_/url" 
+   <a title=""
+      tal:attributes="href file_/url;
+                      title file_/title" 
       tal:content="file_/title">file</a><br/>
  </tal:block>
 
