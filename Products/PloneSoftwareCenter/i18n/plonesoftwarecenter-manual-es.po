@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter 1.5.1\n"
 "POT-Creation-Date: 2009-05-02 14:48-0430\n"
-"PO-Revision-Date: 2009-05-05 16:07-0400\n"
+"PO-Revision-Date: 2009-05-06 17:14-0400\n"
 "Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,12 +31,12 @@ msgstr "Nombre corto del contenedor - este debe ser 'documentación' para cumpli
 #. Default: "Title"
 #: ./content/docfolder.py:49
 msgid "label_doc_title"
-msgstr "Titulo"
+msgstr "Título"
 
 #. Default: "Enter a title for the container"
 #: ./content/docfolder.py:52
 msgid "help_doc_title"
-msgstr "Introduzca un titulo para el contenedor"
+msgstr "Introduzca un título para el contenedor"
 
 #. Default: "Description"
 #: ./content/docfolder.py:63
@@ -56,7 +56,7 @@ msgstr "Audiencias de la documentación"
 #. Default: "Audiences are optional. One type of audience on each line. If you leave this blank, audience information will not be used. Audience is typically 'End user', 'Developer' and similar."
 #: ./content/docfolder.py:81
 msgid "psc_audience_helpcenter"
-msgstr "Las audiencias son opcionales. Un tipo de audiencia en cada linea por favor. Si usted deja en blanco, la información de audiencia no será usada. La audiencia es tipicamente 'Usuario final', 'Desarrollo' y otras similares."
+msgstr "Las audiencias son opcionales. Un tipo de audiencia en cada linea por favor. Si usted deja en blanco, la información de audiencia no será usada. La audiencia es típicamente 'Usuario final', 'Desarrollo' y otras similares."
 
 #. Default: "File Description"
 #: ./content/downloadablefile.py:40
@@ -142,7 +142,7 @@ msgstr "La descripción completa del proyecto."
 #. Default: "Trove classifiers for this item."
 #: ./content/project.py:88
 msgid "help_classifiers"
-msgstr ""
+msgstr "Clasificadores Trove para este tema."
 
 #. Default: "Categories"
 #: ./content/project.py:102
@@ -156,9 +156,8 @@ msgstr "Categorías en la que este elemento puede aparecer."
 
 #. Default: "Classifiers that this item should appear in."
 #: ./content/project.py:119
-#, fuzzy
 msgid "help_classifiers"
-msgstr "Clasificación en la cual este elemento podrá parecer."
+msgstr "Clasificadores que este punto debe aparecer."
 
 #. Default: "Distutils id"
 #: ./content/project.py:129
@@ -181,7 +180,7 @@ msgstr "Identificador de Distutils secundarios"
 #. Default: "Other Distutils names managed by this project."
 #: ./content/project.py:146
 msgid "help_project_distutils_secondary_id"
-msgstr ""
+msgstr "Otros nombres Distutils gestionados por este proyecto."
 
 #. Default: "Self-Certification Checklist"
 #: ./content/project.py:159
@@ -190,9 +189,8 @@ msgstr "Lista de Auto-verificación"
 
 #. Default: "Check which criteria this project fulfills."
 #: ./content/project.py:161
-#, fuzzy
 msgid "help_self_certification_checklist"
-msgstr "Verificar cual criterio para este proyecto fulfills."
+msgstr "Comprobar que cumple con criterios de este proyecto."
 
 #. Default: "Approved"
 #: ./content/project.py:172
@@ -201,9 +199,8 @@ msgstr "Aprobado"
 
 #. Default: "Indicate whether this project is approved by product reviewers."
 #: ./content/project.py:174
-#, fuzzy
 msgid "description_approved"
-msgstr "Indicar whether este proyecto es aprobado por revisores de productos."
+msgstr "Indique si este proyecto es aprobado por los productos encuestados."
 
 #. Default: "Review Comment"
 #: ./content/project.py:185
@@ -222,9 +219,8 @@ msgstr "Versiones no soportadas"
 
 #. Default: "For documentation items and releases, users will be warned if the relevant version is in the list on the right."
 #: ./content/project.py:200
-#, fuzzy
 msgid "description_unsupported_versions"
-msgstr "Para la documentación de los temas y versiones, "
+msgstr "Para la documentación y los artículos de prensa, el usuario será avisado si la versión está en la lista de la derecha."
 
 #. Default: "Contact address"
 #: ./content/project.py:210
@@ -350,7 +346,6 @@ msgstr "Tipos de propuesta"
 
 #. Default: "The type of proposal this is."
 #: ./content/proposal.py:100
-#, fuzzy
 msgid "help_proposal_types"
 msgstr "El tipo de esta propuesta es."
 
@@ -387,18 +382,17 @@ msgstr "Si usted tiene algunas definiciones para su propuesta, por favor incluir
 #. Default: "Assumptions"
 #: ./content/proposal.py:164
 msgid "label_proposal_assumptions"
-msgstr ""
+msgstr "Supuestos"
 
 #. Default: "Key assumptions made. What is being covered by and what is intentionally left out of the scope of the proposal."
 #: ./content/proposal.py:166
 msgid "help_proposal_assumptions"
-msgstr ""
+msgstr "Clave hipótesis formuladas. ¿Qué se está cubierto? y que es intencionalmente se esta dejando fuera del alcance de la propuesta?."
 
 #. Default: "How should it be done?"
 #: ./content/proposal.py:184
-#, fuzzy
 msgid "help_proposal_implementation"
-msgstr "¿Cómo debería terminar?"
+msgstr "¿Cómo se debe hacer?"
 
 #. Default: "Implementation"
 #: ./content/proposal.py:182
@@ -407,9 +401,8 @@ msgstr "Implementación"
 
 #. Default: "Deliverables"
 #: ./content/proposal.py:199
-#, fuzzy
 msgid "label_proposal_deliverables"
-msgstr "Deliberaciones"
+msgstr "Entregables"
 
 #. Default: ""
 #. "What code and documentation needs to be produced? "
@@ -421,15 +414,14 @@ msgstr "¿Qué código fuente y documentación necesita para producirlo? Element
 #. Default: "Risks"
 #: ./content/proposal.py:217
 msgid "label_proposal_risks"
-msgstr ""
+msgstr "Riesgos"
 
 #. Default: ""
 #. "What are the risks of implementing this proposal? "
 #. "What incompatibilities can it cause?"
 #: ./content/proposal.py:219
-#, fuzzy
 msgid "help_proposal_risks"
-msgstr "¿Qué the risks de la implementación de esta propuesta?, ¿Que incompatibilidades puede causar eso?"
+msgstr "¿Qué the riesgos de la implementación de esta propuesta?, ¿Qué puede causar incompatibilidades?"
 
 #. Default: "Progress log"
 #: ./content/proposal.py:235
@@ -438,9 +430,8 @@ msgstr "Registro de procesos"
 
 #. Default: "Enter progress updates here as work is done."
 #: ./content/proposal.py:237
-#, fuzzy
 msgid "help_proposal_progress_log"
-msgstr "Introduzca el proceso de actualizaciones aquí como trabaja."
+msgstr "Introduzca aquí las actualizaciones de los progresos del trabajo está hecho."
 
 #. Default: "Participants"
 #: ./content/proposal.py:252
@@ -459,7 +450,6 @@ msgstr "Nombre de rama/Dirección URL"
 
 #. Default: "The URL for the branch development is done on, if applicable."
 #: ./content/proposal.py:268
-#, fuzzy
 msgid "help_proposal_branch_name_url"
 msgstr "La dirección URL para la rama de desarrollo terminada, si aplica."
 
@@ -481,12 +471,12 @@ msgstr "Nombre corto del contenedor - este debe ser 'mapa de ruta' para cumplir 
 #. Default: "Title"
 #: ./content/proposalfolder.py:48
 msgid "label_proposalfolder_title"
-msgstr "Titulo"
+msgstr "Título"
 
 #. Default: "Enter a title for the container"
 #: ./content/proposalfolder.py:50
 msgid "help_proposalfolder_title"
-msgstr "Introduzca un titulo para el contenedor"
+msgstr "Introduzca un título para el contenedor"
 
 #. Default: "Description"
 #: ./content/proposalfolder.py:62
@@ -505,9 +495,8 @@ msgstr "Mapa de ruta de tipos propuestos"
 
 #. Default: "You will have a roadmap available in your project, and you can add categories of enhancement specifications below."
 #: ./content/proposalfolder.py:78
-#, fuzzy
 msgid "help_roadmap_types"
-msgstr "Usted tendrá un mapa de ruta disponible en su proyecto, y usted puede agregar categorías de enhancement specifications below."
+msgstr "Usted tendrá un mapa de ruta disponible en su proyecto, y usted puede agregar categorías de especificaciones mejora a continuación."
 
 #. Default: "Version"
 #: ./content/release.py:41
@@ -521,9 +510,8 @@ msgstr "Versión"
 #. "state as this is handled by the "
 #. "workflow. Example: '0.1'."
 #: ./content/release.py:43
-#, fuzzy
 msgid "help_release_version"
-msgstr "Este campo es también usado en la dirección URL del elemento, por favor no usar espacios ni caracteres especiales. También, por favor NO incluir el estado alfa, beta, o versión candidata como este state as this is handled por el flujo de trabajo. Ejemplo: '0.1'."
+msgstr "Este campo es también usado en la dirección URL del elemento, por favor no usar espacios ni caracteres especiales. También, por favor NO incluir el estado alfa, beta, o versión candidata este es manejado por el flujo de trabajo. Ejemplo:'0 .1 '."
 
 #. Default: "Release number"
 #: ./content/release.py:77
@@ -607,35 +595,33 @@ msgstr "Correo electrónico del Administrador de Versión."
 
 #. Default: "Proposals freeze date"
 #: ./content/release.py:181
-#, fuzzy
 msgid "label_release_improvement_proposal_freeze_date"
-msgstr "Fecha de congelación de propuesta"
+msgstr "Fecha de congelación de las propuestas"
 
 #. Default: "Date after which no more Improvement Proposals will be associated with the release"
 #: ./content/release.py:183
 msgid "help_release_improvement_proposal_freeze_date"
-msgstr ""
+msgstr "Fecha a partir de los cuales no se asociará más propuestas de mejoras con la versión"
 
 #. Default: "Feature freeze date"
 #: ./content/release.py:194
-#, fuzzy
 msgid "label_release_feature_freeze_date"
-msgstr "Fecha Feature freeze"
+msgstr "Fecha de congelación de la característica"
 
 #. Default: "Date after which no new features will added to the release"
 #: ./content/release.py:196
 msgid "help_release_feature_freeze_date"
-msgstr ""
+msgstr "Fecha a partir de la cual no se añaden nuevas características a la versión"
 
 #. Default: "(Expected) Release Date"
 #: ./content/release.py:207
 msgid "label_release_expected_date"
-msgstr ""
+msgstr "Fecha de publicación (Esperado)"
 
 #. Default: "Date on which a final release is expected to be made or was made"
 #: ./content/release.py:209
 msgid "help_release_expected_date"
-msgstr ""
+msgstr "Fecha en la que una versión final se espera que se haga o ya se hizo"
 
 #. Default: "License"
 #: ./content/release.py:221
@@ -690,12 +676,12 @@ msgstr "Nombre corto del contenedor - este debe ser 'versión' para cumplir con 
 #. Default: "Title"
 #: ./content/releasefolder.py:45
 msgid "label_release_title"
-msgstr "Titulo"
+msgstr "Título"
 
 #. Default: "Enter a title for the container"
 #: ./content/releasefolder.py:47
 msgid "help_release_title"
-msgstr "Introduzca un titulo para el contenedor"
+msgstr "Introduzca un título para el contenedor"
 
 #. Default: "Description"
 #: ./content/releasefolder.py:59
@@ -713,9 +699,8 @@ msgstr "Introduzca una descripción del contenedor"
 #. "The Id must be unique, and Trove id corresponds"
 #. "to the Trove value"
 #: ./content/root.py:56
-#, fuzzy
 msgid "help_classifiers_vocab"
-msgstr "Define the Trove classifiers.The format is 'Id | Title | Trove id'.The Id must be unique, and Trove id correspondsto the Trove value"
+msgstr "Definir los clasificadores Trove. El formato es 'ID | Título | ID Trove'. El identificador debe ser único, y el identificador de Trove debe corresponder al valor Trove."
 
 #. Default: ""
 #. "Indicate whether the Software Center uses the "
@@ -723,15 +708,13 @@ msgstr "Define the Trove classifiers.The format is 'Id | Title | Trove id'.The I
 #. "In that case it gets all lines starting with "
 #. "'Topic' and builds the category list with them."
 #: ./content/root.py:72
-#, fuzzy
 msgid "description_use_classifier"
-msgstr "Indicate whether the Software Center uses the Classifiers field to display projects. In that case it gets all lines starting with 'Topic' and builds the category list with them."
+msgstr "Indicar si el Centro de Software usa el campo de clasificadores para mostrar los proyectos. En ese caso se pone todas las líneas comenzando con 'Topic' y crea la lista de categorías con ellos."
 
 #. Default: "Define the available categories for classifying the projects. The format is Short Name | Long name | Description. The id must be unique."
 #: ./content/root.py:93
-#, fuzzy
 msgid "help_categories_vocab"
-msgstr "Define la categorías disponibles para clasificar el proyecto. El formato es Nombre Corto | Nombre largo | Descripción. El identificador debe ser único."
+msgstr "Definir las categorías disponibles para la clasificación de los proyectos. El formato es Nombre Corto | Nombre largo | Descripción. El identificador debe ser único."
 
 #. Default: "Description"
 #: ./content/root.py:41
@@ -745,9 +728,8 @@ msgstr "Descripción para el centro de software."
 
 #. Default: "Classifiers"
 #: ./content/root.py:54
-#, fuzzy
 msgid "label_classifiers"
-msgstr "Clasificaciones"
+msgstr "Clasificadores"
 
 #. Default: "Use Classifiers to display Categories (with Topic :: *)."
 #: ./content/root.py:69
@@ -767,7 +749,7 @@ msgstr "Licencias disponibles"
 #. Default: "Define the available licenses for software releases. The format is Short Name | Title | URL."
 #: ./content/root.py:116
 msgid "help_licenses_vocab"
-msgstr "Define las licencias disponibles para las versiones de software. El formato es Nombre corto | Titulo | Direccón URL."
+msgstr "Define las licencias disponibles para las versiones de software. El formato es Nombre corto | Título | Direccón URL."
 
 #. Default: "Versions"
 #: ./content/root.py:135
@@ -801,9 +783,8 @@ msgstr "Introduzca los nombres adicionales (no necesita incluir el dueño actual
 
 #. Default: "Define the available criteria for developers to self-certify their projects."
 #: ./content/root.py:187
-#, fuzzy
 msgid "help_self_certification_criteria_vocab"
-msgstr "Define los criterios disponibles para desarrolladores para auto-certificar sus proyectos."
+msgstr "Definir los criterios disponibles por los desarrolladores para auto-certificar sus proyectos."
 
 #. Default: "Self-Certification Checklist"
 #: ./content/root.py:185
@@ -812,20 +793,18 @@ msgstr "Lista de Auto-verificación"
 
 #. Default: "Featured Project"
 #: ./content/root.py:200
-#, fuzzy
 msgid "label_featured_project"
-msgstr "Proyecto caracterizado"
+msgstr "Proyecto destacado"
 
 #. Default: "Featured Project Release"
 #: ./content/root.py:214
-#, fuzzy
 msgid "label_featured_project_release"
-msgstr "Versión de proyecto caracterizado"
+msgstr "Lanzamiento del proyecto destacado"
 
 #. Default: "Featured project release for the featured project of the software center (for use with the plonesoftwarecenter_ploneorg template)."
 #: ./content/root.py:216
 msgid "help_featured_project"
-msgstr ""
+msgstr "Versión del proyecto destacado para el centro de software (para usar con la plantilla plonesoftwarecenter_ploneorg)."
 
 #. Default: "Storage strategy"
 #: ./content/root.py:227

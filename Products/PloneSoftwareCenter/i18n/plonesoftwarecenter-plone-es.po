@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter 1.5\n"
-"POT-Creation-Date: 2009-05-06 01:50+0000\n"
-"PO-Revision-Date: 2009-05-05 21:21-0400\n"
+"POT-Creation-Date: 2009-05-06 20:15+0000\n"
+"PO-Revision-Date: 2009-05-06 17:20-0400\n"
 "Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Versión inicial"
 #. Default: "Being discussed"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Being discussed"
-msgstr "Iniciada la discución"
+msgstr "Iniciada la discusión"
 
 #. Default: "Beta release"
 #: ./profiles/default/workflows/psc_release_workflow/definition.xml
@@ -55,9 +55,8 @@ msgstr "Cerrado a el público"
 
 #. Default: "Completed and merged"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
-#, fuzzy
 msgid "Completed and merged"
-msgstr "Completo y comparado"
+msgstr "Completo y combinaron"
 
 #. Default: "Contains a link to a downloadable file for a Release."
 #: ./profiles/default/types/PSCFileLink.xml
@@ -71,7 +70,6 @@ msgstr "Contiene el archivo de descarga para la versión."
 
 #. Default: "Deferred"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
-#, fuzzy
 msgid "Deferred"
 msgstr "Diferido"
 
@@ -152,9 +150,8 @@ msgstr "Re-versionar"
 
 #. Default: "Ready for merge"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
-#, fuzzy
 msgid "Ready for merge"
-msgstr "Listo para comparar"
+msgstr "Listo para combinar"
 
 #. Default: "Rejected"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
@@ -221,9 +218,8 @@ msgstr "Sin versión"
 
 #. Default: "What used to be a PLIP."
 #: ./profiles/default/types/PSCImprovementProposal.xml
-#, fuzzy
 msgid "What used to be a PLIP."
-msgstr "¿Qué uso para un PLIP?"
+msgstr "Lo que solía ser un PLIP"
 
 #: ./content/validators.py:91
 msgid "You must provide a list of package names"
@@ -240,19 +236,16 @@ msgstr "Usted no puede agredar versiones, documentación o caracteristica de pro
 
 #. Default: "Expected Release"
 #: ./skins/plonesoftwarecenter/psc_roadmap.pt:126
-#, fuzzy
 msgid "heading_expecteddate"
 msgstr "En espera de publicación"
 
 #. Default: "Feature freeze"
 #: ./skins/plonesoftwarecenter/psc_roadmap.pt:120
-#, fuzzy
 msgid "heading_featurefreezedate"
 msgstr "Función de congelación"
 
 #. Default: "Proposal freeze"
 #: ./skins/plonesoftwarecenter/psc_roadmap.pt:114
-#, fuzzy
 msgid "heading_improvementproposalfreezedate"
 msgstr "Propuesta de congelación"
 
@@ -584,7 +577,7 @@ msgstr "Desocultar versión"
 #. Default: "Un-merge"
 #: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_unmerge"
-msgstr ""
+msgstr "Descombinar"
 
 #. Default: "View rejected and deferred proposals"
 #: ./skins/plonesoftwarecenter/psc_roadmap.pt:272

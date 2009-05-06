@@ -1,12 +1,12 @@
 # translation of plonesoftwarecenter.po to Spanish
 # Carlos Marrero <cdmarrero2040@gmail.com>, 2008, 2009.
 # Leonardo Caballero <leonardocaballero@gmail.com>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter 1.5\n"
-"POT-Creation-Date: 2009-05-06 01:41+0000\n"
-"PO-Revision-Date: 2009-05-05 16:20-0400\n"
+"POT-Creation-Date: 2009-05-06 20:15+0000\n"
+"PO-Revision-Date: 2009-05-06 15:48-0400\n"
 "Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Sin versiones encontradas."
 #. Default: "This listing will prioritize final releases, but will list the latest published release of any other type if no final release exists. If you list the source code repository in this project, it will show up, so people know where to go to check out in the code in the meantime."
 #: ./skins/plonesoftwarecenter/psc_project_view.pt:81
 msgid "description_prioritize_releases"
-msgstr "Este listado dará prioridad a la versión final, pero listará la última versión publicada de cualquier tipo si no existe una versión final disponible. Si usted lista el código fuente del repositorio en este proyecto, será mostrado, mucha gente sabe donde ir a comprobar en el código in the meantime."
+msgstr "Este listado dará prioridad a la versión final, pero listará la última versión publicada de cualquier tipo si no existe una versión final disponible. Si usted lista el código fuente del repositorio en este proyecto, se mostrará, por lo que la gente sepa a dónde ir, para comprobar en el código en el ínterin."
 
 #. Default: "Use the Add menu to add software files."
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:93
@@ -113,7 +113,7 @@ msgstr "Versiones experimentales"
 #. Default: "Feature enhancements in this release"
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:204
 msgid "heading_feature_enhancements_release"
-msgstr "Caracteristicas habilitadas en esta versión"
+msgstr "Características habilitadas en esta versión"
 
 #. Default: "License"
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:162
@@ -238,7 +238,7 @@ msgstr "Revisión Independiente"
 #. Default: "This release is no longer supported! If you are using this release, please upgrade to a newer version if possible."
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:44
 msgid "label_message_no_longer_supported"
-msgstr "¡Esta versión is no longer soportado!. Si usted esta usando esta versión, por favor actualice a una nueva versión si es posible."
+msgstr "¡Esta versión ya no es compatible!. Si usted esta usando esta versión, por favor, actualice a la versión más reciente, si es posible."
 
 #. Default: "This is not a final release. Experimental releases should only be used for testing and development. Do not use these on production sites, and make sure you have proper backups before installing."
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:50
@@ -327,9 +327,8 @@ msgstr "Dirección de correo electrónico"
 
 #. Default: "If you are interested in getting the source code of this project, you can get it from the"
 #: ./skins/plonesoftwarecenter/psc_project_view.pt:55
-#, fuzzy
 msgid "label_resource_getting_code"
-msgstr "Si usted esta interesado en obtener el código fuente de este proyecto, usted puede obtenerlo desde el <a href=\"${DYNAMIC_CONTENT}\" class=\"link-plain\" title=\"x\"> <span>x</span> </a>."
+msgstr "Si usted está interesado en obtener el código fuente de este proyecto, lo puede obtener a partir del "
 
 #. Default: "Issue tracker"
 #: ./skins/plonesoftwarecenter/portlet_project_resources.pt:64
@@ -408,9 +407,8 @@ msgstr "Leer más..."
 
 #. Default: "Current release for the project"
 #: ./skins/plonesoftwarecenter/psc_project_view.pt:99
-#, fuzzy
 msgid "title_latest_release_project"
-msgstr "Actual versión para este proyecto"
+msgstr "Versión actual del proyecto"
 
 #. Default: "Subscribe to updates for this project"
 #: ./skins/plonesoftwarecenter/portlet_project_resources.pt:105

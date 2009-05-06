@@ -1,10 +1,10 @@
 # translation of plonesoftwarecenter-plone.po to Spanish
 # Leonardo Caballero <leonardocaballero@gmail.com>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter 1.5\n"
-"POT-Creation-Date: 2009-05-06 01:41+0000\n"
+"POT-Creation-Date: 2009-05-06 20:15+0000\n"
 "PO-Revision-Date: 2009-05-05 21:12-0400\n"
 "Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
@@ -120,7 +120,7 @@ msgid "label_psc_ploneorg_latest_release"
 msgstr "Última versión: ${title_psc_ploneorg_latest_release}"
 
 #. Default: "This page is generated automatically by PloneSoftwareCenter"
-#: ./browser/pypilinks.pt:13
+#: ./namespace/pypisimple.pt:13
 msgid "label_pypi_links"
 msgstr "Esta página es generada automaticamente por PloneSoftwareCenter"
 
