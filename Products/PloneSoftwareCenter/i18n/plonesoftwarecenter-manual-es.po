@@ -162,7 +162,7 @@ msgstr "Clasificadores que este punto debe aparecer."
 #. Default: "Distutils id"
 #: ./content/project.py:129
 msgid "label_project_distutils_main_id"
-msgstr "Identificador de Distutils"
+msgstr "Identificador de Utilidades de distribución (Distutils)"
 
 #. Default: ""
 #. " When the package that has this id is uploaded"
@@ -175,12 +175,12 @@ msgstr "Cuando el paquete que tiene este identificador es subido o registrado, l
 #. Default: "Distutils secondary Ids"
 #: ./content/project.py:144
 msgid "label_project_distutils_secondary_ids"
-msgstr "Identificador de Distutils secundarios"
+msgstr "Identificadorde Utilidades secundarios de distribución (Distutils)"
 
 #. Default: "Other Distutils names managed by this project."
 #: ./content/project.py:146
 msgid "help_project_distutils_secondary_id"
-msgstr "Otros nombres Distutils gestionados por este proyecto."
+msgstr "Otros nombres de Utilidades de distribución (Distutils) gestionados por este proyecto."
 
 #. Default: "Self-Certification Checklist"
 #: ./content/project.py:159
