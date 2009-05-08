@@ -33,7 +33,7 @@ class TestStorage(PSCTestCase):
         vocab = getFileStorageVocab(self.release)
         found = False
         for index, title in vocab:
-            if index == u'archetype' and title == 'Archetypes':
+            if index == u'archetype' and title == "Archetypes (stores releases via Archetype's AttributeStorage)":
                 found = True
                 break
         self.assert_(found)
