@@ -63,7 +63,11 @@
                 </div>
             </tal:noreleases>
 
+
 <tal:comment replace="nothing">
+
+<!-- XXX Why does this release_listing macro fail w/traversal error? It appears to be a valid macro. -->
+
             <tal:block define="global releases upcoming" condition="nocall:upcoming">
                 <h2 i18n:translate="heading_experimental_releases">Experimental Releases</h2>
                 <metal:macro use-macro="context/psc_release_listing/macros/release_listing"/>
@@ -73,9 +77,78 @@
                 <h2 i18n:translate="heading_stable_releases">Stable Releases</h2>
                 <metal:macro use-macro="context/psc_release_listing/macros/release_listing"/>
             </tal:block>
+
 </tal:comment>
-            
-        </tal:releases>
+
+            <tal:release_iter repeat="release previous">
+                <div class="visualIEFloatFix" style="margin-top: 1em;">
+                    <dl>
+                        <dt>
+                            <a href="#" title=""
+                               tal:content="release/Title"
+                               tal:attributes="href release/absolute_url;
+                                               title release/Title">Ploneboard 1.0</a>
+
+                            <tal:released condition="release/EffectiveDate">
+                            (<span tal:replace="python:context.toLocalizedTime(release.EffectiveDate())">
+                            Feb 1, 2009
+                            </span>)
+                            </tal:released>
+                        </dt>
+
+                        <dd>
+                            <span tal:replace="release/Description">
+                                Main focus for this release is blah blah.
+                            </span>
+
+                            <br />
+                            <a href="#" title="Read more&hellip;"
+                               i18n:attributes="title label_read_more"
+                               tal:attributes="href release/absolute_url">
+                               <span i18n:translate="label_read_more">Read more&hellip;</span>
+                            </a>
+
+                        </dd>
+                    </dl>
+                </div>
+                <div class="visualClear"></div>
+            </tal:release_iter>
+
+            <tal:release_iter repeat="release upcoming">
+                <div class="visualIEFloatFix" style="margin-top: 1em;">
+                    <dl>
+                        <dt>
+                            <a href="#" title=""
+                               tal:content="release/Title"
+                               tal:attributes="href release/absolute_url;
+                                               title release/Title">Ploneboard 1.0</a>
+
+                            <tal:released condition="release/EffectiveDate">
+                            (<span tal:replace="python:context.toLocalizedTime(release.EffectiveDate())">
+                            Feb 1, 2009
+                            </span>)
+                            </tal:released>
+                        </dt>
+
+                        <dd>
+                            <span tal:replace="release/Description">
+                                Main focus for this release is blah blah.
+                            </span>
+
+                            <br />
+                            <a href="#" title="Read more&hellip;"
+                               i18n:attributes="title label_read_more"
+                               tal:attributes="href release/absolute_url">
+                               <span i18n:translate="label_read_more">Read more&hellip;</span>
+                            </a>
+
+                        </dd>
+                    </dl>
+                </div>
+                <div class="visualClear"></div>
+            </tal:release_iter>
+         
+     </tal:releases>
 
     </div>
 

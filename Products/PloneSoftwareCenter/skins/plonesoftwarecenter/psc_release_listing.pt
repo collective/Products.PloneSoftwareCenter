@@ -23,7 +23,7 @@
                 <dt>
                     <a href="#" title=""
                        tal:content="release/Title"
-                       tal:attributes="href release/absolute_url,
+                       tal:attributes="href release/absolute_url;
                                        title release/Title">Ploneboard 1.0</a>
 
                     <tal:released condition="release/EffectiveDate">
