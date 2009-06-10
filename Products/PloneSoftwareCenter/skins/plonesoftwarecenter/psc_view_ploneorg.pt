@@ -41,7 +41,7 @@
 
 	<div class="grid-cell position-leftmost width-two-thirds">
 		<div class="splash" id="splash-downloads"
-			tal:define="download_url python: here.getFeaturedProject().absolute_url()"
+			tal:define="download_url here/getFeaturedProject/absolute_url|nothing"
 			tal:condition="python: here.getFeaturedProject()">
 
 			<h1>Get <span tal:replace="python: here.getFeaturedProject().Title()">Project</span> for Your Platform</h1>
