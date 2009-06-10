@@ -80,7 +80,8 @@
 
 </tal:comment>
 
-            <tal:release_iter repeat="release previous">
+            <tal:release_iter repeat="release upcoming">
+                <h2 i18n:translate="heading_experimental_releases">Experimental Releases</h2>
                 <div class="visualIEFloatFix" style="margin-top: 1em;">
                     <dl>
                         <dt>
@@ -114,7 +115,8 @@
                 <div class="visualClear"></div>
             </tal:release_iter>
 
-            <tal:release_iter repeat="release upcoming">
+            <tal:release_iter repeat="release previous">
+                <h2 i18n:translate="heading_stable_releases">Stable Releases</h2>
                 <div class="visualIEFloatFix" style="margin-top: 1em;">
                     <dl>
                         <dt>
