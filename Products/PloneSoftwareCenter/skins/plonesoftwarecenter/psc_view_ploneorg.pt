@@ -63,43 +63,31 @@
 <div class="grid-row">
 	<div class="grid-cell position-leftmost width-two-thirds">
 
-
 		<div class="pane">
 
+			<h2>Add-on Product Releases</h2> 
 
-			<h2>Add-on Product Releases <!-- <a href="" class="versions">for Plone 3 &#9660;</a> --></h2>
-
-			<div class="pagesearch">
-				<form name="searchform" id="searchform"
-					action="/search" tal:attributes="action string:${portal_url}/search">
-					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
-					<input type="hidden" name="portal_type" value="PSCProject" />
-					<input name="SearchableText" 
-					  type="search"
-						class="inputLabel"
-						size="25"
-						title="Search add-ons&hellip;"
-				/>
-				</form>
-			</div>
+            <div tal:content="context/REQUEST/form" />
 
 			<div id="sort-by">
-				<form id="product_select" style="margin-bottom: 1em" action="#" 
-					tal:attributes="action string:${here/absolute_url}">
+				<form id="product_select" style="margin-bottom: 1em" tal:attributes="action string:${here/absolute_url}/search">
 					<label class="hiddenStructure">Show</label>
-
-					<select name="getCategories">
+					<select name="getCategories" onchange="form.submit()" >
 						<option value="">All categories</option>
 						<tal:block tal:repeat="cat here/availableCategories">
-						<option tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
-							tal:content="python:csplit[1]"
-							tal:attributes="value cid;
-								selected python:test(cid==currentCategory,'selected',nothing)" />
+                            <option tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
+                                tal:content="python:csplit[1]"
+                                tal:attributes="value cid; selected python:test(cid==currentCategory,'selected',nothing)" />
 						</tal:block>
 					</select>
+					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
+					<input type="hidden" name="portal_type" value="PSCProject" />
+					<input type="search" name="SearchableText" value=""
+                        class="inputLabel" size="25" 
+                    />
+                    <input type="submit" value="Search" />
 				</form>
 			</div>
-
 
 			<div class="" id="categories"
 				tal:define="results python:catalog(getCategories=currentCategory,
