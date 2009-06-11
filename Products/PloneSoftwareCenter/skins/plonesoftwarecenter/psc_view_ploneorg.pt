@@ -80,7 +80,7 @@
                                 tal:attributes="value cid; selected python:test(cid==currentCategory,'selected',nothing)" />
 						</tal:block>
 					</select>
-					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
+					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" /> &nbsp;
 					<input type="hidden" name="portal_type" value="PSCProject" />
 					<input type="search" name="SearchableText" value=""
                         class="inputLabel" size="25" 
