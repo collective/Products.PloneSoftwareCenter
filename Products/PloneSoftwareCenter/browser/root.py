@@ -121,12 +121,57 @@ class SoftwareCenterView(BrowserView):
                            rss_url = rss_url, releases = releases,
                            num_projects = num_projects, id = id)
 
-
     def featured_project(self):
         """See if we have a featured project 
         """
         try:
-            return self.context.getField('featuredProject')
+            if self.context.getFeaturedProject() is not '':
+                return self.context.getFeaturedProject()
+        except:
+            return False
+
+    def featured_project_title(self):
+        """See if we have a featured project title
+        """
+        try:
+            if self.context.getFeaturedProject() is not '':
+                return self.context.getFeaturedProject().Title()
+        except:
+            return False
+
+    def featured_project_release(self):
+        """See if we have a featured project release
+        """
+        try:
+            if self.context.getFeaturedProjectRelease() is not '':
+                return self.context.getFeaturedProjectRelease()
+        except:
+            return False
+
+    def featured_project_release_url(self):
+        """See if we have a featured project release download url
+        """
+        try:
+            if self.context.getFeaturedProjectRelease() is not '':
+                return self.context.getFeaturedProjectRelease().absolute_url()
+        except:
+            return False
+
+    def featured_project_release_id(self):
+        """See if we have a featured project release download url
+        """
+        try:
+            if self.context.getFeaturedProjectRelease() is not '':
+                return self.context.getFeaturedProjectRelease().getId()
+        except:
+            return False
+
+    def featured_project_release_date(self):
+        """See if we have a featured project release download url
+        """
+        try:
+            if self.context.getFeaturedProjectRelease() is not '':
+                return self.context.getFeaturedProjectRelease().effective_date.strftime('%B %Y')
         except:
             return False
 

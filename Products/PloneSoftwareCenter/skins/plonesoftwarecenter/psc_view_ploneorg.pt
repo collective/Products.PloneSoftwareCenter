@@ -39,23 +39,44 @@
 		</div>
 	</div>
 
-	<div class="grid-cell position-leftmost width-two-thirds">
-		<div class="splash" id="splash-downloads"
-			tal:define="download_url here/getFeaturedProject/absolute_url|nothing"
-			tal:condition="python: here.getFeaturedProject()">
+    <tal:featured_project tal:condition="psc/featured_project">
 
-			<h1>Get <span tal:replace="python: here.getFeaturedProject().Title()">Project</span> for Your Platform</h1>
+        <div class="grid-cell position-leftmost width-two-thirds">
+            <div class="splash" id="splash-downloads"
+                tal:define="download_url psc/featured_project_release_url">
 
-			<p>Latest release: 
-				<span tal:replace="python: here.getFeaturedProject().Title()">Project</span> 
-				<span tal:replace="python: here.getFeaturedProjectRelease().getId()">3.4.5</span>
-				(<span tal:replace="python: here.getFeaturedProjectRelease().effective_date.strftime('%B %Y')">December 2008</span>) </p>
-			<a id="splash-download-plone"
-				href=""
-				tal:attributes="href download_url">Download Plone</a>
-			<div id="splash-download-package"></div>
-		</div>
-	</div>
+                <h1>Get 
+                    <span tal:replace="psc/featured_project_title">Project</span>
+                        For Your Platform
+                </h1>
+
+                <tal:featured_project_release tal:condition="psc/featured_project_release">
+
+                    <p>Latest release: 
+                        <span tal:replace="psc/featured_project_title">
+                            Project
+                        </span> 
+
+                        <span tal:replace="psc/featured_project_release_id">
+                            3.4.5
+                        </span>
+
+                        (<span tal:replace="psc/featured_project_release_date">
+                            December 2008
+                        </span>)
+                    </p>
+
+                    <a id="splash-download-plone" href="" tal:attributes="href download_url">Download Plone</a>
+
+                    <div id="splash-download-package"></div>
+
+                </tal:featured_project_release>
+
+            </div>
+
+        </div>
+
+    </tal:featured_project>
 	
 </div> <!-- End row -->
 
@@ -67,7 +88,6 @@
 
 			<h2>Add-on Product Releases</h2> 
 
-            <div tal:content="context/REQUEST/form" />
 
 			<div id="sort-by">
 				<form id="product_select" style="margin-bottom: 1em" tal:attributes="action string:${here/absolute_url}/search">

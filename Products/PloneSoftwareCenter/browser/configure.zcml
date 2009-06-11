@@ -8,7 +8,10 @@
       class=".root.SoftwareCenterView"
       permission="zope2.View"
       allowed_attributes="rss_url active_projects can_add_project
-        project_count release_count categories featured_project project_url"
+        project_count release_count categories project_url
+        featured_project featured_project_title featured_project_release
+        featured_project_release_url featured_project_release_id
+        featured_project_release_date has_featured_project"
       />
 
   <page
