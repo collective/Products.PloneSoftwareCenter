@@ -87,7 +87,7 @@
             </ul>
 
 
-        <p style="text-align: center" 
+        <p style="text-align: center"
             tal:condition="creator"
             tal:define="creator here/Creator; author python:mtool.getMemberInfo(creator)"
             i18n:translate="label_portlet_project_resources_owner">
@@ -100,14 +100,14 @@
           </a>
         </p>
 
-        <p style="text-align: center;"
-           tal:condition="syntool/isSiteSyndicationAllowed">
+        <p style="text-align: center;" 
+           tal:condition="syntool/isSiteSyndicationAllowed | nothing">
                <a href="" title="Subscribe to updates for this project"
-                  tal:attributes="href project_view/release_rss_url"
+                  tal:attributes="href project_view/release_rss_url | nothing"
                   i18n:attributes="title title_portlet_project_resources_subscribe_updates">
-                  <img tal:replace="structure here/rss.gif"
+                  <img tal:attributes="src here/rss.gif/absolute_url"
                        alt="Subscribe to updates for this project"
-                       i18n:attributes="title title_portlet_project_resources_subscribe_updates"/>
+                       i18n:attributes="title title_portlet_project_resources_subscribe_updates" />
                   <span
                        i18n:translate="title_portlet_project_resources_subscribe_updates"> Subscribe to updates for this project</span>
                </a>
