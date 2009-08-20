@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.5.1'
+version = '1.5.2'
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read() + '\n\n'
@@ -13,7 +13,7 @@ PloneSoftwareCenter
 ===================
 
 """ + 
-    read('Products', 'PloneSoftwareCenter', 'README.txt') +
+    read('README.txt')+
     read('docs', 'INSTALL.txt')+
     read('docs', 'HISTORY.txt')
 )
