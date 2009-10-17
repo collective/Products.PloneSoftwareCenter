@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- XXX Move to setuphandlers
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
  <index name="getCategories" meta_type="KeywordIndex">
   <indexed_attr value="getCategories"/>
@@ -34,4 +35,5 @@
  <column value="getRelatedReleases"/>
  <column value="getSeconder"/>
  <column value="getSelfCertifiedCriteria"/>
+-->
 </object>

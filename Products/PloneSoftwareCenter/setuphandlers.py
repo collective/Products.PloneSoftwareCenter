@@ -353,3 +353,68 @@ def pypi_synchro(distutils_ids):
                             (p2.getId(), project.getId()))
                 break
 
+# XXX I'm not really sure what is going on here (above ^^^), does all this
+# get run every time the profile is imported?
+
+# Rip off SteveM's PHC catalog index import stuff
+def install(self):
+    out = StringIO()
+
+    # Add catalog metadata columns and indexes
+    catalog = getToolByName(self, 'portal_catalog')
+    addCatalogIndex(self, out, catalog, 'getCategories', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getCategories')
+    addCatalogIndex(self, out, catalog, 'getClassifiers', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getClassifiers')
+    addCatalogIndex(self, out, catalog, 'getCategoryTitles', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getCategoryTitles')
+    addCatalogIndex(self, out, catalog, 'getCompatibility', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getCompatibility')
+    addCatalogIndex(self, out, catalog, 'getProposalTypes', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getProposalTypes')
+    addCatalogIndex(self, out, catalog, 'getProposer', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getProposer')
+    addCatalogIndex(self, out, catalog, 'getRelatedReleases', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getRelatedReleases')
+    addCatalogIndex(self, out, catalog, 'getSeconder', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getSeconder')
+    addCatalogIndex(self, out, catalog, 'getSelfCertifiedCriteria', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getSelfCertifiedCriteria')
+    addCatalogIndex(self, out, catalog, 'releaseCount', 'FieldIndex')
+    addCatalogMetadata(self, out, catalog, 'releaseCount')
+    addCatalogIndex(self, out, catalog, 'getDistutilsMainId', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getDistutilsMainId')
+    addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds', 'KeywordIndex')
+    addCatalogMetadata(self, out, catalog, 'getDistutilsSecondaryIds')
+    print >> out, "Added PSC items to catalog indexes and metadata"
+
+def addCatalogIndex(self, out, catalog, index, type, extra = None):
+    """Add the given index name, of the given type, to the catalog."""
+
+    if index not in catalog.indexes():
+        catalog.addIndex(index, type, extra)
+        print >> out, "Added index", index, "to catalog"
+    else:
+        print >> out, "Index", index, "already in catalog"
+
+def addCatalogMetadata(self, out, catalog, column):
+    """Add the given column to the catalog's metadata schema"""
+
+    if column not in catalog.schema():
+        catalog.addColumn(column)
+        print >> out, "Added", column, "to catalog metadata"
+    else:
+        print >> out, column, "already in catalog metadata"
+
+def importVarious(context):
+    """
+    Final plonesoftwarecenter import steps.
+    """
+
+    # Only run step if a flag file is present (e.g. not an extension profile)
+    if context.readDataFile('plonesoftwarecenter-various.txt') is None:
+        return
+
+    site = context.getSite()
+    print install(site)
+
