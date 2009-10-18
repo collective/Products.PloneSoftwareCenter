@@ -18,60 +18,31 @@ Changelog
 1.5.1 (unreleased)
 ::::::::::::::::::
 
-- Added fancyzoom for screenshots.
-  [davisagli]
+- Added fancyzoom for screenshots. [davisagli]
 
-- Don't wipe out list of allowable contained types within
-  a PSCProject when PSC is reinstalled.
-  [davisagli]
+- Don't wipe out list of allowable contained types within a PSCProject when PSC is reinstalled. [davisagli]
 
-- Tidying of schema to make base_edit less daunting.
-  [MatthewWilkes]
+- Tidying of schema to make base_edit less daunting. [MatthewWilkes]
 
-- added a migration step to synchronize projects with PyPI.
-  [tarek]
+- added a migration step to synchronize projects with PyPI. [tarek]
 
-- fixed a gs bug: propertiestool.xml now uses purge:False
-  [mr_savage]
+- fixed a gs bug: propertiestool.xml now uses purge:False [mr_savage]
 
-- now adds 'mailto:' to contact address on uploads
-  [tarek]
+- now adds 'mailto:' to contact address on uploads. [tarek]
 
-- now adds 'mailto:' to contact address on uploads.
-  [tarek]
+- introduced a deprecation warning for the simple view. [tarek]
 
-- introduced a deprecation warning for the simple
-  view. [tarek]
+- fixed a bug in uploads of packages to existing projects that does not have a distutils id yet [tarek]
 
-- fixed a bug in uploads of packages to existing
-  projects that does not have a distutils id yet
-  [tarek]
+- added an event that gets triggered if you change the storage strategy. It will migrate all files to the new storage.  [tarek]
 
-- added an event that gets triggered if you change the storage
-  strategy. It will migrate all files to the new storage.
-  [tarek]
+- added a ++simple++ namespace to provide a package index API. [tarek] 
 
-- added a ++simple++ namespace to provide a package index API.
-  [tarek] 
+- Moved content/validators.py to validators.py (with deprecation) as otherwise the registering of validators was too late due to the order of imports.  [maurits]
 
-- Moved content/validators.py to validators.py (with deprecation) as
-  otherwise the registering of validators was too late due to the
-  order of imports.  [maurits]
+- Added Products.ArchAddon, Products.AddRemoveWidget and Products.DataGridField to the install_requires in setup.py. [maurits]
 
-- Added Products.ArchAddon, Products.AddRemoveWidget and
-  Products.DataGridField to the install_requires in setup.py.
-  [maurits]
-
-- added a pluggable storage mechanism for downloadable files.
-  This can be used to define new storage strategies in independant
-  packages. They will then be available in PloneSoftwareCenter
-  instances, under the new "storage strategy" field.
-
-  PSC provides a default strategy called `archetype` that uses
-  a regular ZODB persistency.
-
-  Other strategies are available like collective.psc.externalstorage.
-  [tarek]
+- added a pluggable storage mechanism for downloadable files.  This can be used to define new storage strategies in independant packages. They will then be available in PloneSoftwareCenter instances, under the new "storage strategy" field. PSC provides a default strategy called `archetype` that uses a regular ZODB persistency. Other strategies are available like collective.psc.externalstorage. [tarek]
 
 
 1.5 (2008-04-27)
