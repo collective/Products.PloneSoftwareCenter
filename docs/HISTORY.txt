@@ -1,7 +1,19 @@
 Changelog
 =========
 
-(name of developer listed in brackets)
+(name of developer is listed in brackets)
+
+1.5.3 (2009-10-17)
+::::::::::::::::::
+
+- Fix bug that overwrote catalog indexes on product (re)installation. [aclark]
+
+- Add fancy titles to software center view. [aclark]
+
+1.5.2 (2009-08-20)
+::::::::::::::::::
+
+- Prepare release for plone.org
 
 1.5.1 (unreleased)
 ::::::::::::::::::
@@ -88,7 +100,7 @@ Changelog
   [aclark]
   
 
-Before 1.5 (Taken from CONTRIBUTORS.txt)
+Before 1.5
 ::::::::::::::::::::::::::::::::::::::::
 
 - Base code for original project: 
