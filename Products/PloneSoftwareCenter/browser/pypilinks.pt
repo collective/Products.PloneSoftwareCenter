@@ -3,12 +3,12 @@
       lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      metal:use-macro="here/main_template/macros/master"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonehelpcenter">
       
  <head>
   <title>List of available downloads</title>
+ </head>
  <body>
   <p i18n:translate="label_pypi_links">This page is generated automatically by PloneSoftwareCenter</p>
   <tal:block tal:repeat="file_ view/get_files">
