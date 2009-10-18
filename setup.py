@@ -19,9 +19,7 @@ PloneSoftwareCenter
 )
 
 description =  """\
-Plone Software Center is a tool to keep track of software projects and 
-software releases, and is used to power the Products download 
-area on plone.org. It was formerly called ArchPackage.
+Plone Software Center is a tool that keeps track of software projects.
 """
 
 setup(name='Products.PloneSoftwareCenter',
@@ -37,9 +35,11 @@ setup(name='Products.PloneSoftwareCenter',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Plone Foundation',
-      author_email='plone-developers@lists.sourceforge.net',
-      url='http://svn.plone.org/svn/collective/Products.PloneSoftwareCenter',
+      author='Plone Website Team',
+      author_email='plone-website@lists.sourceforge.net',
+      maintainer='Alex Clark',
+      maintainer_email='aclark@aclark.net',
+      url='http://plone.org/products/plonesoftwarecenter',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['Products'],
