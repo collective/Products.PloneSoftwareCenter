@@ -2,6 +2,7 @@
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="plonesoftwarecenter">
 
   <include package=".namespace" />
@@ -40,6 +41,14 @@
       class=".content.proposalfolder.PSCImprovementProposalFolder" />
   <five:deprecatedManageAddDelete
       class=".content.proposal.PSCImprovementProposal" />
+
+  <gs:importStep
+      name="plonesoftwarecenter_various"
+      handler="Products.PloneSoftwareCenter.setuphandlers.importVarious"
+      title="Various PloneSoftwareCenter Settings"
+      description="PloneSoftwareCenter specific settings">
+      <depends name="typeinfo" />
+  </gs:importStep>
 
 </configure>
 
