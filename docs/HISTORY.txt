@@ -3,6 +3,11 @@ Changelog
 
 (name of developer is listed in brackets)
 
+1.5.4 (unreleased)
+::::::::::::::::::
+
+- Also list release candidates in the pypilinks.  [maurits]
+
 1.5.3 (2009-10-17)
 ::::::::::::::::::
 
