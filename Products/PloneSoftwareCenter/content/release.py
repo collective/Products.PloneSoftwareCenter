@@ -25,7 +25,7 @@ from Products.AddRemoveWidget import AddRemoveWidget
 
 from Products.PloneSoftwareCenter import config
 
-from zope.app.annotation.interfaces import IAnnotations
+from zope.annotation.interfaces import IAnnotations
 
 
 PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((

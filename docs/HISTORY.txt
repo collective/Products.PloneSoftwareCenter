@@ -6,6 +6,10 @@ Changelog
 1.5.4 (unreleased)
 ::::::::::::::::::
 
+- Use zope.annotation exclusively and not zope.app.annotation.  This
+  makes it compatible with Plone 4.
+  [maurits]
+
 - Register validators also in new way (for Plone 4 compatibility).
   [maurits]
 

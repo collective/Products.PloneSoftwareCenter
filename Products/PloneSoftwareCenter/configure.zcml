@@ -16,7 +16,7 @@
     <implements
         interface="contentratings.interfaces.IUserRatable
                    contentratings.interfaces.IEditorRatable
-                   zope.app.annotation.interfaces.IAttributeAnnotatable"
+                   zope.annotation.interfaces.IAttributeAnnotatable"
         />
   </class>
 
