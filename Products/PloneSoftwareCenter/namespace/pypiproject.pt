@@ -2,12 +2,9 @@
       xml:lang="en"
       lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      metal:use-macro="here/main_template/macros/master"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonehelpcenter"
       tal:define="title python:'Links for '+view.get_name()">
-
  <head>
   <title tal:content="title">Links for the project</title>
  </head>
@@ -19,8 +16,7 @@
      tal:attributes="href release/url;
                      rel  release/rel|nothing;
                      title release/title"
-     tal:content="release/title">project</a> 
+     tal:content="release/title">project</a>
   </tal:block>
  </body>
-</html> 
-  
+</html>
