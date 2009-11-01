@@ -5,6 +5,15 @@ import re
 
 # New Style
 
+try:
+    # Plone 4 and higher
+    import plone.app.upgrade
+    USE_BBB_VALIDATORS = False
+except ImportError:
+    # BBB Plone 3
+    USE_BBB_VALIDATORS = True
+    
+
 from zope.interface import implements
 from Products.validation.interfaces.IValidator import IValidator
 from zope.component import adapts
@@ -12,6 +21,7 @@ from Products.Archetypes.interfaces import IObjectPreValidation
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
 
 from zope.i18nmessageid import MessageFactory
+
 
 _ = MessageFactory('plonesoftwarecenter')
 
@@ -26,8 +36,10 @@ class ProjectIdValidator:
     listing templates and generally be bad.
     """
     
-    __implements__= (ivalidator,)
-    implements(IValidator)
+    if USE_BBB_VALIDATORS:
+        __implements__ = (ivalidator,)
+    else:
+        implements(IValidator)
     
     def __init__(self, name):
         self.name = name
@@ -45,8 +57,10 @@ class ProjectContactValidator:
     """Check to see if field contains a valid URI (mailto: or http:)
        else check for email address else kick it back to the form."""
 
-    __implements__ = (ivalidator,)
-    implements(IValidator)
+    if USE_BBB_VALIDATORS:
+        __implements__ = (ivalidator,)
+    else:
+        implements(IValidator)
 
     def __init__(self, name):
         self.name = name
