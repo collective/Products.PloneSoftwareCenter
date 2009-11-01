@@ -6,6 +6,7 @@ import re
 # New Style
 
 from zope.interface import implements
+from Products.validation.interfaces.IValidator import IValidator
 from zope.component import adapts
 from Products.Archetypes.interfaces import IObjectPreValidation
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
@@ -26,6 +27,7 @@ class ProjectIdValidator:
     """
     
     __implements__= (ivalidator,)
+    implements(IValidator)
     
     def __init__(self, name):
         self.name = name
@@ -44,6 +46,7 @@ class ProjectContactValidator:
        else check for email address else kick it back to the form."""
 
     __implements__ = (ivalidator,)
+    implements(IValidator)
 
     def __init__(self, name):
         self.name = name
