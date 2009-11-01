@@ -101,7 +101,7 @@
         </p>
 
         <p style="text-align: center;" 
-           tal:condition="syntool/isSiteSyndicationAllowed | nothing">
+           tal:condition="context/portal_syndication/isSiteSyndicationAllowed | nothing">
                <a href="" title="Subscribe to updates for this project"
                   tal:attributes="href project_view/release_rss_url | nothing"
                   i18n:attributes="title title_portlet_project_resources_subscribe_updates">

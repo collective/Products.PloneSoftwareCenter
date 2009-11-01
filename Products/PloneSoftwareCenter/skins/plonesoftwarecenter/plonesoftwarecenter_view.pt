@@ -92,7 +92,7 @@
     <div tal:repeat="category view/categories">
         <dl class="portlet portletThirdWidth">
             <dt class="portletHeader">
-               <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+               <tal:syndicate condition="context/portal_syndication/isSiteSyndicationAllowed">
                     <a class="feedButton" href="" tal:attributes="href category/rss_url">
                        <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                             tal:attributes="src string:$portal_url/rss.gif"
