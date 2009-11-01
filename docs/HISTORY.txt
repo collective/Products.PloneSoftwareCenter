@@ -6,6 +6,9 @@ Changelog
 1.5.4 (unreleased)
 ::::::::::::::::::
 
+- Fixed error when getting criteria_info.
+  [maurits]
+
 - Use zope.annotation exclusively and not zope.app.annotation.  This
   makes it compatible with Plone 4.
   [maurits]

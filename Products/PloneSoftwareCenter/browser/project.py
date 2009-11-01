@@ -206,7 +206,7 @@ class ProjectView(BrowserView):
         project has none. XXX: Combine me with criteria_info.
         """
         critlist = []
-        for ci in self.context.criteria_info():
+        for ci in self.criteria_info():
             critlist.append(ci['selected'])
         if True in critlist:
             return True
