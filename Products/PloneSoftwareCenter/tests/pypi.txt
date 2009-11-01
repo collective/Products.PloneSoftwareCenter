@@ -278,24 +278,23 @@ The PSC provides a `links` view that lists all releases that are published::
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
      <head>
       <title>List of available downloads</title>
+     </head>
      <body>
       <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
-       <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
+       <a title="http://example.com/package.tgz" href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
-    <BLANKLINE>
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
      </body>
-    </head></html>
-    <BLANKLINE>
+    </html>
     <BLANKLINE>
 
 The old `simple` view is kept for compatibility::
@@ -303,26 +302,26 @@ The old `simple` view is kept for compatibility::
     >>> browser.open('http://localhost/plone/psc/simple')
     >>> print browser.contents
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <BLANKLINE>
      <head>
       <title>List of available downloads</title>
+     </head>
      <body>
       <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
-       <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
+       <a title="http://example.com/package.tgz" href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
-    <BLANKLINE>
+       <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
      </body>
-    </head></html>
-    <BLANKLINE>
+    </html>
     <BLANKLINE>
 
 Simple Index
@@ -338,25 +337,26 @@ the link for a given project, and gets its links::
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
      <head>
       <title>Simple Index</title>
+     </head>
      <body>
       <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/++simple++/iw.dist">iw.dist</a><br />
+       <a title="iw.dist" href="http://localhost/plone/psc/++simple++/iw.dist">iw.dist</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/++simple++/iw.recipe.fss">iw.recipe.fss</a><br />
+       <a title="iw.recipe.fss" href="http://localhost/plone/psc/++simple++/iw.recipe.fss">iw.recipe.fss</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>
-    </head></html>
+    </html>
     <BLANKLINE>
-    <BLANKLINE> 
+
     
 Let's get the page for iw.recipe.fss::
 
     >>> browser.open('http://localhost/plone/psc/++simple++/iw.recipe.fss')
     >>> print browser.contents 
-    <html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
      <head>
       <title>Links for iw.recipe.fss</title>
      </head>
@@ -364,17 +364,16 @@ Let's get the page for iw.recipe.fss::
       <p>This page is generated automatically by PloneSoftwareCenter</p>
       <h1>Links for iw.recipe.fss</h1>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+      <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+      <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+      <a title="project-macosx-10.3-fat.tar.gz" href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
      </body>
     </html>
-    <BLANKLINE>
     <BLANKLINE>
 
 If a project doesn't have a distutils id, it will not appear in the index::
@@ -386,16 +385,15 @@ If a project doesn't have a distutils id, it will not appear in the index::
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
      <head>
       <title>Simple Index</title>
+     </head>
      <body>
       <p>This page is generated automatically by PloneSoftwareCenter</p>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/++simple++/iw.dist">iw.dist</a><br />
-    <BLANKLINE>
+       <a title="iw.dist" href="http://localhost/plone/psc/++simple++/iw.dist">iw.dist</a><br />
     <BLANKLINE>
      </body>
-    </head></html>
+    </html>
     <BLANKLINE>
-    <BLANKLINE> 
     
 Visible changes in UI
 =====================
