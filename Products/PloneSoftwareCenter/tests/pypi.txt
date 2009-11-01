@@ -161,9 +161,9 @@ Let's call the `file_upload` method::
  
 Let's check the result. We should have a new project in the PSC::
 
-    >>> project = portal.psc['iw-recipe.fss']
+    >>> project = portal.psc['iw.recipe.fss']
     >>> project
-    <PSCProject at /plone/psc/iw-recipe.fss>
+    <PSCProject at /plone/psc/iw.recipe.fss>
     >>> project.title
     u'iw.recipe.fss'
 
@@ -177,7 +177,7 @@ And we have a release with the file::
     >>> releases = project.getReleaseFolder()
     >>> release = releases['0.1cdev-r6553']
     >>> release
-    <PSCRelease at /plone/psc/iw-recipe.fss/releases/0.1cdev-r6553>
+    <PSCRelease at /plone/psc/iw.recipe.fss/releases/0.1cdev-r6553>
     >>> release.objectIds()
     ['project-macosx-10.3-fat.tar.gz']
     >>> file_ = release['project-macosx-10.3-fat.tar.gz']
@@ -209,7 +209,7 @@ in the Cheeseshop::
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
     >>> browser.handleErrors = False
-    >>> browser.open('http://localhost/plone/psc/iw-recipe.fss')
+    >>> browser.open('http://localhost/plone/psc/iw.recipe.fss')
     >>> 'this is <strong>rest</strong>' in browser.contents
     True
 
@@ -284,13 +284,13 @@ The PSC provides a `links` view that lists all releases that are published::
        <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>
@@ -311,13 +311,13 @@ The old `simple` view is kept for compatibility::
        <a href="http://example.com/package.tgz">http://example.com/package.tgz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a><br />
     <BLANKLINE>
     <BLANKLINE>
      </body>
@@ -364,13 +364,13 @@ Let's get the page for iw.recipe.fss::
       <p>This page is generated automatically by PloneSoftwareCenter</p>
       <h1>Links for iw.recipe.fss</h1>
     <BLANKLINE>
-       <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+       <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1c/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href="http://localhost/plone/psc/iw-recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+      <a href="http://localhost/plone/psc/iw.recipe.fss/releases/0.1cdev-r6553/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
     <BLANKLINE>
-      <a href="http://localhost/plone/psc/iw-recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
+      <a href="http://localhost/plone/psc/iw.recipe.fss/releases/iw.fss-0.2.3/project-macosx-10.3-fat.tar.gz">project-macosx-10.3-fat.tar.gz</a>
     <BLANKLINE>
      </body>
     </html>
@@ -379,7 +379,7 @@ Let's get the page for iw.recipe.fss::
 
 If a project doesn't have a distutils id, it will not appear in the index::
 
-    >>> fss = portal.psc['iw-recipe.fss']
+    >>> fss = portal.psc['iw.recipe.fss']
     >>> fss.setDistutilsMainId('')
     >>> browser.open('http://localhost/plone/psc/++simple++')
     >>> print browser.contents 
