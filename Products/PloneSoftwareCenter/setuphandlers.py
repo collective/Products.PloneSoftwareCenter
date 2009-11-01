@@ -315,8 +315,9 @@ def _pypi_certified_owner(distid):
     if versions == []:
         return None, None
     version = versions[-1]
-    maintainer = pypi.release_data(distid, version)['maintainer_email']
-    author = pypi.release_data(distid, version)['author_email']
+    data = pypi.release_data(distid, version)
+    maintainer = data['maintainer_email']
+    author = data(distid, version)['author_email']
     return maintainer, author
 
 def pypi_synchro(distutils_ids):
