@@ -17,8 +17,8 @@
 
 <div metal:fill-slot="main"
      tal:define="view context/@@roadmap_view;
+                 is_editable context/@@plone_context_state/is_editable;
                  upcoming view/upcoming_releases;">
-
     <h1 i18n:translate="label_roadmap_title_project">
       Roadmap for <span i18n:name="title_project" tal:replace="here/aq_parent/Title" />
     </h1>

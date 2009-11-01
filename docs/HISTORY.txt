@@ -6,6 +6,9 @@ Changelog
 1.5.4 (unreleased)
 ::::::::::::::::::
 
+- Some global_defines changes for Plone 4 compatibility.
+  [maurits]
+
 - Fixed error when getting criteria_info.
   [maurits]
 

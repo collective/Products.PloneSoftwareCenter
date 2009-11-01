@@ -20,6 +20,7 @@
      tal:define="view context/@@project_view">
 
   <div metal:define-macro="main" tal:define="latestRelease view/latest_release;
+                                             is_editable context/@@plone_context_state/is_editable;
                                              upcomingReleases view/upcoming_releases | nothing">
 
         <h1 class="documentFirstHeading">

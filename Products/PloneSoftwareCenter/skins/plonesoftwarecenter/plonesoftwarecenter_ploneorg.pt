@@ -148,8 +148,9 @@
                            />
                 </form>
 
-                <form tal:condition="python: not user.has_permission('Add portal content', context) and mtool.isAnonymousUser()"
-                      tal:define="pss modules/Products/PythonScripts/standard"
+                <form tal:define="pss modules/Products/PythonScripts/standard;
+                                  isAnon context/@@plone_portal_state/anonymous;"
+                      tal:condition="python: not user.has_permission('Add portal content', context) and isAnon"
                       tal:attributes="action python:'%s/login_form?came_from=%s' %
                                                     (here.portal_url(),
                                                     pss.url_quote(request['URL']))">

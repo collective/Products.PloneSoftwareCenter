@@ -42,6 +42,7 @@
         </p>
 
         <p class="discreet"
+           tal:define="is_editable context/@@plone_context_state/is_editable;"
            tal:condition="python: is_editable">
             <span i18n:translate="help_message_remember_is_editable">Remember to publish your release once all files have been added by </span>
             <a href="" tal:attributes="href here/aq_parent/absolute_url">

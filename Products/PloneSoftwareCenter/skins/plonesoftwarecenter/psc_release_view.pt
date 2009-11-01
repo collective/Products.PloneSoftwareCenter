@@ -24,6 +24,7 @@
                     released python:maturity != 'pre-release';
                     final python:maturity == 'final';
                     outdated view/is_outdated;
+                    is_editable context/@@plone_context_state/is_editable;
                     wftool here/portal_workflow">
 
     <h1 class="documentFirstHeading">

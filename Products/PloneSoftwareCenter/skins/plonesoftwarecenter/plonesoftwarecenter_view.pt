@@ -63,7 +63,7 @@
     </form>
 
     <form action="createObject"
-          tal:condition="isAnon">
+          tal:condition="context/@@plone_portal_state/anonymous">
         
         <input name="type_name"
                type="hidden"
