@@ -8,7 +8,7 @@
       i18n:domain="plonesoftwarecenter">
 
 <head>
-    <metal:css fill-slot="css_slot">
+    <metal:css fill-slot="style_slot">
         <style type="text/css" media="all"
                tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
     </metal:css>
