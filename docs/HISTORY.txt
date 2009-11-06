@@ -6,8 +6,7 @@ Changelog
 1.5.4 (unreleased)
 ::::::::::::::::::
 
-- Replaced the css_slot with the style_slot, as it was deprecated
-  in Plone 3 and now really removed in Plone 4.
+- Replaced the css_slot with the style_slot, as it is deprecated.
   [maurits]
 
 - Some global_defines changes for Plone 4 compatibility.
