@@ -17,7 +17,9 @@
 <body>
 
 <div metal:fill-slot="main"
-       tal:define="view context/@@releasefolder_view">
+       tal:define="view context/@@releasefolder_view;
+                   is_editable context/@@plone_context_state/is_editable;
+                   wtool context/portal_workflow;">
 
   <div metal:define-macro="main">
 
@@ -49,7 +51,6 @@
         </p>        
 
         <tal:releases define="upcoming view/upcoming_releases;
-                              is_editable context/@@plone_context_state/is_editable;
                               previous view/previous_releases">
 
             <tal:noreleases condition="python:not(upcoming or previous)">
