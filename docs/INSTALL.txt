@@ -1,4 +1,6 @@
 Installation
 ============
 
-- Add the "Products.PloneSoftwareCenter" egg to your instance section's "eggs =" parameter.
+- Add Products.PloneSoftwareCenter to your instance section's eggs parameter.
+- Run buildout.
+- Install in Quick Installer (Site Setup -> Add-on products).
