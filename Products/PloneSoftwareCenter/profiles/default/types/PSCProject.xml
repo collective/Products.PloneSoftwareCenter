@@ -19,6 +19,7 @@
   <element value="PSCReleaseFolder"/>
   <element value="PSCImprovementProposalFolder"/>
   <element value="PSCDocumentationFolder"/>
+  <element value="PoiPscTracker"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">psc_project_view</property>
