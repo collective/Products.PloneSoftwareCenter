@@ -74,7 +74,7 @@
        <a href="" tal:attributes="href parent_url" title="The project page"
           i18n:attributes="title title_release_additional_information">
         <span i18n:translate="label_release_additional_information">
-          For additional information about this project, please visit the project page
+          For additional information about this project, please visit the project overview
         </span>
        </a>.
     </p>

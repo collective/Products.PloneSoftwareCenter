@@ -305,7 +305,7 @@ msgstr " proyectos en esta categoría..."
 msgid "label_read_more"
 msgstr "Leer más..."
 
-#. Default: "For additional information about this project, please visit the project page"
+#. Default: "For additional information about this project, please visit the project overview"
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:75
 msgid "label_release_additional_information"
 msgstr "Para información adicional acerca de este proyecto, por favor visite la página de proyecto"
