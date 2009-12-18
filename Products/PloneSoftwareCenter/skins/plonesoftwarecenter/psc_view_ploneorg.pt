@@ -23,6 +23,7 @@
 		currentVersion request/getCompatibility | string:any;
 		currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
 		currentVersion python:test(currentVersion=='any','',currentVersion);
+		SearchableText request/SearchableText | string:;
 		getCategoryName nocall:view/category_name">
 
 
@@ -90,9 +91,9 @@
 
 
 			<div id="sort-by">
-				<form id="product_select" style="margin-bottom: 1em" tal:attributes="action string:${here/absolute_url}/search">
+				<form id="product_select" style="margin-bottom: 1em" tal:attributes="action string:${here/absolute_url}">
 					<label class="hiddenStructure">Show</label>
-					<select name="getCategories"  >
+					<select name="getCategories" onchange="this.form.submit()">
 						<option value="">All categories</option>
 						<tal:block tal:repeat="cat here/availableCategories">
                             <option tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
@@ -100,9 +101,30 @@
                                 tal:attributes="value cid; selected python:test(cid==currentCategory,'selected',nothing)" />
 						</tal:block>
 					</select>
+					<select name="getCompatibility" onchange="this.form.submit()">
+                        <tal:block tal:repeat="version here/getAvailableVersions">
+                            <option tal:content="version"
+                                    tal:attributes="value version;
+                                                    selected python:test(currentVersion==version,'selected',nothing)">
+                                Plone 3.0
+                            </option>
+                        </tal:block>
+                        <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)"
+                                i18n:translate="label_any_version">
+                            Any version
+                        </option>
+                        <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
+                            <option tal:content="version"
+                                    tal:attributes="value version;
+                                                    selected python:test(currentVersion==version,'selected',nothing)">
+                                Plone 3.0
+                            </option>
+                        </tal:block>
+                    </select>
+                    
 					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" /> &nbsp;
 					<input type="hidden" name="portal_type" value="PSCProject" />
-					<input type="search" name="SearchableText" value=""
+					<input type="search" name="SearchableText" tal:attributes="value SearchableText" value=""
                         class="inputLabel" size="25" 
                     />
                     <input type="submit" value="Search" />
@@ -111,6 +133,7 @@
 
 			<div class="" id="categories"
 				tal:define="results python:catalog(getCategories=currentCategory,
+				    SearchableText=SearchableText,
 					getCompatibility=currentVersion, 
 					portal_type='PSCRelease',
 					sort_on='effective',
