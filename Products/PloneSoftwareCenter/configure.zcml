@@ -20,6 +20,11 @@
         />
   </class>
 
+  <!-- make sure that Plone Software Centers can have content rules assigned to them -->
+  <class class=".content.root.PloneSoftwareCenter">
+    <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
+  </class>
+
   <!-- Avoid deprecation warnings for manage_afterAdd and friends that
        only show up because some base classes that we inherit from use
        them. -->
