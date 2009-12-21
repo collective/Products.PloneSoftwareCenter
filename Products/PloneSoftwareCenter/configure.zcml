@@ -21,7 +21,8 @@
   </class>
 
   <!-- make sure that Plone Software Centers can have content rules assigned to them -->
-  <class class=".content.root.PloneSoftwareCenter">
+  <class class=".content.root.PloneSoftwareCenter"
+            zcml:condition="installed contentrules">
     <implements interface="plone.contentrules.engine.interfaces.IRuleAssignable" />
   </class>
 
