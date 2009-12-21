@@ -3,6 +3,12 @@ Changelog
 
 (name of developer is listed in brackets)
 
+Unreleased
+::::::::::::::::::
+
+- Allow PloneSoftwareCenter folders to have content rules assigned - this breaks Plone 2.x compatibility if it isn't already broken! [jonstahl]
+
+
 1.5.4 (2009-11-23)
 ::::::::::::::::::
 
