@@ -3,11 +3,12 @@ Changelog
 
 (name of developer is listed in brackets)
 
-Unreleased
+1.5.5 (2009-12-21)
 ::::::::::::::::::
 
 - Allow PloneSoftwareCenter folders to have content rules assigned [jonstahl]
 
+- Re-added version compatibility to product search/filter [hexsprite]
 
 1.5.4 (2009-11-23)
 ::::::::::::::::::
