@@ -303,7 +303,7 @@ msgstr ""
 msgid "label_read_more"
 msgstr ""
 
-#. Default: "For additional information about this project, please visit the project overview"
+#. Default: "For additional information about this project, please visit the overview page"
 #: ./skins/plonesoftwarecenter/psc_release_view.pt:75
 msgid "label_release_additional_information"
 msgstr ""
