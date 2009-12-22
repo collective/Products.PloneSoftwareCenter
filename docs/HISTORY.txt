@@ -6,9 +6,11 @@ Changelog
 1.5.5 (2009-12-21)
 ::::::::::::::::::
 
-- Allow PloneSoftwareCenter folders to have content rules assigned [jonstahl]
+- Allow PloneSoftwareCenter folders to have content rules assigned. [jonstahl]
 
-- Re-added version compatibility to product search/filter [hexsprite]
+- Re-added version compatibility to product search/filter. [hexsprite]
+
+- Template ``psc_release_view`` wording tweaks. [aclark]
 
 1.5.4 (2009-11-23)
 ::::::::::::::::::
