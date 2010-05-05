@@ -3,7 +3,7 @@ $Id$
 """
 from zLOG import LOG, PROBLEM
 import os
-from Globals import package_home
+from App.Common import package_home
 from trove import TroveClassifier 
 
 

@@ -25,7 +25,7 @@ except ImportError:
     
 from Products.ArchAddOn.Fields import SimpleDataGridField
 from Products.ArchAddOn.Widgets import SimpleDataGridWidget
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 
 from Products.PloneSoftwareCenter.config import PROJECTNAME
 from Products.PloneSoftwareCenter.config import trove

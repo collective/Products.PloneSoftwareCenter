@@ -2,7 +2,7 @@
 $Id: PyPI.py 18612 2006-01-28 14:46:00Z dreamcatcher $
 """
 import re
-import md5
+import hashlib
 
 from AccessControl import getSecurityManager
 from AccessControl import Unauthorized
@@ -475,7 +475,7 @@ class PyPIView(BrowserView):
 
         # digest content
         if md5_digest:
-            m = md5.new()
+            m = hashlib.md5()
             m.update(content)
             calc_digest = m.hexdigest()
             if md5_digest != calc_digest:

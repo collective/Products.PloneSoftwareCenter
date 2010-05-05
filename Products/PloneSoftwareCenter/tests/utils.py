@@ -1,5 +1,5 @@
 import doctest
-from Globals import package_home
+from App.Common import package_home
 PACKAGE_HOME = package_home(globals())
 
 from Products.CMFCore.utils import getToolByName
