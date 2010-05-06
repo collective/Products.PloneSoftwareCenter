@@ -423,13 +423,6 @@ Let's go to the by-category view::
     >>> 'iw.dist' in browser.contents
     True
 
-The project page category displays *all* categories in its header::
-
-    >>> browser.open('http://localhost/plone/psc/iw.dist')
-    >>> page = browser.contents
-    >>> 'Category: Python, Utilities' in page
-    True
-
 Distutils namespace owners
 ==========================
 
