@@ -1,9 +1,9 @@
 """trove.py tests
-$Id:$
+$Id$
 """
 import unittest
 import os
-from Globals import package_home
+from App.Common import package_home
 
 from Products.PloneSoftwareCenter.trove import TroveClassifier
 
