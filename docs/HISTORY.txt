@@ -3,6 +3,11 @@ Changelog
 
 (name of developer is listed in brackets)
 
+1.6.0 (unreleased)
+::::::::::::::::::
+
+- Update imports and templates to be Plone 4 compatible [kteague]
+
 1.5.5 (2009-12-21)
 ::::::::::::::::::
 

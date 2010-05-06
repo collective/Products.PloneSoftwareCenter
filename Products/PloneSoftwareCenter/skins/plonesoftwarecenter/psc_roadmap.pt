@@ -17,6 +17,8 @@
 
 <div metal:fill-slot="main"
      tal:define="view context/@@roadmap_view;
+                 wtool context/portal_workflow;
+                 current_page_url context/@@plone_context_state/current_page_url;
                  is_editable context/@@plone_context_state/is_editable;
                  upcoming view/upcoming_releases;">
     <h1 i18n:translate="label_roadmap_title_project">

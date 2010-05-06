@@ -21,33 +21,29 @@
     <div metal:define-macro="main"
          tal:define="view here/@@file_view">
     
+        <dl class="portalMessage info"
+            tal:define="is_editable context/@@plone_context_state/is_editable;"
+            tal:condition="python: is_editable">
+            <dt>Info</dt>
+            <dd>
+                <span i18n:translate="help_message_remember_is_editable">Remember to publish your release once all files have been added by </span>
+                <a href="" tal:attributes="href here/aq_parent/absolute_url">
+                <span i18n:translate="help_message_remember_back_release_page"> going back to the release page</span>
+                </a>.
+            </dd> 
+        </dl>
+
         <h1 class="documentFirstHeading">
             <img tal:replace="structure here/product_icon.gif" />
             <span tal:replace="here/aq_parent/title_or_id">Title or id</span> -
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
 
-        <a href=""
-           class="link-parent"
-           i18n:translate="label_up_to_release_page"
-           tal:define="parent_url python:here.navigationParent(here, template.getId())"
-           tal:condition="parent_url"
-           tal:attributes="href parent_url">
-             &laquo; Back to release page
-        </a>
+        <div tal:content="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription"
              tal:content="here/aq_parent/Description">
             description
-        </p>
-
-        <p class="discreet"
-           tal:define="is_editable context/@@plone_context_state/is_editable;"
-           tal:condition="python: is_editable">
-            <span i18n:translate="help_message_remember_is_editable">Remember to publish your release once all files have been added by </span>
-            <a href="" tal:attributes="href here/aq_parent/absolute_url">
-                  <span i18n:translate="help_message_remember_back_release_page"> going back to the release page</span>
-            </a>. 
         </p>
 
         <p tal:define="downloadURL view/direct_url">
@@ -65,10 +61,6 @@
                 (<span tal:replace="fileSize">256KB</span>)
             </tal:size>
         </p>
-
-        <div metal:use-macro="here/document_byline/macros/byline">
-            Get the byline - contains details about author and modification date.
-        </div>
 
     </div>
 
