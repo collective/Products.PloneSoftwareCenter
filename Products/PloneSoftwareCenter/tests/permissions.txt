@@ -39,9 +39,6 @@ Log in as a normal member.
 By default the PSC is in the open workflow state so normal members can
 add projects.
 
-    >>> browser.getLink('Add Software Project')
-    <Link text='[IMG] Add Software Project'
-    url='http://nohost/plone/psc/createObject?type_name=PSCProject'>
     >>> browser.getControl('Add New Software Project').click()
     >>> browser.getControl('Title').value = 'Foo Project Title'
     >>> browser.getControl(
