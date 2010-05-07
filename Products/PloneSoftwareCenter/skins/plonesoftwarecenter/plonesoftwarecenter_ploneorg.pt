@@ -40,14 +40,17 @@
             currentVersion request/getCompatibility | string:any;
             currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
             currentVersion python:test(currentVersion=='any','',currentVersion);
-            getCategoryName nocall:view/category_name">
+            getCategoryName nocall:view/category_name;
+            normalizeString nocall:context/@@plone/normalizeString;
+            toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+            cropText nocall:context/@@plone/cropText;">
                      
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
             Title or id
         </h1>
 
         <div class="feedButton" >
-            <a href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease"><img 
+            <a href="" tal:attributes="href string:${context/absolute_url}/search_rss?portal_type=PSCRelease"><img 
                 i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                     tal:attributes="src string:$portal_url/rss.gif" src="rss.gif"
                         alt="RSS Feed" title="RSS feed of the latest releases" /></a>
@@ -273,12 +276,12 @@
                         </p>
                         
                         <div class="description">
-                            <p tal:content="python:here.cropText(project.Description(), desc_length, desc_ellipsis)">
+                            <p tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
                                 Project Description
                             </p>
                             <p>
                                 <strong i18n:translate="label_new_this_release">New in this release:</strong> <br />
-                                <span tal:content="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
+                                <span tal:content="python:cropText(result.Description, desc_length, desc_ellipsis)">
                                     Release Description
                                 </span>
                             </p>                        
