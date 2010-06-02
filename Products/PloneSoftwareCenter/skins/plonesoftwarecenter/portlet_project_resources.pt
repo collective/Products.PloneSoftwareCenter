@@ -89,11 +89,11 @@
 
         <p style="text-align: center"
             tal:condition="creator"
-            tal:define="creator here/Creator; author python:mtool.getMemberInfo(creator)"
+            tal:define="creator here/Creator; author python:context.portal_membership.getMemberInfo(creator)"
             i18n:translate="label_portlet_project_resources_owner">
             Project owner:
           <a href="#"
-             tal:attributes="href string:${portal_url}/author/${creator}"
+             tal:attributes="href string:${context/portal_url}/author/${creator}"
              tal:content="python:author and author['fullname'] or creator"
              tal:omit-tag="not:author" i18n:name="name_portlet_project_resources_owner">
             Bob Dobalina
