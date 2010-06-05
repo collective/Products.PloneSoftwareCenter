@@ -4,7 +4,10 @@ Changelog
 1.6.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add PHC-related methods to the PSCDocumentationFolder
+  content-type.
+  This fixes http://plone.org/products/plonehelpcenter/issues/149.
+  [dukebody, maurits]
 
 
 1.6.4 (2012-09-27)

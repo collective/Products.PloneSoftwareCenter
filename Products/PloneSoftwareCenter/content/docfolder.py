@@ -158,5 +158,31 @@ class PSCDocumentationFolder(ATCTMixin, OrderedBaseFolder):
             return '%s.%d' % (id, idx)
         else:
             return id
-    
+
+
+    ##############
+    # the following methods are meant to be used in an enclosed object
+    # that is invoking the method by aquisition.
+
+    security.declareProtected(permissions.View, 'getPHCObject')
+    def getPHCObject(self):
+        """return the enclosing PHC object"""
+
+        return self
+
+
+    security.declareProtected(permissions.View, 'getPHCUrl')
+    def getPHCUrl(self):
+        """return the enclosing PHC object URL"""
+
+        return self.absolute_url()
+
+
+    security.declareProtected(permissions.View, 'getPHCPath')
+    def getPHCPath(self):
+        """return the enclosing PHC object path as a string"""
+
+        return '/'.join(self.getPhysicalPath())
+
+
 registerType(PSCDocumentationFolder, PROJECTNAME)
