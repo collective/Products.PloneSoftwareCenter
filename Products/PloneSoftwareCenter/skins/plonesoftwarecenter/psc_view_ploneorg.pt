@@ -127,7 +127,7 @@
 					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" /> &nbsp;
 					<input type="hidden" name="portal_type" value="PSCProject" />
 					<input type="search" name="SearchableText" tal:attributes="value SearchableText" value=""
-                        class="inputLabel" size="25" 
+                        class="inputLabel" size="20" 
                     />
                     <input type="submit" value="Search" />
 				</form>
@@ -182,7 +182,7 @@
 									Sept. 3, 2008
 								</span> 
 								in 
-								<span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])"></span>
+								<span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" tal:on-error="string:"></span>
 							</span>
 							<p class="product-description"
 								tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
