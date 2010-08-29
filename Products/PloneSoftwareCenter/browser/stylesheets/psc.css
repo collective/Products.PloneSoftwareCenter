@@ -1,0 +1,11 @@
+#project_logo_wrapper{
+    margin: .25em;
+}
+
+#project_thumb_wrapper{ 
+    float: right;
+}
+
+#project_thumb_wrapper img{
+    /*width: 250px;*/
+}

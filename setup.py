@@ -51,6 +51,7 @@ setup(name='Products.PloneSoftwareCenter',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
           'collective.fancyzoomview',
+          'plone.contentratings',
       ],
       entry_points="""
       # -*- Entry points: -*-
