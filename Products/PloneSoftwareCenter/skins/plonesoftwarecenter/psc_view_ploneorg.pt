@@ -165,18 +165,25 @@
 							url result/getURL;
 							projectURL project/absolute_url;
 							result_type result/portal_type;">
-
-						<span class="company-logo">
-							<img tal:condition="project/logo|nothing"
-								tal:replace="structure project/logo" />
-						</span>
-
+						
 						<h3 style="border-top: none">
 							<a href=""
 								tal:attributes="href projectURL;"
 								tal:content="result/pretty_title_or_id">Product One</a>
 						</h3>
-						<div id="product-details">
+						<div class="project-thumb" 
+						      tal:condition="project/getScreenshot">
+							<img tal:condition="project/screenshot_thumb|nothing"
+								tal:replace="structure project/screenshot_thumb" />
+						</div>
+						
+						<span class="project-thumb" 
+						      tal:condition="not:project/getScreenshot">
+							<img tal:condition="project/logo|nothing"
+								tal:replace="structure project/logo" />
+						</span>
+						
+						<div class="product-details">
 							<span class="product-leadin">
 								<span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=0)">
 									Sept. 3, 2008
@@ -196,6 +203,7 @@
 								</span>
 							</p>
 						</div>
+						<div class="visualClear" ></div>
 					</tal:entry>
 					</li>
 				</ul>

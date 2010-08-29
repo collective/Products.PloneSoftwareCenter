@@ -41,6 +41,49 @@
            the relevant project information has been entered.
         </p>
 
+        
+        <h2 i18n:translate="label_project_description">Project Description</h2>
+        
+        <div id="project_thumb_wrapper"
+             tal:condition="here/getScreenshot | nothing">
+            <a title="View a large version of this screenshot" href="screenshot">
+                <img src="screenshot_preview" title="Theme Preview Image" id="theme_preview_hotness"/>
+            </a>
+        </div>
+    
+
+        <div tal:replace="structure here/getText" />
+
+        <div id="project_logo_wrapper"
+         tal:condition="here/getLogo | nothing">
+            <a tal:omit-tag="not: here/getLogoURL"
+               tal:attributes="href here/getLogoURL">
+                <img tal:replace="structure here/getLogo" />
+            </a>
+        </div>
+        
+        <div class="visualClear"></div>
+        
+        <tal:block tal:condition="python: view.has_criteria_info()">
+            <h2 i18n:translate="label_self_certification">Self-Certification</h2>
+            <tal:block repeat="criterion view/criteria_info">
+                <p>
+                    <tal:block condition="criterion/selected">[X]</tal:block>
+                    <tal:block condition="not:criterion/selected">[ ]</tal:block>
+                    <tal:block content="criterion/text" />
+                </p>
+            </tal:block>
+        </tal:block>
+        
+        <tal:block tal:condition="view/has_review_comment|nothing"> 
+            <h2 i18n:translate="label_independent_review">Independent Review</h2>
+            <p content="structure here/getReviewComment" /> 
+            <p tal:condition="here/isApproved|nothing">
+                <i i18n:translate="help_independent_review">This project has been approved via independent review.</i>
+            </p>
+        </tal:block> 
+        
+        <div class="visualClear"></div>
         <tal:nostable condition="nocall:not:latestRelease">
         
                 <h2 i18n:translate="label_current_stable_release">Current release</h2>
@@ -92,6 +135,8 @@
                 </tal:noreleases>
 
         </tal:nostable>
+
+        
         <tal:stable condition="nocall:latestRelease">
         <div class="pane">
            <h2>
@@ -167,50 +212,6 @@
         </tal:stable>
 
         <div class="visualClear"></div>
-
-        <h2 i18n:translate="label_project_description">Project Description</h2>
-        
-        <div id="project_thumb_wrapper"
-             tal:condition="here/getScreenshot | nothing">
-            <a title="View a large version of this screenshot" href="screenshot">
-                <img src="screenshot_preview" title="Theme Preview Image" id="theme_preview_hotness"/>
-            </a>
-        </div>
-    
-
-        <div tal:replace="structure here/getText" />
-
-        <div id="project_logo_wrapper"
-         tal:condition="here/getLogo | nothing">
-            <a tal:omit-tag="not: here/getLogoURL"
-               tal:attributes="href here/getLogoURL">
-                <img tal:replace="structure here/getLogo" />
-            </a>
-        </div>
-        
-        <div class="visualClear"></div>
-        
-        <tal:block tal:condition="python: view.has_criteria_info()">
-            <h2 i18n:translate="label_self_certification">Self-Certification</h2>
-            <tal:block repeat="criterion view/criteria_info">
-                <p>
-                    <tal:block condition="criterion/selected">[X]</tal:block>
-                    <tal:block condition="not:criterion/selected">[ ]</tal:block>
-                    <tal:block content="criterion/text" />
-                </p>
-            </tal:block>
-        </tal:block>
-        
-        <tal:block tal:condition="view/has_review_comment|nothing"> 
-            <h2 i18n:translate="label_independent_review">Independent Review</h2>
-            <p content="structure here/getReviewComment" /> 
-            <p tal:condition="here/isApproved|nothing">
-                <i i18n:translate="help_independent_review">This project has been approved via independent review.</i>
-            </p>
-        </tal:block> 
-        
-        <div class="visualClear"></div>
-
 
     </div>
 

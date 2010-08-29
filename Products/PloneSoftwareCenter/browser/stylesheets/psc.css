@@ -9,3 +9,30 @@
 #project_thumb_wrapper img{
     /*width: 250px;*/
 }
+
+.pane h2{
+    margin-top: 1em;
+}
+
+.project-thumb{
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#content ul.downloads{
+    margin-left: 0;
+}
+
+.downloads li{
+    clear:both;
+    list-style-type: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+.product-details .product-leadin{
+    font-size: .8em;
+    color: #999;
+}
