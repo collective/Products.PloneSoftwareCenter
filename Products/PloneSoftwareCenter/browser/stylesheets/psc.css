@@ -61,5 +61,6 @@ table.release_table .release-description{
     width: 60%;
 }
 
-.product-details{
+.downloads li{
+    vertical-align: top;
 }

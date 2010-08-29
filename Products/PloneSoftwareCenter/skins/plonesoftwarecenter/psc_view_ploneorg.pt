@@ -131,11 +131,13 @@
                         class="inputLabel" size="20" 
                     />
                     <input type="submit" value="Search" />
+                    
 				</form>
 			</div>
 
 			<div class="" id="categories"
-				tal:define="results python:catalog(getCategories=currentCategory,
+				tal:define="
+				    results python:catalog(getCategories=currentCategory,
 				    SearchableText=SearchableText,
 					getCompatibility=currentVersion, 
 					portal_type='PSCProject',
@@ -153,11 +155,6 @@
 				<p id="numreleases">
 					<span tal:replace="python:len(results)">234</span> releases matching your criteria.
 				</p>
-				<ul>
-				    <li>
-				        XXX: LINKS HERE???
-				    </li>
-				</ul>
 
 				<tal:results condition="results"
 					define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
