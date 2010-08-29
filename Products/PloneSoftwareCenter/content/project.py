@@ -586,6 +586,6 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
             raise Unauthorized
         self.getField('distutilsMainId').set(self, name) 
         self.reindexObject()
-        
+
 registerType(PSCProject, config.PROJECTNAME)
 

@@ -19,6 +19,7 @@
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
+		sort_on   request/sort_on | string:average_rating;
 		currentCategory request/getCategories | string:;
 		currentVersion request/getCompatibility | string:any;
 		currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
@@ -137,8 +138,8 @@
 				tal:define="results python:catalog(getCategories=currentCategory,
 				    SearchableText=SearchableText,
 					getCompatibility=currentVersion, 
-					portal_type='PSCRelease',
-					sort_on='effective',
+					portal_type='PSCProject',
+					sort_on=sort_on,
 					sort_order='reverse');
 				Batch python:modules['Products.CMFPlone'].Batch;
 				b_size python:10;b_start python:0;b_start request/b_start | b_start;
@@ -150,8 +151,13 @@
 				</p>
 
 				<p id="numreleases">
-					<span tal:replace="python:len(results)">234</span> releases matching your criteria, most recent releases first.
+					<span tal:replace="python:len(results)">234</span> releases matching your criteria.
 				</p>
+				<ul>
+				    <li>
+				        XXX: LINKS HERE???
+				    </li>
+				</ul>
 
 				<tal:results condition="results"
 					define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
@@ -159,9 +165,7 @@
 				<ul class="downloads">
 					<li tal:repeat="result batch">
 					<tal:entry
-						define="obj result/getObject;
-							project python:obj.aq_parent.aq_parent;
-							project python:test(project.portal_type=='PSCProject',project,obj);
+						define="project result/getObject;
 							url result/getURL;
 							projectURL project/absolute_url;
 							result_type result/portal_type;">
@@ -195,14 +199,11 @@
 								tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
 								Project Description.
 							</p>
-							<p tal:condition="result/Description">
-								<strong>New in this release:</strong>
-								<span class="new-details"
-									tal:replace="python:cropText(result.Description, desc_length, desc_ellipsis)">
-									Now compatible with any editor.
-								</span>
-							</p>
+														
+				            <div class="read-only-ratings" 
+				                tal:content="structure project/@@user-ratings-read"/>
 						</div>
+						
 						<div class="visualClear" ></div>
 					</tal:entry>
 					</li>

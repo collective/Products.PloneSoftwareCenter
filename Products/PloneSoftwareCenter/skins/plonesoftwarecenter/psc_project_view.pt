@@ -20,6 +20,7 @@
      tal:define="view context/@@project_view">
 
   <div metal:define-macro="main" tal:define="latestRelease view/latest_release;
+                                             all_releases view/all_releases;
                                              is_editable context/@@plone_context_state/is_editable;
                                              upcomingReleases view/upcoming_releases | nothing">
 
@@ -86,7 +87,7 @@
         <div class="visualClear"></div>
         <tal:nostable condition="nocall:not:latestRelease">
         
-                <h2 i18n:translate="label_current_stable_release">Current release</h2>
+                <h2 i18n:translate="label_current_stable_release">Current Release</h2>
                 <p
                    i18n:translate="help_not_stable_release">
                     No stable release available yet.
@@ -140,7 +141,7 @@
         <tal:stable condition="nocall:latestRelease">
         <div class="pane">
            <h2>
-              Current release <br />
+              Current Release <br />
               <a href="#" title="Current release for the project"
                i18n:attributes="title title_latest_release_project"
                tal:attributes="href latestRelease/absolute_url"
@@ -210,6 +211,52 @@
                 </dl>
         </div>
         </tal:stable>
+        
+        <div class="pane">
+           <h2>All Releases</h2>
+           <table class="listing release_table">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>Released</th>
+                        <th>Description</th>
+                        <th>Compatibility</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tal:loop repeat="release all_releases">
+                        <tr tal:define="maturity   release/getMaturity;
+                            stable  python:maturity not in ['pre-release', 'alpha', 'beta'];
+                            stability    python:stable and 'stable-release' or 'unstable-release'"
+                            tal:attributes="class   stability">
+                            <td class="version">
+                                <a tal:content="release/id"
+                                    tal:attributes="href    release/absolute_url"/>
+                            </td>
+                            <td>
+                                <span tal:condition="python:stable and release.effective()">
+                                    <span tal:replace="python:context.toLocalizedTime(release.effective())" />
+                                </span>
+                            </td>
+                            <td class="release-description">
+                                <span tal:content="release/Description"/>
+                                <a href="#"
+                                   i18n:translate="label_release_details"
+                                   tal:attributes="href latestRelease/absolute_url">More about this release&hellip;</a>
+
+                            </td>
+                            <td class="compatability">
+                                <tal:loop repeat="compatibility release/compatibility">
+                                    <div tal:content="compatibility"/>
+                                </tal:loop>
+                            </td>
+                            <td class="maturity" tal:content="maturity"/>
+                        </tr>
+                    </tal:loop>
+                </tbody>
+           </table>
+        </div>
 
         <div class="visualClear"></div>
 
