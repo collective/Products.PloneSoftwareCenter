@@ -570,6 +570,27 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
                 return False
         return True
 
+    def getCompatibility(self):
+        '''Get the compatibility of the product by getting all 
+        the compatabilities of all the subreleases
+        XXX: There is probably a better way to do this but the
+        # of releases is so small I don't see this being an issue 
+        on reindex
+        '''
+        compatabilities = []
+        releaseFolder = self.getReleaseFolder()
+        catalog = getToolByName(self, 'portal_catalog')
+        res = catalog.searchResults(
+          portal_type = 'PSCRelease',
+          sort_order='reverse',
+          path = '/'.join(releaseFolder.getPhysicalPath()),)
+        
+        for r in res:
+            release_compatabilities = r.getCompatibility
+            for release_compatability in release_compatabilities:
+                compatabilities.append(release_compatability)
+        return set(compatabilities)
+    
 
     security.declareProtected(permissions.ModifyPortalContent,  
                               'setDistutilsSecondaryIds')
