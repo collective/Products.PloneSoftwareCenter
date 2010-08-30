@@ -234,7 +234,7 @@
                                 <a tal:content="release/id"
                                     tal:attributes="href    release/absolute_url"/>
                             </td>
-                            <td>
+                            <td class="release-date">
                                 <span tal:condition="python:stable and release.effective()">
                                     <span tal:replace="python:context.toLocalizedTime(release.effective())" />
                                 </span>
