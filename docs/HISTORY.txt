@@ -3,6 +3,21 @@ Changelog
 
 (name of developer is listed in brackets)
 
+
+1.6.1 (unreleased)
+::::::::::::::::::
+
+- Re-added thumbnails and screenshots to plone psc view [eleddy]
+- Added plone.contentratings [eleddy]
+- List all releases on project view [eleddy]
+- Added getCompatability to project so that search can be on 
+  projects instead of releases [eleddy]
+- Updated psc plone view to show projects instead of releases, and
+  added new sort on attribute [eleddy]
+- Added stylesheets dir and started pulling out inline css into 
+  a new stylesheet [eleddy]
+
+
 1.6.0 (unreleased)
 ::::::::::::::::::
 

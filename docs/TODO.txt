@@ -1,3 +1,11 @@
 ========================
 PloneSoftwareCenter ToDo
 ========================
+ * Make compact listing thumbnail link to large thumbnail
+ * Have thumbnails with links hooked up to jquery preview
+ * Hook up sort-on form field with jquery autoload
+ * Turn project compact listing into a view instead of a pt
+ * Make "by-category" work with new listings
+ * Clean up code, including removing unused installers, and
+   adding resource directories so people can find stuff
+ * Add requires.xml so it auto installs plone.contentratings
