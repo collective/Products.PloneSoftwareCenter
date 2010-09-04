@@ -68,3 +68,7 @@ table.release_table .release-description{
 .project-compatibilities{  
     color: #666;
 }
+
+.UserRating .Disabled{
+    display: none;
+}

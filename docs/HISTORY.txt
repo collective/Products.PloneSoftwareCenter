@@ -16,6 +16,8 @@ Changelog
   added new sort on attribute [eleddy]
 - Added stylesheets dir and started pulling out inline css into 
   a new stylesheet [eleddy]
+- Hide grey X if one can't delete. [eleddy]
+- Added fancy zoom to summary view
 
 
 1.6.0 (unreleased)

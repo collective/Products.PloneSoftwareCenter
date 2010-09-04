@@ -126,7 +126,8 @@
                     </select>
                     
                     <label for="project-sort">Sort On</label>
-                    <select name="sort_on" id="project-sort">
+                    <select name="sort_on" id="project-sort" 
+                            onchange="this.form.submit()">
                         <option value="average_rating"
                             tal:attributes="selected    python:sort_on == 'average_rating' and 'selected' or ''"
                             >Highest Rated</option>
@@ -187,8 +188,16 @@
 						</h3>
 						<div class="project-thumb" 
 						      tal:condition="project/getScreenshot">
+						   <a class="zoom" 
+						      tal:attributes="href string:#${project/id}">
 							<img tal:condition="project/screenshot_thumb|nothing"
 								tal:replace="structure project/screenshot_thumb" />
+				            <div style="display:none"
+				                tal:attributes="id  project/id">
+                                <img tal:condition="project/screenshot|nothing"
+								tal:replace="structure project/screenshot" />
+				            </div>
+				           </a>
 						</div>
 						
 						<span class="project-thumb" 
