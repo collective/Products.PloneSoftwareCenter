@@ -66,7 +66,7 @@ class TestMigration(PSCTestCase):
         except gaierror:
             pass
         else:
-            wanted = (None, 'plone-developers@lists.sourceforge.net')
+            wanted = (None, 'aclark@aclark.net')
             self.assertEquals(contacts, wanted)
 
     def test_migration(self):
