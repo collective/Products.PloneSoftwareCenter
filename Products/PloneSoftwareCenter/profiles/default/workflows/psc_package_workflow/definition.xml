@@ -19,21 +19,25 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role> 
+   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
+   <permission-role>Editor</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
  </state>
  <state state_id="published" title="Public"
@@ -46,10 +50,12 @@
    <permission-role>Manager</permission-role>
    <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
@@ -57,12 +63,14 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>PSCEvaluator</permission-role>
+   <permission-role>Editor</permission-role>
   </permission-map>
   <permission-map name="View" acquired="True">
    <permission-role>Anonymous</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
  </state>
  <state state_id="unapproved" title="Unapproved project"
@@ -73,19 +81,23 @@
                   acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Editor</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reader</permission-role>
   </permission-map>
  </state>
  <transition transition_id="publish"
