@@ -28,10 +28,10 @@ NAME = re.compile('Name: (.*)')
 # if your previous instance had 
 WAS_EXTERNAL_STORAGE = True
 EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',
-			  '/srv/plone.org/buildout/parts/instance01/var/files/',
-			  '/srv/plone.org/buildout/parts/instance02/var/files/',
-			  '/srv/plone.org/buildout/parts/instance03/var/files/',
-			  '/srv/plone.org/buildout/parts/instance04/var/files/')
+                          '/srv/plone.org/buildout/parts/instance01/var/files/',
+                          '/srv/plone.org/buildout/parts/instance02/var/files/',
+                          '/srv/plone.org/buildout/parts/instance03/var/files/',
+                          '/srv/plone.org/buildout/parts/instance04/var/files/')
 
 def temp(function):
     def _temp(*args, **kw):
@@ -52,24 +52,24 @@ def timeout(function):
         try:
             return function(*args, **kw)
         finally:
-            socket.setdefaulttimeout(old)	
+            socket.setdefaulttimeout(old)       
     return _timeout
 
 class DistantFile(object):
     def __init__(self, url):
         try:
-	   self.handle = urllib2.urlopen(url)
+           self.handle = urllib2.urlopen(url)
         except (urllib2.HTTPError, urllib2.URLError):
            self.handle = None
-	self.url = url 
-	self.on_pypi = url.startswith('http://pypi.python.org')
+        self.url = url 
+        self.on_pypi = url.startswith('http://pypi.python.org')
 
     def getDownloadableFile(self):
         return self
 
     def getId(self):
         url = self.url.split('#md5=')
-	url = url[0]
+        url = url[0]
         return url.split()[-1] 
 
     def get_data(self):
@@ -85,7 +85,7 @@ def before_1_5(portal_setup):
     """
     def _upgrade_project(project):
         
-	#main = StringField('distutilsMainId',
+        #main = StringField('distutilsMainId',
         #  required=0,
         #  schemata="distutils",
         #  index='KeywordIndex:schema',
@@ -97,18 +97,18 @@ def before_1_5(portal_setup):
         #      required=0,
         #      schemata="distutils",
         #      index='KeywordIndex:schema')
-	#project.schema['distutilsSecondaryIds'] = sec      
-    	pass
+        #project.schema['distutilsSecondaryIds'] = sec      
+        pass
 
     def _upgrade_psc(psc):
         logging.info('Upgrading %s' % psc.title_or_id())
         # we might want to do something else here
-	#strategy = StringField('storageStrategy',
-        # 	default='archetype',
-        #	vocabulary='getFileStorageStrategyVocab',
+        #strategy = StringField('storageStrategy',
+        #       default='archetype',
+        #       vocabulary='getFileStorageStrategyVocab',
         #)
 
-	#psc.schema['storageStrategy'] = strategy
+        #psc.schema['storageStrategy'] = strategy
 
     def _discovering_dist_ids(project):
         # for each file in the project we 
@@ -117,63 +117,63 @@ def before_1_5(portal_setup):
         files = cat(**{'portal_type': ['PSCFile', 'PSCFileLink'],
                        'path': project_path})
         ids = []
-	for file_ in files:
-	    portal_type = file_.portal_type 
+        for file_ in files:
+            portal_type = file_.portal_type 
             if portal_type == 'PSCFileLink':
-	        # the file is somewhere else, let's scan it
-		file_ = file_.getObject()
-                file_ = DistantFile(file_.getExternalURL())	
+                # the file is somewhere else, let's scan it
+                file_ = file_.getObject()
+                file_ = DistantFile(file_.getExternalURL())     
             else:
                 file_ = file_.getObject()
-	    
-	    # trying to get back from old 
-	    # storage
-	    
-	    # ExternalStorage here
-	    #
-	    if WAS_EXTERNAL_STORAGE and portal_type != 'PSCFileLink':
-		from Products.ExternalStorage.ExternalStorage import ExternalStorage
-		storage = ExternalStorage(
-		  prefix=EXTERNAL_STORAGE_PATHS[0],
-		  archive=False,
-		  rename=False,
-		  )
-		# transferring old data to new AT container
+            
+            # trying to get back from old 
+            # storage
+            
+            # ExternalStorage here
+            #
+            if WAS_EXTERNAL_STORAGE and portal_type != 'PSCFileLink':
+                from Products.ExternalStorage.ExternalStorage import ExternalStorage
+                storage = ExternalStorage(
+                  prefix=EXTERNAL_STORAGE_PATHS[0],
+                  archive=False,
+                  rename=False,
+                  )
+                # transferring old data to new AT container
                 fs = file_.schema['downloadableFile'] 
-	    	old = fs.storage
-	    	fs.storage = storage	
-	   	portal_url = getToolByName(file_, 'portal_url')
+                old = fs.storage
+                fs.storage = storage    
+                portal_url = getToolByName(file_, 'portal_url')
 
-	    	real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
-	    	for path in EXTERNAL_STORAGE_PATHS:
+                real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
+                for path in EXTERNAL_STORAGE_PATHS:
                     final_file = os.path.join(path, real_file)
-		    if os.path.exists(final_file):
-		        break
+                    if os.path.exists(final_file):
+                        break
                 if not os.path.exists(final_file):
                     logging.info('******** could not get %s on the file system !!' % real_file)
-		    continue    
-		    #raise ValueError('File not found %s' % final_file)
-	    	fs.storage = old
-	   	dfile = file_.getDownloadableFile()
-		
-		filename = dfile.filename
-		data = open(final_file).read()
-		if data == '':
-		    logging.info('empty file ! %s' % final_file)
-	    	#f = File(filename, filename, open(final_file)) 
-	  
-	    elif portal_type != 'PSCFileLink':
-		storage = AttributeStorage()
-	        fs = file_.schema['downloadableFile']
-	        old = fs.storage
-		fs.storage = storage
-		dfile = file_.getDownloadableFile()
-		data = dfile.get_data()
-		filename = dfile.filename 
-		fs.storage = old 
-		#file_.getDownloadableFile().data = data
-		#f = File(filename, filename, StringIO(data))
-	
+                    continue    
+                    #raise ValueError('File not found %s' % final_file)
+                fs.storage = old
+                dfile = file_.getDownloadableFile()
+                
+                filename = dfile.filename
+                data = open(final_file).read()
+                if data == '':
+                    logging.info('empty file ! %s' % final_file)
+                #f = File(filename, filename, open(final_file)) 
+          
+            elif portal_type != 'PSCFileLink':
+                storage = AttributeStorage()
+                fs = file_.schema['downloadableFile']
+                old = fs.storage
+                fs.storage = storage
+                dfile = file_.getDownloadableFile()
+                data = dfile.get_data()
+                filename = dfile.filename 
+                fs.storage = old 
+                #file_.getDownloadableFile().data = data
+                #f = File(filename, filename, StringIO(data))
+        
             if portal_type != 'PSCFileLink':
                 #file_.setDownloadableFile(f)
                 file_.schema = PSCFileSchema
@@ -206,7 +206,7 @@ def before_1_5(portal_setup):
         for project in psc.objectValues():
             if project.getId() in ('plone',):
                 logging.info('Skipping %s' % project.getId())
-		continue
+                continue
             logging.info('Working on %s' % project.getId()) 
             _upgrade_project(project)
    
@@ -218,9 +218,9 @@ def before_1_5(portal_setup):
                 if project in old:
                     continue
                 distutils_ids[id_] = old + (project,) 
-       	 
+         
         # synchronize with the Cheeseshop
-	logging.info('Starting synchro')
+        logging.info('Starting synchro')
         pypi_synchro(distutils_ids)
 
 @temp
@@ -246,24 +246,27 @@ def extract_distutils_id(egg_or_tarball):
         try:
             tar = tarfile.TarFile.open(filename, fileobj=fileobj, mode='r:gz')
         except tarfile.ReadError:
-            return None	
+            return None 
         first_member = tar.getnames()[0]
         folder = os.path.split(first_member)[0]
         for tarinfo in tar:
             try:
-	        tar.extract(tarinfo)
-	    except TypeError:
-	        pass
+                tar.extract(tarinfo)
+            except TypeError:
+                pass
         tar.close()
         # let's get into the extracted package
         old = os.getcwd()
-	folder = os.path.join(old, folder)
+        folder = os.path.join(old, folder)
+        if 'setup.py' not in os.listdir(folder):
+            # we are probably one level too high
+            folder = os.path.join(folder, first_member)
         try:
-  	    os.chdir(folder)
-	except TypeError:
-            return None	
-	# if the file does not have a setup.py, let's quit
-	if 'setup.py' not in os.listdir(folder):
+            os.chdir(folder)
+        except TypeError:
+            return None
+        # if the file does not have a setup.py, let's quit
+        if 'setup.py' not in os.listdir(folder):
             return None
         try:
             name = subprocess.Popen([sys.executable, 'setup.py', '--name'], 
@@ -271,7 +274,7 @@ def extract_distutils_id(egg_or_tarball):
         finally:
             os.chdir(old)
 
-	logging.info('Found a distutils name : %s' % str(name))
+        logging.info('Found a distutils name : %s' % str(name))
         return name.strip() 
     # its an egg (a zip)
     elif os.path.splitext(filename)[-1] == '.egg':
@@ -282,7 +285,7 @@ def extract_distutils_id(egg_or_tarball):
                     continue
                 res = NAME.search(zip.read(info.filename))
                 if res is not None and len(res.groups()) == 1:
-	            logging.info('Found a distutils name : %s' % str(res.groups()[0]))	
+                    logging.info('Found a distutils name : %s' % str(res.groups()[0]))  
                     return res.groups()[0]
         finally:       
             zip.close()
@@ -302,7 +305,7 @@ def _attribute_distid(project, distid):
         logging.info('%s owns %s' % (project.getId(), distid))
     except Unauthorized:
         logging.info('%s is already owned, cannot give it to %s' % \
-	               (project.getId(), distid))
+                       (project.getId(), distid))
 
 tiny_cache = {}
 

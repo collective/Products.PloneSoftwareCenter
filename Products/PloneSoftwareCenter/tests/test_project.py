@@ -385,11 +385,12 @@ class TestProjectView(PSCTestCase):
     
     def test_release_rss_url(self):
         url = self.view.release_rss_url()
+        # Removed review_state as it was removed in ProjectView @78203
         self.failUnless(verifyURLWithRequestVars(
           url, 
           'http://nohost/plone/psc/proj/search_rss',
           ['portal_type=PSCRelease', 'sort_on=Date', 'sort_order=reverse',
-            'path=/plone/psc/proj', 'review_state=published']
+            'path=/plone/psc/proj']
           ))
     
     def test_display_categories(self):
