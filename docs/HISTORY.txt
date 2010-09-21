@@ -18,7 +18,7 @@ Changelog
   a new stylesheet [eleddy]
 - Hide grey X if one can't delete. [eleddy]
 - Added fancy zoom to summary view
-
+- Updated workflow definitions to respect plone default roles [simu]
 
 1.6.0 (unreleased)
 ::::::::::::::::::
