@@ -222,11 +222,12 @@
 							</p>
 							
 							<div class="project-compatibilities"
-							     tal:define="compatibilities project/getCompatibility;"
+							     tal:define="compatibilities python:result.getCompatibility or project.getCompatibility();"
 							     tal:condition="compatibilities">
 							     Releases compatible with:
 							     <tal:loop   repeat="compatibility compatibilities">
-							         <span tal:content="compatibility"/>  
+							         <span class="project-compatibility" 
+							             tal:content="compatibility"/> 
 							     </tal:loop>
 							</div>
 														
