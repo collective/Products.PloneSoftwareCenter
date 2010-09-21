@@ -21,7 +21,7 @@
   <element value="PSCDocumentationFolder"/>
   <element value="PoiPscTracker"/>
  </property>
- <property name="allow_discussion">False</property>
+ <property name="allow_discussion">True</property>
  <property name="default_view">psc_project_view</property>
  <property name="view_methods">
   <element value="psc_project_view"/>

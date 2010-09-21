@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<contentratings>
+ <categories/>
+ <assignments>
+  <type portal_type="PSCProject">
+   <category value="psc_stars"/>
+  </type>
+ </assignments>
+</contentratings>

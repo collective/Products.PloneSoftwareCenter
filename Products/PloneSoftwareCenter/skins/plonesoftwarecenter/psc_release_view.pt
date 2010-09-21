@@ -120,7 +120,7 @@
                  (<span tal:replace="fileSize">256KB</span>)
             </tal:size>
             <tal:extsize condition="not: fileSize">
-                <tal:extfile condition="file/getExternalFileSize">
+                <tal:extfile condition="file/getExternalFileSize" tal:on-error="string:Unknown">
                 (<span tal:replace="file/getExternalFileSize">256KB</span>)
                 </tal:extfile>
             </tal:extsize>

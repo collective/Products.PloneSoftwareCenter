@@ -13,6 +13,7 @@ import sys
 import subprocess
 import urllib2
 import socket
+import transaction
 
 from StringIO import StringIO
 from OFS.Image import File
@@ -22,6 +23,7 @@ from Products.Archetypes.atapi import *
 from Products.CMFCore.utils import getToolByName
 from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter.content.downloadablefile import PSCFile, PSCFileSchema
+from ZODB.POSException import ConflictError
 
 NAME = re.compile('Name: (.*)')
 
@@ -391,6 +393,8 @@ def install(self):
     addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds', 'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getDistutilsSecondaryIds')
     print >> out, "Added PSC items to catalog indexes and metadata"
+    
+    setupContentRatings(self, out)
 
 def addCatalogIndex(self, out, catalog, index, type, extra = None):
     """Add the given index name, of the given type, to the catalog."""
@@ -409,6 +413,35 @@ def addCatalogMetadata(self, out, catalog, column):
         print >> out, "Added", column, "to catalog metadata"
     else:
         print >> out, column, "already in catalog metadata"
+
+
+def setupContentRatings(self, out):
+    """
+    Install the contentratings product and reindex its indexes
+    """
+    # I am getting weird errors putting this in metadata.xml
+    # I think it has something to do with custome profile stuff
+    # in extensions/install.py
+    # plus we need to know whether to reindex the new indexes
+    qi = getToolByName(self, 'portal_quickinstaller')
+    if not qi.isProductInstalled('plone.contentratings'):
+        qi.installProduct('plone.contentratings',)
+        print >> out, "Installed contentratings"
+        
+        # we need to reindex the new indexes, 
+        # contentratings doesn't do this for us
+        # getCompatibility was there before, but only for releases - need to 
+        # reindex to get projects involved
+        newIndexes = ['average_rating', 'rating_users', 'getCompatibility']
+        cat = getToolByName(self, 'portal_catalog')
+        for index in newIndexes:
+            try:
+                cat.reindexIndex(index, None)
+                transaction.commit()
+                print >> out, "Reindexed %s"%index
+            except ConflictError:
+                print >> out, "Conflict error reindexing %s - please manually reindex"%index
+                        
 
 def importVarious(context):
     """

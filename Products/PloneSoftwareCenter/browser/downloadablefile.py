@@ -29,7 +29,11 @@ class DownloadableFileView(BrowserView):
     def file_size(self):
         """Return the file size of the download, or None if unknown.
         """
-        return self.context.getObjSize(self.context)
+        try:
+            return self.context.getObjSize(self.context)
+        except RuntimeError: 
+            # older products throwing RuntimeError: Filesystem Script (Python) getObjSize has errors.
+            return None
 
     def direct_url(self):
         """Get the direct URL to the download.

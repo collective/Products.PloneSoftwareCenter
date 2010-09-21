@@ -3,6 +3,7 @@
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:zcml="http://namespaces.zope.org/zcml"
            xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:contentratings="http://namespaces.plone.org/contentratings"
            i18n_domain="plonesoftwarecenter">
 
   <include package=".namespace" />
@@ -11,14 +12,6 @@
   <include package=".events" file="configure.zcml" />
   <include file="profiles.zcml"/>
 
-  <class class=".content.project.PSCProject"
-           zcml:condition="installed contentratings">
-    <implements
-        interface="contentratings.interfaces.IUserRatable
-                   contentratings.interfaces.IEditorRatable
-                   zope.annotation.interfaces.IAttributeAnnotatable"
-        />
-  </class>
 
   <!-- make sure that Plone Software Centers can have content rules assigned to them -->
   <class class=".content.root.PloneSoftwareCenter"
@@ -48,6 +41,15 @@
   <five:deprecatedManageAddDelete
       class=".content.proposal.PSCImprovementProposal" />
 
+  <contentratings:category
+      for="Products.CMFCore.interfaces.IDynamicType"
+      name="psc_stars"
+      title="Average Rating"
+      view_name="ratings_view"
+      read_expr="python:checkPermission('Content Ratings: View User Rating', context)"
+      write_expr="python:checkPermission('Content Ratings: User Rate', context)"
+      />
+  
   <gs:importStep
       name="plonesoftwarecenter_various"
       handler="Products.PloneSoftwareCenter.setuphandlers.importVarious"

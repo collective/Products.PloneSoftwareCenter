@@ -1,7 +1,15 @@
 <configure xmlns="http://namespaces.zope.org/browser"
            xmlns:zope="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="psc">
 
+    <!-- Resource directory for stylesheets -->
+    <browser:resourceDirectory
+      name="Products.PloneSoftwareCenter.stylesheets"
+      directory="stylesheets"
+      />
+  
+  
   <page
       name="softwarecenter_view"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"

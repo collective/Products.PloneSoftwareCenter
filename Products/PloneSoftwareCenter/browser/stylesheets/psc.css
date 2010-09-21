@@ -1,0 +1,75 @@
+.VoteCount{
+    color: #333;
+    font-weight: normal;
+}
+
+.read-only-ratings{
+}
+
+#project_logo_wrapper{
+    margin: .25em;
+    float: right;
+}
+
+#project_thumb_wrapper{ 
+    float: right;
+}
+
+#project_thumb_wrapper img{
+    /*width: 250px;*/
+}
+
+.pane h2{
+    margin-top: 1em;
+}
+
+.project-thumb{
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#content ul.downloads{
+    margin-left: 0;
+}
+
+.downloads li{
+    clear:both;
+    list-style-type: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+.product-details .product-leadin{
+    font-size: .8em;
+    color: #999;
+}
+
+table.release_table tr{
+    border-bottom: 1px solid #eee;
+}
+
+.unstable-release td.maturity{
+    background-color: #ff7766;
+}
+
+.stable-release td.maturity{
+    background-color: #aaffaa;
+}
+
+table.release_table .release-description{
+    width: 50%;
+}
+
+.downloads li{
+    vertical-align: top;
+}
+
+.project-compatibilities{  
+    color: #666;
+}
+
+.UserRating .DeleteRating.Disabled{
+    display: none;
+}

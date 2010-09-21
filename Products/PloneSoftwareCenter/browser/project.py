@@ -69,6 +69,20 @@ class ProjectView(BrowserView):
         
         return _upcoming_releases(self.context)
     
+    
+    def all_releases(self):
+        """Get a list of all releases, ordered by version, starting with the latest. 
+        """
+        proj = self.context
+        releaseFolder = proj.getReleaseFolder()
+        catalog = getToolByName(proj, 'portal_catalog')
+        res = catalog.searchResults(
+          portal_type = 'PSCRelease',
+          path = '/'.join(releaseFolder.getPhysicalPath()),
+          sort_on = 'id',
+          sort_order = 'reverse')
+        return [r.getObject() for r in res]
+    
     def release_rss_url(self):
         """Get a link with the URL to an RSS feed for releases of this project
         """

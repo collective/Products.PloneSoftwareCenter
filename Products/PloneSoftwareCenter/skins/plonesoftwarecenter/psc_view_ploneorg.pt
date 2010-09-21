@@ -19,6 +19,7 @@
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
+		sort_on   request/sort_on | string:average_rating;
 		currentCategory request/getCategories | string:;
 		currentVersion request/getCompatibility | string:any;
 		currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
@@ -124,21 +125,37 @@
                         </tal:block>
                     </select>
                     
+                    <label for="project-sort">Sort On</label>
+                    <select name="sort_on" id="project-sort" 
+                            onchange="this.form.submit()">
+                        <option value="average_rating"
+                            tal:attributes="selected    python:sort_on == 'average_rating' and 'selected' or ''"
+                            >Highest Rated</option>
+                        <option value="effective"
+                            tal:attributes="selected    python:sort_on == 'effective' and 'selected' or ''"
+                            >Recently Updated</option>
+                        <option value="created"
+                            tal:attributes="selected    python:sort_on == 'created' and 'selected' or ''"
+                        >Newest</option>
+                    </select>
+                    
 					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" /> &nbsp;
 					<input type="hidden" name="portal_type" value="PSCProject" />
 					<input type="search" name="SearchableText" tal:attributes="value SearchableText" value=""
                         class="inputLabel" size="20" 
                     />
                     <input type="submit" value="Search" />
+                    
 				</form>
 			</div>
 
 			<div class="" id="categories"
-				tal:define="results python:catalog(getCategories=currentCategory,
+				tal:define="
+				    results python:catalog(getCategories=currentCategory,
 				    SearchableText=SearchableText,
 					getCompatibility=currentVersion, 
-					portal_type='PSCRelease',
-					sort_on='effective',
+					portal_type='PSCProject',
+					sort_on=sort_on,
 					sort_order='reverse');
 				Batch python:modules['Products.CMFPlone'].Batch;
 				b_size python:10;b_start python:0;b_start request/b_start | b_start;
@@ -150,7 +167,7 @@
 				</p>
 
 				<p id="numreleases">
-					<span tal:replace="python:len(results)">234</span> releases matching your criteria, most recent releases first.
+					<span tal:replace="python:len(results)">234</span> projects matching your criteria.
 				</p>
 
 				<tal:results condition="results"
@@ -159,24 +176,39 @@
 				<ul class="downloads">
 					<li tal:repeat="result batch">
 					<tal:entry
-						define="obj result/getObject;
-							project python:obj.aq_parent.aq_parent;
-							project python:test(project.portal_type=='PSCProject',project,obj);
+						define="project result/getObject;
 							url result/getURL;
 							projectURL project/absolute_url;
-							result_type result/portal_type;">
-
-						<span class="company-logo">
-							<img tal:condition="project/logo|nothing"
-								tal:replace="structure project/logo" />
-						</span>
-
+							result_type result/portal_type;
+							zoomid   python:project.id.replace('.', '_');
+							screenshot   project/getScreenshot | nothing">
+						
 						<h3 style="border-top: none">
 							<a href=""
 								tal:attributes="href projectURL;"
 								tal:content="result/pretty_title_or_id">Product One</a>
 						</h3>
-						<div id="product-details">
+						<div class="project-thumb" 
+						      tal:condition="screenshot">
+						   <a class="zoom" 
+						      tal:attributes="href string:#${zoomid}">
+							<img tal:condition="project/screenshot_thumb|nothing"
+								tal:replace="structure project/screenshot_thumb" />
+				            <div style="display:none"
+				                tal:attributes="id  zoomid">
+                                <img tal:condition="screenshot"
+								    tal:replace="structure screenshot" />
+				            </div>
+				           </a>
+						</div>
+						
+						<span class="project-thumb" 
+						      tal:condition="not:screenshot">
+							<img tal:condition="project/logo|nothing"
+								tal:replace="structure project/logo" />
+						</span>
+						
+						<div class="product-details">
 							<span class="product-leadin">
 								<span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=0)">
 									Sept. 3, 2008
@@ -188,14 +220,21 @@
 								tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
 								Project Description.
 							</p>
-							<p tal:condition="result/Description">
-								<strong>New in this release:</strong>
-								<span class="new-details"
-									tal:replace="python:cropText(result.Description, desc_length, desc_ellipsis)">
-									Now compatible with any editor.
-								</span>
-							</p>
+							
+							<div class="project-compatibilities"
+							     tal:define="compatibilities project/getCompatibility;"
+							     tal:condition="compatibilities">
+							     Releases compatible with:
+							     <tal:loop   repeat="compatibility compatibilities">
+							         <span tal:content="compatibility"/>  
+							     </tal:loop>
+							</div>
+														
+				            <div class="read-only-ratings" 
+				                tal:content="structure project/@@user-ratings-read"/>
 						</div>
+						
+						<div class="visualClear" ></div>
 					</tal:entry>
 					</li>
 				</ul>
@@ -215,7 +254,7 @@
 				<tal:categories repeat="cat here/availableCategories">
 				<li><a href=""
 							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
-							tal:attributes="href string:${here/absolute_url}/by-category/${cid}"
+							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}"
 							tal:content="python:csplit[1]"
 							>Plone releases</a></li>
 				</tal:categories>
