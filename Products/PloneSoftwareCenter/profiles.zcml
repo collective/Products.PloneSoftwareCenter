@@ -3,12 +3,12 @@
            i18n_domain="plonesoftwarecenter"
            xmlns:zcml="http://namespaces.zope.org/zcml">
 
-   <gs:registerProfile 
+   <gs:registerProfile
         name="default"
         title="Plone Software Center"
-	    directory="profiles/default"
-	    description="What's powering the products section on plone.org"
-	    provides="Products.GenericSetup.interfaces.EXTENSION"
+        directory="profiles/default"
+        description="What's powering the products section on plone.org"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
 	/>
 
     <gs:upgradeStep

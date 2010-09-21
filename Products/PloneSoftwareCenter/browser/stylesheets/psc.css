@@ -8,6 +8,7 @@
 
 #project_logo_wrapper{
     margin: .25em;
+    float: right;
 }
 
 #project_thumb_wrapper{ 

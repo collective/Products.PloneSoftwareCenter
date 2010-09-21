@@ -179,7 +179,9 @@
 						define="project result/getObject;
 							url result/getURL;
 							projectURL project/absolute_url;
-							result_type result/portal_type;">
+							result_type result/portal_type;
+							zoomid   python:project.id.replace('.', '_');
+							screenshot   project/getScreenshot | nothing">
 						
 						<h3 style="border-top: none">
 							<a href=""
@@ -187,21 +189,21 @@
 								tal:content="result/pretty_title_or_id">Product One</a>
 						</h3>
 						<div class="project-thumb" 
-						      tal:condition="project/getScreenshot">
+						      tal:condition="screenshot">
 						   <a class="zoom" 
-						      tal:attributes="href string:#${project/id}">
+						      tal:attributes="href string:#${zoomid}">
 							<img tal:condition="project/screenshot_thumb|nothing"
 								tal:replace="structure project/screenshot_thumb" />
 				            <div style="display:none"
-				                tal:attributes="id  project/id">
-                                <img tal:condition="project/screenshot|nothing"
-								tal:replace="structure project/screenshot" />
+				                tal:attributes="id  zoomid">
+                                <img tal:condition="screenshot"
+								    tal:replace="structure screenshot" />
 				            </div>
 				           </a>
 						</div>
 						
 						<span class="project-thumb" 
-						      tal:condition="not:project/getScreenshot">
+						      tal:condition="not:screenshot">
 							<img tal:condition="project/logo|nothing"
 								tal:replace="structure project/logo" />
 						</span>
@@ -220,7 +222,7 @@
 							</p>
 							
 							<div class="project-compatibilities"
-							     tal:define="compatibilities result/getCompatibility;"
+							     tal:define="compatibilities project/getCompatibility;"
 							     tal:condition="compatibilities">
 							     Releases compatible with:
 							     <tal:loop   repeat="compatibility compatibilities">
@@ -252,7 +254,7 @@
 				<tal:categories repeat="cat here/availableCategories">
 				<li><a href=""
 							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
-							tal:attributes="href string:${here/absolute_url}/by-category/${cid}"
+							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}"
 							tal:content="python:csplit[1]"
 							>Plone releases</a></li>
 				</tal:categories>

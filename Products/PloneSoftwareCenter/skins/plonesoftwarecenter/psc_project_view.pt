@@ -44,17 +44,7 @@
 
         
         <h2 i18n:translate="label_project_description">Project Description</h2>
-        
-        <div id="project_thumb_wrapper"
-             tal:condition="here/getScreenshot | nothing">
-            <a title="View a large version of this screenshot" href="screenshot">
-                <img src="screenshot_preview" title="Theme Preview Image" id="theme_preview_hotness"/>
-            </a>
-        </div>
     
-
-        <div tal:replace="structure here/getText" />
-
         <div id="project_logo_wrapper"
          tal:condition="here/getLogo | nothing">
             <a tal:omit-tag="not: here/getLogoURL"
@@ -62,6 +52,8 @@
                 <img tal:replace="structure here/getLogo" />
             </a>
         </div>
+        
+        <div tal:replace="structure here/getText" />
         
         <div class="visualClear"></div>
         
@@ -196,7 +188,7 @@
                                    (<span tal:replace="fileSize">256KB</span>)
                               </tal:size>
                               <tal:extsize condition="not: fileSize">
-                                  <tal:extfile condition="file/getExternalFileSize">
+                                  <tal:extfile condition="file/getExternalFileSize" tal:on-error="string:Unknown">
                                   (<span tal:replace="file/getExternalFileSize">256KB</span>)
                                   </tal:extfile>
                               </tal:extsize>
