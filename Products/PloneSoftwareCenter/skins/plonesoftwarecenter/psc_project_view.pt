@@ -182,6 +182,7 @@
                         for
                         <span tal:replace="file/getPlatform" /></a>
                       
+                        <!--comment out size
                         <span class="discreet"
                                   tal:define="fileSize file/@@file_view/file_size">
                               <tal:size tal:condition="fileSize">
@@ -193,6 +194,7 @@
                                   </tal:extfile>
                               </tal:extsize>
                         </span>
+                        -->
                         </dt>
 
                   <dd class="discreet" tal:content="file/Title">
@@ -200,6 +202,8 @@
                   </dd>
 
                   </tal:downloads>
+                  <dt>If you are using Plone 3.2 or higher, you probably want to install this product with buildout.  See <A href="http://plone.org/documentation/kb/third-party-products/installing">our tutorial on installing add-on products with buildout</a> for more information.
+                  </dt>
                 </dl>
         </div>
         </tal:stable>
