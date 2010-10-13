@@ -6,6 +6,8 @@
            xmlns:contentratings="http://namespaces.plone.org/contentratings"
            i18n_domain="plonesoftwarecenter">
 
+  <include package="plone.contentratings" />
+
   <include package=".namespace" />
   <include package=".browser" />
   <include package=".storage" />
@@ -49,7 +51,7 @@
       read_expr="python:checkPermission('Content Ratings: View User Rating', context)"
       write_expr="python:checkPermission('Content Ratings: User Rate', context)"
       />
-  
+
   <gs:importStep
       name="plonesoftwarecenter_various"
       handler="Products.PloneSoftwareCenter.setuphandlers.importVarious"
