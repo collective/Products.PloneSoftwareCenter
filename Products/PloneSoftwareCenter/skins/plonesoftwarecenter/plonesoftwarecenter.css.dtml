@@ -55,5 +55,12 @@
 .poweredBy { 
 }
 
+.note {
+    border-color: #CCCCCC;
+    border-style: solid;
+    border-width: thin 0 0 thin;
+    margin: 2em;
+    padding: 0 0.5em 0 1em;
+}
 
 /* </dtml-with> */
