@@ -7,6 +7,8 @@ Changelog
 1.6.1 (unreleased)
 ::::::::::::::::::
 
+- Added pypi module with a utility function to fetch download counts
+  from PyPI. [davisagli]
 - Add downloadCount field to projects. [davisagli]
 - Exorcise fancy zoom; use plone.app.jquerytools instead. [smcmahon]
 - Include plone.contentratings package via zcml [thet] 
