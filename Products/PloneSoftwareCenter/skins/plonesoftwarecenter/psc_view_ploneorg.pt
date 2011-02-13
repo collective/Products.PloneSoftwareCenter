@@ -188,17 +188,12 @@
 								tal:attributes="href projectURL;"
 								tal:content="result/pretty_title_or_id">Product One</a>
 						</h3>
-						<div class="project-thumb" 
+						<div class="project-thumb thumbzoom" 
 						      tal:condition="screenshot">
-						   <a class="zoom" 
-						      tal:attributes="href string:#${zoomid}">
-							<img tal:condition="project/screenshot_thumb|nothing"
+						   <a tal:attributes="href projectURL">
+							<img
+							    tal:condition="project/screenshot_thumb|nothing"
 								tal:replace="structure project/screenshot_thumb" />
-				            <div style="display:none"
-				                tal:attributes="id  zoomid">
-                                <img tal:condition="screenshot"
-								    tal:replace="structure screenshot" />
-				            </div>
 				           </a>
 						</div>
 						

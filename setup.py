@@ -50,7 +50,6 @@ setup(name='Products.PloneSoftwareCenter',
           'Products.ArchAddOn',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
-          'collective.fancyzoomview',
           'plone.contentratings',
       ],
       entry_points="""

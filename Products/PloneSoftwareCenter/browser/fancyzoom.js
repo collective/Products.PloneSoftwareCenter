@@ -1,3 +1,9 @@
-jq(document).ready(function() {
-	jq('a.zoom').fancyZoom({closeOnClick: true, directory: '++resource++Products.PloneSoftwareCenter.fancyzoom.images'});
+// zoom thumbnails to full size
+jQuery(function($) {
+    $('.thumbzoom img').prepOverlay({
+        subtype: 'image',
+        urlmatch: '_(thumb|preview)$',
+        urlreplace: ''
+    });
 });
+

@@ -118,21 +118,13 @@
     </dl>
 
         <div style="text-align: center; margin-bottom: 1em"
-            tal:condition="here/screenshot_preview | nothing">
-            <a class="discreet zoom"
-                href="#screenshot_zoom">
-                <img tal:attributes="src here/screenshot/absolute_url"
-                     width="240" alt="Screenshot &mdash; click to enlarge"
-                     i18n:attributes="alt label_screenshot_click_to_enlarge"/>
-                <br />
-                <span i18n:translate="label_screenshot_click_to_enlarge">
-                    Screenshot &mdash; click to enlarge
-                </span>
-            </a>
-            
-            <div id="screenshot_zoom">
-                <img tal:replace="structure here/screenshot" />
-            </div>
+            tal:condition="here/screenshot_preview | nothing"
+            class="thumbzoom">
+                <img tal:attributes="src here/screenshot_preview/absolute_url"
+                     width="240" alt=""
+                     title="Screenshot &mdash; click to enlarge"
+                     i18n:attributes="title label_screenshot_click_to_enlarge;"
+                     />
         </div>
 
 

@@ -166,24 +166,10 @@
       attribute="verify"
     />
 
-    <!-- fancyzoom -->
+    <!-- thumbnail zooming -->
     <resource
         name="Products.PloneSoftwareCenter.fancyzoom.js"
         file="fancyzoom.js"
         />
-
-    <zope:configure package="collective.fancyzoomview.browser">
-        <!-- resource directory for images -->
-        <resourceDirectory
-            name="Products.PloneSoftwareCenter.fancyzoom.images"
-            directory="images"
-            />
-
-        <!-- resource directory for javascript -->
-        <resourceDirectory
-    		name="Products.PloneSoftwareCenter.fancyzoom.javascript"
-            directory="javascript"
-            />
-    </zope:configure>
 
 </configure>
