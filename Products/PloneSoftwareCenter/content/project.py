@@ -144,11 +144,11 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         widget = IntegerWidget(
             label = 'Download Count',
             label_msgid = 'label_project_download_count',
-            description = 'Download count retrieved from pypi.',
+            description = 'Download count retrieved from pypi. Set to -1 to deprioritize and exclude from updates.',
             description_msgid = 'help_project_download_count',
             i18n_domain = 'plonesoftwarecenter',
-            visible = {"view":False,"edit":False},
             ),
+        write_permission = 'Manage portal',
         ),
     
     LinesField('selfCertifiedCriteria',

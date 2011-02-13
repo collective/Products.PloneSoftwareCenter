@@ -66,5 +66,6 @@ def update_package_download_counts(context):
     for package_id, downloads in counts.items():
         brain = catalog.unrestrictedSearchResults(getDistutilsMainId=package_id)[0]
         package = app.unrestrictedTraverse(brain.getPath())
-        package.setDownloadCount(downloads)
+        if package.getDownloadCount() != -1:
+            package.setDownloadCount(downloads)
         transaction.commit()

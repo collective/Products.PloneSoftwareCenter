@@ -128,6 +128,9 @@
                     <label for="project-sort">Sort On</label>
                     <select name="sort_on" id="project-sort" 
                             onchange="this.form.submit()">
+                        <option value="getDownloadCount"
+                            tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected' or ''"
+                            >Most Downloaded</option>
                         <option value="average_rating"
                             tal:attributes="selected    python:sort_on == 'average_rating' and 'selected' or ''"
                             >Highest Rated</option>
