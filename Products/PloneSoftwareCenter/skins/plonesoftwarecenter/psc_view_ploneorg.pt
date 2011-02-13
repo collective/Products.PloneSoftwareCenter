@@ -37,7 +37,7 @@
 			<h1>Add-on Products</h1>
 			<p>Add-ons extend your Plone site with additional functionality. 
 				Currently there are <span tal:replace="psc/project_count" /> projects 
-				with a total of <span tal:replace="psc/release_count" /> releases available.
+				with <span tal:replace="psc/release_count" /> releases available.
 			</p>
 			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your add-on</a>
 		</div>
