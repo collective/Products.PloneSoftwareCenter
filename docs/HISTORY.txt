@@ -7,6 +7,7 @@ Changelog
 1.6.1 (unreleased)
 ::::::::::::::::::
 
+- Add downloadCount field to projects. [davisagli]
 - Exorcise fancy zoom; use plone.app.jquerytools instead. [smcmahon]
 - Include plone.contentratings package via zcml [thet] 
 - Re-added thumbnails and screenshots to plone psc view [eleddy]

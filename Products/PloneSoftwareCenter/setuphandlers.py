@@ -392,6 +392,7 @@ def install(self):
     addCatalogMetadata(self, out, catalog, 'getDistutilsMainId')
     addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds', 'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getDistutilsSecondaryIds')
+    addCatalogIndex(self, out, catalog, 'getDownloadCount', 'FieldIndex')
     print >> out, "Added PSC items to catalog indexes and metadata"
     
     setupContentRatings(self, out)

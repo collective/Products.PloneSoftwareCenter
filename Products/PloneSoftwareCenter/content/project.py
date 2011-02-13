@@ -123,7 +123,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-
+    
     LinesField('distutilsSecondaryIds',
         multiValued=1,
         required=0,
@@ -137,6 +137,19 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
+    
+    IntegerField('downloadCount',
+        required = 0,
+        schemata = 'distutils',
+        widget = IntegerWidget(
+            label = 'Download Count',
+            label_msgid = 'label_project_download_count',
+            description = 'Download count retrieved from pypi.',
+            description_msgid = 'help_project_download_count',
+            i18n_domain = 'plonesoftwarecenter',
+            visible = {"view":False,"edit":False},
+            ),
+        ),
     
     LinesField('selfCertifiedCriteria',
         multiValued=1,
