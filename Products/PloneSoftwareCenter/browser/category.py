@@ -13,6 +13,38 @@ class CategoryView(BrowserView):
         
         self.context_path = '/'.join(self.context.getPhysicalPath())
         
+    
+    def get_products(self, category, version, sort_on, SearchableText=None):
+        featured = False
+        
+        # featured content should be filtered by state and then 
+        # sorted by average rating
+        if sort_on == 'featured':
+            featured = True
+            sort_on = 'positive_ratings'
+        contentFilter = {'getCategories': category,
+		                 'SearchableText': SearchableText,
+			             'portal_type': 'PSCProject',
+			             'sort_on' : sort_on,
+			             'sort_order': 'reverse'}
+        
+        if version != 'all':
+            contentFilter['getCompatibility'] = version
+        if featured:
+            contentFilter['review_state'] = 'featured'
+            
+        return self.catalog(**contentFilter)
+    
+    def get_latest_plone_release(self):
+        """Get the latest version from the vocabulary. This only 
+        goes by string sorting so would need to be reworked if the 
+        plone versions dramatically changed"""
+        # getAvailableVersions is coming from root.py. ?
+        versions = list(self.context.getAvailableVersions())
+        versions.sort(reverse=True)
+        return versions[0]
+    
+    
     def by_category(self, category, states=[], limit=None):
         """Get catalog brains for projects in category."""
         return self._contained(states, category, 'PSCProject', limit,

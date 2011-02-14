@@ -3,10 +3,7 @@
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:zcml="http://namespaces.zope.org/zcml"
            xmlns:gs="http://namespaces.zope.org/genericsetup"
-           xmlns:contentratings="http://namespaces.plone.org/contentratings"
            i18n_domain="plonesoftwarecenter">
-
-  <include package="plone.contentratings" />
 
   <include package=".namespace" />
   <include package=".browser" />
@@ -43,14 +40,12 @@
   <five:deprecatedManageAddDelete
       class=".content.proposal.PSCImprovementProposal" />
 
-  <contentratings:category
-      for="Products.CMFCore.interfaces.IDynamicType"
-      name="psc_stars"
-      title="Average Rating"
-      view_name="ratings_view"
-      read_expr="python:checkPermission('Content Ratings: View User Rating', context)"
-      write_expr="python:checkPermission('Content Ratings: User Rate', context)"
-      />
+  <include package="cioppino.twothumbs" />
+  <interface interface="cioppino.twothumbs.interfaces.ILoveThumbsDontYou" />
+  <five:implements
+      class="Products.PloneSoftwareCenter.content.project.PSCProject"
+      interface="cioppino.twothumbs.interfaces.ILoveThumbsDontYou" />
+
 
   <gs:importStep
       name="plonesoftwarecenter_various"

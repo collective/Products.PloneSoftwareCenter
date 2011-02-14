@@ -395,7 +395,7 @@ def install(self):
     addCatalogIndex(self, out, catalog, 'getDownloadCount', 'FieldIndex')
     print >> out, "Added PSC items to catalog indexes and metadata"
     
-    setupContentRatings(self, out)
+    setupCioppinoTwoThumbs(self, out)
 
 def addCatalogIndex(self, out, catalog, index, type, extra = None):
     """Add the given index name, of the given type, to the catalog."""
@@ -416,33 +416,18 @@ def addCatalogMetadata(self, out, catalog, column):
         print >> out, column, "already in catalog metadata"
 
 
-def setupContentRatings(self, out):
+def setupCioppinoTwoThumbs(self, out):
     """
-    Install the contentratings product and reindex its indexes
+    Install the twothumbs product and reindex its indexes
     """
     # I am getting weird errors putting this in metadata.xml
     # I think it has something to do with custome profile stuff
     # in extensions/install.py
-    # plus we need to know whether to reindex the new indexes
     qi = getToolByName(self, 'portal_quickinstaller')
-    if not qi.isProductInstalled('plone.contentratings'):
-        qi.installProduct('plone.contentratings',)
-        print >> out, "Installed contentratings"
-        
-        # we need to reindex the new indexes, 
-        # contentratings doesn't do this for us
-        # getCompatibility was there before, but only for releases - need to 
-        # reindex to get projects involved
-        newIndexes = ['average_rating', 'rating_users', 'getCompatibility']
-        cat = getToolByName(self, 'portal_catalog')
-        for index in newIndexes:
-            try:
-                cat.reindexIndex(index, None)
-                transaction.commit()
-                print >> out, "Reindexed %s"%index
-            except ConflictError:
-                print >> out, "Conflict error reindexing %s - please manually reindex"%index
-                        
+    if not qi.isProductInstalled('cioppino.twothumbs'):
+        qi.installProduct('cioppino.twothumbs',)
+        print >> out, "Installed cioppino.twothumbs"
+
 
 def importVarious(context):
     """

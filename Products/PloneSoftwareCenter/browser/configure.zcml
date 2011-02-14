@@ -114,7 +114,7 @@
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".category.CategoryView"
       permission="zope2.View"
-      allowed_attributes="by_category _contained category_name category_description"
+      allowed_attributes="by_category _contained category_name category_description get_products get_latest_plone_release"
       />
 
   <!-- Pypi APIs -->

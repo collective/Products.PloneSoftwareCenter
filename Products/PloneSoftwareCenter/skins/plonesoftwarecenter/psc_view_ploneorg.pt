@@ -19,11 +19,9 @@
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
-		sort_on   request/sort_on | string:average_rating;
+		sort_on   request/sort_on | string:featured;
 		currentCategory request/getCategories | string:;
-		currentVersion request/getCompatibility | string:any;
-		currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
-		currentVersion python:test(currentVersion=='any','',currentVersion);
+		currentVersion request/getCompatibility |view/get_latest_plone_release;
 		SearchableText request/SearchableText | string:;
 		getCategoryName nocall:view/category_name;
 		cropText nocall:context/@@plone/cropText;
@@ -128,12 +126,16 @@
                     <label for="project-sort">Sort On</label>
                     <select name="sort_on" id="project-sort" 
                             onchange="this.form.submit()">
-                        <option value="getDownloadCount"
-                            tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected' or ''"
-                            >Most Downloaded</option>
-                        <option value="average_rating"
-                            tal:attributes="selected    python:sort_on == 'average_rating' and 'selected' or ''"
+                        <tal:comment>Featured items are sorted by rating</tal:comment>
+                        <option value="featured"
+                            tal:attributes="selected    python:sort_on == 'featured' and 'selected' or ''"
+                            >Featured</option>
+                        <option value="positive_ratings"
+                            tal:attributes="selected    python:sort_on == 'positive_ratings' and 'selected'" 
                             >Highest Rated</option>
+                        <option value="getDownloadCount"
+                            tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected'"
+                            >Most Downloaded</option>
                         <option value="effective"
                             tal:attributes="selected    python:sort_on == 'effective' and 'selected' or ''"
                             >Recently Updated</option>
@@ -154,16 +156,11 @@
 
 			<div class="" id="categories"
 				tal:define="
-				    results python:catalog(getCategories=currentCategory,
-				    SearchableText=SearchableText,
-					getCompatibility=currentVersion, 
-					portal_type='PSCProject',
-					sort_on=sort_on,
-					sort_order='reverse');
-				Batch python:modules['Products.CMFPlone'].Batch;
-				b_size python:10;b_start python:0;b_start request/b_start | b_start;
-				desc_length site_properties/search_results_description_length;
-				desc_ellipsis site_properties/ellipsis;">
+				    results python:view.get_products(currentCategory, currentVersion, sort_on, SearchableText);
+				    Batch python:modules['Products.CMFPlone'].Batch;
+				    b_size python:10;b_start python:0;b_start request/b_start | b_start;
+				    desc_length site_properties/search_results_description_length;
+				    desc_ellipsis site_properties/ellipsis;">
 
 				<p tal:condition="not: results">
 					<strong i18n:translate="description_no_results_found">No results were found.</strong>
@@ -191,6 +188,7 @@
 								tal:attributes="href projectURL;"
 								tal:content="result/pretty_title_or_id">Product One</a>
 						</h3>
+						<div tal:content="structure project/@@rate-if-you-dare"/>
 						<div class="project-thumb thumbzoom" 
 						      tal:condition="screenshot">
 						   <a tal:attributes="href projectURL">
@@ -222,15 +220,18 @@
 							<div class="project-compatibilities"
 							     tal:define="compatibilities python:result.getCompatibility or project.getCompatibility();"
 							     tal:condition="compatibilities">
-							     Releases compatible with:
+							     Latest release compatible with:
 							     <tal:loop   repeat="compatibility compatibilities">
-							         <span class="project-compatibility" 
-							             tal:content="compatibility"/> 
+							         <span class="project-compatibility">
+							             <span tal:content="compatibility" tal:omit-tag="python:True"/>
+							             <span tal:condition="not:repeat/compatibility/end"
+							                                  tal:omit-tag="python:True">, </span>
+							         </span> 
+							         
 							     </tal:loop>
 							</div>
 														
-				            <div class="read-only-ratings" 
-				                tal:content="structure project/@@user-ratings-read"/>
+				            
 						</div>
 						
 						<div class="visualClear" ></div>

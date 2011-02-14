@@ -24,6 +24,10 @@ Changelog
 - Hide grey X if one can't delete. [eleddy]
 - Added fancy zoom to summary view
 - Updated workflow definitions to respect plone default roles [simu]
+- Default sort is on latest plone release [eleddy]
+- Add featured workflow and set as default search [eleddy]
+- Add a warning if the package hasn't been updated in over a year [eleddy]
+- Replace the 5 start contentratings with the two thumb ratings view [eleddy]
 
 1.6.0 (unreleased)
 ::::::::::::::::::

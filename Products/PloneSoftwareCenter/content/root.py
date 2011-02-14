@@ -122,14 +122,10 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
     LinesField('availableVersions',
         default=[
-            'Plone 4.0',
-            'Plone 3.1',
-            'Plone 3.0',
+            'Plone 4',
+            'Plone 3',
             'Plone 2.5',
             'Plone 2.1',
-            'Plone 2.0.5',
-            'Plone 2.0',
-            'Plone 1.0',
         ],
         widget=LinesWidget(
             label='Versions',

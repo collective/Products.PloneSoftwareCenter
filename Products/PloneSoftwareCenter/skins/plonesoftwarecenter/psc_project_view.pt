@@ -27,6 +27,11 @@
         <h1 class="documentFirstHeading">
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
+        
+        <dl class="portalMessage error" tal:condition="context/mayBeUnmaintained">
+            <dt>Warning</dt>
+            <dd>This product has not had a release in over 1 year and may no longer be maintained. </dd>
+        </dl>
 
         <div tal:content="structure provider:plone.belowcontenttitle" />
         <p class="documentDescription"

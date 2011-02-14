@@ -26,6 +26,7 @@ from Products.PloneSoftwareCenter.permissions import ApproveProject, \
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 
 from zExceptions import Unauthorized
+import DateTime
 
 
 PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
@@ -584,26 +585,58 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         return True
 
     def getCompatibility(self):
-        '''Get the compatibility of the product by getting all 
-        the compatabilities of all the subreleases
-        XXX: There is probably a better way to do this but the
-        # of releases is so small I don't see this being an issue 
-        on reindex
+        '''Get the compatibility of the product by getting  
+        the compatabilities of the LATEST release. This is 
+        used primarily by the index.
         '''
         compatabilities = []
+        release = self.getLatestRelease()
+        if release:
+            for release_compatability in release.getCompatibility:
+                compatabilities.append(release_compatability)
+        compatabilities.sort(reverse=True)
+        return set(compatabilities)
+            
+    def getLatestRelease(self):
+        """Get the most recent final release brain or None if none 
+        can be found.
+        """
         releaseFolder = self.getReleaseFolder()
+        
+        res = None
+        
         if releaseFolder:
             catalog = getToolByName(self, 'portal_catalog')
             res = catalog.searchResults(
-              portal_type = 'PSCRelease',
-              sort_order='reverse',
-              path = '/'.join(releaseFolder.getPhysicalPath()),)
+              path = '/'.join(releaseFolder.getPhysicalPath()),
+              review_state = 'final',
+              sort_on = 'Date',
+              sort_order = 'reverse',
+              portal_type = 'PSCRelease')
+        
+        if not res:
+            return None
+        else:
+            return res[0]
             
-            for r in res:
-                release_compatabilities = r.getCompatibility
-                for release_compatability in release_compatabilities:
-                    compatabilities.append(release_compatability)
-        return set(compatabilities)
+    def mayBeUnmaintained(self):
+        """Return True if there hasn't been a release in over a year"""
+        lastRelease = self.getLastReleaseDate()
+        if not lastRelease:
+            return False
+            
+        if DateTime.DateTime() - lastRelease > 360:
+            return True
+            
+        return False
+        
+            
+    def getLastReleaseDate(self):
+        """Get the last date of the last release"""
+        latest = self.getLatestRelease()
+        if latest:
+            return latest.effective
+        return None
     
 
     security.declareProtected(permissions.ModifyPortalContent,  

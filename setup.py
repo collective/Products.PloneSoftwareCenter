@@ -50,7 +50,7 @@ setup(name='Products.PloneSoftwareCenter',
           'Products.ArchAddOn',
           'Products.AddRemoveWidget',
           'Products.DataGridField',
-          'plone.contentratings',
+          'cioppino.twothumbs'
       ],
       entry_points="""
       # -*- Entry points: -*-
