@@ -41,10 +41,9 @@
       class=".content.proposal.PSCImprovementProposal" />
 
   <include package="cioppino.twothumbs" />
-  <interface interface="cioppino.twothumbs.interfaces.ILoveThumbsDontYou" />
-  <five:implements
-      class="Products.PloneSoftwareCenter.content.project.PSCProject"
-      interface="cioppino.twothumbs.interfaces.ILoveThumbsDontYou" />
+  <class class=".content.project.PSCProject">
+    <implements interface="cioppino.twothumbs.interfaces.ILoveThumbsDontYou" />
+  </class>
 
 
   <gs:importStep
