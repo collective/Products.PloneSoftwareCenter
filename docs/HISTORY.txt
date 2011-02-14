@@ -28,6 +28,8 @@ Changelog
 - Add featured workflow and set as default search [eleddy]
 - Add a warning if the package hasn't been updated in over a year [eleddy]
 - Replace the 5 start contentratings with the two thumb ratings view [eleddy]
+- Sort recently updated by a the latest release effective date instead of the 
+  project modification date [eleddy]
 
 1.6.0 (unreleased)
 ::::::::::::::::::

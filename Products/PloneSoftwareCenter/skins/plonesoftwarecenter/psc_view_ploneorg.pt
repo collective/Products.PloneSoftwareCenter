@@ -136,8 +136,8 @@
                         <option value="getDownloadCount"
                             tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected'"
                             >Most Downloaded</option>
-                        <option value="effective"
-                            tal:attributes="selected    python:sort_on == 'effective' and 'selected' or ''"
+                        <option value="getLatestReleaseDate"
+                            tal:attributes="selected    python:sort_on == 'getLatestReleaseDate' and 'selected' or ''"
                             >Recently Updated</option>
                         <option value="created"
                             tal:attributes="selected    python:sort_on == 'created' and 'selected' or ''"
@@ -206,7 +206,7 @@
 						
 						<div class="product-details">
 							<span class="product-leadin">
-								<span tal:replace="python:toLocalizedTime(result.ModificationDate, long_format=0)">
+								<span tal:replace="python:toLocalizedTime(result.getLatestReleaseDate or result.modified, long_format=0)">
 									Sept. 3, 2008
 								</span> 
 								in 

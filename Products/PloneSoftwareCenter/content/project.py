@@ -621,7 +621,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
             
     def mayBeUnmaintained(self):
         """Return True if there hasn't been a release in over a year"""
-        lastRelease = self.getLastReleaseDate()
+        lastRelease = self.getLatestReleaseDate()
         if not lastRelease:
             return False
             
@@ -631,8 +631,11 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         return False
         
             
-    def getLastReleaseDate(self):
-        """Get the last date of the last release"""
+    def getLatestReleaseDate(self):
+        """
+        Return the effective date of the last release. This is currently used for index 
+        and catalog data.
+        """
         latest = self.getLatestRelease()
         if latest:
             return latest.effective

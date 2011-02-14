@@ -393,6 +393,9 @@ def install(self):
     addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds', 'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getDistutilsSecondaryIds')
     addCatalogIndex(self, out, catalog, 'getDownloadCount', 'FieldIndex')
+    addCatalogIndex(self, out, catalog, 'getLatestReleaseDate', 'DateIndex')
+    addCatalogMetadata(self, out, catalog, 'getLatestReleaseDate')
+    
     print >> out, "Added PSC items to catalog indexes and metadata"
     
     setupCioppinoTwoThumbs(self, out)
