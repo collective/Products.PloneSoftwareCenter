@@ -4,7 +4,7 @@ Changelog
 (name of developer is listed in brackets)
 
 
-1.6.2 (unreleased)
+1.6.1 (2011-02-14)
 ::::::::::::::::::
 
 - Nothing changed yet.
