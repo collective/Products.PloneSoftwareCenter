@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-    <version>1</version>
+    <version>1.6.1</version>
     <!--
     There is something really weird happening here. This throws another
     error on profiles.zcml. Doing this in code for 

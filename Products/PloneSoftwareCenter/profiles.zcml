@@ -20,6 +20,15 @@
             handler="Products.PloneSoftwareCenter.setuphandlers.before_1_5"
             sortkey="1"
             profile="Products.PloneSoftwareCenter:default" />
+            
+    <gs:upgradeStep
+            title="PSC upgrade step to 1.6"
+            description="Migrate the content ratings product of PSC"
+            source="*"
+            destination="1.6.1"
+            handler="Products.PloneSoftwareCenter.Extensions.migrateratings.migrate"
+            sortkey="1"
+            profile="Products.PloneSoftwareCenter:default" />
 
 </configure>
 

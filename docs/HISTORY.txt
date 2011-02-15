@@ -30,6 +30,7 @@ Changelog
 - Replace the 5 start contentratings with the two thumb ratings view [eleddy]
 - Sort recently updated by a the latest release effective date instead of the 
   project modification date [eleddy]
+- add a migration script from content ratings to thumbs [eleddy]
 
 1.6.0 (unreleased)
 ::::::::::::::::::
