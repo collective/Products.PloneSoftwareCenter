@@ -6,5 +6,3 @@ Introduction
 software releases, and other related information. It was originally created 
 to power the downloads section of plone.org (http://plone.org/products).
 
-Installation
-------------

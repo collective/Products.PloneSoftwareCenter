@@ -16,7 +16,6 @@ class CategoryView(BrowserView):
     
     def get_products(self, category, version, sort_on, SearchableText=None):
         featured = False
-        
         # featured content should be filtered by state and then 
         # sorted by average rating
         if sort_on == 'featured':
@@ -28,7 +27,7 @@ class CategoryView(BrowserView):
 			             'sort_on' : sort_on,
 			             'sort_order': 'reverse'}
         
-        if version != 'all':
+        if version != 'any':
             contentFilter['getCompatibility'] = version
         if featured:
             contentFilter['review_state'] = 'featured'

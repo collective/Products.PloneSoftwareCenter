@@ -1,5 +1,4 @@
-========================
-PloneSoftwareCenter ToDo
+PloneSoftwareCenter TODO
 ========================
  * Clean up code, including removing unused installers, and
    adding resource directories so people can find stuff

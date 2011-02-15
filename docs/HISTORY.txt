@@ -5,13 +5,13 @@ Changelog
 
 
 1.6.1 (2011-02-14)
-::::::::::::::::::
+------------------
 
-- Nothing changed yet.
+- Bug where search on any version was not working [eleddy]
 
 
 1.6.1 (2011-02-14)
-::::::::::::::::::
+------------------
 
 - Added pypi module with a utility function to fetch download counts
   from PyPI. [davisagli]
@@ -39,12 +39,12 @@ Changelog
 - add a migration script from content ratings to thumbs [eleddy]
 
 1.6.0 (unreleased)
-::::::::::::::::::
+------------------
 
 - Update imports and templates to be Plone 4 compatible [kteague]
 
 1.5.5 (2009-12-21)
-::::::::::::::::::
+------------------
 
 - Allow PloneSoftwareCenter folders to have content rules assigned. [jonstahl]
 
@@ -53,7 +53,7 @@ Changelog
 - Template ``psc_release_view`` wording tweaks. [aclark]
 
 1.5.4 (2009-11-23)
-::::::::::::::::::
+------------------
 
 - Add PscPoiTracker to allowed_types for PSCProject [aclark].
 
@@ -76,19 +76,19 @@ Changelog
 - Also list release candidates in the pypilinks.  [maurits]
 
 1.5.3 (2009-10-17)
-::::::::::::::::::
+------------------
 
 - Fix bug that overwrote catalog indexes on product (re)installation. [aclark]
 
 - Add fancy titles to software center view. [aclark]
 
 1.5.2 (2009-08-20)
-::::::::::::::::::
+------------------
 
 - Prepare release for plone.org
 
 1.5.1 (unreleased)
-::::::::::::::::::
+------------------
 
 - Added fancyzoom for screenshots. [davisagli]
 
@@ -118,7 +118,7 @@ Changelog
 
 
 1.5 (2008-04-27)
-::::::::::::::::
+----------------
 
 - Made the workflow of releases aware of development tags created by distutils
   so if an egg has "dev" or an SVN revision it is marked as an alpha.
@@ -144,7 +144,7 @@ Changelog
   
 
 Before 1.5
-::::::::::::::::::::::::::::::::::::::::
+----------
 
 - Base code for original project: 
   Sidnei da Silva, `awkly.org <http://awkly.org>`_
