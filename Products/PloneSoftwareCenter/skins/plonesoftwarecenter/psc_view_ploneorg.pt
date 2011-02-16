@@ -110,7 +110,7 @@
                                 Plone 3.0
                             </option>
                         </tal:block>
-                        <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)"
+                        <option value="any" tal:attributes="selected python:test(currentVersion in ['', 'any'],'selected',nothing)"
                                 i18n:translate="label_any_version">
                             Any version
                         </option>
