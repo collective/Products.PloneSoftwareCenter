@@ -22,6 +22,7 @@ class RatingsMigrator(BaseInlineMigrator):
       
       from cioppino.twothumbs import rate as thumbrate
       
+      transaction.begin()
       item = self.obj 
       annotations = IAnnotations(item)
       if annotations:
@@ -37,8 +38,9 @@ class RatingsMigrator(BaseInlineMigrator):
                 else:
                     thumbrate.hateIt(item,rating.userid)
             
-            # we need to reindex th object anyways
-            item.reindexObject()
+      # we need to reindex th object anyways
+      item.reindexObject()
+      transaction.commit()
 
 def migrate(self):
     out = StringIO()
