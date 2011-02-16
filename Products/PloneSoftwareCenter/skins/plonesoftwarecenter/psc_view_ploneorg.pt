@@ -19,7 +19,7 @@
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
-		sort_on   request/sort_on | string:featured;
+		sort_on   request/sort_on | string:positive_ratings;
 		currentCategory request/getCategories | string:;
 		currentVersion request/getCompatibility |view/get_latest_plone_release;
 		SearchableText request/SearchableText | string:;
@@ -127,9 +127,9 @@
                     <select name="sort_on" id="project-sort" 
                             onchange="this.form.submit()">
                         <tal:comment>Featured items are sorted by rating</tal:comment>
-                        <option value="featured"
+                        <!--<option value="featured"
                             tal:attributes="selected    python:sort_on == 'featured' and 'selected' or ''"
-                            >Featured</option>
+                            >Featured</option>-->
                         <option value="positive_ratings"
                             tal:attributes="selected    python:sort_on == 'positive_ratings' and 'selected'" 
                             >Highest Rated</option>

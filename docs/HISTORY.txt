@@ -4,11 +4,13 @@ Changelog
 (name of developer is listed in brackets)
 
 
-1.6.1 (2011-02-14)
+1.6.2 (Unreleased)
 ------------------
 
 - Bug where search on any version was not working [eleddy]
-
+- Any was not properly repopulating in search drop down [eleddy]
+- Remove featured content drop down for now until people figure 
+  out what they want [eleddy]
 
 1.6.1 (2011-02-14)
 ------------------
