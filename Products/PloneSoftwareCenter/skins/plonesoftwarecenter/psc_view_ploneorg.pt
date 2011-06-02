@@ -254,7 +254,7 @@
 				<tal:categories repeat="cat here/availableCategories">
 				<li><a href=""
 							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
-							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}"
+							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}&getCompatibility=any"
 							tal:content="python:csplit[1]"
 							>Plone releases</a></li>
 				</tal:categories>

@@ -1,8 +1,9 @@
 Changelog
 =========
 
-(name of developer is listed in brackets)
-
+1.6.3 (unreleased)
+------------------
+- switch category search was to have no version filter [eleddy]
 
 1.6.2 (2011-05-12)
 ------------------
