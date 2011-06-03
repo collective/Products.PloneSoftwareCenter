@@ -187,6 +187,31 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=10,
         ),
     ),
+    
+    StringField('product_title',
+        default='Add-on Product',
+        widget=StringWidget(
+            label_msgid='label_product_title',
+            label='Product Title',
+            description_msgid='help_product_title',
+            description='Title of products when using the project view. '
+                        'For example, "Add-on Product", "Extension", or "Template"',
+            i18n_domain='plonesoftwarecenter',
+        ),
+    ),
+    
+    TextField('addon_description',
+        default='Add-ons extend your Plone site with additional functionality.',
+        widget=TextAreaWidget(
+            label_msgid='label_addon_description',
+            label='Product Description',
+            description_msgid='help_addon_description',
+            description='When using project view, please provide some text to introduce '
+                        'the products.',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
 
     ReferenceField('featuredProject',
         multiValued=0,

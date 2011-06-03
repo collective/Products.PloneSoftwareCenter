@@ -32,12 +32,12 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="splash pullout" id="sidebar-downloads">
-			<h1>Add-on Products</h1>
-			<p>Add-ons extend your Plone site with additional functionality. 
-				Currently there are <span tal:replace="psc/project_count" /> projects 
+			<h1><span tal:content="here/product_title"/>s</h1>
+			<span tal:content="structure here/addon_description"/>
+            <p class="current-projects">Currently there are <span tal:replace="psc/project_count" /> projects 
 				with <span tal:replace="psc/release_count" /> releases available.
 			</p>
-			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your add-on</a>
+			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your <span tal:content="here/product_title"/></a>
 		</div>
 	</div>
 
@@ -88,7 +88,7 @@
 
 		<div class="pane">
 
-			<h2>Add-on Product Releases</h2> 
+			<h2><span tal:content="here/product_title"/> Releases</h2> 
 
 
 			<div id="sort-by">
@@ -248,7 +248,7 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="sidebar">
-			<h2>Browse add-ons by category</h2>
+			<h2>Browse <span tal:content="here/product_title"/>s by Category</h2>
 
 			<ol id="add-on-categories">
 				<tal:categories repeat="cat here/availableCategories">
