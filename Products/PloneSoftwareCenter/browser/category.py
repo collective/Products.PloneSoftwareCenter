@@ -21,8 +21,7 @@ class CategoryView(BrowserView):
         if sort_on == 'featured':
             featured = True
             sort_on = 'positive_ratings'
-        contentFilter = {'getCategories': category,
-		                 'SearchableText': SearchableText,
+        contentFilter = {'SearchableText': SearchableText,
 			             'portal_type': 'PSCProject',
 			             'sort_on' : sort_on,
 			             'sort_order': 'reverse'}
@@ -31,6 +30,8 @@ class CategoryView(BrowserView):
             contentFilter['getCompatibility'] = version
         if featured:
             contentFilter['review_state'] = 'featured'
+        if category:
+            contentFilter['getCategories'] = category
             
         return self.catalog(**contentFilter)
     
