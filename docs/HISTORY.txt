@@ -6,6 +6,7 @@ Changelog
 - switch category search was to have no version filter [eleddy]
 - searching on all categories was broken [eleddy]
 - add support to configure psc project view [eleddy]
+- configurable installation instructions [eleddy]
 
 1.6.2 (2011-05-12)
 ------------------

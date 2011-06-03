@@ -212,6 +212,22 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=6,
         ),
     ),
+    
+    TextField('installation_instructions',
+        default='If you are using Plone 3.2 or higher, you probably want to install '
+                'this product with buildout. See <a href="http://plone.org/'
+                'documentation/kb/third-party-products/installing">our tutorial on '
+                'installing add-on products with buildout</a> for more information.',
+        widget=TextAreaWidget(
+            label_msgid='label_installation_instructions',
+            label='Product Installation Instructions',
+            description_msgid='help_installation_instructions',
+            description='Enter any installation instructions that should appear on each'
+                        'product page.',
+            i18n_domain='plonesoftwarecenter',
+            rows=6,
+        ),
+    ),
 
     ReferenceField('featuredProject',
         multiValued=0,

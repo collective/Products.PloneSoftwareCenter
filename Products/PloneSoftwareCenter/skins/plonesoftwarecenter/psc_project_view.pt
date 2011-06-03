@@ -207,8 +207,7 @@
                   </dd>
 
                   </tal:downloads>
-                  <dt>If you are using Plone 3.2 or higher, you probably want to install this product with buildout.  See <A href="http://plone.org/documentation/kb/third-party-products/installing">our tutorial on installing add-on products with buildout</a> for more information.
-                  </dt>
+                  <dt tal:content="structure view/get_installation_instrutions"/>
                 </dl>
         </div>
         </tal:stable>

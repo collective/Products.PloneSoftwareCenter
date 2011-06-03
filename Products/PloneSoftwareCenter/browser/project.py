@@ -30,6 +30,10 @@ class ProjectView(BrowserView):
         
         self.context_path = '/'.join(self.context.getPhysicalPath())
         
+    def get_installation_instrutions(self):
+        psc = self.context.getParentNode()
+        return psc.getInstallation_instructions()
+    
     def latest_release(self):
         """Get the most recent final release or None if none can be found.
         """

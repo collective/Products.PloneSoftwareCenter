@@ -32,12 +32,12 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="splash pullout" id="sidebar-downloads">
-			<h1><span tal:content="here/product_title"/>s</h1>
-			<span tal:content="structure here/addon_description"/>
+			<h1><span tal:content="here/product_title | string:Add-on Product"/>s</h1>
+			<span tal:content="structure here/addon_description | nothing"/>
             <p class="current-projects">Currently there are <span tal:replace="psc/project_count" /> projects 
 				with <span tal:replace="psc/release_count" /> releases available.
 			</p>
-			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your <span tal:content="here/product_title"/></a>
+			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your <span tal:content="here/product_title | string:Add-on"/></a>
 		</div>
 	</div>
 
@@ -88,7 +88,7 @@
 
 		<div class="pane">
 
-			<h2><span tal:content="here/product_title"/> Releases</h2> 
+			<h2><span tal:content="here/product_title | string:Add-on"/> Releases</h2> 
 
 
 			<div id="sort-by">
@@ -248,7 +248,7 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="sidebar">
-			<h2>Browse <span tal:content="here/product_title"/>s by Category</h2>
+			<h2>Browse <span tal:content="here/product_title | string:Add-on"/>s by Category</h2>
 
 			<ol id="add-on-categories">
 				<tal:categories repeat="cat here/availableCategories">
