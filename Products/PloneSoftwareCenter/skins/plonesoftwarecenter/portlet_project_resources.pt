@@ -107,7 +107,7 @@
                   i18n:attributes="title title_portlet_project_resources_subscribe_updates">
                   <img tal:attributes="src here/rss.gif/absolute_url"
                        alt="Subscribe to updates for this project"
-                       i18n:attributes="title title_portlet_project_resources_subscribe_updates" />
+                       i18n:attributes="alt title_portlet_project_resources_subscribe_updates" />
                   <span
                        i18n:translate="title_portlet_project_resources_subscribe_updates"> Subscribe to updates for this project</span>
                </a>

@@ -24,7 +24,7 @@
                     <a href="#" title=""
                        tal:content="release/Title"
                        tal:attributes="href release/absolute_url;
-                                       title release/Title">Ploneboard 1.0</a>
+                                       title release/Title"><tal:comment replace="nothing">Ploneboard 1.0</tal:comment></a>
 
                     <tal:released condition="release/EffectiveDate">
                     (<span tal:replace="python:context.toLocalizedTime(release.EffectiveDate())">

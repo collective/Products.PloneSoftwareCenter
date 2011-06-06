@@ -1,8 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plonehelpcenter">
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plonesoftwarecenter">
 
 <head>
     <metal:block fill-slot="top_slot">
@@ -32,12 +35,17 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="splash pullout" id="sidebar-downloads">
-			<h1><span tal:content="here/product_title | string:Add-on Product"/>s</h1>
+
+			<h1 tal:condition="here/product_title" i18n:translate="">
+				<span tal:content="here/product_title" i18n:name="product_title" />
+			</h1> 
+			<h1 tal:condition="not:here/product_title" i18n:translate="">Add-on Products</h1> 
+
 			<span tal:content="structure here/addon_description | nothing"/>
-            <p class="current-projects">Currently there are <span tal:replace="psc/project_count" /> projects 
-				with <span tal:replace="psc/release_count" /> releases available.
+            <p class="current-projects" i18n:translate="">Currently there are <span tal:content="psc/project_count" i18n:name="psc_project_count" /> projects 
+				with <span tal:content="psc/release_count" i18n:name="psc_release_count" /> releases available.
 			</p>
-			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject">Submit your <span tal:content="here/product_title | string:Add-on"/></a>
+			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=PSCProject" i18n:translate="">Submit your <span tal:content="here/product_title | string:Add-on" i18n:name="product_title_addon" /></a>
 		</div>
 	</div>
 
@@ -47,28 +55,30 @@
             <div class="splash" id="splash-downloads"
                 tal:define="download_url psc/featured_project_release_url">
 
-                <h1>Get 
-                    <span tal:replace="psc/featured_project_title">Project</span>
-                        For Your Platform
+                <h1 i18n:translate="">Get 
+                    <span tal:content="psc/featured_project_title" 
+                          i18n:name="featured_project_title">
+                          <tal:comment replace="nothing">Project</tal:comment>
+                    </span> For Your Platform
                 </h1>
 
                 <tal:featured_project_release tal:condition="psc/featured_project_release">
 
-                    <p>Latest release: 
-                        <span tal:replace="psc/featured_project_title">
-                            Project
+                    <p i18n:translate="">Latest release: 
+                        <span tal:content="psc/featured_project_title" i18n:name="featured_project_title">
+                            <tal:comment replace="nothing">Project</tal:comment>
                         </span> 
 
-                        <span tal:replace="psc/featured_project_release_id">
-                            3.4.5
+                        <span tal:content="psc/featured_project_release_id" i18n:name="featured_project_release_id">
+                            <tal:comment replace="nothing">3.4.5</tal:comment>
                         </span>
 
-                        (<span tal:replace="psc/featured_project_release_date">
-                            December 2008
+                        (<span tal:content="psc/featured_project_release_date" i18n:name="featured_project_release_date">
+                            <tal:comment replace="nothing">December 2008</tal:comment>
                         </span>)
                     </p>
 
-                    <a id="splash-download-plone" href="" tal:attributes="href download_url">Download Plone</a>
+                    <a id="splash-download-plone" href="" tal:attributes="href download_url" i18n:translate="">Download Plone</a>
 
                     <div id="splash-download-package"></div>
 
@@ -88,14 +98,17 @@
 
 		<div class="pane">
 
-			<h2><span tal:content="here/product_title | string:Add-on"/> Releases</h2> 
+			<h2 tal:condition="here/product_title" i18n:translate="">
+				<span tal:content="here/product_title" i18n:name="product_title" /> Releases
+			</h2> 
+			<h2 tal:condition="not:here/product_title" i18n:translate="">Add-on Releases</h2> 
 
 
 			<div id="sort-by">
 				<form id="product_select" style="margin-bottom: 1em" tal:attributes="action string:${here/absolute_url}">
-					<label class="hiddenStructure">Show</label>
+					<label class="hiddenStructure" i18n:translate="">Show</label>
 					<select name="getCategories" onchange="this.form.submit()">
-						<option value="">All categories</option>
+						<option value="" i18n:translate="">All categories</option>
 						<tal:block tal:repeat="cat here/availableCategories">
                             <option tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
                                 tal:content="python:csplit[1]"
@@ -107,7 +120,7 @@
                             <option tal:content="version"
                                     tal:attributes="value version;
                                                     selected python:test(currentVersion==version,'selected',nothing)">
-                                Plone 3.0
+                                <tal:comment replace="nothing">Plone 3.0</tal:comment>
                             </option>
                         </tal:block>
                         <option value="any" tal:attributes="selected python:test(currentVersion in ['', 'any'],'selected',nothing)"
@@ -118,30 +131,30 @@
                             <option tal:content="version"
                                     tal:attributes="value version;
                                                     selected python:test(currentVersion==version,'selected',nothing)">
-                                Plone 3.0
+                                <tal:comment replace="nothing">Plone 3.0</tal:comment>
                             </option>
                         </tal:block>
                     </select>
                     
-                    <label for="project-sort">Sort On</label>
+                    <label for="project-sort" i18n:translate="">Sort On</label>
                     <select name="sort_on" id="project-sort" 
                             onchange="this.form.submit()">
-                        <tal:comment>Featured items are sorted by rating</tal:comment>
+                        <tal:comment replace="nothing">Featured items are sorted by rating</tal:comment>
                         <!--<option value="featured"
                             tal:attributes="selected    python:sort_on == 'featured' and 'selected' or ''"
                             >Featured</option>-->
                         <option value="positive_ratings"
                             tal:attributes="selected    python:sort_on == 'positive_ratings' and 'selected'" 
-                            >Highest Rated</option>
+                            i18n:translate="">Highest Rated</option>
                         <option value="getDownloadCount"
                             tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected'"
-                            >Most Downloaded</option>
+                            i18n:translate="">Most Downloaded</option>
                         <option value="getLatestReleaseDate"
                             tal:attributes="selected    python:sort_on == 'getLatestReleaseDate' and 'selected' or ''"
-                            >Recently Updated</option>
+                            i18n:translate="">Recently Updated</option>
                         <option value="created"
                             tal:attributes="selected    python:sort_on == 'created' and 'selected' or ''"
-                        >Newest</option>
+                        i18n:translate="">Newest</option>
                     </select>
                     
 					<input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" /> &nbsp;
@@ -149,7 +162,7 @@
 					<input type="search" name="SearchableText" tal:attributes="value SearchableText" value=""
                         class="inputLabel" size="20" 
                     />
-                    <input type="submit" value="Search" />
+                    <input type="submit" value="Search" i18n:attributes="value" />
                     
 				</form>
 			</div>
@@ -166,8 +179,8 @@
 					<strong i18n:translate="description_no_results_found">No results were found.</strong>
 				</p>
 
-				<p id="numreleases">
-					<span tal:replace="python:len(results)">234</span> projects matching your criteria.
+				<p id="numreleases" i18n:translate="">
+					<span tal:replace="python:len(results)" i18n:name="results_projects">234</span> projects matching your criteria.
 				</p>
 
 				<tal:results condition="results"
@@ -186,7 +199,9 @@
 						<h3 style="border-top: none">
 							<a href=""
 								tal:attributes="href projectURL;"
-								tal:content="result/pretty_title_or_id">Product One</a>
+								tal:content="result/pretty_title_or_id">
+								<tal:comment replace="nothing">Product One</tal:comment>
+							</a>
 						</h3>
 						<div tal:content="structure project/@@rate-if-you-dare"/>
 						<div class="project-thumb thumbzoom" 
@@ -209,12 +224,12 @@
 								<span tal:replace="python:toLocalizedTime(result.getLatestReleaseDate or result.modified, long_format=0)">
 									Sept. 3, 2008
 								</span> 
-								in 
+								<span i18n:translate="">in</span> 
 								<span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" tal:on-error="string:"></span>
 							</span>
 							<p class="product-description"
 								tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
-								Project Description.
+								<tal:comment replace="nothing">Project Description.</tal:comment>
 							</p>
 							
 							<div class="project-compatibilities"
@@ -248,15 +263,20 @@
 
 	<div class="grid-cell position-two-thirds width-third">
 		<div class="sidebar">
-			<h2>Browse <span tal:content="here/product_title | string:Add-on"/>s by Category</h2>
+
+			<h2 tal:condition="here/product_title" i18n:translate="">
+				Browse <span tal:content="here/product_title" i18n:name="product_title" /> by Category
+			</h2> 
+			<h2 tal:condition="not:here/product_title" i18n:translate="">Browse Add-ons by Category</h2> 
 
 			<ol id="add-on-categories">
 				<tal:categories repeat="cat here/availableCategories">
+
 				<li><a href=""
 							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
 							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}&getCompatibility=any"
 							tal:content="python:csplit[1]"
-							>Plone releases</a></li>
+							><tal:comment replace="nothing">Plone releases</tal:comment></a></li>
 				</tal:categories>
 			</ol>
 

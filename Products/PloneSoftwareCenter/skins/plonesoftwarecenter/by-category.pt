@@ -55,7 +55,7 @@
             <tal:packages condition="nocall:packages">
                 <p class="documentDescription" 
                     tal:content="python:view.category_description(category)">
-                Description
+                <tal:comment replace="nothing">Description</tal:comment>
                 </p>
 
                 <p class="discreet" i18n:translate="available_projects_category">
@@ -82,11 +82,11 @@
                 </div>
 -->
                     <h2 class="tileHeadline">
-                      <a tal:attributes="href package/getURL" tal:content="package/Title">Title</a>
+                      <a tal:attributes="href package/getURL" tal:content="package/Title"><tal:comment replace="nothing">Title</tal:comment></a>
                     </h2>
                     <p class="tileBody"
                        tal:content="package/Description">
-                    Description
+                    <tal:comment replace="nothing">Description</tal:comment>
                     </p>
 
                     <p class="tileFooter">

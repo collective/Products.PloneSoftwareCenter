@@ -62,7 +62,7 @@
                     <th style="width: 50%">&nbsp;<tal:title i18n:translate="listingheader_title"
                     >Title</tal:title>&nbsp;</th>
 
-                    <th>&nbsp;<tal:title i18n:translate="listingheader_title"
+                    <th>&nbsp;<tal:title i18n:translate="listingheader_category"
                     >Category</tal:title>&nbsp;</th>
 
                     <th>&nbsp;<tal:modified i18n:translate="listingheader_modified"
@@ -91,11 +91,11 @@
                     </td>
 
                     <td tal:content="python: ', '.join(item.getProposalTypes)">
-                    Category
+                    <tal:comment replace="nothing">Category</tal:comment>
                     </td>
 
                     <td tal:content="item/ModificationDate">
-                    08/19/2001 03:01 AM
+                    <tal:comment replace="nothing">08/19/2001 03:01 AM</tal:comment>
                     </td>
 
                     <td>
@@ -112,7 +112,7 @@
                         <span tal:repeat="release item/getRelatedReleases">
                            <a tal:content="release" 
                               tal:attributes="href string:${releaseFolderUrl}/${release}">
-                              [item]
+                              <tal:comment replace="nothing">[item]</tal:comment>
                            </a>
                         </span>
                     </td>

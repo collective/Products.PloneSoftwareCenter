@@ -28,7 +28,7 @@
 
         <a href=""
            class="link-parent"
-           i18n:translate="label_up_to_product_page"
+           i18n:translate="label_up_to_product_overview"
            tal:define="parent_url python:here.navigationParent(here, template.getId())"
            tal:condition="parent_url"
            tal:attributes="href parent_url">
@@ -37,7 +37,7 @@
 
         <p class="documentDescription"
              tal:content="here/Description">
-            description
+            <tal:comment replace="nothing">description</tal:comment>
         </p>
 
         <h2 i18n:translate="heading_available_categories">
@@ -46,7 +46,7 @@
 
         <tal:categories repeat="category categories">
             <h3 tal:content="category">
-                Category
+                <tal:comment replace="nothing">Category</tal:comment>
             </h3>
             <tal:catalog define="results python:here.portal_catalog.searchResults(
                                                      portal_type='PSCProject'
@@ -54,7 +54,7 @@
                                                    , review_state='published')[:5]">
                 <ul tal:condition="results" tal:repeat="obj results">
                     <li tal:content="obj/Title">
-                        Project
+                        <tal:comment replace="nothing">Project</tal:comment>
                     </li>
                 </ul>
             </tal:catalog>

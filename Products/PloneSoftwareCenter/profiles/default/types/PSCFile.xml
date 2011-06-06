@@ -5,8 +5,7 @@
    i18n:domain="plone">
 
  <property name="title" i18n:translate="">Downloadable File</property>
- <property
-    name="description" i18n:translate="">Contains the downloadable file for the Release.</property>
+ <property name="description" i18n:translate="">Contains the downloadable file for the Release.</property>
  <property name="content_icon">file_icon.gif</property>
  <property name="content_meta_type">PSCFile</property>
  <property name="product">PloneSoftwareCenter</property>

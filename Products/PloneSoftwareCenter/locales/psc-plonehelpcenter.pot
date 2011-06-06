@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-05-06 20:15+0000\n"
+"POT-Creation-Date: 2011-06-04 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,149 +17,187 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plonehelpcenter\n"
 
-#: ./content/validators.py:98
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:83
+msgid "Linux"
+msgstr ""
+
+#: ../browser/pypilinks.pt:10
+msgid "List of available downloads"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:82
+msgid "Mac"
+msgstr ""
+
+#: ../validators.py:76
+msgid "Not a valid contact."
+msgstr ""
+
+#: ../validators.py:52
+msgid "Short name %s is invalid - it is the same as the name of a project category"
+msgstr ""
+
+#: ../namespace/pypisimple.pt:8
+msgid "Simple Index"
+msgstr ""
+
+#: ../content/validators.py:98
+#: ../validators.py:112
 msgid "This contains packages already claimed by another project."
 msgstr ""
 
-#: ./content/validators.py:96
+#: ../content/validators.py:96
+#: ../validators.py:110
 msgid "This package is already claimed by another project."
 msgstr ""
 
-#: ./content/validators.py:91
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:81
+msgid "Windows"
+msgstr ""
+
+#: ../content/validators.py:91
+#: ../validators.py:105
 msgid "You must provide a list of package names"
 msgstr ""
 
-#: ./content/validators.py:82
+#: ../content/validators.py:82
+#: ../validators.py:96
 msgid "You must set the primary package before you can select secondary packages."
 msgstr ""
 
 #. Default: "No results were found."
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:233
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:237
 msgid "description_no_results_found"
 msgstr ""
 
 #. Default: "Add-on Package Releases"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:180
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:184
 msgid "heading_addon_package_releases"
 msgstr ""
 
 #. Default: "Search for add-on packages"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:102
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:105
 msgid "heading_search_addon_packages"
 msgstr ""
 
 #. Default: "Want to list your add-on package?"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:134
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:137
 msgid "heading_want_addon_package"
 msgstr ""
 
 #. Default: "Currently listing ${results_projects_count} projects with ${results_releases_count} releases."
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:59
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:62
 msgid "help_download_currently_listing"
 msgstr ""
 
 #. Default: "${results_releases_matching_criteria} releases matching your criteria, sorted with latest releases first."
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:237
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:241
 msgid "help_releases_matching_criteria"
 msgstr ""
 
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:275
+msgid "in"
+msgstr ""
+
 #. Default: "Add new project"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:143
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:146
 msgid "label_add_new_project"
 msgstr ""
 
 #. Default: "All categories"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:187
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:191
 msgid "label_all_categories"
 msgstr ""
 
 #. Default: "Any version"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:205
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:209
 msgid "label_any_version"
 msgstr ""
 
 #. Default: "for"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:196
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:200
 msgid "label_for"
 msgstr ""
 
 #. Default: "Log in to add your project"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:157
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:161
 msgid "label_login_add_project"
 msgstr ""
 
 #. Default: "New in this release:"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:279
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:283
 msgid "label_new_this_release"
 msgstr ""
 
-#. Default: "Powered by <img src=\"product_icon.gif\" alt=\"x\"> <a class=\"link-plain\" href=\"http://plone.org/products/plonesoftwarecenter\" title=\"x\">Plone Software Center</a>"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:301
+#. Default: "Powered by <img src=\"product_icon.gif\" alt=\"x\" /> <a class=\"link-plain\" href=\"http://plone.org/products/plonesoftwarecenter\" title=\"x\">Plone Software Center</a>"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:305
 msgid "label_powered_by_ploneorg"
 msgstr ""
 
 #. Default: "Plone Software Center's Home Page"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:299
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:303
 msgid "label_psc_homepage"
 msgstr ""
 
 #. Default: "Get ${label_psc_ploneorg_get_featured_project} for your platform"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:71
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:74
 msgid "label_psc_ploneorg_featured_project"
 msgstr ""
 
 #. Default: "Download"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:86
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:89
 msgid "label_psc_ploneorg_get_download"
 msgstr ""
 
 #. Default: "Latest release: ${title_psc_ploneorg_latest_release}"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:92
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:95
 msgid "label_psc_ploneorg_latest_release"
 msgstr ""
 
 #. Default: "This page is generated automatically by PloneSoftwareCenter"
-#: ./namespace/pypisimple.pt:13
+#: ../browser/pypilinks.pt:13
+#: ../namespace/pypiproject.pt:12
+#: ../namespace/pypisimple.pt:11
 msgid "label_pypi_links"
 msgstr ""
 
 #. Default: "RSS Feed"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:50
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:53
 msgid "label_rss_feed"
 msgstr ""
 
 #. Default: "Search add-ons"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:116
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:113
 msgid "label_search_addon"
 msgstr ""
 
 #. Default: "Search"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:124
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:127
 msgid "label_search_package_releases"
 msgstr ""
 
 #. Default: "Show"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:185
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:189
 msgid "label_show"
 msgstr ""
 
 #. Default: "Update"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:218
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:222
 msgid "label_update_form_package_releases"
 msgstr ""
 
 #. Default: "Plone Software Center's Home Page"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:301
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:305
 msgid "title_psc_homepage"
 msgstr ""
 
 #. Default: "Download projects"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:83
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:86
 msgid "title_psc_ploneorg_get_download"
 msgstr ""
 
 #. Default: "RSS feed of the latest releases"
-#: ./skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:50
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:53
 msgid "title_rss_feed"
 msgstr ""
 

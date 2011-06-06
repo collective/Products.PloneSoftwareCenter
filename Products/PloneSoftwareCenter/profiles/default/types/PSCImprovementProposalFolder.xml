@@ -5,8 +5,7 @@
    i18n:domain="plone">
 
  <property name="title" i18n:translate="">Roadmap Section</property>
- <property
-    name="description" i18n:translate="">A proposal container has proposals, and a view for the listing.</property>
+ <property name="description" i18n:translate="">A proposal container has proposals, and a view for the listing.</property>
  <property name="content_icon">improvementproposal_icon.gif</property>
  <property name="content_meta_type">PSCImprovementProposalFolder</property>
  <property name="product">PloneSoftwareCenter</property>

@@ -46,7 +46,7 @@
             cropText nocall:context/@@plone/cropText;">
                      
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
-            Title or id
+            <tal:comment replace="nothing">Title or id</tal:comment>
         </h1>
 
         <div class="feedButton" >
@@ -63,7 +63,7 @@
         </p>
 
         <p class="documentDescription" tal:content="here/Description">
-            Description
+            <tal:comment replace="nothing">Description</tal:comment>
         </p>
         
         <div class="visualClear"><!-- --></div>
@@ -79,15 +79,15 @@
                 <dd class="portletItem" style="text-align: center" 
                     tal:define="project_url python: here.getFeaturedProject().absolute_url()">
                     <a tal:attributes="href project_url"><img 
-                        height="40" width="40" alt="Windows" src="platform_windows.gif" /><img 
-                        height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" /><img 
-                        height="40" width="40" alt="Linux" src="platform_linux.gif" /></a>
+                        height="40" width="40" alt="Windows" src="platform_windows.gif" i18n:attributes="alt" /><img 
+                        height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" i18n:attributes="alt" /><img 
+                        height="40" width="40" alt="Linux" src="platform_linux.gif" i18n:attributes="alt" /></a>
                     <h3>
                         <a tal:attributes="href project_url" title="Download projects"
                            style="border-bottom: 1px solid #8CACBB"
                            i18n:attributes="title title_psc_ploneorg_get_download">
                               <span i18n:translate="label_psc_ploneorg_get_download">Download</span>&nbsp;
-                              <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()">Featured Project</tal:featured_project>
+                              <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()"><tal:comment replace="nothing">Featured Project</tal:comment></tal:featured_project>
                         </a>
                     </h3>
                     <span class="discreet"
@@ -111,7 +111,7 @@
                       action="/search" tal:attributes="action string:${portal_url}/search">
                
                         <label for="searchGadget"
-                               class="hiddenStructure">
+                               class="hiddenStructure" i18n:translate="label_search_addon">
                             Search add-ons
                         </label>
                         <input type="hidden" name="path" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
@@ -203,7 +203,7 @@
                     <option tal:content="version"
                             tal:attributes="value version;
                                             selected python:test(currentVersion==version,'selected',nothing)">
-                        Plone 3.0
+                        <tal:comment replace="nothing">Plone 3.0</tal:comment>
                     </option>
                 </tal:block>
                 <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)"
@@ -214,7 +214,7 @@
                     <option tal:content="version"
                             tal:attributes="value version;
                                             selected python:test(currentVersion==version,'selected',nothing)">
-                        Plone 3.0
+                        <tal:comment replace="nothing">Plone 3.0</tal:comment>
                     </option>
                 </tal:block>
             </select>
@@ -262,27 +262,27 @@
                             tal:attributes="class item_wf_state_class">
 
                             <a href="#" style="border-bottom: 1px solid #8CACBB" tal:attributes="href projectURL;" 
-                                tal:content="result/pretty_title_or_id">Software Project</a>
+                                tal:content="result/pretty_title_or_id"><tal:comment replace="nothing">Software Project</tal:comment></a>
 
                             <span class="discreet" tal:content="python:toLocalizedTime(result.ModificationDate, long_format=0)">
-                                Modification Date
+                                <tal:comment replace="nothing">Modification Date</tal:comment>
                             </span>
 
                         </h3>
                         
                         <p class="discreet"
                            tal:condition="not:currentCategory">
-                            in <span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
+                            <span i18n:translate="">in</span> <span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
                         </p>
                         
                         <div class="description">
                             <p tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
-                                Project Description
+                                <tal:comment replace="nothing">Project Description</tal:comment>
                             </p>
                             <p>
                                 <strong i18n:translate="label_new_this_release">New in this release:</strong> <br />
                                 <span tal:content="python:cropText(result.Description, desc_length, desc_ellipsis)">
-                                    Release Description
+                                    <tal:comment replace="nothing">Release Description</tal:comment>
                                 </span>
                             </p>                        
                         </div>
@@ -301,7 +301,7 @@
         
         <div class="poweredBy" i18n:translate="label_powered_by_ploneorg">
             Powered by <img src="product_icon.gif" alt="Plone Software Center's Home Page"
-                        i18n:attributes="alt label_psc_homepage">
+                        i18n:attributes="alt label_psc_homepage" />
             <a class="link-plain" 
                href="http://plone.org/products/plonesoftwarecenter"
                title="Plone Software Center's Home Page"

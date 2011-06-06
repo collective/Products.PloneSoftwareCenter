@@ -59,7 +59,7 @@ class ProjectContactValidator:
         #print value
         #print is_valid_contact(value)
         #return 1
-        return """Not a valid contact."""
+        return _(u"""Not a valid contact.""")
 
 
 # New style validators

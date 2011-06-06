@@ -25,7 +25,7 @@
         <dd class="portletItem">
             <a href="" 
               tal:content="upcoming/Title"
-              tal:attributes="href upcoming/absolute_url">Release 1.2.2</a><br />
+              tal:attributes="href upcoming/absolute_url"><tal:comment replace="nothing">Release 1.2.2</tal:comment></a><br />
     
             <tal:releasedate condition="upcoming_view/is_released">
                 <span class="discreet"
@@ -41,7 +41,7 @@
                 </span>
             </tal:norelease>
             <span tal:content="upcoming/Description">
-                Release description
+                <tal:comment replace="nothing">Release description</tal:comment>
             </span>
         </dd>
         </tal:block>

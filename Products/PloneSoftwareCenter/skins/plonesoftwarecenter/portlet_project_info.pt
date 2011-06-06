@@ -12,7 +12,7 @@
      tal:define="project_view context/getView">
 
     <dl class="portlet">
-        <dt class="portletHeader hiddenStructure">Info</dt>
+        <dt class="portletHeader hiddenStructure" i18n:translate="">Info</dt>
         <dd class="portletItem" style="text-align: center"
             tal:condition="here/screenshot_thumb | nothing">
             <a class="discreet"

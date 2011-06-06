@@ -20,7 +20,7 @@
        tal:define="view context/@@softwarecenter_view">
 
     <h1 tal:content="context/title_or_id" class="documentFirstHeading">
-      Title or id
+      <tal:comment replace="nothing">Title or id</tal:comment>
     </h1>
 
     <div class="feedButton" >
@@ -35,7 +35,7 @@
     
     <p class="documentDescription"
        tal:content="context/Description">
-      Description.
+      <tal:comment replace="nothing">Description.</tal:comment>
     </p>
 
     <form>
@@ -94,10 +94,10 @@
             <dt class="portletHeader">
                <tal:syndicate condition="context/portal_syndication/isSiteSyndicationAllowed">
                     <a class="feedButton" href="" tal:attributes="href category/rss_url">
-                       <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                       <img i18n:attributes="title title_rss_feed_this_category; alt label_rss_feed;"
                             tal:attributes="src string:$portal_url/rss.gif"
                             src="rss.gif"
-                            alt="RSS"
+                            alt="RSS Feed"
                             title="RSS feed for the latest releases in this category" />
                     </a>
                  </tal:syndicate>
@@ -123,7 +123,7 @@
                         <img tal:replace="structure context/product_icon.gif" />
                         <span tal:replace="release/title">Project</span>
                         <span class="portletItemDetails"
-                              tal:content="python:context.toLocalizedTime(release['date'])">May 5</span>
+                              tal:content="python:context.toLocalizedTime(release['date'])"><tal:comment replace="nothing">May 5</tal:comment></span>
                         
                     </a>
                 </dd>

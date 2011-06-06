@@ -29,14 +29,14 @@
         </h1>
         
         <dl class="portalMessage error" tal:condition="context/mayBeUnmaintained">
-            <dt>Warning</dt>
-            <dd>This product has not had a release in over 1 year and may no longer be maintained. </dd>
+            <dt i18n:translate="">Warning</dt>
+            <dd i18n:translate="">This product has not had a release in over 1 year and may no longer be maintained. </dd>
         </dl>
 
         <div tal:content="structure provider:plone.belowcontenttitle" />
         <p class="documentDescription"
              tal:content="here/Description">
-            description
+            <tal:comment replace="nothing">description</tal:comment>
         </p>
         
         <p class="portalMessage info"
@@ -85,8 +85,7 @@
         <tal:nostable condition="nocall:not:latestRelease">
         
                 <h2 i18n:translate="label_current_stable_release">Current Release</h2>
-                <p
-                   i18n:translate="help_not_stable_release">
+                <p i18n:translate="help_not_stable_release">
                     No stable release available yet.
                 </p>
 
@@ -103,7 +102,7 @@
                            title="Version control repository location for this project"
                            i18n:attributes="title title_resource_code_repository"
                            tal:attributes="href here/getRepository">
-                           <span i18n:translate="label_resource_code_repository"> code repository</span>
+                           <span i18n:translate="label_resource_code_repository"> Code repository</span>
                         </a>.
                     </p>
 
@@ -138,24 +137,24 @@
         <tal:stable condition="nocall:latestRelease">
         <div class="pane">
            <h2>
-              Current Release <br />
+              <span i18n:translate="">Current Release</span> <br />
               <a href="#" title="Current release for the project"
                i18n:attributes="title title_latest_release_project"
                tal:attributes="href latestRelease/absolute_url"
-               tal:content="latestRelease/Title">Ploneboard 1.0
+               tal:content="latestRelease/Title"><tal:comment replace="nothing">Ploneboard 1.0</tal:comment>
               </a>
             </h2>
 
             <p class="discreet">
-                <tal:releasedate condition="latestRelease/effective">
-                    Released <span tal:replace="view/latest_release_date" />
+                <tal:releasedate condition="latestRelease/effective" i18n:translate="">
+                    Released <span tal:replace="view/latest_release_date" i18n:name="latest_release_date" />
                 </tal:releasedate>
                 
                 <tal:compatibility condition="latestRelease/getCompatibility">
-                    &mdash; tested with
+                    &mdash; <span i18n:translate="">tested with</span>
                     <metal:versions
                      metal:use-macro="python:latestRelease.widget('compatibility')">
-                    Plone 1.0, Plone 2.0...
+                    <tal:comment replace="nothing">Plone 1.0, Plone 2.0...</tal:comment>
                     </metal:versions>
                 </tal:compatibility>
             </p>
@@ -184,7 +183,7 @@
                          tal:attributes="href file/@@file_view/direct_url">
                         <span i18n:translate="label_get">Get</span>
                         <span tal:replace="here/Title">Ploneboard 1.0</span>
-                        for
+                        <span i18n:translate="">for</span>
                         <span tal:replace="file/getPlatform" /></a>
                       
                         <!--comment out size
@@ -203,7 +202,7 @@
                         </dt>
 
                   <dd class="discreet" tal:content="file/Title">
-                          Windows installer.
+                          <tal:comment replace="nothing">Windows installer.</tal:comment>
                   </dd>
 
                   </tal:downloads>
@@ -213,15 +212,15 @@
         </tal:stable>
         
         <div class="pane">
-           <h2>All Releases</h2>
+           <h2 i18n:translate="">All Releases</h2>
            <table class="listing release_table">
                 <thead>
                     <tr>
-                        <th>Version</th>
-                        <th>Released</th>
-                        <th>Description</th>
-                        <th>Compatibility</th>
-                        <th>Status</th>
+                        <th i18n:translate="">Version</th>
+                        <th i18n:translate="">Released</th>
+                        <th i18n:translate="">Description</th>
+                        <th i18n:translate="">Compatibility</th>
+                        <th i18n:translate="">Status</th>
                     </tr>
                 </thead>
                 <tbody>

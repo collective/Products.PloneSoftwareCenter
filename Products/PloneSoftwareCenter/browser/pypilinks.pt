@@ -7,7 +7,7 @@
       i18n:domain="plonehelpcenter">
       
  <head>
-  <title>List of available downloads</title>
+  <title i18n:translate="">List of available downloads</title>
  </head>
  <body>
   <p i18n:translate="label_pypi_links">This page is generated automatically by PloneSoftwareCenter</p>
@@ -15,7 +15,7 @@
    <a title=""
       tal:attributes="href file_/url;
                       title file_/title" 
-      tal:content="file_/title">file</a><br/>
+      tal:content="file_/title"><tal:comment replace="nothing">file</tal:comment></a><br/>
  </tal:block>
 
  </body>

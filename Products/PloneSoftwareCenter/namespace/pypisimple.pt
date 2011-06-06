@@ -5,7 +5,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="plonehelpcenter">
  <head>
-  <title>Simple Index</title>
+  <title i18n:translate="">Simple Index</title>
  </head>
  <body>
   <p i18n:translate="label_pypi_links">This page is generated automatically by PloneSoftwareCenter</p>
@@ -13,7 +13,7 @@
    <a title=""
       tal:attributes="href project/url;
                       title project/distutilsMainId"
-      tal:content="project/distutilsMainId">Project</a><br/>
+      tal:content="project/distutilsMainId"><tal:comment replace="nothing">Project</tal:comment></a><br/>
  </tal:block>
  </body>
 </html>

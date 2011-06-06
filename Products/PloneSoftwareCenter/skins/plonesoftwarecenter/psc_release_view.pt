@@ -57,7 +57,7 @@
 
     <p class="documentDescription"
       tal:content="here/Description">
-      description
+      <tal:comment replace="nothing">description</tal:comment>
     </p>
 
     <p class="discreet"
@@ -114,7 +114,7 @@
     
           <p class="discreet"
                 tal:define="fileSize file/@@file_view/file_size">
-            For
+            <span i18n:translate="">For</span>
             <span tal:replace="file/getPlatform" />
             <tal:size tal:condition="fileSize">
                  (<span tal:replace="fileSize">256KB</span>)
@@ -147,7 +147,7 @@
             <td>
                 <metal:versions
                  metal:use-macro="python:context.widget('compatibility')">
-                Plone 1.0, Plone 2.0...
+                <tal:comment replace="nothing">Plone 1.0, Plone 2.0...</tal:comment>
                 </metal:versions>
             </td>
         </tr>
@@ -217,12 +217,12 @@
             <dt>
               <a tal:attributes="href proposal/absolute_url;"
                  tal:content="proposal/title_or_id">
-                #1: Improvement Title                     
+                <tal:comment replace="nothing">#1: Improvement Title</tal:comment>                     
               </a>
             </dt>
 
             <dd tal:content="proposal/Description">
-            Improvement Description
+            <tal:comment replace="nothing">Improvement Description</tal:comment>
             </dd>
 
             </tal:proposals>

@@ -6,17 +6,17 @@
       i18n:domain="plonehelpcenter"
       tal:define="title python:'Links for '+view.get_name()">
  <head>
-  <title tal:content="title">Links for the project</title>
+  <title tal:content="title"><tal:comment replace="nothing">Links for the project</tal:comment></title>
  </head>
  <body>
   <p i18n:translate="label_pypi_links">This page is generated automatically by PloneSoftwareCenter</p>
-  <h1 tal:content="title">Links for the project</h1>
+  <h1 tal:content="title"><tal:comment replace="nothing">Links for the project</tal:comment></h1>
   <tal:block tal:repeat="release view/get_links">
   <a title=""
      tal:attributes="href release/url;
                      rel  release/rel|nothing;
                      title release/title"
-     tal:content="release/title">project</a>
+     tal:content="release/title"><tal:comment replace="nothing">project</tal:comment></a>
   </tal:block>
  </body>
 </html>

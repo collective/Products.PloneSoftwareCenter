@@ -36,7 +36,7 @@
                     <a href="" 
                         tal:content="release/Title"
                         tal:attributes="href string:${current_page_url}#${release/id}">
-                    Some release
+                    <tal:comment replace="nothing">Some release</tal:comment>
                     </a>
                 </li>
                 </tal:release>
@@ -96,7 +96,7 @@
             <td>
                 <metal:versions
                  metal:use-macro="python:release.widget('compatibility')">
-                Plone 1.0, Plone 2.0...
+                <tal:comment replace="nothing">Plone 1.0, Plone 2.0...</tal:comment>
                 </metal:versions>
             </td>
         </tr>
@@ -140,7 +140,7 @@
             <td>
                 <a class="link-plain"
                    tal:content="python: release.getRepository().split('/')[-1]"
-                   tal:attributes="href release/getRepository">Branch name
+                   tal:attributes="href release/getRepository"><tal:comment replace="nothing">Branch name</tal:comment>
                 </a>
             </td>
         </tr>
@@ -157,7 +157,7 @@
     </p>
 
     <p tal:content="release/Description">
-        Release description
+        <tal:comment replace="nothing">Release description</tal:comment>
     </p>
 
     <p>
@@ -185,7 +185,7 @@
                          condition="nocall:plips">
            
                <dt tal:content="python: view.getStateTitle(state)"> 
-                   Workflow state
+                   <tal:comment replace="nothing">Workflow state</tal:comment>
                </dt>
     
                <tal:plips repeat="plip plips">
@@ -194,7 +194,7 @@
                    <a href="" 
                       tal:content="plip/Title"
                       tal:attributes="href plip/absolute_url;
-                                      title plip/Description">PLIP title</a>
+                                      title plip/Description"><tal:comment replace="nothing">PLIP title</tal:comment></a>
                    <span class="discreet">
                    (<span tal:replace="plip/getProposer" 
                      /><span tal:condition="plip/getSeconder" tal:replace="string:, ${plip/getSeconder}" />)
@@ -237,11 +237,11 @@
                   <a href="" tal:content="proposal/Title"
                              tal:attributes="href proposal/getURL;
                                              title proposal/Description">
-                      Test proposal
+                      <tal:comment replace="nothing">Test proposal</tal:comment>
                   </a>
                 </td>
                 <td tal:content="python: ', '.join(proposal.getProposalTypes)">
-                  Process
+                  <tal:comment replace="nothing">Process</tal:comment>
                 </td>
                 <td tal:define="proposer proposal/getProposer | nothing;
                                 seconder proposal/getSeconder | nothing">
@@ -250,11 +250,12 @@
                   <span tal:replace="seconder"/>
                 </td>
                 <td tal:content="python:here.toLocalizedTime(proposal.created)">
-                  123 days ago
+                  <tal:comment replace="nothing">123 days ago</tal:comment>
                 </td>
                 <td>
                   <tal:block repeat="release proposal/getRelatedReleases">
-                    <a tal:content="release" tal:attributes="href string:${releaseFolderUrl}/${release}">[item]</a>
+                    <a tal:content="release" tal:attributes="href string:${releaseFolderUrl}/${release}">
+                      <tal:comment replace="nothing">[item]</tal:comment></a>
                   </tal:block>
                 </td>
             </tr>

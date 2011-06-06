@@ -24,7 +24,7 @@
         <dl class="portalMessage info"
             tal:define="is_editable context/@@plone_context_state/is_editable;"
             tal:condition="python: is_editable">
-            <dt>Info</dt>
+            <dt i18n:translate="">Info</dt>
             <dd>
                 <span i18n:translate="help_message_remember_is_editable">Remember to publish your release once all files have been added by </span>
                 <a href="" tal:attributes="href here/aq_parent/absolute_url">
@@ -43,7 +43,7 @@
 
         <p class="documentDescription"
              tal:content="here/aq_parent/Description">
-            description
+            <tal:comment replace="nothing">description</tal:comment>
         </p>
 
         <p tal:define="downloadURL view/direct_url">
@@ -52,9 +52,9 @@
                 <img tal:replace="structure here/download_icon.gif" />
             </a>
             <a tal:attributes="href downloadURL"
-               tal:define="filename python:here.getFilename('downloadableFile')">
-                Download <tal:filename condition="filename"
-                                      replace="string:$filename" />
+               tal:define="filename python:here.getFilename('downloadableFile')" i18n:translate="">
+                Download <span condition="filename" tal:content="string:$filename" 
+                               i18n:name="psc_filename_view" />
             </a>
             <tal:size define="fileSize view/file_size"
                       condition="fileSize">

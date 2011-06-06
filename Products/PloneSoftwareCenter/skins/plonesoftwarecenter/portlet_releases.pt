@@ -66,8 +66,8 @@
         </div>
 
         <div class="portletDetails"
-        tal:content="python:here.toLocalizedTime(obj.Date)">
-            July 7, 08:11
+             tal:content="python:here.toLocalizedTime(obj.Date)">
+            <tal:comment replace="nothing">July 7, 08:11</tal:comment>
         </div>
     </dd>
     </tal:releases>
