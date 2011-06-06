@@ -1,0 +1,70 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-06-30 18:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#. Default: "View by topic"
+#: dynamic view name template plonesoftwarecenter_view on type PloneSoftwareCenter
+msgid "View by topic"
+msgstr ""
+
+#. Default: "View by release"
+#: dynamic view name template plonesoftwarecenter_ploneorg on type PloneSoftwareCenter
+msgid "View by release"
+msgstr ""
+
+#. Default: "View by project"
+#: dynamic view name template psc_view_ploneorg on type PloneSoftwareCenter
+msgid "View by project"
+msgstr ""
+
+#. Default: "View of project"
+#: dynamic view name template psc_project_view on type PSCProject
+msgid "View of project"
+msgstr ""
+
+#. Default: "Releases Section View"
+#: dynamic view name template psc_releasefolder_view on type PSCReleaseFolder
+msgid "Releases Section View"
+msgstr ""
+
+#. Default: "Software Release View"
+#: dynamic view name template psc_release_view on type PSCRelease
+msgid "Software Release View"
+msgstr ""
+
+#. Default: "File View"
+#: dynamic view name template psc_file_view on type PSCFile
+#: dynamic view name template psc_file_view on type PSCFileLink
+msgid "File View"
+msgstr ""
+
+#. Default: "Documentation Section View"
+#: dynamic view name template helpcenter_view on type PSCDocumentationFolder
+msgid "Documentation Section View"
+msgstr ""
+
+#. Default: "Roadmap Section View"
+#: dynamic view name template psc_roadmap on type PSCImprovementProposalFolder
+msgid "Roadmap Section View"
+msgstr ""
+
+#. Default: "Improvement Proposal View"
+#: dynamic view name template psc_improvements_view on type PSCImprovementProposal
+msgid "Improvement Proposal View"
+msgstr ""
+
