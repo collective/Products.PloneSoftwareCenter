@@ -11,6 +11,7 @@
   <include package=".events" file="configure.zcml" />
   <include file="profiles.zcml"/>
 
+  <i18n:registerTranslations directory="locales" />
 
   <!-- make sure that Plone Software Centers can have content rules assigned to them -->
   <class class=".content.root.PloneSoftwareCenter"
