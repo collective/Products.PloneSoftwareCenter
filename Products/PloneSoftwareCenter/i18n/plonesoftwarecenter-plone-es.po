@@ -1,12 +1,12 @@
 # translation of plonesoftwarecenter-plone.po to Spanish
-# Leonardo Caballero <leonardocaballero@gmail.com>, 2009.
-#
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2009, 2010, 2011.
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: PloneSoftwareCenter 1.5\n"
-"POT-Creation-Date: 2009-05-06 20:15+0000\n"
-"PO-Revision-Date: 2009-05-06 17:20-0400\n"
-"Last-Translator: Leonardo Caballero <leonardocaballero@gmail.com>\n"
+"Project-Id-Version: PloneSoftwareCenter\n"
+"POT-Creation-Date: 2011-06-06 18:11+0000\n"
+"PO-Revision-Date: 2011-06-06 02:58-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,578 +19,760 @@ msgstr ""
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
 #. Default: "A proposal container has proposals, and a view for the listing."
-#: ./profiles/default/types/PSCImprovementProposalFolder.xml
+#: ../profiles/default/types/PSCImprovementProposalFolder.xml
 msgid "A proposal container has proposals, and a view for the listing."
 msgstr "Un contenedor de propuesta tiene propuestas, y una vista para generar un listado de ellas. "
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "A publication workflow for PSCImprovementProposal objects"
+msgstr "Un flujo de trabajo de publicación para los objetos de tipo PSCImprovementProposal "
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "A publication workflow for PSCProject objects"
+msgstr "Un flujo de trabajo de publicación para los objetos de tipo PSCProject"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "A publication workflow for PSCRelease objects"
+msgstr "Un flujo de trabajo de publicación para los objetos de tipo PSCRelease"
+
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "A publication workflow for PloneSoftwareCenter objects"
+msgstr "Un flujo de trabajo de publicación para los objetos de tipo PloneSoftwareCenter"
+
 #. Default: "A release of a software project, either final or in progress"
-#: ./profiles/default/types/PSCRelease.xml
+#: ../profiles/default/types/PSCRelease.xml
 msgid "A release of a software project, either final or in progress"
 msgstr "Una versión de un proyecto de software, sea final o en progreso"
 
 #. Default: "A simple folderish archetype for the Software Center."
-#: ./profiles/default/types/PloneSoftwareCenter.xml
+#: ../profiles/default/types/PloneSoftwareCenter.xml
 msgid "A simple folderish archetype for the Software Center."
 msgstr "Una simple carpeta de arquetipos para el Centro de Software."
 
 #. Default: "Alpha release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Alpha release"
 msgstr "Versión inicial"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Begin proposed work"
+msgstr "Trabajo propuesto inició"
+
 #. Default: "Being discussed"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Being discussed"
 msgstr "Iniciada la discusión"
 
 #. Default: "Beta release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Beta release"
 msgstr "Versión de pruebas"
 
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "Close area"
+msgstr "Cerrar Área"
+
 #. Default: "Closed to the public"
-#: ./profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Closed to the public"
 msgstr "Cerrado a el público"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Complete proposed work"
+msgstr "Trabajo propuesto completo"
+
 #. Default: "Completed and merged"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Completed and merged"
-msgstr "Completo y combinaron"
+msgstr "Completo y combinado"
 
 #. Default: "Contains a link to a downloadable file for a Release."
-#: ./profiles/default/types/PSCFileLink.xml
+#: ../profiles/default/types/PSCFileLink.xml
 msgid "Contains a link to a downloadable file for a Release."
 msgstr "Contiene un enlace a un archivo de descarga para una versión."
 
 #. Default: "Contains the downloadable file for the Release."
-#: ./profiles/default/types/PSCFile.xml
+#: ../profiles/default/types/PSCFile.xml
 msgid "Contains the downloadable file for the Release."
 msgstr "Contiene el archivo de descarga para la versión."
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Defer work on this proposal"
+msgstr "Diferir trabajo en esta propuesta"
+
 #. Default: "Deferred"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Deferred"
 msgstr "Diferido"
 
 #. Default: "Documentation Section"
-#: ./profiles/default/types/PSCDocumentationFolder.xml
+#: ../profiles/default/types/PSCDocumentationFolder.xml
 msgid "Documentation Section"
 msgstr "Sección de Documentación"
 
+#. Default: "Documentation Section View"
+#: dynamic view name template helpcenter_view on type PSCDocumentationFolder
+msgid "Documentation Section View"
+msgstr "Vista para la sección de Documentación"
+
 #. Default: "Downloadable File"
-#: ./profiles/default/types/PSCFile.xml
+#: ../profiles/default/types/PSCFile.xml
 msgid "Downloadable File"
 msgstr "Archivo de descarga"
 
 #. Default: "Draft"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Draft"
 msgstr "Borrador"
 
 #. Default: "Externally Hosted File"
-#: ./profiles/default/types/PSCFileLink.xml
+#: ../profiles/default/types/PSCFileLink.xml
 msgid "Externally Hosted File"
 msgstr "Archivo hospedado externamente"
 
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "Featured"
+msgstr "Caracterizado"
+
+#. Default: "File View"
+#: dynamic view name template psc_file_view on type PSCFile
+#: dynamic view name template psc_file_view on type PSCFileLink
+msgid "File View"
+msgstr "Vista de Archivo"
+
 #. Default: "Final release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Final release"
 msgstr "Versión final"
 
 #. Default: "Folder type for holding documentation."
-#: ./profiles/default/types/PSCDocumentationFolder.xml
+#: ../profiles/default/types/PSCDocumentationFolder.xml
 msgid "Folder type for holding documentation."
 msgstr "Tipo de carpeta que contiene documentación."
 
 #. Default: "Folder type for holding releases."
-#: ./profiles/default/types/PSCReleaseFolder.xml
+#: ../profiles/default/types/PSCReleaseFolder.xml
 msgid "Folder type for holding releases."
 msgstr "Tipo de carpeta que contiene versiones."
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Hidden"
+msgstr "Ocultado"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Hide"
+msgstr "Ocultar"
+
 #. Default: "Improvement Proposal"
-#: ./profiles/default/types/PSCImprovementProposal.xml
+#: ../profiles/default/types/PSCImprovementProposal.xml
 msgid "Improvement Proposal"
 msgstr "Propuesta de mejoras"
 
+#. Default: "Improvement Proposal View"
+#: dynamic view name template psc_improvements_view on type PSCImprovementProposal
+msgid "Improvement Proposal View"
+msgstr "Vista para la sección Propuesta de mejoras"
+
 #. Default: "In progress"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "In progress"
 msgstr "En proceso"
 
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "Member requests publishing"
+msgstr "Miembro requieren publicación"
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "Member retracts submission"
+msgstr "Retractar envíos de Miembro"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#, fuzzy
+msgid "Merge changes from this proposal"
+msgstr "Combinar cambios de esta propuesta"
+
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "Open area to submissions"
+msgstr "Área abierta para envíos"
+
 #. Default: "Open for submissions"
-#: ./profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Open for submissions"
 msgstr "Abierto a aportes"
 
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "PSC Area workflow"
+msgstr "Flujo de trabajo de Área para PloneSoftwareCenter"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "PSC Improvement Proposal workflow"
+msgstr "Flujo de trabajo de Propuesta de mejoras para PloneSoftwareCenter"
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "PSC Project workflow"
+msgstr "Flujo de trabajo de Proyecto para PloneSoftwareCenter"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "PSC Release workflow"
+msgstr "Flujo de trabajo de Publicación para PloneSoftwareCenter"
+
 #. Default: "Pending approval"
-#: ./profiles/default/workflows/psc_package_workflow/definition.xml
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Pending approval"
 msgstr "Pendiente por aprobar"
 
 #. Default: "Project class that holds the information about the Software Project."
-#: ./profiles/default/types/PSCProject.xml
+#: ../profiles/default/types/PSCProject.xml
 msgid "Project class that holds the information about the Software Project."
 msgstr "Clase de proyecto que contiene la información acerca del Proyecto de Software"
 
 #. Default: "Propose"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Propose"
 msgstr "Propuesta"
 
 #. Default: "Public"
-#: ./profiles/default/workflows/psc_package_workflow/definition.xml
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Public"
 msgstr "Público"
 
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "Publish, and set as featured"
+msgstr "Publicar, y definir como caracterizado"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Re-draft"
+msgstr "A borrador de nuevo"
+
 #. Default: "Re-release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Re-release"
-msgstr "Re-versionar"
+msgstr "publicar de nuevo"
 
 #. Default: "Ready for merge"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Ready for merge"
 msgstr "Listo para combinar"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Reject this proposal"
+msgstr "Rechazar esta propuesta"
+
 #. Default: "Rejected"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Rejected"
 msgstr "Rechazada"
 
 #. Default: "Release alpha"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Release alpha"
 msgstr "Versión inicial"
 
 #. Default: "Release beta"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Release beta"
 msgstr "Versión de pruebas"
 
 #. Default: "Release candidate"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Release candidate"
 msgstr "Versión candidata"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Release final"
+msgstr "Publicación final"
+
 #. Default: "Releases Section"
-#: ./profiles/default/types/PSCReleaseFolder.xml
+#: ../profiles/default/types/PSCReleaseFolder.xml
 msgid "Releases Section"
 msgstr "Sección de Versiones"
 
+#. Default: "Releases Section View"
+#: dynamic view name template psc_releasefolder_view on type PSCReleaseFolder
+msgid "Releases Section View"
+msgstr "Vista para la sección de Publicaciones"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Retract"
+msgstr "Retractar"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Return to discussion stage"
+msgstr "Volver al estado discusión"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Return to in-progress stage"
+msgstr "Volver al estado en-progreso"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#, fuzzy
+msgid "Return to ready-for-merge stage"
+msgstr "Volver al estado ready-for-merge "
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "Reviewer publishes content"
+msgstr "Contenidos publicados por Revisor"
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "Reviewer rejects submission"
+msgstr "Rechazar envíos a Revisor"
+
 #. Default: "Roadmap Section"
-#: ./profiles/default/types/PSCImprovementProposalFolder.xml
+#: ../profiles/default/types/PSCImprovementProposalFolder.xml
 msgid "Roadmap Section"
 msgstr "Sección de Mapa de ruta"
 
+#. Default: "Roadmap Section View"
+#: dynamic view name template psc_roadmap on type PSCImprovementProposalFolder
+msgid "Roadmap Section View"
+msgstr "Vista para la sección de Mapa de ruta"
+
 #. Default: "Software Center"
-#: ./profiles/default/types/PloneSoftwareCenter.xml
+#: ../profiles/default/types/PloneSoftwareCenter.xml
 msgid "Software Center"
 msgstr "Centro de Software"
 
 #. Default: "Software Project"
-#: ./profiles/default/types/PSCProject.xml
+#: ../profiles/default/types/PSCProject.xml
 msgid "Software Project"
 msgstr "Proyecto de Software"
 
 #. Default: "Software Release"
-#: ./profiles/default/types/PSCRelease.xml
+#: ../profiles/default/types/PSCRelease.xml
 msgid "Software Release"
 msgstr "Versión de Software"
 
-#: ./content/validators.py:98
-msgid "This contains packages already claimed by another project."
-msgstr "Este contiene paquetes ya reclamado por otro proyecto."
-
-#: ./content/validators.py:96
-msgid "This package is already claimed by another project."
-msgstr "Este paquete ya está reclamado por otro proyecto."
+#. Default: "Software Release View"
+#: dynamic view name template psc_release_view on type PSCRelease
+msgid "Software Release View"
+msgstr "Vista para la sección de publicación de Software"
 
 #. Default: "Unapproved project"
-#: ./profiles/default/workflows/psc_package_workflow/definition.xml
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Unapproved project"
 msgstr "Proyecto sin aprobar"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Unhide"
+msgstr "Des-ocultar"
+
 #. Default: "Unreleased"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Unreleased"
 msgstr "Sin versión"
 
+#. Default: "View by project"
+#: dynamic view name template psc_view_ploneorg on type PloneSoftwareCenter
+msgid "View by project"
+msgstr "Vista por proyecto"
+
+#. Default: "View by release"
+#: dynamic view name template plonesoftwarecenter_ploneorg on type PloneSoftwareCenter
+msgid "View by release"
+msgstr "Vista por publicación"
+
+#. Default: "View by topic"
+#: dynamic view name template plonesoftwarecenter_view on type PloneSoftwareCenter
+msgid "View by topic"
+msgstr "Vista por tópico"
+
+#. Default: "View of project"
+#: dynamic view name template psc_project_view on type PSCProject
+msgid "View of project"
+msgstr "Vista de proyecto"
+
 #. Default: "What used to be a PLIP."
-#: ./profiles/default/types/PSCImprovementProposal.xml
+#: ../profiles/default/types/PSCImprovementProposal.xml
 msgid "What used to be a PLIP."
 msgstr "Lo que solía ser un PLIP"
 
-#: ./content/validators.py:91
-msgid "You must provide a list of package names"
-msgstr "Debe proveer una lista de nombres de paquetes"
-
-#: ./content/validators.py:82
-msgid "You must set the primary package before you can select secondary packages."
-msgstr "Debe definir el primer paquete antes de que pueda seleccionar los paquetes secundarios."
-
 #. Default: "You can not add releases, documentation or feature proposals until the project itself is approved, make sure you submit it for approval when the relevant project information has been entered."
-#: ./skins/plonesoftwarecenter/psc_releasefolder_view.pt:43
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:42
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:45
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:65
 msgid "description_cannot_add_before_approved"
-msgstr "Usted no puede agredar versiones, documentación o caracteristica de propuesta hasta que el proyecto sea aprobado, asegurese de suministrarlo para aprobar cuando toda la información relevante acerca del proyecto alla sido introducida. "
+msgstr "Usted no puede agregar versiones, documentación o característica de propuesta hasta que el proyecto sea aprobado, asegúrese de suministrarlo para aprobar cuando toda la información relevante acerca del proyecto allá sido introducida. "
 
 #. Default: "Expected Release"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:126
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:128
 msgid "heading_expecteddate"
 msgstr "En espera de publicación"
 
 #. Default: "Feature freeze"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:120
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:122
 msgid "heading_featurefreezedate"
 msgstr "Función de congelación"
 
 #. Default: "Proposal freeze"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:114
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:116
 msgid "heading_improvementproposalfreezedate"
 msgstr "Propuesta de congelación"
 
 #. Default: "Contents"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:42
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:43
 msgid "heading_improvements_contents"
 msgstr "Contenidos"
 
 #. Default: "License"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:102
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:104
 msgid "heading_license"
 msgstr "Licencia"
 
 #. Default: "Released"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:129
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:131
 msgid "heading_released"
 msgstr "Publicado"
 
 #. Default: "Release Manager:"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:149
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:151
 msgid "heading_relmanager"
 msgstr "Administrador de versión"
 
 #. Default: "Repository branch"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:136
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:138
 msgid "heading_repository"
 msgstr "Rama del repositorio"
 
 #. Default: "Tested with"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:91
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:93
 msgid "heading_tested_with"
 msgstr "Probado con"
 
 #. Default: "If you want to see the feature proposals displayed according to what release they are assigned to, go to the"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:38
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:38
 msgid "help_improvements_listing"
 msgstr "Si usted quiere ver las características propuestas mostradas de acuerdo a que versión ellos hallan asignado, para ir a la "
 
 #. Default: "These proposals are currently under consideration for inclusion in an upcoming release."
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:213
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:215
 msgid "help_proposals_being_discussed"
 msgstr "Estas propuestas están actualmente en consideración para su inclusión en una próxima versión."
 
 #. Default: "An overview of the upcoming releases for this project. Participants in the project can add new features to the list."
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:58
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:60
 msgid "help_roadmap_title_project"
 msgstr "Una visión general de los próximos lanzamientos para este proyecto. Los participantes en el proyecto pueden añadir nuevas funciones a la lista."
 
 #. Default: "Assigned to release"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:75
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:74
 msgid "label_improvements_assigned_release"
 msgstr "Asignado a versión"
 
 #. Default: "Improvement Proposals"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:30
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:30
 msgid "label_improvements_listing"
 msgstr "Propuestas de mejora "
 
 #. Default: "There are no improvement proposals added for any versions. Use the add menu to add proposals and/or feature specifications to be used in the roadmap."
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:132
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:132
 msgid "label_improvements_listing_no_proposals_added"
 msgstr "No hay propuestas de mejora agregadas pata ninguna versión. Use el menú Agregar para agregar propuestas y/o característica de especificaciones para ser usado en el mapa de ruta."
 
 #. Default: "Show all"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:129
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:129
 msgid "label_improvements_listing_show_all"
 msgstr "Mostrar todos"
 
 #. Default: "Proposal type"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:71
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:70
 msgid "label_improvements_proposal_type"
 msgstr "Tipo de propuesta"
 
 #. Default: "for"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:32
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:32
 msgid "label_improvements_proposals_for"
 msgstr " para "
 
 #. Default: "Proposed by"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:67
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:66
 msgid "label_improvements_proposed_by"
-msgstr "Propuesto  por"
+msgstr "Propuesto por"
 
 #. Default: "Repository branch"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:87
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:86
 msgid "label_improvements_repository_branch"
 msgstr "Rama del repositorio"
 
 #. Default: "Seconded by"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:69
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:68
 msgid "label_improvements_seconded_by"
 msgstr "Apoyada por"
 
 #. Default: "State"
-#: ./skins/plonesoftwarecenter/psc_improvements_view.pt:92
+#: ../skins/plonesoftwarecenter/psc_improvements_view.pt:91
 msgid "label_improvements_state"
 msgstr "Estatus"
 
 #. Default: "Added"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:224
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:226
 msgid "label_pbd_added"
 msgstr "Agregado"
 
 #. Default: "Proposal"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:221
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:223
 msgid "label_pbd_proposal"
 msgstr "Propuesta"
 
 #. Default: "Proposed by"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:223
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:225
 msgid "label_pbd_proposed_by"
 msgstr "Propuesto por"
 
 #. Default: "Target Release"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:225
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:227
 msgid "label_pbd_target_release"
 msgstr "Versión destino"
 
 #. Default: "Type"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:222
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:224
 msgid "label_pbd_type"
 msgstr "Tipo"
 
 #. Default: "Proposals being discussed"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:212
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:214
 msgid "label_proposals_being_discussed"
 msgstr "Propuestas que se discuten"
 
 #. Default: "Rejected and Deferred Proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:265
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:268
 msgid "label_rejected_and_deferred_proposals"
 msgstr "Propuestas rechazadas y diferidas"
 
 #. Default: "You can also"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:281
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:284
 msgid "label_roadmap_all_proposals"
 msgstr "Usted puede también "
 
 #. Default: "or"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:287
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:290
 msgid "label_roadmap_all_proposals1"
 msgstr " o "
 
 #. Default: "Associated feature proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:167
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:169
 msgid "label_roadmap_associated_feature_proposals"
 msgstr "Propuestas de características asociadas"
 
 #. Default: "Roadmap index"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:29
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:31
 msgid "label_roadmap_index"
 msgstr "Índice del mapa de ruta"
 
 #. Default: "No improvement proposals associated with this release."
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:170
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:172
 msgid "label_roadmap_not_improvement_proposals"
 msgstr "No hay propuestas de mejora asociadas con esta versión."
 
 #. Default: "Proposals being discussed"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:43
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:45
 msgid "label_roadmap_proposals_being_discussed"
 msgstr "Propuestas que se discuten"
 
 #. Default: "Read more…"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:162
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:164
 msgid "label_roadmap_read_more"
 msgstr "Leer más..."
 
 #. Default: "Rejected/deferred/draft proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:49
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:51
 msgid "label_roadmap_rejected_deferred_draft_proposals"
 msgstr "Propuestas rechazadas/diferidas/en borrador"
 
 #. Default: "Rejected and deferred proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:275
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:278
 msgid "label_roadmap_rejected_deferred_proposals"
 msgstr "Propuestas rechazadas y diferidas"
 
 #. Default: "have been moved to a separate page."
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:277
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:280
 msgid "label_roadmap_rejected_deferred_proposals_moved"
 msgstr " han sido movidos a una página por separado."
 
 #. Default: "Roadmap for ${title_project}"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:23
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:25
 msgid "label_roadmap_title_project"
 msgstr "Mapa de ruta para ${title_project}"
 
 #. Default: "view all proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:285
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:288
 msgid "label_roadmap_view_all_proposals"
 msgstr "ver todas las propuestas"
 
 #. Default: "draft proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:291
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:294
 msgid "label_roadmap_view_draft_proposals"
 msgstr "los borradores de propuestas"
 
+#. Default: "Category"
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:65
+msgid "listingheader_category"
+msgstr "Categoria"
+
 #. Default: "Modified"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:68
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:68
 msgid "listingheader_modified"
 msgstr "Modificado"
 
 #. Default: "Status"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:71
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:71
 msgid "listingheader_status"
 msgstr "Estatus"
 
 #. Default: "Target Release"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:74
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:74
 msgid "listingheader_target_release"
 msgstr "Versión destino"
 
 #. Default: "Title"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:62
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:62
 msgid "listingheader_title"
 msgstr "Título"
 
 #. Default: "Roadmap page"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:42
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:42
 msgid "title_improvements_listing_roadmap_page"
 msgstr "Página de mapa de ruta"
 
 #. Default: "Show all"
-#: ./skins/plonesoftwarecenter/psc_improvements_listing.pt:124
+#: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:124
 msgid "title_improvements_listing_show_all"
 msgstr "Mostrar todos"
 
 #. Default: "Release alpha"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_alpha_release"
 msgstr "Versión inicial"
 
 #. Default: "Begin work"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_begin_work"
 msgstr "Iniciar trabajar"
 
 #. Default: "Complete work"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_complete_work"
 msgstr "Completar trabajar"
 
 #. Default: "Defer work"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_defer_work"
 msgstr "Diferir trabajo"
 
+#. Default: "Featured Project"
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+#, fuzzy
+msgid "title_psc_wf_feature"
+msgstr "Proyecto caracterizado"
+
 #. Default: "Hide release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_hide_release"
 msgstr "Ocultar versión"
 
 #. Default: "Merge changes"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_merge_changes"
 msgstr "Comparar cambios"
 
 #. Default: "Propose"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_propose"
 msgstr "Proponer"
 
 #. Default: "Publish"
-#: ./profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "title_psc_wf_publish"
 msgstr "Publicar"
 
 #. Default: "Re-release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_re_release"
-msgstr "Re-versión"
+msgstr "publicar de nuevo"
 
 #. Default: "Re-discuss"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_rediscuss"
-msgstr "Re-discutir"
+msgstr "discutir de nuevo"
 
 #. Default: "Re-draft"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_redraft"
-msgstr "Re-borrador"
+msgstr "A borrador de nuevo"
+
+#. Default: "Reject"
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "title_psc_wf_reject"
+msgstr "Rechazar"
 
 #. Default: "Reject proposal"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_reject_proposal"
 msgstr "Rechazar propuesta"
 
 #. Default: "Release beta"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_release_beta"
 msgstr "Versión beta"
 
 #. Default: "Release candidate"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_release_candidate"
 msgstr "Versión candidata"
 
 #. Default: "Release final release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_release_final_release"
 msgstr "Versión final"
 
 #. Default: "Retract"
-#: ./profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "title_psc_wf_retract"
 msgstr "Retractar"
 
 #. Default: "Retract release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_retract_release"
-msgstr "Rechazar versión"
+msgstr "Retractar versión"
 
 #. Default: "Re-work"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_rework"
-msgstr "Re-trabajar"
+msgstr "trabajar de nuevo"
 
 #. Default: "Submit for approval"
-#: ./profiles/default/workflows/psc_package_workflow/definition.xml
-msgid "title_psc_wf_submit_approval"
-msgstr "Suministrar para aprobar"
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "title_psc_wf_submit"
+msgstr "Enviar para aprobación"
 
 #. Default: "Unhide release"
-#: ./profiles/default/workflows/psc_release_workflow/definition.xml
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_unhide_release"
-msgstr "Desocultar versión"
+msgstr "Des-ocultar versión"
 
 #. Default: "Un-merge"
-#: ./profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "title_psc_wf_unmerge"
-msgstr "Descombinar"
+msgstr "Des-combinar"
 
 #. Default: "View rejected and deferred proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:272
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:275
 msgid "title_roadmap_rejected_deferred_proposals"
 msgstr "Ver propuestas rechazadas y diferidas   "
 
 #. Default: "View all proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:282
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:285
 msgid "title_roadmap_view_all_proposals"
 msgstr "Ver todas las propuestas"
 
 #. Default: "View only draft proposals"
-#: ./skins/plonesoftwarecenter/psc_roadmap.pt:288
+#: ../skins/plonesoftwarecenter/psc_roadmap.pt:291
 msgid "title_roadmap_view_draft_proposals"
 msgstr "Ver solamente los borradores de propuestas"
 
