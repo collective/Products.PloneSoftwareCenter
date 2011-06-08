@@ -13,6 +13,10 @@ from Products.CMFCore import permissions
 
 from Products.validation import validation
 from Products.PloneSoftwareCenter import validators
+
+from zope.i18nmessageid import MessageFactory
+PSCMessageFactory = MessageFactory('plonesoftwarecenter')
+
 validation.register(validators.ProjectIdValidator('isNonConflictingProjectId'))
 validation.register(validators.ProjectContactValidator('isValidContact'))
 

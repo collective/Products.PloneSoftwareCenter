@@ -21,8 +21,6 @@ from Products.Archetypes.interfaces import IObjectPreValidation
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
 
 from zope.i18nmessageid import MessageFactory
-
-
 _ = MessageFactory('plonesoftwarecenter')
 
 is_valid_contact = re.compile('[mailto:,http:]')
