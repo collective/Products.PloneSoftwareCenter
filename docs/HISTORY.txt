@@ -3,10 +3,13 @@ Changelog
 
 1.6.3 (unreleased)
 ------------------
+- Change mechanism to set the label and description attributes of the content types,
+  for extract msgid and msgstr for .po files using i18ndude tools [macagua]
 - validated ZPT for generate po files [macagua]
 - added a bash script for generate po files updated [macagua]
 - added new po files for plone domain [macagua]
-- enabled directory "locales" and move po files for plonesoftwarecenter domain [macagua]
+- enabled directory "locales" and move po files 
+  for plonesoftwarecenter domain [macagua]
 - switch category search was to have no version filter [eleddy]
 - searching on all categories was broken [eleddy]
 - add support to configure psc project view [eleddy]
