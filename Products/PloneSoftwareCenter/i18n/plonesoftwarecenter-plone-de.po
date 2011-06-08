@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone-Software-Center\n"
-"POT-Creation-Date: 2011-06-06 18:11+0000\n"
+"POT-Creation-Date: 2011-06-08 17:39+0000\n"
 "PO-Revision-Date: 2011-06-07 22:38+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: Andreas Mantke <maand@gmx.de>\n"
@@ -42,6 +42,14 @@ msgstr "Eine freigegebene Version des Software-Projekts, entweder final oder in 
 msgid "A simple folderish archetype for the Software Center."
 msgstr ""
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Accepted"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Accepted this improvement proposal"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Alpha release"
 msgstr "Alpha-Version"
@@ -51,16 +59,44 @@ msgid "Begin proposed work"
 msgstr "Beginn der vorgeschlagenen Arbeit"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Begin proposed work in this improvement proposal"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Being discussed"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Being discussed for this improvement proposal"
 msgstr ""
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Beta release"
 msgstr "Beta freigeben"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Change the release project stage to 'Release alpha'"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Change the release project stage to 'Release beta'"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Change the release project stage to 'Release final'"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Close area"
 msgstr "Arbeitsbereich schließen"
+
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "Close this area"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "Closed this area to the public"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Closed to the public"
@@ -71,8 +107,16 @@ msgid "Complete proposed work"
 msgstr "Vorgeschlagene Arbeit vervollständigen"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Complete proposed work in this improvement proposal"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Completed and merged"
 msgstr "Vervollständigt und eingebunden"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Completed and merged this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/types/PSCFileLink.xml
 msgid "Contains a link to a downloadable file for a Release."
@@ -81,6 +125,10 @@ msgstr "Enthält einen Hyperlink zu einer herunterladbaren Datei für eine freig
 #: ../profiles/default/types/PSCFile.xml
 msgid "Contains the downloadable file for the Release."
 msgstr "Enthält die herunterladbare Datei für die freigegebene Version."
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Defer work on this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Defer work on this proposal"
@@ -138,8 +186,16 @@ msgid "Hidden"
 msgstr "Ausgeblendet"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Hidden release project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Hide"
 msgstr "Ausblenden"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Hide this project"
+msgstr ""
 
 #: ../profiles/default/types/PSCImprovementProposal.xml
 msgid "Improvement Proposal"
@@ -151,8 +207,36 @@ msgid "Improvement Proposal View"
 msgstr "Verbesserungsvorschlags-Ansicht"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Improvement proposal deferred"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Improvement proposal in progress"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Improvement proposal rejected"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "In progress"
 msgstr "In Bearbeitung"
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "In this project the Member requests publishing"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "In this project the Member retracts submission"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "In this project the Reviewer publishes content"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "In this project the Reviewer rejects submission"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Member requests publishing"
@@ -161,6 +245,10 @@ msgstr "Mitglied bittet um Veröffentlichung"
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Member retracts submission"
 msgstr "Mitglied zieht Einreichung zurück"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Merge changes from this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Merge changes from this proposal"
@@ -173,6 +261,10 @@ msgstr "Offener Arbeitsbereich für Einreichungen"
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Open for submissions"
 msgstr "Offen für Einreichungen"
+
+#: ../profiles/default/workflows/psc_area_workflow/definition.xml
+msgid "Open this area to submissions"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "PSC Area workflow"
@@ -202,6 +294,10 @@ msgstr "Projekt-Klasse, die die Informationen über das Software-Projekt aufnimm
 msgid "Propose"
 msgstr "Vorschlagen"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Propose this improvement proposal"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Public"
 msgstr "Öffentlich"
@@ -214,6 +310,10 @@ msgstr ""
 msgid "Re-draft"
 msgstr "Erneut entwerfen"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Re-draft this improvement proposal"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Re-release"
 msgstr "Erneut freigeben"
@@ -221,6 +321,14 @@ msgstr "Erneut freigeben"
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Ready for merge"
 msgstr "Bereit zum einbinden"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Ready for merge this improvement proposal"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Reject this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Reject this proposal"
@@ -243,6 +351,10 @@ msgid "Release candidate"
 msgstr "Freigeben als Kandidat"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Release candidate for this project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Release final"
 msgstr "Finale Version"
 
@@ -259,17 +371,33 @@ msgstr "Versions-Abschnitt-Ansicht"
 msgid "Retract"
 msgstr "Zurückziehen"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Retract release of this project"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Return to discussion stage"
 msgstr "Zurück zur Diskussions-Stufe"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Return to discussion stage for this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Return to in-progress stage"
 msgstr "Zurück zur In-Bearbeitung-Stufe"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Return to in-progress stage to this improvement proposal"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Return to ready-for-merge stage"
 msgstr "Zurück zur Bereit-zum-Einbinden-Stufe"
+
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Return to ready-for-merge stage to this improvement proposal"
+msgstr ""
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Reviewer publishes content"
@@ -288,6 +416,10 @@ msgstr "Roadmap-Abschnitt"
 msgid "Roadmap Section View"
 msgstr "Roadmap-Abschnitt-Ansicht"
 
+#: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
+msgid "Send to draft this improvement proposal"
+msgstr ""
+
 #: ../profiles/default/types/PloneSoftwareCenter.xml
 msgid "Software Center"
 msgstr "Software-Center"
@@ -305,6 +437,34 @@ msgstr "Software-Version"
 msgid "Software Release View"
 msgstr "Software-Versions-Ansicht"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "The Final stage of release project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "The first stage of release project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "The second stage of release project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "This project is Public"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "This project is pending approval"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "This project is publish, and set as featured"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_package_workflow/definition.xml
+msgid "This project is unapproved"
+msgstr ""
+
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Unapproved project"
 msgstr "Nicht genehmigtes Projekt"
@@ -314,8 +474,16 @@ msgid "Unhide"
 msgstr "Einblenden"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Unhide release project"
+msgstr ""
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Unreleased"
 msgstr "Nicht veröffentlicht"
+
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "Unreleased project"
+msgstr ""
 
 #. Default: "View by project"
 #: dynamic view name template psc_view_ploneorg on type PloneSoftwareCenter
@@ -583,6 +751,10 @@ msgstr "Ziel-Version"
 msgid "listingheader_title"
 msgstr "Titel"
 
+#: ../profiles/default/workflows/psc_release_workflow/definition.xml
+msgid "re-release"
+msgstr ""
+
 #. Default: "Roadmap page"
 #: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:42
 msgid "title_improvements_listing_roadmap_page"
@@ -639,7 +811,7 @@ msgstr "Vorschlagen"
 msgid "title_psc_wf_publish"
 msgstr "Veröffentlichen"
 
-#. Default: "Re-release"
+#. Default: "Re-release this project"
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "title_psc_wf_re_release"
 msgstr "Erneut diskutieren"
