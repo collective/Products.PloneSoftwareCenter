@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-06-08 06:31+0000\n"
+"POT-Creation-Date: 2011-06-08 17:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,9 +114,17 @@ msgstr ""
 msgid "Newest"
 msgstr ""
 
-#: ../content/validators.py:64
-#: ../validators.py:76
+#: ../content/validators.py:60
+#: ../validators.py:75
 msgid "Not a valid contact."
+msgstr ""
+
+#: ../browser/release.py:71
+msgid "Please only use numbers, letters, underscores (_), dashes (-) and periods (.) in the version string, no other punctuation characters or whitespace"
+msgstr ""
+
+#: ../browser/release.py:69
+msgid "Please provide a version number"
 msgstr ""
 
 #: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:191
@@ -135,8 +143,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: ../content/validators.py:43
-#: ../validators.py:52
+#: ../content/validators.py:39
+#: ../validators.py:51
 msgid "Short name %s is invalid - it is the same as the name of a project category"
 msgstr ""
 
@@ -156,13 +164,13 @@ msgstr ""
 msgid "Submit your ${product_title_addon}"
 msgstr ""
 
-#: ../content/validators.py:100
-#: ../validators.py:112
+#: ../content/validators.py:96
+#: ../validators.py:111
 msgid "This contains packages already claimed by another project."
 msgstr ""
 
-#: ../content/validators.py:98
-#: ../validators.py:110
+#: ../content/validators.py:94
+#: ../validators.py:109
 msgid "This package is already claimed by another project."
 msgstr ""
 
@@ -178,13 +186,13 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: ../content/validators.py:93
-#: ../validators.py:105
+#: ../content/validators.py:89
+#: ../validators.py:104
 msgid "You must provide a list of package names"
 msgstr ""
 
-#: ../content/validators.py:84
-#: ../validators.py:96
+#: ../content/validators.py:80
+#: ../validators.py:95
 msgid "You must set the primary package before you can select secondary packages."
 msgstr ""
 
