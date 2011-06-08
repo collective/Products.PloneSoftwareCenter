@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 
 from Products.Archetypes.atapi import DisplayList
 import re
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 
 class ReleaseView(BrowserView):
 
@@ -65,9 +66,9 @@ class ReleaseView(BrowserView):
         entered.
         """
         if not value:
-            return "Please provide a version number"
+            return _(u"Please provide a version number")
         if re.search (r'[^\w.-]', value):
-            return ('Please only use numbers, letters, underscores (_), '
+            return _(u'Please only use numbers, letters, underscores (_), '
                     'dashes (-) and periods (.) in the version string, no '
                     'other punctuation characters or whitespace')
         else:
