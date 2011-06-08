@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneSoftwareCenter\n"
-"POT-Creation-Date: 2009-04-03 20:32+0000\n"
+"POT-Creation-Date: 2011-06-08 17:46+0000\n"
 "PO-Revision-Date: 2005-03-11 02:50+0000\n"
 "Last-Translator: Dorneles Treméa <deo@plonesolutions.com>\n"
 "Language-Team: Plone-i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -16,180 +16,1523 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: plonesoftwarecenter\n"
 
-#: ../content/validators.py:98
-msgid "This contains packages already claimed by another project."
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:40
+msgid "${product_title}"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:139
+msgid "${product_title} Releases"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:222
+msgid "${results_projects} projects matching your criteria."
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:42
+msgid "Add-on Products"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:141
+msgid "Add-on Releases"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:215
+msgid "All Releases"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:150
+msgid "All categories"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:307
+msgid "Browse ${product_title} by Category"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:309
+msgid "Browse Add-ons by Category"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:222
+msgid "Compatibility"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:140
+msgid "Current Release"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:49
+msgid "Currently there are ${psc_project_count} projects with ${psc_release_count} releases available."
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:221
+msgid "Description"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_file_view.pt:56
+msgid "Download ${psc_filename_view}"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:118
+msgid "Download Plone"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:174
+msgid "Download file"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:117
+msgid "For"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:76
+msgid "Get ${featured_project_title} For Your Platform"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:185
+msgid "Highest Rated"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/portlet_project_info.pt:15
+#: ../skins/plonesoftwarecenter/psc_file_view.pt:27
+msgid "Info"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:113
+msgid "Latest release: ${featured_project_title} ${featured_project_release_id} (${featured_project_release_date})"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:72
+msgid "Log in to add Software Project"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:188
+msgid "Most Downloaded"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:194
+msgid "Newest"
+msgstr ""
+
+#: ../content/validators.py:60
+#: ../validators.py:75
+msgid "Not a valid contact."
+msgstr ""
+
+#: ../browser/release.py:71
+msgid "Please only use numbers, letters, underscores (_), dashes (-) and periods (.) in the version string, no other punctuation characters or whitespace"
+msgstr ""
+
+#: ../browser/release.py:69
+msgid "Please provide a version number"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:191
+msgid "Recently Updated"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:220
+msgid "Released"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:150
+msgid "Released ${latest_release_date}"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:204
+msgid "Search"
+msgstr ""
+
+#: ../content/validators.py:39
+#: ../validators.py:51
+msgid "Short name %s is invalid - it is the same as the name of a project category"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:148
+msgid "Show"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:178
+msgid "Sort On"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:223
+msgid "Status"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:64
+msgid "Submit your ${product_title_addon}"
 msgstr ""
 
 #: ../content/validators.py:96
+#: ../validators.py:111
+msgid "This contains packages already claimed by another project."
+msgstr ""
+
+#: ../content/validators.py:94
+#: ../validators.py:109
 msgid "This package is already claimed by another project."
 msgstr ""
 
-#: ../content/validators.py:91
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:33
+msgid "This product has not had a release in over 1 year and may no longer be maintained."
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:219
+msgid "Version"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:32
+msgid "Warning"
+msgstr ""
+
+#: ../content/validators.py:89
+#: ../validators.py:104
 msgid "You must provide a list of package names"
 msgstr ""
 
-#: ../content/validators.py:82
+#: ../content/validators.py:80
+#: ../validators.py:95
 msgid "You must set the primary package before you can select secondary packages."
 msgstr ""
 
+#. Default: "The available projects in this category, alphabetized."
+#: ../skins/plonesoftwarecenter/by-category.pt:61
+msgid "available_projects_category"
+msgstr ""
+
 #. Default: "Latest releases"
-#: ../skins/plonesoftwarecenter/portlet_releases.pt:36
+#: ../skins/plonesoftwarecenter/portlet_releases.pt:40
 msgid "box_latest_releases"
 msgstr "Últimos Lançamentos"
 
 #. Default: "More Releases…"
-#: ../skins/plonesoftwarecenter/portlet_releases.pt:73
+#: ../skins/plonesoftwarecenter/portlet_releases.pt:77
 msgid "box_more_projects"
 msgstr ""
 
-#. Default: "You can not add releases, documentation or feature proposals until the project itself is approved, make sure you submit it for approval when the relevant project information has been entered."
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:32
-msgid "description_cannot_add_before_approved"
-msgstr "Você não pode adicionar lançamentos, documentação ou novas propostas de aperfeiçoamento até o projeto ser aprovado. Certifique-se de enviá-lo para aprovação após informar os dados relevantes do projeto."
+#. Default: "Indicate whether this project is approved by product reviewers."
+#: ../content/project.py:159
+msgid "description_approved"
+msgstr ""
 
 #. Default: "There are no available software files in this release yet."
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:81
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:91
 msgid "description_no_available_files"
 msgstr "Ainda não existem arquivos disponíveis neste lançamento."
 
-#. Default: "No releases found."
-#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:52
+#. Default: "There are no published releases in this project yet."
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:119
 #, fuzzy
 msgid "description_no_available_releases"
 msgstr "Ainda não existem lançamentos publicados neste projeto."
 
+#. Default: "No releases found."
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:58
+msgid "description_no_releases_found"
+msgstr ""
+
+#. Default: "No results were found."
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:218
+msgid "description_no_results_found"
+msgstr ""
+
 #. Default: "This listing will prioritize final releases, but will list the latest published release of any other type if no final release exists. If you list the source code repository in this project, it will show up, so people know where to go to check out in the code in the meantime."
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:73
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:122
 #, fuzzy
 msgid "description_prioritize_releases"
 msgstr "Esta listagem priorizará os lançamentos na maturidade 'Final', mas irá listar o último lançamento publicado de cada tipo caso não existam versões finais."
 
+#. Default: "For documentation items and releases, users will be warned if the relevant version is in the list on the right."
+#: ../content/project.py:183
+msgid "description_unsupported_versions"
+msgstr ""
+
 #. Default: "Use the Add menu to add software files."
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:84
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:94
 msgid "description_use_add_menu_to_add_files"
 msgstr "Use o menu Adicionar para incluir novos arquivos do software."
 
 #. Default: "Use the Add menu to add releases."
-#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:55
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:61
 msgid "description_use_add_menu_to_add_releases"
 msgstr "Use o menu Adicionar para incluir novos lançamentos."
 
+#. "Indicate whether the Software Center uses the "
+#. "Classifiers field to display projects. "
+#. "In that case it gets all lines starting with "
+#. "'Topic' and builds the category list with them."
+#. Default: "Indicate whether the Software Center uses the Classifiers field to display projects. In that case it gets all lines starting with 'Topic' and builds the category list with them."
+#: ../content/root.py:65
+msgid "description_use_classifier"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:186
+msgid "for"
+msgstr ""
+
 #. Default: "Available categories"
-#: ../skins/plonesoftwarecenter/psc_categories_view.pt:40
+#: ../skins/plonesoftwarecenter/psc_categories_view.pt:43
 msgid "heading_available_categories"
 msgstr "Categorias disponíveis"
 
 #. Default: "Available downloads"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:72
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:82
 msgid "heading_available_downloads"
 msgstr "Downloads disponíveis"
 
+#. Default: "Change log"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:234
+msgid "heading_change_log"
+msgstr ""
+
 #. Default: "Expected Release"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:175
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:185
 msgid "heading_expecteddate"
 msgstr "Lançamento Esperado"
 
 #. Default: "Experimental Releases"
-#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:63
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:85
 msgid "heading_experimental_releases"
 msgstr ""
 
+#. Default: "Feature enhancements in this release"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:205
+msgid "heading_feature_enhancements_release"
+msgstr ""
+
 #. Default: "License"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:153
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:163
 msgid "heading_license"
 msgstr "Licença"
 
+#. Default: "Release Notes"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:140
+msgid "heading_release_notes"
+msgstr ""
+
 #. Default: "Released"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:178
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:188
 msgid "heading_released"
 msgstr ""
 
 #. Default: "Release Manager"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:165
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:175
 msgid "heading_relmanager"
 msgstr ""
 
 #. Default: "Stable Releases"
-#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:68
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:120
 msgid "heading_stable_releases"
 msgstr ""
 
 #. Default: "State"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:145
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:155
 msgid "heading_state"
 msgstr "Estado"
 
 #. Default: "Tested with"
-#: ../skins/plonesoftwarecenter/psc_release_view.pt:134
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:144
 msgid "heading_tested_with"
 msgstr "Testado com"
 
+#. Default: "When using project view, please provide some text to introduce the products."
+#: ../content/root.py:180
+msgid "help_addon_description"
+msgstr ""
+
+#. Default: "Categories that this item should appear in."
+#: ../content/project.py:99
+msgid "help_categories"
+msgstr ""
+
+#. Default: "Define the available categories for classifying the projects. The format is Short Name | Long name | Description. The id must be unique."
+#: ../content/root.py:81
+msgid "help_categories_vocab"
+msgstr ""
+
+#. Default: "Trove classifiers for this item."
+#: ../content/project.py:85
+msgid "help_classifiers"
+msgstr ""
+
+#. "Define the Trove classifiers."
+#. "The format is 'Id | Title | Trove id'."
+#. "The Id must be unique, and Trove id corresponds"
+#. "to the Trove value"
+#. Default: "Define the Trove classifiers. The format is 'Id | Title | Trove id'. The Id must be unique, and Trove id corresponds to the Trove value"
+#: ../content/root.py:55
+msgid "help_classifiers_vocab"
+msgstr ""
+
+#. Default: "A short summary of the project."
+#: ../content/project.py:54
+msgid "help_description"
+msgstr ""
+
+#. Default: "Enter a description of the container"
+#: ../content/docfolder.py:61
+msgid "help_doc_description"
+msgstr ""
+
+#. Default: "Short name of the container - this should be 'documentation' to comply with the standards."
+#: ../content/docfolder.py:37
+msgid "help_doc_short_name"
+msgstr ""
+
+#. Default: "Enter a title for the container"
+#: ../content/docfolder.py:49
+msgid "help_doc_title"
+msgstr ""
+
+#. Default: "The following features are associated with this release:"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:210
+msgid "help_feature_enhancements_release"
+msgstr ""
+
+#. Default: "Featured project for the software center (for use with the plonesoftwarecenter_ploneorg template)."
+#: ../content/root.py:205
+msgid "help_featured_project"
+msgstr ""
+
+#. Default: "Featured project release for the featured project of the software center (for use with the plonesoftwarecenter_ploneorg template)."
+#: ../content/root.py:216
+msgid "help_featured_project_release"
+msgstr ""
+
+#. Default: "Click 'Browse' to upload a release file."
+#: ../content/downloadablefile.py:52
+msgid "help_file_description"
+msgstr ""
+
+#. Default: "Please enter the size of the externally hosted file, if known. Include the notation kB or MB."
+#: ../content/filelink.py:62
+msgid "help_file_ext_size"
+msgstr ""
+
+#. Default: "Please enter the URL where the file is hosted."
+#: ../content/filelink.py:52
+msgid "help_file_ext_url"
+msgstr ""
+
+#. Default: "List of platforms available for selection"
+#: ../content/downloadablefile.py:64
+#: ../content/filelink.py:41
+msgid "help_file_platform"
+msgstr ""
+
+#. "File description. Normally something like "
+#. "'Product Package', 'Windows Installer',  - "
+#. "or 'Events subsystem' if you have several "
+#. "separate modules. The actual file name will "
+#. "be the same as the file you upload."
+#. Default: "File description. Normally something like 'Product Package', 'Windows Installer',  - or 'Events subsystem' if you have several separate modules. The actual file name will be the same as the file you upload."
+#: ../content/downloadablefile.py:42
+msgid "help_file_title"
+msgstr ""
+
+#. "File description. Normally something like "
+#. "'Product Package', 'Product Installer', "
+#. "or 'Product Bundle' - if you have several packages "
+#. "in one archive. The uploaded filename will not "
+#. "be changed."
+#. Default: "File description. Normally something like 'Product Package', 'Product Installer', or 'Product Bundle' - if you have several packages in one archive. The uploaded filename will not be changed."
+#: ../content/filelink.py:29
+msgid "help_file_title_filelink"
+msgstr ""
+
+#. Default: "This project has been approved via independent review."
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:80
+msgid "help_independent_review"
+msgstr ""
+
+#. Default: "Enter any installation instructions that should appear on each product page."
+#: ../content/root.py:193
+msgid "help_installation_instructions"
+msgstr ""
+
+#. Default: "The latest releases in each category. To see all projects in a specific category, click \"Show all\"."
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:87
+msgid "help_latest_releases_each_category"
+msgstr ""
+
+#. Default: "Define the available licenses for software releases. The format is Short Name | Title | URL."
+#: ../content/root.py:102
+msgid "help_licenses_vocab"
+msgstr ""
+
+#. Default: "going back to the release page"
+#: ../skins/plonesoftwarecenter/psc_file_view.pt:31
+msgid "help_message_remember_back_release_page"
+msgstr ""
+
+#. Default: "Remember to publish your release once all files have been added by"
+#: ../skins/plonesoftwarecenter/psc_file_view.pt:29
+msgid "help_message_remember_is_editable"
+msgstr ""
+
+#. Default: "No stable release available yet."
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:88
+msgid "help_not_stable_release"
+msgstr ""
+
+#. Default: "Description for the software center."
+#: ../content/root.py:43
+msgid "help_package_area"
+msgstr ""
+
+#. Default: "The complete project description."
+#: ../content/project.py:70
+msgid "help_package_body_text"
+msgstr ""
+
+#. Default: "Contact address for the project. Use mailto: or http:// prefix depending on what contact method you prefer."
+#: ../content/project.py:193
+msgid "help_package_contact_address"
+msgstr ""
+
+#. Default: "If the project has externally hosted documentation, enter its URL."
+#: ../content/project.py:215
+msgid "help_package_documentation"
+msgstr ""
+
+#. Default: "If the project has an external home page, enter its URL."
+#: ../content/project.py:204
+msgid "help_package_homepage"
+msgstr ""
+
+#. Default: "Add a logo for the project (or organization/company) by clicking the 'Browse' button. Max 150x75 pixels (will be resized if bigger)."
+#: ../content/project.py:259
+msgid "help_package_logo"
+msgstr ""
+
+#. Default: "The URL the logo should link to, if applicable."
+#: ../content/project.py:270
+msgid "help_package_logo_link"
+msgstr ""
+
+#. Default: "URL of mailing list information page/archives or support forum, if the project has one."
+#: ../content/project.py:248
+msgid "help_package_mailinglist"
+msgstr ""
+
+#. Default: "If the project has a code repository, enter its URL."
+#: ../content/project.py:226
+msgid "help_package_repository"
+msgstr ""
+
+#. Default: "Add a screenshot by clicking the 'Browse' button. Max 800x600 (will be resized if bigger)."
+#: ../content/project.py:281
+msgid "help_package_screenshot"
+msgstr ""
+
+#. Default: "If the project has an external issue tracker, enter its URL."
+#: ../content/project.py:237
+msgid "help_package_tracker"
+msgstr ""
+
+#. Default: "Define the available platforms for software files. The first line is reserved for All platforms or any equivalent labeling."
+#: ../content/root.py:134
+msgid "help_platforms_vocab"
+msgstr ""
+
+#. Default: "Title of products when using the project view. For example, 'Add-on Product', 'Extension', or 'Template'."
+#: ../content/root.py:171
+msgid "help_product_title"
+msgstr ""
+
+#. " When the package that has this id is uploaded"
+#. " or registered, the project description is "
+#. " updated consequently"
+#. Default: "When the package that has this id is uploaded or registered, the project description is updated consequently"
+#: ../content/project.py:110
+msgid "help_project_distutils_main_id"
+msgstr ""
+
+#. Default: "Other Distutils names managed by this project."
+#: ../content/project.py:122
+msgid "help_project_distutils_secondary_id"
+msgstr ""
+
+#. Default: "Download count retrieved from pypi. Set to -1 to deprioritize and exclude from updates."
+#: ../content/project.py:132
+msgid "help_project_download_count"
+msgstr ""
+
+#. Default: "Enter additional names (no need to include the current owner) for those who can make official reviews of projects."
+#: ../content/root.py:144
+msgid "help_project_evaluators"
+msgstr ""
+
+#. Default: "Should not contain spaces, underscores or mixed case. Short Name is part of the item's web address."
+#: ../content/project.py:41
+msgid "help_project_short_name"
+msgstr ""
+
+#. Default: "What needs to be done?"
+#: ../content/proposal.py:123
+msgid "help_proposal"
+msgstr ""
+
+#. Default: "Key assumptions made. What is being covered by and what is intentionally left out of the scope of the proposal."
+#: ../content/proposal.py:152
+msgid "help_proposal_assumptions"
+msgstr ""
+
+#. Default: "The URL for the branch development is done on, if applicable."
+#: ../content/proposal.py:239
+msgid "help_proposal_branch_name_url"
+msgstr ""
+
+#. Default: "If you have any definitions for your proposal, please include them here."
+#: ../content/proposal.py:138
+msgid "help_proposal_definitions"
+msgstr ""
+
+#. "What code and documentation needs to be produced? "
+#. "Standard items: Unit tests, localization, and documentation"
+#. Default: "What code and documentation needs to be produced? Standard items: Unit tests, localization, and documentation"
+#: ../content/proposal.py:182
+msgid "help_proposal_deliverables"
+msgstr ""
+
+#. Default: "How should it be done?"
+#: ../content/proposal.py:167
+msgid "help_proposal_implementation"
+msgstr ""
+
+#. Default: "Why does this proposal exist and what problem does it solve?"
+#: ../content/proposal.py:108
+msgid "help_proposal_motivation"
+msgstr ""
+
+#. Default: "The number of the Improvement Proposal."
+#: ../content/proposal.py:42
+msgid "help_proposal_number"
+msgstr ""
+
+#. Default: "The people already identified for the implementation, if applicable."
+#: ../content/proposal.py:227
+msgid "help_proposal_participants"
+msgstr ""
+
+#. Default: "Enter progress updates here as work is done."
+#: ../content/proposal.py:212
+msgid "help_proposal_progress_log"
+msgstr ""
+
+#. Default: "The person proposing this improvement."
+#: ../content/proposal.py:54
+msgid "help_proposal_proposer"
+msgstr ""
+
+#. "What are the risks of implementing this proposal? "
+#. "What incompatibilities can it cause?"
+#. Default: "What are the risks of implementing this proposal? What incompatibilities can it cause?"
+#: ../content/proposal.py:197
+msgid "help_proposal_risks"
+msgstr ""
+
+#. Default: "The person seconding this improvement."
+#: ../content/proposal.py:66
+msgid "help_proposal_seconder"
+msgstr ""
+
+#. Default: "A short summary of the proposal."
+#: ../content/proposal.py:79
+msgid "help_proposal_summary"
+msgstr ""
+
+#. Default: "The type of proposal this is."
+#: ../content/proposal.py:94
+msgid "help_proposal_types"
+msgstr ""
+
+#. Default: "Enter a description of the container"
+#: ../content/proposalfolder.py:60
+msgid "help_proposalfolder_description"
+msgstr ""
+
+#. Default: "Short name of the container - this should be 'roadmap' to comply with the standards."
+#: ../content/proposalfolder.py:36
+msgid "help_proposalfolder_short_name"
+msgstr ""
+
+#. Default: "Enter a title for the container"
+#: ../content/proposalfolder.py:48
+msgid "help_proposalfolder_title"
+msgstr ""
+
+#. Default: "Please select related improvement proposals for features going into this release."
+#: ../content/release.py:212
+msgid "help_release_associated_feature_proposals"
+msgstr ""
+
+#. Default: "The complete release text."
+#: ../content/release.py:108
+msgid "help_release_body_text"
+msgstr ""
+
+#. Default: "A detailed log of what has changed since the previous release."
+#: ../content/release.py:122
+msgid "help_release_changelog"
+msgstr ""
+
+#. Default: "Codename for this release, if you have one."
+#: ../content/release.py:81
+msgid "help_release_codename"
+msgstr ""
+
+#. Default: "Tested and working with the following versions:"
+#: ../content/release.py:200
+msgid "help_release_compatibility"
+msgstr ""
+
+#. Default: "Enter a description of the container"
+#: ../content/releasefolder.py:57
+msgid "help_release_description"
+msgstr ""
+
+#. Default: "Date on which a final release is expected to be made or was made"
+#: ../content/release.py:175
+msgid "help_release_expected_date"
+msgstr ""
+
+#. Default: "Date after which no new features will added to the release"
+#: ../content/release.py:164
+msgid "help_release_feature_freeze_date"
+msgstr ""
+
+#. Default: "Date after which no more Improvement Proposals will be associated with the release"
+#: ../content/release.py:153
+msgid "help_release_improvement_proposal_freeze_date"
+msgstr ""
+
+#. Default: "Release License"
+#: ../content/release.py:187
+msgid "help_release_license"
+msgstr ""
+
+#. "The release number. You do normally NOT need to adjust this manually. "
+#. "For example, if this is a beta and the release number is 2, "
+#. "the release will be titled "beta 2". Note that this does not apply to final "
+#. "releases, nor to the first release (so beta 1 is just called "beta"). "
+#. "Also note that this number "
+#. "will be automatically adjusted if you re-release using the "state" menu."
+#. Default: "The release number. You do normally NOT need to adjust this manually. For example, if this is a beta and the release number is 2, the release will be titled 'beta 2'. Note that this does not apply to final releases, nor to the first release (so beta 1 is just called 'beta'). Also note that this number will be automatically adjusted if you re-release using the 'state' menu."
+#: ../content/release.py:70
+msgid "help_release_number"
+msgstr ""
+
+#. Default: "Release manager for this release."
+#: ../content/release.py:133
+msgid "help_release_relmgr"
+msgstr ""
+
+#. Default: "Contact e-mail for Release Manager."
+#: ../content/release.py:143
+msgid "help_release_relmgr_email"
+msgstr ""
+
+#. Default: "URL of version control repository branch for this release."
+#: ../content/release.py:225
+msgid "help_release_repository"
+msgstr ""
+
+#. "A short description of the most important "
+#. "focus of this release. Not a version history, "
+#. "but in plain text what the main benefit of "
+#. "this release is."
+#. Default: "A short description of the most important focus of this release. Not a version history, but in plain text what the main benefit of this release is."
+#: ../content/release.py:94
+msgid "help_release_summary"
+msgstr ""
+
+#. Default: "The title of the release, computed from the title of the project and the version number."
+#: ../content/release.py:54
+msgid "help_release_title"
+msgstr ""
+
+#. "This field is also used in the URL "
+#. "of the item, so please don't use spaces and special "
+#. "characters. Also, please do NOT include the alpha, beta, or release candidate "
+#. "state as this is handled by the "
+#. "workflow. Example: '0.1'."
+#. Default: "This field is also used in the URL of the item, so please don't use spaces and special characters. Also, please do NOT include the alpha, beta, or release candidate state as this is handled by the workflow. Example: '0.1'."
+#: ../content/release.py:43
+msgid "help_release_version"
+msgstr ""
+
+#. Default: "Short name of the container - this should be 'release' to comply with the standards."
+#: ../content/releasefolder.py:33
+msgid "help_releasefolder_short_name"
+msgstr ""
+
+#. Default: "Enter a title for the container"
+#: ../content/releasefolder.py:45
+msgid "help_releasefolder_title"
+msgstr ""
+
+#. Default: "Additional notes by reviewers of this project."
+#: ../content/project.py:171
+msgid "help_review_comment"
+msgstr ""
+
+#. Default: "You will have a roadmap available in your project, and you can add categories of enhancement specifications below."
+#: ../content/proposalfolder.py:72
+msgid "help_roadmap_types"
+msgstr ""
+
+#. Default: "Check which criteria this project fulfills."
+#: ../content/project.py:147
+msgid "help_self_certification_checklist"
+msgstr ""
+
+#. Default: "Define the available criteria for developers to self-certify their projects."
+#: ../content/root.py:161
+msgid "help_self_certification_criteria_vocab"
+msgstr ""
+
+#. Default: "<strong>Alpha</strong> releases should only be used for testing and development."
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:66
+msgid "help_show_upcoming_alpha_releases"
+msgstr ""
+
+#. Default: "<strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally released for production testing, but should not be used on mission-critical sites."
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:68
+msgid "help_show_upcoming_beta_releases"
+msgstr ""
+
+#. Default: "Always install on a separate test server first, and <a href=\"/documentation/faq/plone-backup-move\">make sure you have proper backups</a> before installing."
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:71
+msgid "help_show_upcoming_test_releases"
+msgstr ""
+
+#. Default: "Defines the storage strategies for files"
+#: ../content/root.py:226
+msgid "help_storage_strategy"
+msgstr ""
+
+#. Default: "Define the vocabulary for versions that software releases can be listed as being compatible with. The first item will be the default selection."
+#: ../content/root.py:117
+msgid "help_versions_vocab"
+msgstr ""
+
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:266
+msgid "in"
+msgstr ""
+
+#. Default: "Add New Software Project"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:58
+msgid "label_add_new_software_project"
+msgstr ""
+
+#. Default: "Product Description"
+#: ../content/root.py:179
+msgid "label_addon_description"
+msgstr ""
+
+#. Default: "Any version"
+#: ../skins/plonesoftwarecenter/psc_view_ploneorg.pt:165
+msgid "label_any_version"
+msgstr ""
+
+#. Default: "Approved"
+#: ../content/project.py:158
+msgid "label_approved"
+msgstr ""
+
+#. Default: "Categories"
+#: ../content/project.py:98
+msgid "label_categories"
+msgstr ""
+
+#. Default: "Categories"
+#: ../content/root.py:80
+msgid "label_categories_vocab"
+msgstr ""
+
+#. Default: "Classifiers"
+#: ../content/project.py:84
+#: ../content/root.py:54
+msgid "label_classifiers"
+msgstr ""
+
+#. Default: "Current Release"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:87
+msgid "label_current_stable_release"
+msgstr ""
+
+#. Default: "Currently listing ${label_project_count} projects with ${label_release_count} releases."
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:83
+msgid "label_currently_listing_projects_releases"
+msgstr ""
+
+#. Default: "Description"
+#: ../content/docfolder.py:60
+msgid "label_doc_description"
+msgstr ""
+
+#. Default: "Short name"
+#: ../content/docfolder.py:36
+msgid "label_doc_short_name"
+msgstr ""
+
+#. Default: "Title"
+#: ../content/docfolder.py:48
+msgid "label_doc_title"
+msgstr ""
+
+#. Default: "Experimental Releases"
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:20
+msgid "label_experimental_releases"
+msgstr ""
+
+#. Default: "Featured Project"
+#: ../content/root.py:204
+msgid "label_featured_project"
+msgstr ""
+
+#. Default: "Featured Project Release"
+#: ../content/root.py:215
+msgid "label_featured_project_release"
+msgstr ""
+
+#. Default: "File"
+#: ../content/downloadablefile.py:51
+msgid "label_file_description"
+msgstr ""
+
+#. Default: "File size"
+#: ../content/filelink.py:61
+msgid "label_file_ext_size"
+msgstr ""
+
+#. Default: "URL for externally hosted file"
+#: ../content/filelink.py:51
+msgid "label_file_ext_url"
+msgstr ""
+
+#. Default: "Platform"
+#: ../content/downloadablefile.py:63
+#: ../content/filelink.py:40
+msgid "label_file_platform"
+msgstr ""
+
+#. Default: "File Description"
+#: ../content/downloadablefile.py:41
+#: ../content/filelink.py:28
+msgid "label_file_title"
+msgstr ""
+
 #. Default: "Get"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:131
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:184
 msgid "label_get"
 msgstr ""
 
+#. Default: "Go directly to project…"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:44
+msgid "label_go_directly_project"
+msgstr ""
+
 #. Default: "Go to the release folder to add or publish a release."
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:62
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:111
 msgid "label_goto_release_folder"
 msgstr "Ir para a pasta de lançamentos para adicionar ou publicar um lançamento."
 
+#. Default: "Independent Review"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:77
+msgid "label_independent_review"
+msgstr ""
+
+#. Default: "Product Installation Instructions"
+#: ../content/root.py:192
+msgid "label_installation_instructions"
+msgstr ""
+
+#. Default: "Available licenses"
+#: ../content/root.py:101
+msgid "label_licenses_vocab"
+msgstr ""
+
+#. Default: "This release is no longer supported! If you are using this release, please upgrade to a newer version if possible."
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:45
+msgid "label_message_no_longer_supported"
+msgstr ""
+
+#. Default: "This is not a final release. Experimental releases should only be used for testing and development. Do not use these on production sites, and make sure you have proper backups before installing."
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:51
+msgid "label_message_not_final_release"
+msgstr ""
+
+#. Default: "A release needs to be published before it will show up in the download listings of the software center. You should make a release using the 'state' drop-down when work on the release is completed and downloadable files have been added. There is no approval required to make a release."
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:63
+msgid "label_message_not_released"
+msgstr ""
+
+#. Default: "Description"
+#: ../content/root.py:42
+msgid "label_package_area"
+msgstr ""
+
+#. Default: "Full Project Description"
+#: ../content/project.py:69
+msgid "label_package_body_text"
+msgstr ""
+
+#. Default: "Contact address"
+#: ../content/project.py:192
+msgid "label_package_contact_address"
+msgstr ""
+
+#. Default: "URL of documentation repository"
+#: ../content/project.py:214
+msgid "label_package_documentation"
+msgstr ""
+
+#. Default: "Home page"
+#: ../content/project.py:203
+msgid "label_package_homepage"
+msgstr ""
+
+#. Default: "Logo"
+#: ../content/project.py:258
+msgid "label_package_logo"
+msgstr ""
+
+#. Default: "Logo link"
+#: ../content/project.py:269
+msgid "label_package_logo_link"
+msgstr ""
+
+#. Default: "Support mailing list or forum URL"
+#: ../content/project.py:247
+msgid "label_package_mailinglist"
+msgstr ""
+
+#. Default: "URL of version control repository"
+#: ../content/project.py:225
+msgid "label_package_repository"
+msgstr ""
+
+#. Default: "Screenshot"
+#: ../content/project.py:280
+msgid "label_package_screenshot"
+msgstr ""
+
+#. Default: "Issue tracker URL"
+#: ../content/project.py:236
+msgid "label_package_tracker"
+msgstr ""
+
+#. Default: "Platforms"
+#: ../content/root.py:133
+msgid "label_platforms_vocab"
+msgstr ""
+
+#. Default: "Category:"
+#: ../skins/plonesoftwarecenter/portlet_project_info.pt:24
+msgid "label_portlet_project_info_category"
+msgstr ""
+
+#. Default: "Project owner: ${name_portlet_project_resources_owner}"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:95
+msgid "label_portlet_project_resources_owner"
+msgstr ""
+
+#. Default: "Powered by"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:158
+msgid "label_powered_by"
+msgstr ""
+
+#. Default: "Plone Software Center"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:162
+msgid "label_powered_by_psc"
+msgstr ""
+
+#. Default: "Product Title"
+#: ../content/root.py:170
+msgid "label_product_title"
+msgstr ""
+
+#. Default: "Project Description"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:51
+msgid "label_project_description"
+msgstr ""
+
+#. Default: "Distutils id"
+#: ../content/project.py:109
+msgid "label_project_distutils_main_id"
+msgstr ""
+
+#. Default: "Distutils secondary Ids"
+#: ../content/project.py:121
+msgid "label_project_distutils_secondary_ids"
+msgstr ""
+
+#. Default: "Download Count"
+#: ../content/project.py:131
+msgid "label_project_download_count"
+msgstr ""
+
+#. Default: "Project Evaluators"
+#: ../content/root.py:143
+msgid "label_project_evaluators"
+msgstr ""
+
+#. Default: "Project Resources"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:15
+msgid "label_project_resources"
+msgstr ""
+
+#. Default: "Documentation"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:34
+msgid "label_project_resources_documentation"
+msgstr ""
+
+#. Default: "Short name"
+#: ../content/project.py:40
+msgid "label_project_short_name"
+msgstr ""
+
+#. Default: "Project Summary"
+#: ../content/project.py:53
+msgid "label_project_summary"
+msgstr ""
+
+#. Default: "Projects in category ${label_projects_category_name}"
+#: ../skins/plonesoftwarecenter/by-category.pt:37
+msgid "label_projects_by_category"
+msgstr ""
+
+#. Default: "Proposal"
+#: ../content/proposal.py:122
+msgid "label_proposal"
+msgstr ""
+
+#. Default: "Assumptions"
+#: ../content/proposal.py:151
+msgid "label_proposal_assumptions"
+msgstr ""
+
+#. Default: "Branch name/URL"
+#: ../content/proposal.py:238
+msgid "label_proposal_branch_name_url"
+msgstr ""
+
+#. Default: "Definitions"
+#: ../content/proposal.py:137
+msgid "label_proposal_definitions"
+msgstr ""
+
+#. Default: "Deliverables"
+#: ../content/proposal.py:181
+msgid "label_proposal_deliverables"
+msgstr ""
+
+#. Default: "Implementation"
+#: ../content/proposal.py:166
+msgid "label_proposal_implementation"
+msgstr ""
+
+#. Default: "Motivation"
+#: ../content/proposal.py:107
+msgid "label_proposal_motivation"
+msgstr ""
+
+#. Default: "Proposal number"
+#: ../content/proposal.py:41
+msgid "label_proposal_number"
+msgstr ""
+
+#. Default: "Participants"
+#: ../content/proposal.py:226
+msgid "label_proposal_participants"
+msgstr ""
+
+#. Default: "Progress log"
+#: ../content/proposal.py:211
+msgid "label_proposal_progress_log"
+msgstr ""
+
+#. Default: "Proposer"
+#: ../content/proposal.py:53
+msgid "label_proposal_proposer"
+msgstr ""
+
+#. Default: "Related Releases"
+#: ../content/proposal.py:249
+msgid "label_proposal_related_releases"
+msgstr ""
+
+#. Default: "Risks"
+#: ../content/proposal.py:196
+msgid "label_proposal_risks"
+msgstr ""
+
+#. Default: "Seconder"
+#: ../content/proposal.py:65
+msgid "label_proposal_seconder"
+msgstr ""
+
+#. Default: "Proposal Summary"
+#: ../content/proposal.py:78
+msgid "label_proposal_summary"
+msgstr ""
+
+#. Default: "Proposal types"
+#: ../content/proposal.py:93
+msgid "label_proposal_types"
+msgstr ""
+
+#. Default: "Description"
+#: ../content/proposalfolder.py:59
+msgid "label_proposalfolder_description"
+msgstr ""
+
+#. Default: "Short name"
+#: ../content/proposalfolder.py:35
+msgid "label_proposalfolder_short_name"
+msgstr ""
+
+#. Default: "Title"
+#: ../content/proposalfolder.py:47
+msgid "label_proposalfolder_title"
+msgstr ""
+
+#. Default: "Show all"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:144
+msgid "label_psc_show_all_projects"
+msgstr ""
+
+#. Default: "projects in this category…"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:146
+msgid "label_psc_show_all_projects_category"
+msgstr ""
+
 #. Default: "Read more…"
-#: ../skins/plonesoftwarecenter/psc_release_listing.pt:37
+#: ../skins/plonesoftwarecenter/psc_release_listing.pt:42
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:108
 #, fuzzy
 msgid "label_read_more"
 msgstr "Leia mais"
 
+#. Default: "For additional information about this project, please visit the overview page"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:76
+msgid "label_release_additional_information"
+msgstr ""
+
+#. Default: "Associated feature proposals"
+#: ../content/release.py:211
+msgid "label_release_associated_feature_proposals"
+msgstr ""
+
+#. Default: "Full Release Description"
+#: ../content/release.py:107
+msgid "label_release_body_text"
+msgstr ""
+
+#. Default: "Changelog"
+#: ../content/release.py:121
+msgid "label_release_changelog"
+msgstr ""
+
+#. Default: "Codename"
+#: ../content/release.py:80
+msgid "label_release_codename"
+msgstr ""
+
+#. Default: "Compatibility"
+#: ../content/release.py:199
+msgid "label_release_compatibility"
+msgstr ""
+
+#. Default: "Description"
+#: ../content/releasefolder.py:56
+msgid "label_release_description"
+msgstr ""
+
 #. Default: "More about this release…"
-#: ../skins/plonesoftwarecenter/psc_project_view.pt:114
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:166
 msgid "label_release_details"
 msgstr ""
 
+#. Default: "(Expected) Release Date"
+#: ../content/release.py:174
+msgid "label_release_expected_date"
+msgstr ""
+
+#. Default: "Feature freeze date"
+#: ../content/release.py:163
+msgid "label_release_feature_freeze_date"
+msgstr ""
+
+#. Default: "Proposals freeze date"
+#: ../content/release.py:152
+msgid "label_release_improvement_proposal_freeze_date"
+msgstr ""
+
+#. Default: "License"
+#: ../content/release.py:186
+msgid "label_release_license"
+msgstr ""
+
+#. Default: "Release number"
+#: ../content/release.py:69
+msgid "label_release_number"
+msgstr ""
+
+#. Default: "Release Manager"
+#: ../content/release.py:132
+msgid "label_release_relmgr"
+msgstr ""
+
+#. Default: "Release Manager Contact E-mail"
+#: ../content/release.py:142
+msgid "label_release_relmgr_email"
+msgstr ""
+
+#. Default: "Repository branch"
+#: ../content/release.py:224
+msgid "label_release_repository"
+msgstr ""
+
+#. Default: "Release Summary"
+#: ../content/release.py:93
+msgid "label_release_summary"
+msgstr ""
+
+#. Default: "Release title"
+#: ../content/release.py:53
+msgid "label_release_title"
+msgstr ""
+
+#. Default: "Version"
+#: ../content/release.py:42
+msgid "label_release_version"
+msgstr ""
+
+#. Default: "Short name"
+#: ../content/releasefolder.py:32
+msgid "label_releasefolder_short_name"
+msgstr ""
+
+#. Default: "Title"
+#: ../content/releasefolder.py:44
+msgid "label_releasefolder_title"
+msgstr ""
+
+#. Default: "Code repository"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:54
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:105
+msgid "label_resource_code_repository"
+msgstr ""
+
+#. Default: "Contact address"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:84
+msgid "label_resource_contact_address"
+msgstr ""
+
+#. Default: "If you are interested in getting the source code of this project, you can get it from the"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:96
+msgid "label_resource_getting_code"
+msgstr ""
+
+#. Default: "Issue tracker"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:64
+msgid "label_resource_issue_tracker"
+msgstr ""
+
+#. Default: "External project page"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:44
+msgid "label_resource_project_page"
+msgstr ""
+
+#. Default: "Support"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:74
+msgid "label_resource_support"
+msgstr ""
+
+#. Default: "Review Comment"
+#: ../content/project.py:170
+msgid "label_review_comment"
+msgstr ""
+
+#. Default: "Roadmap proposal types"
+#: ../content/proposalfolder.py:71
+msgid "label_roadmap_types"
+msgstr ""
+
 #. Default: "RSS Feed"
-#: ../skins/plonesoftwarecenter/portlet_releases.pt:29
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:28
+#: ../skins/plonesoftwarecenter/portlet_releases.pt:33
 msgid "label_rss_feed"
 msgstr ""
 
 #. Default: "Screenshot — click to enlarge"
-#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:105
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:123
 msgid "label_screenshot_click_to_enlarge"
 msgstr ""
 
+#. Default: "Self-Certification"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:66
+msgid "label_self_certification"
+msgstr ""
+
+#. Default: "Self-Certification Checklist"
+#: ../content/project.py:146
+msgid "label_self_certification_checklist"
+msgstr ""
+
+#. Default: "Self-Certification Checklist"
+#: ../content/root.py:160
+msgid "label_self_certification_criteria_vocab"
+msgstr ""
+
 #. Default: "Release roadmap for ${project}…"
-#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:50
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:57
 #, fuzzy
 msgid "label_show_upcoming_releases"
 msgstr "Exibir próximos lançamentos"
 
+#. Default: "Storage strategy"
+#: ../content/root.py:225
+msgid "label_storage_strategy"
+msgstr ""
+
+#. Default: "Unsupported versions"
+#: ../content/project.py:182
+msgid "label_unsupported_versions"
+msgstr ""
+
 #. Default: "&laquo; Back to project overview"
-#: ../skins/plonesoftwarecenter/psc_categories_view.pt:26
+#: ../skins/plonesoftwarecenter/psc_categories_view.pt:29
+msgid "label_up_to_product_overview"
+msgstr ""
+
+#. Default: "&laquo; Back to project page"
+#: ../skins/plonesoftwarecenter/psc_releasefolder_view.pt:36
 #, fuzzy
 msgid "label_up_to_product_page"
 msgstr "Voltar para a página do Produto"
 
 #. Default: "&laquo; Back to project overview"
-#: ../skins/plonesoftwarecenter/by-category.pt:37
+#: ../skins/plonesoftwarecenter/by-category.pt:40
 msgid "label_up_to_project_overview"
 msgstr ""
 
-#. Default: "&laquo; Back to release page"
-#: ../skins/plonesoftwarecenter/psc_file_view.pt:27
-#, fuzzy
-msgid "label_up_to_release_page"
-msgstr "Voltar para a página do Lançamento"
+#. Default: "Use Classifiers to display Categories (with Topic :: *)."
+#: ../content/root.py:64
+msgid "label_use_classifier"
+msgstr ""
+
+#. Default: "Versions"
+#: ../content/root.py:116
+msgid "label_versions_vocab"
+msgstr ""
 
 #. Default: "No projects found in this category."
-#: ../skins/plonesoftwarecenter/by-category.pt:47
+#: ../skins/plonesoftwarecenter/by-category.pt:50
 msgid "no_packages_found"
 msgstr ""
 
+#. Default: "No releases made in this category yet"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:134
+msgid "no_releases_found"
+msgstr ""
+
+#. Default: "Documentation audiences"
+#: ../content/docfolder.py:74
+msgid "phc_label_audience_helpcenter"
+msgstr ""
+
+#. Default: "Released ${name_released_date}<br />"
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:33
+msgid "portlet_project_roadmap_released_date"
+msgstr ""
+
+#. Default: "Planned release: ${name_upcoming_release}<br />"
+#: ../skins/plonesoftwarecenter/portlet_project_roadmap.pt:40
+msgid "portlet_project_roadmap_upcoming_release"
+msgstr ""
+
+#. Default: "Audiences are optional. One type of audience on each line. If you leave this blank, audience information will not be used. Audience is typically 'End user', 'Developer' and similar."
+#: ../content/docfolder.py:75
+msgid "psc_audience_helpcenter"
+msgstr ""
+
 #. Default: "Read More…"
-#: ../skins/plonesoftwarecenter/by-category.pt:90
+#: ../skins/plonesoftwarecenter/by-category.pt:93
 msgid "read_more"
 msgstr ""
 
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:154
+msgid "tested with"
+msgstr ""
+
+#. Default: "Current release for the project"
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:141
+msgid "title_latest_release_project"
+msgstr ""
+
+#. Default: "Subscribe to updates for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:105
+msgid "title_portlet_project_resources_subscribe_updates"
+msgstr ""
+
+#. Default: "Documentation for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:29
+msgid "title_project_resources_documentation"
+msgstr ""
+
+#. Default: "Plone Software Center's Home Page"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:159
+msgid "title_psc_homepage"
+msgstr ""
+
+#. Default: "Show all the projects in this category"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:141
+msgid "title_psc_show_all_projects"
+msgstr ""
+
+#. Default: "The project page"
+#: ../skins/plonesoftwarecenter/psc_release_view.pt:74
+msgid "title_release_additional_information"
+msgstr ""
+
+#. Default: "Version control repository location for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:49
+#: ../skins/plonesoftwarecenter/psc_project_view.pt:100
+msgid "title_resource_code_repository"
+msgstr ""
+
+#. Default: "Contact address for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:79
+msgid "title_resource_contact_address"
+msgstr ""
+
+#. Default: "A place to submit bug reports and feature requests for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:59
+msgid "title_resource_issue_tracker"
+msgstr ""
+
+#. Default: "Additional home page for this project"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:39
+msgid "title_resource_project_page"
+msgstr ""
+
+#. Default: "Support options for this product"
+#: ../skins/plonesoftwarecenter/portlet_project_resources.pt:69
+msgid "title_resource_support"
+msgstr ""
+
 #. Default: "RSS feed of the latest releases"
-#: ../skins/plonesoftwarecenter/portlet_releases.pt:29
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:28
+#: ../skins/plonesoftwarecenter/portlet_releases.pt:33
 msgid "title_rss_feed"
+msgstr ""
+
+#. Default: "RSS feed for the latest releases in this category"
+#: ../skins/plonesoftwarecenter/plonesoftwarecenter_view.pt:97
+msgid "title_rss_feed_this_category"
 msgstr ""
 
