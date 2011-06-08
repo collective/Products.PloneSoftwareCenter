@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plone-Software-Center\n"
 "POT-Creation-Date: 2011-06-08 17:39+0000\n"
-"PO-Revision-Date: 2011-06-07 22:38+0100\n"
+"PO-Revision-Date: 2011-06-08 22:58+0100\n"
 "Last-Translator: Andreas Mantke <maand@gmx.de>\n"
 "Language-Team: Andreas Mantke <maand@gmx.de>\n"
 "MIME-Version: 1.0\n"
@@ -40,15 +40,15 @@ msgstr "Eine freigegebene Version des Software-Projekts, entweder final oder in 
 
 #: ../profiles/default/types/PloneSoftwareCenter.xml
 msgid "A simple folderish archetype for the Software Center."
-msgstr ""
+msgstr "Ein einfacher ordnerartiger Archetyp für das Software Center"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Accepted"
-msgstr ""
+msgstr "Akzeptiert"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Accepted this improvement proposal"
-msgstr ""
+msgstr "Diesen Verbesserungsvorschlag akzeptieren"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Alpha release"
@@ -64,11 +64,11 @@ msgstr ""
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Being discussed"
-msgstr ""
+msgstr "Wird besprochen"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Being discussed for this improvement proposal"
-msgstr ""
+msgstr "Wird für diesen Verbesserungsvorschlag besprochen"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Beta release"
@@ -76,15 +76,15 @@ msgstr "Beta freigeben"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Change the release project stage to 'Release alpha'"
-msgstr ""
+msgstr "Ändere den Versions-Projekt-Status zu 'Freigeben als Alpha'"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Change the release project stage to 'Release beta'"
-msgstr ""
+msgstr "Ändere den Versions-Projekt-Status zu 'Freigeben als Beta'"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Change the release project stage to 'Release final'"
-msgstr ""
+msgstr "Ändere den Versions-Projekt-Status zu 'Freigeben als Final'"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Close area"
@@ -92,11 +92,11 @@ msgstr "Arbeitsbereich schließen"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Close this area"
-msgstr ""
+msgstr "Diesen Arbeitsbereich schließen"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Closed this area to the public"
-msgstr ""
+msgstr "Diesen Arbeitsbereich für Öffentlichkeit geschlossen"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Closed to the public"
@@ -161,7 +161,7 @@ msgstr "Extern gehostete Datei"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Featured"
-msgstr ""
+msgstr "Empfohlen"
 
 #. Default: "File View"
 #: dynamic view name template psc_file_view on type PSCFile
@@ -187,7 +187,7 @@ msgstr "Ausgeblendet"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Hidden release project"
-msgstr ""
+msgstr "Freigegebene Versions Projekt ausblenden"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Hide"
@@ -195,7 +195,7 @@ msgstr "Ausblenden"
 
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
 msgid "Hide this project"
-msgstr ""
+msgstr "Dieses Projekt ausblenden"
 
 #: ../profiles/default/types/PSCImprovementProposal.xml
 msgid "Improvement Proposal"
@@ -224,19 +224,19 @@ msgstr "In Bearbeitung"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "In this project the Member requests publishing"
-msgstr ""
+msgstr "In diesem Projekt bittet das Mitglied um Veröffentlichung"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "In this project the Member retracts submission"
-msgstr ""
+msgstr "In diesem Projekt zieht das Mitglied die Einreichung zurück"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "In this project the Reviewer publishes content"
-msgstr ""
+msgstr "In diesem Projekt veröffentlicht der Rezensent den Inhalt"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "In this project the Reviewer rejects submission"
-msgstr ""
+msgstr "In diesem Projekt lehnt der Rezensent die Einreichung ab"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Member requests publishing"
@@ -264,7 +264,7 @@ msgstr "Offen für Einreichungen"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "Open this area to submissions"
-msgstr ""
+msgstr "Diesen Arbeitsbereich für Einreichungen öffnen"
 
 #: ../profiles/default/workflows/psc_area_workflow/definition.xml
 msgid "PSC Area workflow"
@@ -284,7 +284,7 @@ msgstr "PSC-Freigabe-Workflow"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Pending approval"
-msgstr ""
+msgstr "Zur Freigabe eingereicht"
 
 #: ../profiles/default/types/PSCProject.xml
 msgid "Project class that holds the information about the Software Project."
@@ -304,7 +304,7 @@ msgstr "Öffentlich"
 
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "Publish, and set as featured"
-msgstr ""
+msgstr "Zur Freigabe eingereicht"
 
 #: ../profiles/default/workflows/psc_improvementproposal_workflow/definition.xml
 msgid "Re-draft"
@@ -564,17 +564,17 @@ msgstr "Getestet mit"
 #. Default: "If you want to see the feature proposals displayed according to what release they are assigned to, go to the"
 #: ../skins/plonesoftwarecenter/psc_improvements_listing.pt:38
 msgid "help_improvements_listing"
-msgstr ""
+msgstr "Falls Sie die Funktionsvorschläge in Abhängigkeit zu der freigegebenen Version, der sie zugewiesen sind, angezeigt erhalten wollen, gehen Sie zu der"
 
 #. Default: "These proposals are currently under consideration for inclusion in an upcoming release."
 #: ../skins/plonesoftwarecenter/psc_roadmap.pt:215
 msgid "help_proposals_being_discussed"
-msgstr ""
+msgstr "Diese Vorschläge werden aktuell für die Einbeziehung in die anstehende freizugebende Version geprüft."
 
 #. Default: "An overview of the upcoming releases for this project. Participants in the project can add new features to the list."
 #: ../skins/plonesoftwarecenter/psc_roadmap.pt:60
 msgid "help_roadmap_title_project"
-msgstr ""
+msgstr "Ein Überblick über die anstehenden freizugebenden Versionen für dieses Projekt. Mitwirkende in dem Projekt können neue Funktionen zu der Liste hinzufügen."
 
 #. Default: "Assigned to release"
 #: ../skins/plonesoftwarecenter/psc_improvements_view.pt:74
@@ -788,7 +788,7 @@ msgstr "Verschobene Arbeit"
 #. Default: "Featured Project"
 #: ../profiles/default/workflows/psc_package_workflow/definition.xml
 msgid "title_psc_wf_feature"
-msgstr ""
+msgstr "Empfohlenes Projekt"
 
 #. Default: "Hide release"
 #: ../profiles/default/workflows/psc_release_workflow/definition.xml
