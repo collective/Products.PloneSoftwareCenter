@@ -13,7 +13,7 @@
  <permission>View</permission>
 
  <state state_id="alpha" title="Alpha release" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">The first stage of release project</description>
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-beta"/>
   <exit-transition transition_id="release-candidate"/>
@@ -31,7 +31,7 @@
  </state>
 
  <state state_id="beta" title="Beta release" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">The second stage of release project</description>
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-candidate"/>
   <exit-transition transition_id="release-final"/>
@@ -48,7 +48,7 @@
  </state>
 
  <state state_id="final" title="Final release" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">The Final stage of release project</description>
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="retract"/>
   <exit-transition transition_id="hide"/>
@@ -63,7 +63,7 @@
  </state>
 
  <state state_id="hidden" title="Hidden" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Hidden release project</description>
   <exit-transition transition_id="unhide"/>
   <permission-map name="Access contents information"
                   acquired="False">
@@ -82,7 +82,7 @@
  </state>
 
  <state state_id="pre-release" title="Unreleased" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Unreleased project</description>
   <exit-transition transition_id="release-alpha"/>
   <exit-transition transition_id="release-beta"/>
   <exit-transition transition_id="release-candidate"/>
@@ -99,7 +99,7 @@
  </state>
 
  <state state_id="release-candidate" title="Release candidate" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Release candidate for this project</description>
   <exit-transition transition_id="re-release"/>
   <exit-transition transition_id="release-final"/>
   <exit-transition transition_id="retract"/>
@@ -119,7 +119,7 @@
              before_script=""
              after_script="release_new_state"
              i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Hide this project</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_hide_release">Hide release</action>
   <guard>
@@ -128,13 +128,13 @@
  </transition>
 
  <transition transition_id="re-release" title="Re-release"
-             i18n:attributes="title"
              new_state="" trigger="USER"
              before_script="re_release_state"
-             after_script="">
-  <description i18n:translate=""></description>
+             after_script=""
+             i18n:attributes="title">
+  <description i18n:translate="">re-release</description>
   <action url="" category="workflow"
-          i18n:translate="title_psc_wf_re_release">Re-release</action>
+          i18n:translate="title_psc_wf_re_release">Re-release this project</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
@@ -142,10 +142,10 @@
 
  <transition transition_id="release-alpha" 
              title="Release alpha"
-             i18n:attributes="title"
              new_state="alpha" trigger="USER" before_script=""
-             after_script="release_new_state">
-  <description i18n:translate=""></description>
+             after_script="release_new_state"
+             i18n:attributes="title">
+  <description i18n:translate="">Change the release project stage to 'Release alpha'</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_alpha_release">Release alpha</action>
   <guard>
@@ -158,7 +158,7 @@
              i18n:attributes="title"
              new_state="beta" trigger="USER" before_script=""
              after_script="release_new_state">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Change the release project stage to 'Release beta'</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_release_beta">Release beta</action>
   <guard>
@@ -172,7 +172,7 @@
              new_state="release-candidate" trigger="USER"
              before_script=""
              after_script="release_new_state">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Release candidate for this project</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_release_candidate">Release candidate</action>
   <guard>
@@ -185,7 +185,7 @@
              trigger="USER" before_script=""
              after_script="release_new_state"
              i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Change the release project stage to 'Release final' </description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_release_final_release">Release final release</action>
   <guard>
@@ -198,7 +198,7 @@
              before_script=""
              after_script="release_new_state"
              i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Retract release of this project</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_retract_release">Retract release</action>
   <guard>
@@ -211,7 +211,7 @@
              before_script=""
              after_script="release_new_state"
              i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Unhide release project</description>
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_unhide_release">Unhide release</action>
   <guard>

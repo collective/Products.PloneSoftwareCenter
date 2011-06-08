@@ -11,8 +11,9 @@
  <permission>Access contents information</permission>
  <permission>View</permission>
  <permission>Modify portal content</permission>
+
  <state state_id="being-discussed" title="Being discussed" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Being discussed for this improvement proposal</description>
   <exit-transition transition_id="begin"/>
   <exit-transition transition_id="defer"/>
   <exit-transition transition_id="reject"/>
@@ -26,8 +27,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="completed" title="Completed and merged" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Completed and merged this improvement proposal</description>
   <exit-transition transition_id="re-merge"/>
   <permission-map name="Access contents information"
                   acquired="True">
@@ -38,8 +40,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="deferred" title="Deferred" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Improvement proposal deferred</description>
   <exit-transition transition_id="begin"/>
   <exit-transition transition_id="re-draft"/>
   <exit-transition transition_id="reject"/>
@@ -52,8 +55,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="draft" title="Draft" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Send to draft this improvement proposal</description>
   <exit-transition transition_id="propose"/>
   <permission-map name="Access contents information"
                   acquired="True">
@@ -64,8 +68,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="in-progress" title="In progress" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Improvement proposal in progress</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="defer"/>
   <exit-transition transition_id="re-discuss"/>
@@ -79,8 +84,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="ready-for-merge" title="Ready for merge" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Ready for merge this improvement proposal</description>
   <exit-transition transition_id="defer"/>
   <exit-transition transition_id="merge"/>
   <exit-transition transition_id="re-work"/>
@@ -94,8 +100,9 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
+
  <state state_id="rejected" title="Rejected" i18n:attributes="title">
-  <description i18n:translate=""></description>
+  <description i18n:translate="">Improvement proposal rejected</description>
   <exit-transition transition_id="re-draft"/>
   <permission-map name="Access contents information"
                   acquired="True">
@@ -106,130 +113,143 @@
   <permission-map name="View" acquired="True">
   </permission-map>
  </state>
- <transition transition_id="accept" title="" new_state=""
+
+ <transition transition_id="accept" title="Accepted" new_state=""
              trigger="USER" before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description>  
+  <description i18n:translate="">Accepted this improvement proposal</description>  
   <guard>
   </guard>
  </transition>
+
  <transition transition_id="begin"
              title="Begin proposed work"
              new_state="in-progress" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Begin proposed work in this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_begin_work">Begin work</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="complete"
              title="Complete proposed work"
              new_state="ready-for-merge" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Complete proposed work in this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_complete_work">Complete work</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="defer"
              title="Defer work on this proposal"
              new_state="deferred" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Defer work on this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_defer_work">Defer work</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="merge"
              title="Merge changes from this proposal"
              new_state="completed" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Merge changes from this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_merge_changes">Merge changes</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="propose" title="Propose"
              new_state="being-discussed" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Propose this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_propose">Propose</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="re-discuss"
              title="Return to discussion stage"
              new_state="being-discussed" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Return to discussion stage for this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_rediscuss">Re-discuss</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="re-draft" title="Re-draft"
              new_state="draft" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Re-draft this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_redraft">Re-draft</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="re-merge"
              title="Return to ready-for-merge stage"
              new_state="ready-for-merge" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Return to ready-for-merge stage to this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_unmerge">Un-merge</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="re-work"
              title="Return to in-progress stage"
              new_state="in-progress" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
-  <description i18n:translate=""></description> 
+  <description i18n:translate="">Return to in-progress stage to this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_rework">Re-work</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <transition transition_id="reject"
              title="Reject this proposal"
              new_state="rejected" trigger="USER"
              before_script="" after_script=""
              i18n:attributes="title">
+  <description i18n:translate="">Reject this improvement proposal</description> 
   <action url="" category="workflow"
           i18n:translate="title_psc_wf_reject_proposal">Reject proposal</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
+
  <worklist worklist_id="reviewer_queue" title="">
   <description>Reviewer tasks</description>
   <action url="%(portal_url)s/search?review_state=pending"
