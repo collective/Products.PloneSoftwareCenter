@@ -5,7 +5,7 @@
 
 rm ./rebuild_i18n.log
 
-i18ndude rebuild-pot --pot ./plonesoftwarecenter.pot --merge ./generated.pot --create plonesoftwarecenter ../ || exit 1
+i18ndude rebuild-pot --pot ./plonesoftwarecenter.pot --create plonesoftwarecenter ../ || exit 1
 i18ndude sync --pot ./plonesoftwarecenter.pot ./*/LC_MESSAGES/plonesoftwarecenter.po
 
 i18ndude rebuild-pot --pot ./psc-plonehelpcenter.pot --create plonehelpcenter ../ || exit 1
