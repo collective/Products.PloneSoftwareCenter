@@ -18,6 +18,7 @@ except ImportError:  # BBB
 
 from Products.ATContentTypes.content.base import ATCTMixin
 
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.config import PROJECTNAME, DOCUMENTATION_ID
 try:
     from Products.PloneHelpCenter.interfaces import IHelpCenterContent
@@ -32,10 +33,8 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         mode='r', # Leave the custom auto-generated ID
         widget=StringWidget (
-            label="Short name",
-            label_msgid="label_doc_short_name",
-            description="Short name of the container - this should be 'documentation' to comply with the standards.",
-            description_msgid="help_doc_short_name",
+            label=_(u"label_doc_short_name", default=u"Short name"),
+            description=_(u"help_doc_short_name", default=u"Short name of the container - this should be 'documentation' to comply with the standards."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -46,10 +45,8 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         accessor="Title",
         widget=StringWidget(
-            label="Title",
-            label_msgid="label_doc_title",
-            description="Enter a title for the container",
-            description_msgid="help_doc_title",
+            label=_(u"label_doc_title", default=u"Title"),
+            description=_(u"help_doc_title", default=u"Enter a title for the container"),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -60,10 +57,8 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         accessor="Description",
         widget=TextAreaWidget(
-            label="Description",
-            label_msgid="label_doc_description",
-            description="Enter a description of the container",
-            description_msgid="help_doc_description",
+            label=_(u"label_doc_description", default=u"Description"),
+            description=_(u"help_doc_description", default=u"Enter a description of the container"),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -76,13 +71,11 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         languageIndependent=1,
         widget=LinesWidget(
-                label="Documentation audiences",
-                label_msgid="phc_label_audience_helpcenter",
-                description="Audiences are optional. One type of audience on each line. If you leave this blank, audience information will not be used. Audience is typically 'End user', 'Developer' and similar.",
-                description_msgid="psc_audience_helpcenter",
-                i18n_domain = "plonehelpcenter",
-                ),
+            label=_(u"phc_label_audience_helpcenter", default=u"Documentation audiences"),
+            description=_(u"psc_audience_helpcenter", default=u"Audiences are optional. One type of audience on each line. If you leave this blank, audience information will not be used. Audience is typically 'End user', 'Developer' and similar."),
+            i18n_domain = "plonehelpcenter",
         ),
+    ),
 
 ))
 

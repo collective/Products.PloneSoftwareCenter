@@ -23,6 +23,7 @@ from Products.ATContentTypes.content.base import ATCTMixin
 
 from Products.AddRemoveWidget import AddRemoveWidget
 
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter import config
 
 from zope.annotation.interfaces import IAnnotations
@@ -38,14 +39,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         mutator="setId",
         default=None,
         widget=StringWidget(
-            label='Version',
-            label_msgid='label_release_version',
-            description="This field is also used in the URL "
-                        "of the item, so please don't use spaces and special "
-                        "characters. Also, please do NOT include the alpha, beta, or release candidate "
-                        "state as this is handled by the "
-                        "workflow. Example: '0.1'.",
-            description_msgid='help_release_version',
+            label=_(u"label_release_version", default=u"Version"),
+            description=_(u"help_release_version", default=u"This field is also used in the URL of the item, so please don't use spaces and special characters. Also, please do NOT include the alpha, beta, or release candidate state as this is handled by the workflow. Example: '0.1'."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -55,10 +50,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         expression="context.generateTitle()",
         mode='r',
         widget=ComputedWidget(
-            label='Release title',
-            label_msgid="label_release_title",
-            description="The title of the release, computed from the title of the project and the version number.",
-            description_msgid="help_release_title",
+            label=_(u"label_release_title", default=u"Release title"),
+            description=_(u"help_release_title", default=u"The title of the release, computed from the title of the project and the version number."),
             i18n_domain='plonesoftwarecenter',
             modes=('view',),
             visible={
@@ -73,16 +66,9 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=0,
         default=1,
         widget=StringWidget(
+            label=_(u"label_release_number", default=u"Release number"),
+            description=_(u"help_release_number", default=u"The release number. You do normally NOT need to adjust this manually. For example, if this is a beta and the release number is 2, the release will be titled 'beta 2'. Note that this does not apply to final releases, nor to the first release (so beta 1 is just called 'beta'). Also note that this number will be automatically adjusted if you re-release using the 'state' menu."),
             condition="object/showReleaseNumber",
-            label='Release number',
-            label_msgid='label_release_number',
-            description='The release number. You do normally NOT need to adjust this manually. '
-                        'For example, if this is a beta and the release number is 2, ' 
-                        'the release will be titled "beta 2". Note that this does not apply to final '
-                        'releases, nor to the first release (so beta 1 is just called "beta"). '
-                        'Also note that this number ' 
-                        'will be automatically adjusted if you re-release using the "state" menu.',
-            description_msgid='help_release_number',
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -91,10 +77,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=1,
         widget=StringWidget(
-            label='Codename',
-            label_msgid='label_release_codename',
-            description='Codename for this release, if you have one.',
-            description_msgid='help_release_codename',
+            label=_(u"label_release_codename", default=u"Codename"),
+            description=_(u"help_release_codename", default=u"Codename for this release, if you have one."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -106,13 +90,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor='Description',
         storage=MetadataStorage(),
         widget=TextAreaWidget(
-            label='Release Summary',
-            label_msgid='label_release_summary',
-            description='A short description of the most important '
-                        'focus of this release. Not a version history, '
-                        'but in plain text what the main benefit of '
-                        'this release is.',
-            description_msgid='help_release_summary',
+            label=_(u"label_release_summary", default=u"Release Summary"),
+            description=_(u"help_release_summary", default=u"A short description of the most important focus of this release. Not a version history, but in plain text what the main benefit of this release is."),
             i18n_domain='plonesoftwarecenter',
             rows=5,
         ),
@@ -125,10 +104,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=config.TEXT_TYPES,
         widget=RichWidget(
-            label='Full Release Description',
-            label_msgid='label_release_body_text',
-            description='The complete release text.',
-            description_msgid='help_release_body_text',
+            label=_(u"label_release_body_text", default=u"Full Release Description"),
+            description=_(u"help_release_body_text", default=u"The complete release text."),
             i18n_domain='plonesoftwarecenter',
             rows=15,
         ),
@@ -141,10 +118,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=config.TEXT_TYPES,
         widget=RichWidget(
-            label='Changelog',
-            label_msgid='label_release_changelog',
-            description='A detailed log of what has changed since the previous release.',
-            description_msgid='help_release_changelog',
+            label=_(u"label_release_changelog", default=u"Changelog"),
+            description=_(u"help_release_changelog", default=u"A detailed log of what has changed since the previous release."),
             i18n_domain='plonesoftwarecenter',
             rows=10,
         ),
@@ -154,10 +129,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=1,
         widget=StringWidget(
-            label='Release Manager',
-            label_msgid='label_release_relmgr',
-            description='Release manager for this release.',
-            description_msgid='help_release_relmgr',
+            label=_(u"label_release_relmgr", default=u"Release Manager"),
+            description=_(u"help_release_relmgr", default=u"Release manager for this release."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -166,10 +139,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=0,
         widget=StringWidget(
-            label='Release Manager Contact E-mail',
-            label_msgid='label_release_relmgr_email',
-            description='Contact e-mail for Release Manager.',
-            description_msgid='help_release_relmgr_email',
+            label=_(u"label_release_relmgr_email", default=u"Release Manager Contact E-mail"),
+            description=_(u"help_release_relmgr_email", default=u"Contact e-mail for Release Manager."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -178,10 +149,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=0,
         widget=CalendarWidget(
-            label='Proposals freeze date',
-            label_msgid='label_release_improvement_proposal_freeze_date',
-            description='Date after which no more Improvement Proposals will be associated with the release',
-            description_msgid='help_release_improvement_proposal_freeze_date',
+            label=_(u"label_release_improvement_proposal_freeze_date", default=u"Proposals freeze date"),
+            description=_(u"help_release_improvement_proposal_freeze_date", default=u"Date after which no more Improvement Proposals will be associated with the release"),
             i18n_domain='plonesoftwarecenter',
             show_hm = False,
         ),
@@ -191,10 +160,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=0,
         widget=CalendarWidget(
-            label='Feature freeze date',
-            label_msgid='label_release_feature_freeze_date',
-            description='Date after which no new features will added to the release',
-            description_msgid='help_release_feature_freeze_date',
+            label=_(u"label_release_feature_freeze_date", default=u"Feature freeze date"),
+            description=_(u"help_release_feature_freeze_date", default=u"Date after which no new features will added to the release"),
             i18n_domain='plonesoftwarecenter',
             show_hm = False,
         ),
@@ -204,10 +171,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=0,
         searchable=0,
         widget=CalendarWidget(
-            label='(Expected) Release Date',
-            label_msgid='label_release_expected_date',
-            description='Date on which a final release is expected to be made or was made',
-            description_msgid='help_release_expected_date',
+            label=_(u"label_release_expected_date", default=u"(Expected) Release Date"),
+            description=_(u"help_release_expected_date", default=u"Date on which a final release is expected to be made or was made"),
             i18n_domain='plonesoftwarecenter',
             show_hm = False,
         ),
@@ -218,10 +183,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         required=1,
         vocabulary='getLicenseVocab',
         widget=SelectionWidget(
-            label='License',
-            label_msgid='label_release_license',
-            description='Release License',
-            description_msgid='help_release_license',
+            label=_(u"label_release_license", default=u"License"),
+            description=_(u"help_release_license", default=u"Release License"),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -233,10 +196,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         index='KeywordIndex:schema',
         vocabulary='getCompatibilityVocab',
         widget=MultiSelectionWidget(
-            label='Compatibility',
-            label_msgid='label_release_compatibility',
-            description='Tested and working with the following versions:',
-            description_msgid='help_release_compatibility',
+            label=_(u"label_release_compatibility", default=u"Compatibility"),
+            description=_(u"help_release_compatibility", default=u"Tested and working with the following versions:"),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -247,10 +208,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         enforceVocabulary=1,
         relationship='RelatedFeatures',
         widget=AddRemoveWidget(
-            label='Associated feature proposals',
-            label_msgid="label_release_associated_feature_proposals",
-            description="Please select related improvement proposals for features going into this release.",
-            description_msgid="help_release_associated_feature_proposals",
+            label=_(u"label_release_associated_feature_proposals", default=u"Associated feature proposals"),
+            description=_(u"help_release_associated_feature_proposals", default=u"Please select related improvement proposals for features going into this release."),
             i18n_domain='plonesoftwarecenter',
         ),
         vocabulary='getRelatedFeaturesVocab',
@@ -262,10 +221,8 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         validators=('isURL',),
         mutator='setRepository',
         widget=StringWidget(
-            label="Repository branch",
-            label_msgid="label_release_repository",
-            description="URL of version control repository branch for this release.",
-            description_msgid="help_release_repository",
+            label=_(u"label_release_repository", default=u"Repository branch"),
+            description=_(u"help_release_repository", default=u"URL of version control repository branch for this release."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),

@@ -14,6 +14,7 @@ from Products.CMFCore import permissions
 from Products.Archetypes.atapi import * 
 
 from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.storage import DynamicStorage
 
 from Products.ATContentTypes.content.base import ATCTFileContent
@@ -37,14 +38,8 @@ PSCFileSchema = BaseSchema.copy() + Schema((
         searchable=1,
         accessor="Title",
         widget=StringWidget(
-            label="File Description",
-            label_msgid="label_file_title",
-            description="File description. Normally something like "
-                        "'Product Package', 'Windows Installer',  - "
-                        "or 'Events subsystem' if you have several "
-                        "separate modules. The actual file name will "
-                        "be the same as the file you upload.",
-            description_msgid="help_file_title",
+            label=_(u"label_file_title", default=u"File Description"),
+            description=_(u"help_file_title", default=u"File description. Normally something like 'Product Package', 'Windows Installer',  - or 'Events subsystem' if you have several separate modules. The actual file name will be the same as the file you upload."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -53,10 +48,8 @@ PSCFileSchema = BaseSchema.copy() + Schema((
         primary=1,
         required=1,
         widget=FileWidget(
-            label="File",
-            label_msgid="label_file_description",
-            description="Click 'Browse' to upload a release file.",
-            description_msgid="help_file_description",
+            label=_(u"label_file_description", default=u"File"),
+            description=_(u"help_file_description", default=u"Click 'Browse' to upload a release file."),
             i18n_domain="plonesoftwarecenter",
         ),
         storage=DynamicStorage(),
@@ -67,10 +60,8 @@ PSCFileSchema = BaseSchema.copy() + Schema((
         searchable=0,
         vocabulary='getPlatformVocab',
         widget=SelectionWidget(
-            label="Platform",
-            label_msgid="label_file_platform",
-            description="List of platforms available for selection",
-            description_msgid="help_file_platform",
+            label=_(u"label_file_platform", default=u"Platform"),
+            description=_(u"help_file_platform", default=u"List of platforms available for selection"),
             i18n_domain="plonesoftwarecenter",
         ),
     ),

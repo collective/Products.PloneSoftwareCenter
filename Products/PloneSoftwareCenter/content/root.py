@@ -30,6 +30,8 @@ from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 from Products.PloneSoftwareCenter.config import PROJECTNAME
 from Products.PloneSoftwareCenter.config import trove
 
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
+
 PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
 
     TextField('description',
@@ -37,10 +39,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         accessor='Description',
         storage=MetadataStorage(),
         widget=TextAreaWidget(
-            label_msgid='label_package_area',
-            label='Description',
-            description_msgid='help_package_area',
-            description='Description for the software center.',
+            label=_(u"label_package_area", default=u"Description"),
+            description=_(u"help_package_area", default=u"Description for the software center."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -51,13 +51,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         column_names=('id', 'title', 'trove-id'),
         default=trove.get_datagrid(),
         widget=SimpleDataGridWidget(
-            label='Classifiers',
-            label_msgid='label_classifiers',
-            description=('Define the Trove classifiers. '
-                         'The format is "Id | Title | Trove id". '
-                         'The Id must be unique, and Trove id corresponds '
-                         'to the Trove value'),
-            description_msgid='help_classifiers_vocab',
+            label=_(u"label_classifiers", default=u"Classifiers"),
+            description=_(u"help_classifiers_vocab", default=u"Define the Trove classifiers. The format is 'Id | Title | Trove id'. The Id must be unique, and Trove id corresponds to the Trove value"),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -66,14 +61,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     BooleanField('useClassifiers',
         required=0,
         widget=BooleanWidget(
-            label="Use Classifiers to display Categories (with Topic :: *).",
-            label_msgid="label_use_classifier",
-            description_msgid="description_use_classifier",
-            description=("Indicate whether the Software Center uses the "
-                         "Classifiers field to display projects. " 
-                         "In that case it gets all lines starting with "
-                         "'Topic' and builds the category list with them." 
-                         ),
+            label=_(u"label_use_classifier", default=u"Use Classifiers to display Categories (with Topic :: *)."),
+            description=_(u"description_use_classifier", default=u"Indicate whether the Software Center uses the Classifiers field to display projects. In that case it gets all lines starting with 'Topic' and builds the category list with them."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -88,10 +77,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             'infrastructure|Infrastructure|Projects that provide services.',
         ],
         widget=SimpleDataGridWidget(
-            label='Categories',
-            label_msgid='label_categories_vocab',
-            description='Define the available categories for classifying the projects. The format is Short Name | Long name | Description. The id must be unique.',
-            description_msgid='help_categories_vocab',
+            label=_(u"label_categories_vocab", default=u"Categories"),
+            description=_(u"help_categories_vocab", default=u"Define the available categories for classifying the projects. The format is Short Name | Long name | Description. The id must be unique."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -111,10 +98,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             'Commercial|Commercial License|http://plone.org/documentation/faq/plone-license',
         ],
         widget=SimpleDataGridWidget(
-            label='Available licenses',
-            label_msgid='label_licenses_vocab',
-            description='Define the available licenses for software releases. The format is Short Name | Title | URL.',
-            description_msgid='help_licenses_vocab',
+            label=_(u"label_licenses_vocab", default=u"Available licenses"),
+            description=_(u"help_licenses_vocab", default=u"Define the available licenses for software releases. The format is Short Name | Title | URL."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -128,10 +113,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             'Plone 2.1',
         ],
         widget=LinesWidget(
-            label='Versions',
-            label_msgid='label_versions_vocab',
-            description='Define the vocabulary for versions that software releases can be listed as being compatible with. The first item will be the default selection.',
-            description_msgid='help_versions_vocab',
+            label=_(u"label_versions_vocab", default=u"Versions"),
+            description=_(u"help_versions_vocab", default=u"Define the vocabulary for versions that software releases can be listed as being compatible with. The first item will be the default selection."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -147,10 +130,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             'UNIX (other)'
         ],
         widget=LinesWidget(
-            label='Platforms',
-            label_msgid='label_platforms_vocab',
-            description='Define the available platforms for software files. The first line is reserved for All platforms or any equivalent labeling.',
-            description_msgid='help_platforms_vocab',
+            label=_(u"label_platforms_vocab", default=u"Platforms"),
+            description=_(u"help_platforms_vocab", default=u"Define the available platforms for software files. The first line is reserved for All platforms or any equivalent labeling."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -159,13 +140,11 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     LinesField('projectEvaluators',
         languageIndependent=1,
         widget=LinesWidget(
-                label='Project Evaluators',
-                label_msgid="label_project_evaluators",
-                description="Enter additional names (no need to include the current owner) for those who can make official reviews of projects.",
-                description_msgid="help_project_evaluators",
-                i18n_domain="plonesoftwarecenter",
-                ),
+            label=_(u"label_project_evaluators", default=u"Project Evaluators"),
+            description=_(u"help_project_evaluators", default=u"Enter additional names (no need to include the current owner) for those who can make official reviews of projects."),
+            i18n_domain="plonesoftwarecenter",
         ),
+    ),
     
     LinesField('availableSelfCertificationCriteria',
         default=[
@@ -178,11 +157,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             'Code structure follows best practice',
         ],
         widget=LinesWidget(
-            label='Self-Certification Checklist',
-            label_msgid='label_self_certification_criteria_vocab',
-            description='Define the available criteria for developers to '
-              'self-certify their projects.',
-            description_msgid='help_self_certification_criteria_vocab',
+            label=_(u"label_self_certification_criteria_vocab", default=u"Self-Certification Checklist"),
+            description=_(u"help_self_certification_criteria_vocab", default=u"Define the available criteria for developers to self-certify their projects."),
             i18n_domain='plonesoftwarecenter',
             rows=10,
         ),
@@ -191,11 +167,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     StringField('product_title',
         default='Add-on Product',
         widget=StringWidget(
-            label_msgid='label_product_title',
-            label='Product Title',
-            description_msgid='help_product_title',
-            description='Title of products when using the project view. '
-                        'For example, "Add-on Product", "Extension", or "Template"',
+            label=_(u"label_product_title", default=u"Product Title"),
+            description=_(u"help_product_title", default=u"Title of products when using the project view. For example, 'Add-on Product', 'Extension', or 'Template'."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -203,11 +176,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     TextField('addon_description',
         default='Add-ons extend your Plone site with additional functionality.',
         widget=TextAreaWidget(
-            label_msgid='label_addon_description',
-            label='Product Description',
-            description_msgid='help_addon_description',
-            description='When using project view, please provide some text to introduce '
-                        'the products.',
+            label=_(u"label_addon_description", default=u"Product Description"),
+            description=_(u"help_addon_description", default=u"When using project view, please provide some text to introduce the products."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -219,11 +189,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
                 'documentation/kb/third-party-products/installing">our tutorial on '
                 'installing add-on products with buildout</a> for more information.',
         widget=TextAreaWidget(
-            label_msgid='label_installation_instructions',
-            label='Product Installation Instructions',
-            description_msgid='help_installation_instructions',
-            description='Enter any installation instructions that should appear on each'
-                        'product page.',
+            label=_(u"label_installation_instructions", default=u"Product Installation Instructions"),
+            description=_(u"help_installation_instructions", default=u"Enter any installation instructions that should appear on each product page."),
             i18n_domain='plonesoftwarecenter',
             rows=6,
         ),
@@ -234,11 +201,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         allowed_types=('PSCProject',),
         relationship='featuredProject',
         widget=ReferenceBrowserWidget(
-            label='Featured Project',
-            label_msgid='label_featured_project',
-            description='Featured project for the software center '
-                        '(for use with the plonesoftwarecenter_ploneorg template).',
-            description_msgid='help_featured_project',
+            label=_(u"label_featured_project", default=u"Featured Project"),
+            description=_(u"help_featured_project", default=u"Featured project for the software center (for use with the plonesoftwarecenter_ploneorg template)."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -248,11 +212,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         allowed_types=('PSCRelease',),
         relationship='featuredProjectRelease',
         widget=ReferenceBrowserWidget(
-            label='Featured Project Release',
-            label_msgid='label_featured_project_release',
-            description='Featured project release for the featured project of the software center '
-                        '(for use with the plonesoftwarecenter_ploneorg template).',
-            description_msgid='help_featured_project',
+            label=_(u"label_featured_project_release", default=u"Featured Project Release"),
+            description=_(u"help_featured_project_release", default=u"Featured project release for the featured project of the software center (for use with the plonesoftwarecenter_ploneorg template)."),
             i18n_domain='plonesoftwarecenter',
         ),
     ),
@@ -260,11 +221,9 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     StringField('storageStrategy',
         default='archetype',
         vocabulary='getFileStorageStrategyVocab',
-        widget=SelectionWidget(   
-            label="Storage strategy",
-            label_msgid="label_storage_strategy",
-            description="Defines the storage strategies for files",
-            description_msgid="help_storage_strategy",
+        widget=SelectionWidget(
+            label=_(u"label_storage_strategy", default=u"Storage strategy"),
+            description=_(u"help_storage_strategy", default=u"Defines the storage strategies for files"),
             i18n_domain="plonesoftwarecenter",
         ),
 ),             

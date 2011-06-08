@@ -12,10 +12,7 @@ from zope.interface import implements
 from zope.component import adapts
 from Products.Archetypes.interfaces import IObjectPreValidation
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
-
-from zope.i18nmessageid import MessageFactory
-
-_ = MessageFactory('plonesoftwarecenter')
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 
 is_valid_contact = re.compile('[mailto:,http:]')
 
@@ -37,8 +34,9 @@ class ProjectIdValidator:
     def __call__(self, value, *args, **kwargs):
         instance = kwargs['instance']
         if value in instance.getAvailableCategoriesAsDisplayList().keys():
-            return "Short name %s is invalid - " \
-                   "it is the same as the name of a project category" % (value,)
+#            return "Short name %s is invalid - " \
+#                   "it is the same as the name of a project category" % (value,)
+            return _(u"Short name %s is invalid - it is the same as the name of a project category") % (value,)
         else:
             return 1
 

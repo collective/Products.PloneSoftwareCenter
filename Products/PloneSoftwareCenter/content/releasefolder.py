@@ -19,6 +19,7 @@ except ImportError:  # BBB
 from Products.ATContentTypes.content.base import ATCTMixin
 
 from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 
 PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
 
@@ -28,10 +29,8 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         mode='r', # Leave the custom auto-generated ID
         widget=StringWidget (
-            label="Short name",
-            label_msgid="label_releasefolder_short_name",
-            description="Short name of the container - this should be 'release' to comply with the standards.",
-            description_msgid="help_releasefolder_short_name",
+            label=_(u"label_releasefolder_short_name", default=u"Short name"),
+            description=_(u"help_releasefolder_short_name", default=u"Short name of the container - this should be 'release' to comply with the standards."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -42,10 +41,8 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         accessor="Title",
         widget=StringWidget(
-            label="Title",
-            label_msgid="label_release_title",
-            description="Enter a title for the container",
-            description_msgid="help_release_title",
+            label=_(u"label_releasefolder_title", default=u"Title"),
+            description=_(u"help_releasefolder_title", default=u"Enter a title for the container"),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -56,10 +53,8 @@ PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         accessor="Description",
         widget=TextAreaWidget(
-            label="Description",
-            label_msgid="label_release_description",
-            description="Enter a description of the container",
-            description_msgid="help_release_description",
+            label=_(u"label_release_description", default=u"Description"),
+            description=_(u"help_release_description", default=u"Enter a description of the container"),
             i18n_domain="plonesoftwarecenter",
         ),
     ),

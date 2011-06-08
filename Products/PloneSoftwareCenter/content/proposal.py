@@ -19,6 +19,7 @@ except ImportError:  # BBB
 
 from Products.ATContentTypes.content.base import ATCTMixin
 
+from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.config import PROJECTNAME
 
 TEXT_TYPES = (
@@ -37,10 +38,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         mode='r', # Leave the custom auto-generated ID
         widget=StringWidget(
-            label="Proposal number",
-            label_msgid="label_proposal_number",
-            description="The number of the Improvement Proposal.",
-            description_msgid="help_proposal_number",
+            label=_(u"label_proposal_number", default=u"Proposal number"),
+            description=_(u"help_proposal_number", default=u"The number of the Improvement Proposal."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -51,10 +50,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         index=":schema",
         widget=StringWidget(
-            label="Proposer",
-            label_msgid="label_proposal_proposer",
-            description="The person proposing this improvement.",
-            description_msgid="help_proposal_proposer",
+            label=_(u"label_proposal_proposer", default=u"Proposer"),
+            description=_(u"help_proposal_proposer", default=u"The person proposing this improvement."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -65,10 +62,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         searchable=1,
         index=":schema",
         widget=StringWidget(
-            label="Seconder",
-            label_msgid="label_proposal_seconder",
-            description="The person seconding this improvement.",
-            description_msgid="help_proposal_seconder",
+            label=_(u"label_proposal_seconder", default=u"Seconder"),
+            description=_(u"help_proposal_seconder", default=u"The person seconding this improvement."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -80,10 +75,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         accessor="Description",
         storage=MetadataStorage(),
         widget=TextAreaWidget(
-            label="Proposal Summary",
-            label_msgid="label_proposal_summary",
-            description="A short summary of the proposal.",
-            description_msgid="help_proposal_summary",
+            label=_(u"label_proposal_summary", default=u"Proposal Summary"),
+            description=_(u"help_proposal_summary", default=u"A short summary of the proposal."),
             i18n_domain="plonesoftwarecenter",
             rows=5,
         ),
@@ -97,10 +90,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         enforceVocabulary=1,
         index='KeywordIndex:schema',
         widget=MultiSelectionWidget(
-            label='Proposal types',
-            label_msgid="label_proposal_types",
-            description='The type of proposal this is.',
-            description_msgid = "help_proposal_types",
+            label=_(u"label_proposal_types", default=u"Proposal types"),
+            description=_(u"help_proposal_types", default=u"The type of proposal this is."),
             i18n_domain = "plonesoftwarecenter",
         ),
     ),
@@ -113,10 +104,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Motivation",
-            label_msgid="label_proposal_motivation",
-            description="Why does this proposal exist and what problem does it solve?",
-            description_msgid="help_proposal_motivation",
+            label=_(u"label_proposal_motivation", default=u"Motivation"),
+            description=_(u"help_proposal_motivation", default=u"Why does this proposal exist and what problem does it solve?"),
             i18n_domain="plonesoftwarecenter",
             rows=20,
         ),
@@ -130,10 +119,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Proposal",
-            label_msgid="label_proposal",
-            description="What needs to be done?",
-            description_msgid="help_proposal",
+            label=_(u"label_proposal", default=u"Proposal"),
+            description=_(u"help_proposal", default=u"What needs to be done?"),
             i18n_domain="plonesoftwarecenter",
             rows=20,
         ),
@@ -147,10 +134,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Definitions",
-            label_msgid="label_proposal_definitions",
-            description="If you have any definitions for your proposal, please include them here.",
-            description_msgid="help_proposal_definitions",
+            label=_(u"label_proposal_definitions", default=u"Definitions"),
+            description=_(u"help_proposal_definitions", default=u"If you have any definitions for your proposal, please include them here."),
             i18n_domain="plonesoftwarecenter",
             rows=5,
         ),
@@ -163,11 +148,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Assumptions",
-            label_msgid="label_proposal_assumptions",
-            description="Key assumptions made. What is being covered by and what is "
-                        "intentionally left out of the scope of the proposal.",
-            description_msgid="help_proposal_assumptions",
+            label=_(u"label_proposal_assumptions", default=u"Assumptions"),
+            description=_(u"help_proposal_assumptions", default=u"Key assumptions made. What is being covered by and what is intentionally left out of the scope of the proposal."),
             i18n_domain="plonesoftwarecenter",
             rows=20,
         ),
@@ -181,10 +163,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Implementation",
-            label_msgid="label_proposal_implementation",
-            description="How should it be done?",
-            description_msgid="help_proposal_implementation",
+            label=_(u"label_proposal_implementation", default=u"Implementation"),
+            description=_(u"help_proposal_implementation", default=u"How should it be done?"),
             i18n_domain="plonesoftwarecenter",
             rows=20,
         ),
@@ -198,11 +178,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Deliverables",
-            label_msgid="label_proposal_deliverables",
-            description="What code and documentation needs to be produced? "
-                        "Standard items: Unit tests, localization, and documentation",
-            description_msgid="help_proposal_deliverables",
+            label=_(u"label_proposal_deliverables", default=u"Deliverables"),
+            description=_(u"help_proposal_deliverables", default=u"What code and documentation needs to be produced? Standard items: Unit tests, localization, and documentation"),
             rows=10,
             i18n_domain="plonesoftwarecenter",
         ),
@@ -216,11 +193,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Risks",
-            label_msgid="label_proposal_risks",
-            description="What are the risks of implementing this proposal? "
-                        "What incompatibilities can it cause?",
-            description_msgid="help_proposal_risks",
+            label=_(u"label_proposal_risks", default=u"Risks"),
+            description=_(u"help_proposal_risks", default=u"What are the risks of implementing this proposal? What incompatibilities can it cause?"),
             i18n_domain="plonesoftwarecenter",
             rows=10,
         ),
@@ -234,10 +208,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Progress log",
-            label_msgid="label_proposal_progress_log",
-            description="Enter progress updates here as work is done.",
-            description_msgid="help_proposal_progress_log",
+            label=_(u"label_proposal_progress_log", default=u"Progress log"),
+            description=_(u"help_proposal_progress_log", default=u"Enter progress updates here as work is done."),
             i18n_domain="plonesoftwarecenter",
             rows=10,
         ),
@@ -251,10 +223,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         default_output_type='text/html',
         allowable_content_types=TEXT_TYPES,
         widget=RichWidget(
-            label="Participants",
-            label_msgid="label_proposal_participants",
-            description="The people already identified for the implementation, if applicable.",
-            description_msgid="help_proposal_participants",
+            label=_(u"label_proposal_participants", default=u"Participants"),
+            description=_(u"help_proposal_participants", default=u"The people already identified for the implementation, if applicable."),
             i18n_domain="plonesoftwarecenter",
             rows=5,
         ),
@@ -265,10 +235,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         validators=('isURL',),
         mutator='setBranch',
         widget=StringWidget(
-            label="Branch name/URL",
-            label_msgid="label_proposal_branch_name_url",
-            description="The URL for the branch development is done on, if applicable.",
-            description_msgid="help_proposal_branch_name_url",
+            label=_(u"label_proposal_branch_name_url", default=u"Branch name/URL"),
+            description=_(u"help_proposal_branch_name_url", default=u"The URL for the branch development is done on, if applicable."),
             i18n_domain="plonesoftwarecenter",
         ),
     ),
@@ -278,10 +246,8 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
         expression="[o.getId() for o in context.getBackReferences('RelatedFeatures') ]",
         index=':schema',
         widget=StringWidget(
-            label='Related Releases',
-            label_msgid="label_proposal_related_releases",
-#            description="",
-#            description_msgid="help_proposal_related_releases",
+            label=_(u"label_proposal_related_releases", default=u"Related Releases"),
+#            description=_(u"help_proposal_related_releases", default=u""),
             modes=('view',),
         ),
     ),
