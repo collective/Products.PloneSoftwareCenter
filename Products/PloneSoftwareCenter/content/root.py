@@ -124,6 +124,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
         default=[
             'All platforms',
             'Linux',
+            'Linux-x64',
             'Mac OS X',
             'Windows',
             'BSD',
