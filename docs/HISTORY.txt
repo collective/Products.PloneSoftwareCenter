@@ -3,6 +3,7 @@ Changelog
 
 1.6.3 (unreleased)
 ------------------
+- Options for Linux-x64 added (with a special Linux-Logo) [andreasma]
 - Translation of PSC to German added [andrasma]
 - Change mechanism to set the label and description attributes of the content types,
   for extract msgid and msgstr for .po files using i18ndude tools [macagua]
