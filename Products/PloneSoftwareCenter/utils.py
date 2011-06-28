@@ -29,6 +29,7 @@ def plat(name):
 
 platform_catchers = ((plat('macosx'), 'Mac OS X'), 
                      (plat('linux'), 'Linux'),
+                     (plat('linux-x64'), 'Linux-x64'),
                      (plat('win32'), 'Windows'))
 
 def which_platform(filename_or_url):
