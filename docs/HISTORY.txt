@@ -3,6 +3,8 @@ Changelog
 
 1.6.3 (unreleased)
 ------------------
+- Change of StringField license in release.py for the SelectionWidget to format "radio" [andreasma]
+- Addition of a warning text about choosing the license to the StringField license in release.py [andreasma]
 - Options for Linux-x64 added (with a special Linux-Logo) [andreasma]
 - Translation of PSC to German added [andrasma]
 - Change mechanism to set the label and description attributes of the content types,
