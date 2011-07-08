@@ -190,6 +190,31 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         ),
     ),
 
+    StringField(
+        name='license2',
+        required=0,
+        vocabulary='getLicenseVocab',
+        widget=SelectionWidget(
+            format = 'radio',
+            label=_(u"label_release_license", default=u"License"),
+            description=_(u"help_release_license", default=u"Release License: Please examine carefully which license you choose for your contribution. You can't  change it after the release."),
+            i18n_domain='plonesoftwarecenter',
+        ),
+    ),
+
+
+    StringField(
+        name='license3',
+        required=0,
+        vocabulary='getLicenseVocab',
+        widget=SelectionWidget(
+            format = 'radio',
+            label=_(u"label_release_license", default=u"License"),
+            description=_(u"help_release_license", default=u"Release License: Please examine carefully which license you choose for your contribution. You can't  change it after the release."),
+            i18n_domain='plonesoftwarecenter',
+        ),
+    ),
+
     LinesField(
         name='compatibility',
         required=1,
