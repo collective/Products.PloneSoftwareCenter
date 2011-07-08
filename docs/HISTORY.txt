@@ -3,6 +3,7 @@ Changelog
 
 1.6.3 (unreleased)
 ------------------
+- Two options for licenses to releases.py added, so that a release could be published under more than one license [andreasma]
 - Change of StringField license in release.py for the SelectionWidget to format "radio" [andreasma]
 - Addition of a warning text about choosing the license to the StringField license in release.py [andreasma]
 - Options for Linux-x64 added (with a special Linux-Logo) [andreasma]
