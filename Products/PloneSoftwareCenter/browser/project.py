@@ -30,7 +30,7 @@ class ProjectView(BrowserView):
         
         self.context_path = '/'.join(self.context.getPhysicalPath())
         
-    def get_installation_instrutions(self):
+    def get_installation_instructions(self):
         psc = self.context.getParentNode()
         return psc.getInstallation_instructions()
     

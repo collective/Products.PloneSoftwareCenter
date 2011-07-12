@@ -206,7 +206,7 @@
                   </dd>
 
                   </tal:downloads>
-                  <dt tal:content="structure view/get_installation_instrutions"/>
+                  <dt tal:content="structure view/get_installation_instructions"/>
                 </dl>
         </div>
         </tal:stable>
