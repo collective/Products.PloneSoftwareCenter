@@ -3,6 +3,8 @@ Changelog
 
 1.6.3 (unreleased)
 ------------------
+- Change in psc_project-view.pt: Show the Independent Review only, if there was an independet review.
+  Show the comment about the independent review. [andreasma]
 - Column for displaying licenses added to psc_project_view.pt [andreasma]
 - Two options for licenses to releases.py added, so that a release could be published under more than one license [andreasma]
 - Change of StringField license in release.py for the SelectionWidget to format "radio" [andreasma]
