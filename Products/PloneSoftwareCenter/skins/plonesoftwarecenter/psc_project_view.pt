@@ -74,10 +74,14 @@
         </tal:block>
         
         <tal:block tal:condition="view/has_review_comment|nothing"> 
-            <h2 i18n:translate="label_independent_review">Independent Review</h2>
+            <h2 tal:condition="here/isApproved|nothing" i18n:translate="label_independent_review">Independent Review</h2>
             <p content="structure here/getReviewComment" /> 
             <p tal:condition="here/isApproved|nothing">
                 <i i18n:translate="help_independent_review">This project has been approved via independent review.</i>
+            </p>
+            <h3 tal:condition="here/isApproved|nothing" i18n:translate="label_review_comment">Independent Review Comment</h3>
+            <p tal:condition="here/isApproved|nothing">
+                <span tal:replace="here/reviewComment" />
             </p>
         </tal:block> 
         
