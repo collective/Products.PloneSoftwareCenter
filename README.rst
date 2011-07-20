@@ -2,7 +2,7 @@
 Introduction
 ============
 
-``Products.PloneSoftwareCenter`` is a Plone add-on that keeps track of software projects,
+``Products.PloneSoftwareCenter`` is a **Plone add-on** that keeps track of software projects,
 software releases, and other related information in Plone as Plone content.
 It was originally created to power the `downloads section of plone.org`_. 
 
