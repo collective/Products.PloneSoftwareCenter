@@ -18,7 +18,7 @@ PloneSoftwareCenter
 )
 
 description =  """\
-PloneSoftwareCenter is a tool that keeps track of software projects.
+PloneSoftwareCenter is a tool that keeps track of software projects
 """
 
 setup(name='Products.PloneSoftwareCenter',
