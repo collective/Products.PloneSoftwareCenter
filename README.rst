@@ -30,3 +30,4 @@ Installation
 * Run ``bin/buildout``.
 * Restart Plone.
 * Install the add-on in Site Setup -> Add-ons.
+
