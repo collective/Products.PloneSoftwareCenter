@@ -9,7 +9,7 @@ It was originally created to power the `downloads section of plone.org`_.
 Features
 --------
 
-As of version 1.5, ``PloneSoftwareCenter`` supports the `Python Package Index API`_.
+As of version 1.5, ``Products.PloneSoftwareCenter`` supports the `Python Package Index API`_.
 
 .. _`Python Package Index API`: http://peak.telecommunity.com/DevCenter/EasyInstall#package-index-api
 
