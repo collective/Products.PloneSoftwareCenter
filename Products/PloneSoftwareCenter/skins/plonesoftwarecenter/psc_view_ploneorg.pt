@@ -96,7 +96,7 @@
 <div class="grid-row">
 	<div class="grid-cell position-leftmost width-two-thirds">
 
-		<div class="pane">
+		<div class="panepsc">
 
 			<h2 tal:condition="here/product_title" i18n:translate="">
 				<span tal:content="here/product_title" i18n:name="product_title" /> Releases
@@ -258,7 +258,7 @@
 
 				</tal:results>
 			</div>
-		</div> <!-- End pane -->
+		</div> <!-- End panepsc -->
 	</div> <!-- End cell -->
 
 	<div class="grid-cell position-two-thirds width-third">
