@@ -10,6 +10,7 @@ logger = logging.getLogger('Products.PloneSoftwareCenter')
 
 client = xmlrpclib.ServerProxy('http://pypi.python.org/pypi')
 
+
 def by_two(source):
     out = []
     for x in source:
@@ -18,11 +19,12 @@ def by_two(source):
             yield out
             out = []
 
+
 def package_releases(packages):
     mcall = xmlrpclib.MultiCall(client)
     called_packages = deque()
     for package in packages:
-        mcall.package_releases(package,True)
+        mcall.package_releases(package, True)
         called_packages.append(package)
         if len(called_packages) == 100:
             result = mcall()
@@ -32,6 +34,7 @@ def package_releases(packages):
     result = mcall()
     for releases in result:
         yield called_packages.popleft(), releases
+
 
 def release_data(packages):
     mcall = xmlrpclib.MultiCall(client)
@@ -50,6 +53,7 @@ def release_data(packages):
     for urls, data in by_two(result):
         yield urls, data
 
+
 def update_package_download_counts(context):
     logger.info('Updating download counts from PyPI')
 
@@ -62,9 +66,10 @@ def update_package_download_counts(context):
         for url in urls:
             downloads += url['downloads']
         counts[data.get('name')] += downloads
-    
+
     for package_id, downloads in counts.items():
-        brain = catalog.unrestrictedSearchResults(getDistutilsMainId=package_id)[0]
+        brain = catalog.unrestrictedSearchResults(
+            getDistutilsMainId=package_id)[0]
         package = app.unrestrictedTraverse(brain.getPath())
         if package.getDownloadCount() != -1:
             package.setDownloadCount(downloads)
