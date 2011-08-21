@@ -4,7 +4,7 @@ $Id$
 from zLOG import LOG, PROBLEM
 import os
 from App.Common import package_home
-from trove import TroveClassifier 
+from trove import TroveClassifier
 
 
 # Use ExternalStorage for PSCFile?
@@ -55,4 +55,3 @@ if USE_EXTERNAL_STORAGE:
 
 trove_default = os.path.join(package_home(GLOBALS), 'TROVE.txt')
 trove = TroveClassifier(trove_default)
-
