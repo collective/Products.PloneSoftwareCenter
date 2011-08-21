@@ -13,7 +13,7 @@ setDefaultRoles(AddSoftwareCenter, ('Manager',))
 
 # Setting this by default and controlling with area workflow means factory
 # works
-setDefaultRoles(AddProject, ('Manager','Owner',))
+setDefaultRoles(AddProject, ('Manager', 'Owner',))
 
 setDefaultRoles(AddReviewComment, ('Manager', 'PSCEvaluator',))
 setDefaultRoles(ApproveProject, ('Manager', 'PSCEvaluator',))
