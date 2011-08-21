@@ -1,5 +1,5 @@
 """
-contains handlers for GS 
+contains handlers for GS
 """
 import xmlrpclib
 import tempfile
@@ -13,7 +13,6 @@ import sys
 import subprocess
 import urllib2
 import socket
-import transaction
 
 from StringIO import StringIO
 from OFS.Image import File
@@ -21,23 +20,22 @@ from OFS.Image import File
 from zExceptions import Unauthorized
 from Products.Archetypes.atapi import *
 from Products.CMFCore.utils import getToolByName
-from Products.PloneSoftwareCenter import config
-from Products.PloneSoftwareCenter.content.downloadablefile import PSCFile, PSCFileSchema
-from ZODB.POSException import ConflictError
+from Products.PloneSoftwareCenter.content.downloadablefile import PSCFileSchema
 
 NAME = re.compile('Name: (.*)')
 
-# if your previous instance had 
+# if your previous instance had
 WAS_EXTERNAL_STORAGE = True
 EXTERNAL_STORAGE_PATHS = ('/srv/plone.org/zope/files/',
-                          '/srv/plone.org/buildout/parts/instance01/var/files/',
-                          '/srv/plone.org/buildout/parts/instance02/var/files/',
-                          '/srv/plone.org/buildout/parts/instance03/var/files/',
-                          '/srv/plone.org/buildout/parts/instance04/var/files/')
+    '/srv/plone.org/buildout/parts/instance01/var/files/',
+    '/srv/plone.org/buildout/parts/instance02/var/files/',
+    '/srv/plone.org/buildout/parts/instance03/var/files/',
+    '/srv/plone.org/buildout/parts/instance04/var/files/')
+
 
 def temp(function):
     def _temp(*args, **kw):
-        working_dir = tempfile.mkdtemp()  
+        working_dir = tempfile.mkdtemp()
         old_location = os.getcwd()
         os.chdir(working_dir)
         try:
@@ -47,6 +45,7 @@ def temp(function):
             shutil.rmtree(working_dir, ignore_errors=True)
     return _temp
 
+
 def timeout(function):
     def _timeout(*args, **kw):
         old = socket.getdefaulttimeout()
@@ -54,16 +53,17 @@ def timeout(function):
         try:
             return function(*args, **kw)
         finally:
-            socket.setdefaulttimeout(old)       
+            socket.setdefaulttimeout(old)
     return _timeout
+
 
 class DistantFile(object):
     def __init__(self, url):
         try:
-           self.handle = urllib2.urlopen(url)
+            self.handle = urllib2.urlopen(url)
         except (urllib2.HTTPError, urllib2.URLError):
-           self.handle = None
-        self.url = url 
+            self.handle = None
+        self.url = url
         self.on_pypi = url.startswith('http://pypi.python.org')
 
     def getDownloadableFile(self):
@@ -72,21 +72,20 @@ class DistantFile(object):
     def getId(self):
         url = self.url.split('#md5=')
         url = url[0]
-        return url.split()[-1] 
+        return url.split()[-1]
 
     def get_data(self):
         if self.handle is None:
             return ""
-        return self.handle.read()   
- 
+        return self.handle.read()
+
+
 @timeout
 def before_1_5(portal_setup):
     """runs a migration on a previous version of PSC
-    
     before the product switched to migration.xml
     """
     def _upgrade_project(project):
-        
         #main = StringField('distutilsMainId',
         #  required=0,
         #  schemata="distutils",
@@ -99,7 +98,7 @@ def before_1_5(portal_setup):
         #      required=0,
         #      schemata="distutils",
         #      index='KeywordIndex:schema')
-        #project.schema['distutilsSecondaryIds'] = sec      
+        #project.schema['distutilsSecondaryIds'] = sec
         pass
 
     def _upgrade_psc(psc):
@@ -113,57 +112,57 @@ def before_1_5(portal_setup):
         #psc.schema['storageStrategy'] = strategy
 
     def _discovering_dist_ids(project):
-        # for each file in the project we 
+        # for each file in the project we
         # extract the distutils name
         project_path = '/'.join(project.getPhysicalPath())
         files = cat(**{'portal_type': ['PSCFile', 'PSCFileLink'],
                        'path': project_path})
         ids = []
         for file_ in files:
-            portal_type = file_.portal_type 
+            portal_type = file_.portal_type
             if portal_type == 'PSCFileLink':
                 # the file is somewhere else, let's scan it
                 file_ = file_.getObject()
-                file_ = DistantFile(file_.getExternalURL())     
+                file_ = DistantFile(file_.getExternalURL())
             else:
                 file_ = file_.getObject()
-            
-            # trying to get back from old 
+            # trying to get back from old
             # storage
-            
             # ExternalStorage here
             #
             if WAS_EXTERNAL_STORAGE and portal_type != 'PSCFileLink':
-                from Products.ExternalStorage.ExternalStorage import ExternalStorage
+                from Products.ExternalStorage.ExternalStorage import\
+                     ExternalStorage
                 storage = ExternalStorage(
                   prefix=EXTERNAL_STORAGE_PATHS[0],
                   archive=False,
                   rename=False,
                   )
                 # transferring old data to new AT container
-                fs = file_.schema['downloadableFile'] 
+                fs = file_.schema['downloadableFile']
                 old = fs.storage
-                fs.storage = storage    
+                fs.storage = storage
                 portal_url = getToolByName(file_, 'portal_url')
 
-                real_file = os.path.join(*portal_url.getRelativeContentPath(file_))
+                real_file = os.path.join(
+                    *portal_url.getRelativeContentPath(file_))
                 for path in EXTERNAL_STORAGE_PATHS:
                     final_file = os.path.join(path, real_file)
                     if os.path.exists(final_file):
                         break
                 if not os.path.exists(final_file):
-                    logging.info('******** could not get %s on the file system !!' % real_file)
-                    continue    
+                    logging.info(
+                        '******** could not get %s on the file system !!'
+                        % real_file)
+                    continue
                     #raise ValueError('File not found %s' % final_file)
                 fs.storage = old
                 dfile = file_.getDownloadableFile()
-                
                 filename = dfile.filename
                 data = open(final_file).read()
                 if data == '':
                     logging.info('empty file ! %s' % final_file)
-                #f = File(filename, filename, open(final_file)) 
-          
+                #f = File(filename, filename, open(final_file))
             elif portal_type != 'PSCFileLink':
                 storage = AttributeStorage()
                 fs = file_.schema['downloadableFile']
@@ -171,21 +170,21 @@ def before_1_5(portal_setup):
                 fs.storage = storage
                 dfile = file_.getDownloadableFile()
                 data = dfile.get_data()
-                filename = dfile.filename 
-                fs.storage = old 
+                filename = dfile.filename
+                fs.storage = old
                 #file_.getDownloadableFile().data = data
                 #f = File(filename, filename, StringIO(data))
-        
             if portal_type != 'PSCFileLink':
                 #file_.setDownloadableFile(f)
                 file_.schema = PSCFileSchema
                 if filename == '' and data == '':
-                    logging.info('file empty for %s' % file_) 
+                    logging.info('file empty for %s' % file_)
                 else:
                     if filename is None:
                         filename = file_.getId()
-                    file_.setDownloadableFile(File(filename, filename, StringIO(data)))
-            id_ = extract_distutils_id(file_) 
+                    file_.setDownloadableFile(File(filename,
+                        filename, StringIO(data)))
+            id_ = extract_distutils_id(file_)
             if id_ is not None and id_ not in ids:
                 ids.append(id_)
         return ids
@@ -193,7 +192,6 @@ def before_1_5(portal_setup):
     # XXX see what to do with earlier versions than
     # < 1.5
     cat = getToolByName(portal_setup, 'portal_catalog')
-    
     # getting all PSC instances
     pscs = cat(**{'portal_type': 'PloneSoftwareCenter'})
 
@@ -209,21 +207,19 @@ def before_1_5(portal_setup):
             if project.getId() in ('plone',):
                 logging.info('Skipping %s' % project.getId())
                 continue
-            logging.info('Working on %s' % project.getId()) 
+            logging.info('Working on %s' % project.getId())
             _upgrade_project(project)
-   
             # trying to find distutils ids
             ids = _discovering_dist_ids(project)
-        
             for id_ in ids:
                 old = distutils_ids.get(id_, ())
                 if project in old:
                     continue
-                distutils_ids[id_] = old + (project,) 
-         
+                distutils_ids[id_] = old + (project,)
         # synchronize with the Cheeseshop
         logging.info('Starting synchro')
         pypi_synchro(distutils_ids)
+
 
 @temp
 def extract_distutils_id(egg_or_tarball):
@@ -234,7 +230,6 @@ def extract_distutils_id(egg_or_tarball):
         data = file_.get_data()
     except socket.timeout:
         data = ''
-    
     if data == '':
         logging.info('Could not get the file for %s' % filename)
         return None
@@ -248,7 +243,7 @@ def extract_distutils_id(egg_or_tarball):
         try:
             tar = tarfile.TarFile.open(filename, fileobj=fileobj, mode='r:gz')
         except tarfile.ReadError:
-            return None 
+            return None
         first_member = tar.getnames()[0]
         folder = os.path.split(first_member)[0]
         for tarinfo in tar:
@@ -271,13 +266,13 @@ def extract_distutils_id(egg_or_tarball):
         if 'setup.py' not in os.listdir(folder):
             return None
         try:
-            name = subprocess.Popen([sys.executable, 'setup.py', '--name'], 
+            name = subprocess.Popen([sys.executable, 'setup.py', '--name'],
                                     stdout=subprocess.PIPE).communicate()[0]
         finally:
             os.chdir(old)
 
         logging.info('Found a distutils name : %s' % str(name))
-        return name.strip() 
+        return name.strip()
     # its an egg (a zip)
     elif os.path.splitext(filename)[-1] == '.egg':
         zip = zipfile.ZipFile(fileobj, 'r')
@@ -287,21 +282,24 @@ def extract_distutils_id(egg_or_tarball):
                     continue
                 res = NAME.search(zip.read(info.filename))
                 if res is not None and len(res.groups()) == 1:
-                    logging.info('Found a distutils name : %s' % str(res.groups()[0]))  
+                    logging.info('Found a distutils name : %s' % str(
+                        res.groups()[0]))
                     return res.groups()[0]
-        finally:       
+        finally:
             zip.close()
 
     # its something we don't want to deal with
     return None
 
+
 def _attribute_distid(project, distid):
     try:
         if not project.getDistutilsMainId():
-            logging.info('%s owns %s (main id)' % (project.getId(), distid))     
+            logging.info('%s owns %s (main id)' % (project.getId(), distid))
             project.setDistutilsMainId(distid)
         else:
-            logging.info('%s owns %s (secondary id)' % (project.getId(), distid))
+            logging.info('%s owns %s (secondary id)' % (
+                project.getId(), distid))
             project.setDistutilsSecondaryIds(distid)
         project.reindexObject()
         logging.info('%s owns %s' % (project.getId(), distid))
@@ -310,6 +308,7 @@ def _attribute_distid(project, distid):
                        (project.getId(), distid))
 
 tiny_cache = {}
+
 
 def _pypi_certified_owner(distid):
     if distid in tiny_cache:
@@ -324,6 +323,7 @@ def _pypi_certified_owner(distid):
     maintainer = data['maintainer_email']
     author = data['author_email']
     return maintainer, author
+
 
 def pypi_synchro(distutils_ids):
     """for each id, we want to check a few infos
@@ -344,7 +344,7 @@ def pypi_synchro(distutils_ids):
             _attribute_distid(p, distid)
             for p2 in projects[1:]:
                 logging.warning('%s conflicts with %s' % \
-                                  (p2.getId(), p.getId())) 
+                                  (p2.getId(), p.getId()))
         # (author_email, id) is unique at PyPI
         for i, project in enumerate(projects):
             author_email = project.getContactAddress()
@@ -353,14 +353,15 @@ def pypi_synchro(distutils_ids):
                 author_email = author_email[len('mailto:'):]
             if author_email in pypi_owners:
                 # found !
-                _attribute_distid(project, distid) 
-                for p in projects[i+1:]:
+                _attribute_distid(project, distid)
+                for p in projects[i + 1:]:
                     logging.warning('%s conflicts with %s' % \
                             (p2.getId(), project.getId()))
                 break
 
 # XXX I'm not really sure what is going on here (above ^^^), does all this
 # get run every time the profile is imported?
+
 
 # Rip off SteveM's PHC catalog index import stuff
 def install(self):
@@ -384,23 +385,24 @@ def install(self):
     addCatalogMetadata(self, out, catalog, 'getRelatedReleases')
     addCatalogIndex(self, out, catalog, 'getSeconder', 'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getSeconder')
-    addCatalogIndex(self, out, catalog, 'getSelfCertifiedCriteria', 'KeywordIndex')
+    addCatalogIndex(self, out, catalog, 'getSelfCertifiedCriteria',
+        'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getSelfCertifiedCriteria')
     addCatalogIndex(self, out, catalog, 'releaseCount', 'FieldIndex')
     addCatalogMetadata(self, out, catalog, 'releaseCount')
     addCatalogIndex(self, out, catalog, 'getDistutilsMainId', 'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getDistutilsMainId')
-    addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds', 'KeywordIndex')
+    addCatalogIndex(self, out, catalog, 'getDistutilsSecondaryIds',
+        'KeywordIndex')
     addCatalogMetadata(self, out, catalog, 'getDistutilsSecondaryIds')
     addCatalogIndex(self, out, catalog, 'getDownloadCount', 'FieldIndex')
     addCatalogIndex(self, out, catalog, 'getLatestReleaseDate', 'DateIndex')
     addCatalogMetadata(self, out, catalog, 'getLatestReleaseDate')
-    
     print >> out, "Added PSC items to catalog indexes and metadata"
-    
     setupCioppinoTwoThumbs(self, out)
 
-def addCatalogIndex(self, out, catalog, index, type, extra = None):
+
+def addCatalogIndex(self, out, catalog, index, type, extra=None):
     """Add the given index name, of the given type, to the catalog."""
 
     if index not in catalog.indexes():
@@ -408,6 +410,7 @@ def addCatalogIndex(self, out, catalog, index, type, extra = None):
         print >> out, "Added index", index, "to catalog"
     else:
         print >> out, "Index", index, "already in catalog"
+
 
 def addCatalogMetadata(self, out, catalog, column):
     """Add the given column to the catalog's metadata schema"""
@@ -443,4 +446,3 @@ def importVarious(context):
 
     site = context.getSite()
     print install(site)
-
