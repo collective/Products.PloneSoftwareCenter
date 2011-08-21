@@ -22,6 +22,7 @@ validation.register(validators.ProjectContactValidator('isValidContact'))
 
 registerDirectory(config.SKINS_DIR, config.GLOBALS)
 
+
 def initialize(context):
     # Kick content registration and sys.modules mangling
     from Products.PloneSoftwareCenter import content
@@ -33,13 +34,13 @@ def initialize(context):
         allTypes, config.PROJECTNAME)
 
     center_content_types = []
-    center_constructors  = []
+    center_constructors = []
 
-    project_content_types  = []
-    project_constructors   = []
+    project_content_types = []
+    project_constructors = []
 
-    member_content_types  = []
-    member_constructors   = []
+    member_content_types = []
+    member_constructors = []
 
     for i in range(len(allTypes)):
         aType = allTypes[i]
@@ -56,26 +57,26 @@ def initialize(context):
     # software center itself
     ContentInit(
         config.PROJECTNAME + ' Center',
-        content_types = tuple(center_content_types),
-        permission = psc_permissions.AddSoftwareCenter,
-        extra_constructors = tuple(center_constructors),
-        fti = ftis,
+        content_types=tuple(center_content_types),
+        permission=psc_permissions.AddSoftwareCenter,
+        extra_constructors=tuple(center_constructors),
+        fti=ftis,
         ).initialize(context)
 
     # projects
     ContentInit(
         config.PROJECTNAME + ' Project',
-        content_types = tuple(project_content_types),
-        permission = psc_permissions.AddProject,
-        extra_constructors = tuple(project_constructors),
-        fti = ftis,
+        content_types=tuple(project_content_types),
+        permission=psc_permissions.AddProject,
+        extra_constructors=tuple(project_constructors),
+        fti=ftis,
         ).initialize(context)
 
     # regular content
     ContentInit(
         config.PROJECTNAME + ' Project Content',
-        content_types = tuple(member_content_types),
-        permission = permissions.AddPortalContent,
-        extra_constructors = tuple(member_constructors),
-        fti = ftis,
+        content_types=tuple(member_content_types),
+        permission=permissions.AddPortalContent,
+        extra_constructors=tuple(member_constructors),
+        fti=ftis,
         ).initialize(context)
