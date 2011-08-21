@@ -1,14 +1,14 @@
 """utils to fetch download counts from PyPI"""
 
-from collections import deque, defaultdict
 import logging
 import transaction
 import xmlrpclib
-from Products.CMFCore.utils import getToolByName
 
-logger = logging.getLogger('Products.PloneSoftwareCenter')
+from Products.CMFCore.utils import getToolByName
+from collections import deque, defaultdict
 
 client = xmlrpclib.ServerProxy('http://pypi.python.org/pypi')
+logger = logging.getLogger('Products.PloneSoftwareCenter')
 
 
 def by_two(source):
