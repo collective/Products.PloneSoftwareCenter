@@ -3,8 +3,10 @@ from setuptools import setup, find_packages
 
 version = '1.6.3'
 
+
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read() + '\n\n'
+    return open(os.path.join(os.path.dirname(__file__),
+        *rnames)).read() + '\n\n'
 
 long_description = (
     """
@@ -12,12 +14,9 @@ long_description = (
 PloneSoftwareCenter
 ===================
 
-""" + 
-    read('README.rst')+
-    read('docs', 'HISTORY.txt')
-)
+""" + read('README.rst') + read('docs', 'HISTORY.txt'))
 
-description =  """\
+description = """\
 PloneSoftwareCenter is a tool that keeps track of software projects
 """
 
@@ -25,7 +24,6 @@ setup(name='Products.PloneSoftwareCenter',
       version=version,
       description=description,
       long_description=long_description,
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
@@ -57,4 +55,3 @@ setup(name='Products.PloneSoftwareCenter',
       # -*- Entry points: -*-
       """,
       )
-
