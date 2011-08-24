@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.6.4 (unreleased)
+
+- Change to psc_project_view.pt: more than one license will be displayed, if there is not only one for a release [andreasma]
+- Change of release.py: change of the label text for the license 2 and 3 [andreasma]
+
 1.6.3 (2011-06-19)
 ------------------
 - Change in psc_project-view.pt: Show the Independent Review only, if there was an independet review.

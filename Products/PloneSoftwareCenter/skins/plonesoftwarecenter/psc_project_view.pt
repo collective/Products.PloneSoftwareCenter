@@ -224,7 +224,7 @@
                         <th i18n:translate="">Released</th>
                         <th i18n:translate="">Description</th>
                         <th i18n:translate="">Compatibility</th>
-                        <th i18n:translate="">License</th>
+                        <th i18n:translate="">Licenses</th>
                         <th i18n:translate="">Status</th>
                     </tr>
                 </thead>
@@ -255,8 +255,11 @@
                                     <div tal:content="compatibility"/>
                                 </tal:loop>
                             </td>
-                            <td class="license" tal:content="release/license" />
-                                
+                            <td class="license">
+                                <span tal:content="release/license" /><br />
+                                <span tal:content="release/license2" /><br />
+                                <span tal:content="release/license3" />
+                            </td>   
                             <td class="maturity" tal:content="maturity"/>
                         </tr>
                     </tal:loop>
