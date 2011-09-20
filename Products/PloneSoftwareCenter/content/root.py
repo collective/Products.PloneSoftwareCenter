@@ -189,6 +189,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
                 'this product with buildout. See <a href="http://plone.org/'
                 'documentation/kb/third-party-products/installing">our tutorial on '
                 'installing add-on products with buildout</a> for more information.',
+        default_content_type='text/html',
+        default_output_type='text/html',
         widget=TextAreaWidget(
             label=_(u"label_installation_instructions", default=u"Product Installation Instructions"),
             description=_(u"help_installation_instructions", default=u"Enter any installation instructions that should appear on each product page."),
