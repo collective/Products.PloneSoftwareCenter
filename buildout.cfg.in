@@ -1,5 +1,5 @@
 # Copy to buildout.cfg and uncomment one line below
 [buildout]
 extends =
-    conf/dev.cfg
+#    conf/dev.cfg
 #    conf/prod.cfg
