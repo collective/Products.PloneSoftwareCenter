@@ -1,4 +1,4 @@
-# Copy to buildout.cfg and uncomment one line below
+# Copy to buildout.cfg and uncomment one of the configs below
 [buildout]
 extends =
 #    conf/dev.cfg
