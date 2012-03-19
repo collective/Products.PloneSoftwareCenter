@@ -256,9 +256,11 @@
                                 </tal:loop>
                             </td>
                             <td class="license">
-                                <span tal:content="release/license" /><br />
-                                <span tal:content="release/license2" /><br />
-                                <span tal:content="release/license3" />
+                                <span tal:content="release/license" />
+                                <tal:block tal:condition="release/license2|nothing"><br />
+                                <span tal:content="release/license2" />
+                                </tal:block><tal:block tal:condition="release/license3|nothing"><br />
+                                <span tal:content="release/license3" /></tal:block>
                             </td>   
                             <td class="maturity" tal:content="maturity"/>
                         </tr>
