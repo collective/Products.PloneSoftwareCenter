@@ -187,7 +187,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
     TextField('installation_instructions',
         default='If you are using Plone 3.2 or higher, you probably want to install '
                 'this product with buildout. See <a href="http://plone.org/'
-                'documentation/kb/third-party-products/installing">our tutorial on '
+                'documentation/kb/installing-add-ons-quick-how-to">our tutorial on '
                 'installing add-on products with buildout</a> for more information.',
         default_content_type='text/html',
         default_output_type='text/html',
