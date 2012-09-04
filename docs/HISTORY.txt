@@ -10,6 +10,7 @@ Changelog
 - Update buildout to use collective instead of x.aclark.net [toutpt]
 - Update classifiers [toutpt]
 - Update TROVE.txt [toutpt]
+- Update default available versions of Plone [toutpt]
 
 1.6.3 (2011-06-19)
 ------------------
