@@ -19,13 +19,44 @@ Environment :: No Input/Output (Daemon)
 Environment :: Other Environment
 Environment :: Plugins
 Environment :: Web Environment
+Environment :: Web Environment :: Buffet
 Environment :: Web Environment :: Mozilla
+Environment :: Web Environment :: ToscaWidgets
 Environment :: Win32 (MS Windows)
 Environment :: X11 Applications
 Environment :: X11 Applications :: Gnome
 Environment :: X11 Applications :: GTK
 Environment :: X11 Applications :: KDE
 Environment :: X11 Applications :: Qt
+Framework :: BFG
+Framework :: Buildout
+Framework :: Buildout :: Extension
+Framework :: Buildout :: Recipe
+Framework :: Chandler
+Framework :: CherryPy
+Framework :: CubicWeb
+Framework :: Django
+Framework :: IDLE
+Framework :: Paste
+Framework :: Plone
+Framework :: Plone :: 3.2
+Framework :: Plone :: 3.3
+Framework :: Plone :: 4.0
+Framework :: Plone :: 4.1
+Framework :: Plone :: 4.2
+Framework :: Plone :: 4.3
+Framework :: Pylons
+Framework :: Pyramid
+Framework :: Setuptools Plugin
+Framework :: Trac
+Framework :: Tryton
+Framework :: TurboGears
+Framework :: TurboGears :: Applications
+Framework :: TurboGears :: Widgets
+Framework :: Twisted
+Framework :: ZODB
+Framework :: Zope2
+Framework :: Zope3
 Intended Audience :: Customer Service
 Intended Audience :: Developers
 Intended Audience :: Education
@@ -41,6 +72,7 @@ Intended Audience :: Science/Research
 Intended Audience :: System Administrators
 Intended Audience :: Telecommunications Industry
 License :: Aladdin Free Public License (AFPL)
+License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 License :: DFSG approved
 License :: Eiffel Forum License (EFL)
 License :: Free For Educational Use
@@ -60,17 +92,31 @@ License :: OSI Approved :: Attribution Assurance License
 License :: OSI Approved :: BSD License
 License :: OSI Approved :: Common Public License
 License :: OSI Approved :: Eiffel Forum License
+License :: OSI Approved :: European Union Public Licence 1.0 (EUPL 1.0)
+License :: OSI Approved :: European Union Public Licence 1.1 (EUPL 1.1)
+License :: OSI Approved :: GNU Affero General Public License v3
+License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
 License :: OSI Approved :: GNU Free Documentation License (FDL)
 License :: OSI Approved :: GNU General Public License (GPL)
+License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)
+License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)
+License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
 License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
 License :: OSI Approved :: IBM Public License
 License :: OSI Approved :: Intel Open Source License
+License :: OSI Approved :: ISC License (ISCL)
 License :: OSI Approved :: Jabber Open Source License
 License :: OSI Approved :: MIT License
 License :: OSI Approved :: MITRE Collaborative Virtual Workspace License (CVW)
 License :: OSI Approved :: Motosoto License
 License :: OSI Approved :: Mozilla Public License 1.0 (MPL)
 License :: OSI Approved :: Mozilla Public License 1.1 (MPL 1.1)
+License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
 License :: OSI Approved :: Nethack General Public License
 License :: OSI Approved :: Nokia Open Source License
 License :: OSI Approved :: Open Group Test Suite License
@@ -89,6 +135,7 @@ License :: OSI Approved :: zlib/libpng License
 License :: OSI Approved :: Zope Public License
 License :: Other/Proprietary License
 License :: Public Domain
+License :: Repoze Public License
 Natural Language :: Afrikaans
 Natural Language :: Arabic
 Natural Language :: Bengali
@@ -105,6 +152,7 @@ Natural Language :: English
 Natural Language :: Esperanto
 Natural Language :: Finnish
 Natural Language :: French
+Natural Language :: Galician
 Natural Language :: German
 Natural Language :: Greek
 Natural Language :: Hebrew
@@ -149,9 +197,14 @@ Operating System :: Microsoft
 Operating System :: Microsoft :: MS-DOS
 Operating System :: Microsoft :: Windows
 Operating System :: Microsoft :: Windows :: Windows 3.1 or Earlier
+Operating System :: Microsoft :: Windows :: Windows 7
 Operating System :: Microsoft :: Windows :: Windows 95/98/2000
 Operating System :: Microsoft :: Windows :: Windows CE
 Operating System :: Microsoft :: Windows :: Windows NT/2000
+Operating System :: Microsoft :: Windows :: Windows Server 2003
+Operating System :: Microsoft :: Windows :: Windows Server 2008
+Operating System :: Microsoft :: Windows :: Windows Vista
+Operating System :: Microsoft :: Windows :: Windows XP
 Operating System :: OS/2
 Operating System :: OS Independent
 Operating System :: Other OS
@@ -168,7 +221,6 @@ Operating System :: POSIX :: GNU Hurd
 Operating System :: POSIX :: HP-UX
 Operating System :: POSIX :: IRIX
 Operating System :: POSIX :: Linux
-Operating System :: POSIX :: Linux-x64
 Operating System :: POSIX :: Other
 Operating System :: POSIX :: SCO
 Operating System :: POSIX :: SunOS/Solaris
@@ -183,6 +235,7 @@ Programming Language :: C
 Programming Language :: C#
 Programming Language :: C++
 Programming Language :: Cold Fusion
+Programming Language :: Cython
 Programming Language :: Delphi/Kylix
 Programming Language :: Dylan
 Programming Language :: Eiffel
@@ -213,6 +266,24 @@ Programming Language :: PL/SQL
 Programming Language :: PROGRESS
 Programming Language :: Prolog
 Programming Language :: Python
+Programming Language :: Python :: 2
+Programming Language :: Python :: 2.3
+Programming Language :: Python :: 2.4
+Programming Language :: Python :: 2.5
+Programming Language :: Python :: 2.6
+Programming Language :: Python :: 2.7
+Programming Language :: Python :: 2 :: Only
+Programming Language :: Python :: 3
+Programming Language :: Python :: 3.0
+Programming Language :: Python :: 3.1
+Programming Language :: Python :: 3.2
+Programming Language :: Python :: 3.3
+Programming Language :: Python :: Implementation
+Programming Language :: Python :: Implementation :: CPython
+Programming Language :: Python :: Implementation :: IronPython
+Programming Language :: Python :: Implementation :: Jython
+Programming Language :: Python :: Implementation :: PyPy
+Programming Language :: Python :: Implementation :: Stackless
 Programming Language :: REBOL
 Programming Language :: Rexx
 Programming Language :: Ruby
@@ -333,8 +404,13 @@ Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary
 Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Page Counters
 Topic :: Internet :: WWW/HTTP :: HTTP Servers
 Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Topic :: Internet :: WWW/HTTP :: Session
 Topic :: Internet :: WWW/HTTP :: Site Management
 Topic :: Internet :: WWW/HTTP :: Site Management :: Link Checking
+Topic :: Internet :: WWW/HTTP :: WSGI
+Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
+Topic :: Internet :: WWW/HTTP :: WSGI :: Server
 Topic :: Internet :: Z39.50
 Topic :: Multimedia
 Topic :: Multimedia :: Graphics
@@ -385,7 +461,9 @@ Topic :: Printing
 Topic :: Religion
 Topic :: Scientific/Engineering
 Topic :: Scientific/Engineering :: Artificial Intelligence
+Topic :: Scientific/Engineering :: Artificial Life
 Topic :: Scientific/Engineering :: Astronomy
+Topic :: Scientific/Engineering :: Atmospheric Science
 Topic :: Scientific/Engineering :: Bio-Informatics
 Topic :: Scientific/Engineering :: Chemistry
 Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)
@@ -421,6 +499,7 @@ Topic :: Software Development :: Libraries :: Java Libraries
 Topic :: Software Development :: Libraries :: Perl Modules
 Topic :: Software Development :: Libraries :: PHP Classes
 Topic :: Software Development :: Libraries :: Pike Modules
+Topic :: Software Development :: Libraries :: pygame
 Topic :: Software Development :: Libraries :: Python Modules
 Topic :: Software Development :: Libraries :: Ruby Modules
 Topic :: Software Development :: Libraries :: Tcl Extensions
@@ -468,7 +547,6 @@ Topic :: System :: Operating System Kernels
 Topic :: System :: Operating System Kernels :: BSD
 Topic :: System :: Operating System Kernels :: GNU Hurd
 Topic :: System :: Operating System Kernels :: Linux
-Topic :: System :: Operating System Kernels :: Linux-x64
 Topic :: System :: Power (UPS)
 Topic :: System :: Recovery Tools
 Topic :: System :: Shells

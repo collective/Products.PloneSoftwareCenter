@@ -7,6 +7,9 @@ Changelog
 - Change to psc_project_view.pt: more than one license will be displayed, if there is not only one for a release [andreasma]
 - Change of release.py: change of the label text for the license 2 and 3 [andreasma]
 - Update link to buildout documentation on addon page [toutpt]
+- Update buildout to use collective instead of x.aclark.net [toutpt]
+- Update classifiers [toutpt]
+- Update TROVE.txt [toutpt]
 
 1.6.3 (2011-06-19)
 ------------------
