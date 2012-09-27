@@ -482,9 +482,9 @@ class PyPIView(BrowserView):
         # XXX optimize for memory
         content = content.read()
 
-        # nothing over 5M please
+        # nothing over 100M please
         size = len(content)
-        if size > 5*1024*1024:
+        if size > 100*1024*1024:
             err = 'Invalid file size: %s' % size
             return self.fail(err)
 
