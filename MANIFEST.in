@@ -2,3 +2,5 @@ include README.rst
 
 recursive-include docs *
 recursive-include Products *
+
+global-exclude *.pyc
