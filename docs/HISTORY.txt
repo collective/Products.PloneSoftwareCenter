@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.6.5 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 1.6.4 (2012-09-27)
 ------------------
 - Default content and output format added to the StringField installation_instructions in content/root.py [andreasma]
