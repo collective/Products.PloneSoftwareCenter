@@ -24,7 +24,7 @@ from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
-from zope.event import notify 
+from zope.event import notify
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
@@ -36,7 +36,7 @@ PROJECT_MAP = {
     'contactAddress': 'author_email',
     'homepage': 'home_page',
     }
-        
+
 RELEASE_MAP = {
     'license': 'license',
     # 'maturity': 'classifiers',
@@ -81,7 +81,7 @@ class PyPIView(BrowserView):
     def _maybe_release(self, project, release):
         """Publishing the release, only of the project is published."""
         if not self._is_published(project):
-            return 
+            return
         wf = self._get_portal_workflow()
         if wf is None:
             return
@@ -94,13 +94,13 @@ class PyPIView(BrowserView):
                     wf.doActionFor(release, 'release-alpha')
                 elif bool(re.compile("([0-9]+(-)?b([0-9]*))").search(self.data['version'])):
                     wf.doActionFor(release, 'release-beta')
-                elif bool(re.compile("([0-9]+(-)?rc([0-9]*))").search(self.data['version'])):                
+                elif bool(re.compile("([0-9]+(-)?rc([0-9]*))").search(self.data['version'])):
                     wf.doActionFor(release, 'release-candidate')
                 else:
                     wf.doActionFor(release, 'release-final')
             except WorkflowException:
                 pass
-    
+
     def _validate_metadata(self, data):
         """ Validate the contents of the metadata.
         """
@@ -145,7 +145,7 @@ class PyPIView(BrowserView):
 
         if data.has_key('classifiers'):
             data['classifiers'] = filter(filter_, data['classifiers'])
-    
+
     def _is_published(self, project):
         """returns true if not publised"""
         wf = self._get_portal_workflow()
@@ -168,7 +168,7 @@ class PyPIView(BrowserView):
             return self.fail(str(e), 401)
 
         # Now, edit info
-        self._edit_project(project, distutils_name=name, data=data, 
+        self._edit_project(project, distutils_name=name, data=data,
                            msg=msg)
 
         # Submit project if not submitted yet.
@@ -182,14 +182,14 @@ class PyPIView(BrowserView):
             if v in ('author_email',) and not value.startswith('mailto:'):
                 value = 'mailto:%s' % value
             release_data[k] = value
-        
+
         if not user.allowed(release.update):
             return self.fail('Unauthorized', 401)
 
         msg.append('Updated Release: %s' % version)
         release.update(**release_data)
 
-  
+
         # Now, check if there's a 'download_url', then create a file
         # link
         url = data.get('download_url')
@@ -221,19 +221,19 @@ class PyPIView(BrowserView):
 
             # notify we did add a file
             notify(ObjectEditedEvent(rl))
- 
+
         # Make a release if not released yet.
         self._maybe_release(project, release)
-  
+
         return '\n'.join(msg)
-    
+
     def _edit_project(self, project, distutils_name=None,
                       data=None, msg=None):
         """edit project infos"""
         user = getSecurityManager().getUser()
         if not user.allowed(project.update):
             return self.fail('Unauthorized', 401)
-        
+
         if data is None:
             data = self.data
         project_data = {}
@@ -263,7 +263,7 @@ class PyPIView(BrowserView):
             elif not (distutils_name == project.getDistutilsMainId()):
                 secondary_ids = project.getDistutilsSecondaryIds()
                 if distutils_name not in secondary_ids:
-                    secondary_ids = secondary_ids + (distutils_name,) 
+                    secondary_ids = secondary_ids + (distutils_name,)
                     project.setDistutilsSecondaryIds(secondary_ids)
             else:
                 priority='m'
@@ -271,7 +271,7 @@ class PyPIView(BrowserView):
             # setting the title in case it is empty
             if project.Title() == '':
                 project_data['title'] = distutils_name
-        
+
         if priority == 'm':
             project.update(**project_data)
 
@@ -298,7 +298,7 @@ class PyPIView(BrowserView):
                 if project.getDistutilsMainId() == '':
                     project.setDistutilsMainId(normalized_name)
                 else:
-                    # main id is taken, let's add it 
+                    # main id is taken, let's add it
                     # as a secondary id
                     secondids = project.getDistutilsSecondaryIds()
                     secondids = secondids + (normalized_name,)
@@ -315,7 +315,7 @@ class PyPIView(BrowserView):
         else:
             project_id = existing_projects[0]
             project = sc[project_id]
-         
+
         self._edit_project(project, msg=msg, distutils_name=name)
         versions = project.getVersionsVocab()
         releases = project.getReleaseFolder()
@@ -327,7 +327,7 @@ class PyPIView(BrowserView):
                 i += 1
                 cid = '%s-%d' (root_id, i)
 
-            releases = project.injectFolder('PSCReleaseFolder', 
+            releases = project.injectFolder('PSCReleaseFolder',
                                             id=cid)
 
         is_secondary = name != project.distutilsMainId
@@ -395,7 +395,7 @@ class PyPIView(BrowserView):
         """
         if getSecurityManager().getUser() in (nobody,):
             return self.fail('Unauthorized', 401)
-        
+
         if data is None:
             data = self.request.form
 
@@ -433,7 +433,7 @@ class PyPIView(BrowserView):
                                                  name, version)
         except Unauthorized, e:
             return self.fail(str(e), 401)
-            
+
         # Submit project if not submitted yet.
         self._maybe_submit(project)
 
@@ -461,9 +461,9 @@ class PyPIView(BrowserView):
         # XXX optimize for memory
         content = content.read()
 
-        # nothing over 5M please
+        # nothing over 100M please
         size = len(content)
-        if size > 5*1024*1024:
+        if size > 100*1024*1024:
             err = 'Invalid file size: %s' % size
             return self.fail(err)
 
@@ -502,7 +502,7 @@ class PyPIView(BrowserView):
         self._setPlatform(rf, filename)
         # notify
         notify(ObjectEditedEvent(rf))
-        
+
         # Make a release if not released yet.
         self._maybe_release(project, release)
 
@@ -530,8 +530,8 @@ class PyPIView(BrowserView):
         # Remove Products, as applicable
         if text.startswith('Products.'):
             text = text[9:]
-        
+
         # Convert to lowercase
         text = text.lower()
-        
+
         return queryUtility(IFileNameNormalizer).normalize(text)
