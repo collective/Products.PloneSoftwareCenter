@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.6.4 (unreleased)
+1.6.4 (2012-09-27)
 ------------------
 - Default content and output format added to the StringField installation_instructions in content/root.py [andreasma]
 - Change to psc_project_view.pt: more than one license will be displayed, if there is not only one for a release [andreasma]
