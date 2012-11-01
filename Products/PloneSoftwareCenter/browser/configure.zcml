@@ -172,4 +172,12 @@
         file="fancyzoom.js"
         />
 
+    <!-- pypi view -->
+    <page
+        class=".pypi_view.PackageIndexView"
+        for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
+        name="pypi_view"
+        permission="zope2.View"
+        />
+  
 </configure>
