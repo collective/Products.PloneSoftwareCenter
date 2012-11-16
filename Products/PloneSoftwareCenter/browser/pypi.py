@@ -353,14 +353,18 @@ class PyPIView(BrowserView):
         return project, release
 
     def _map_classifiers_to_compatibility(self, project, release):
-        classifiers_id = release.getClassifiers()
         versions = []
-        for cid in classifiers_id:
+        CLASSIFIER_BASE = 'Framework :: Plone :: '
+        supported_versions = [classifier[len(CLASSIFIER_BASE):] for classifier in \
+                       self.request.form.get('classifiers', [])\
+                       if classifier.startswith(CLASSIFIER_BASE)]
+
+        for supported_version in supported_versions:
             try:
-                Decimal(cid)
+                Decimal(supported_version)
             except InvalidOperation:
                 continue
-            versions.append('Plone %s' % cid)
+            versions.append('Plone %s' % supported_version)
 
         vocab = release.getCompatibilityVocab()
         compats = []
