@@ -3,6 +3,7 @@ $Id: PyPI.py 18612 2006-01-28 14:46:00Z dreamcatcher $
 """
 import re
 import hashlib
+from decimal import Decimal, InvalidOperation
 
 from AccessControl import getSecurityManager
 from AccessControl import Unauthorized
@@ -347,7 +348,31 @@ class PyPIView(BrowserView):
                             (version, name))
 
         release = releases._getOb(version)
+        self._map_classifiers_to_compatibility(project, release)
+
         return project, release
+
+    def _map_classifiers_to_compatibility(self, project, release):
+        versions = []
+        CLASSIFIER_BASE = 'Framework :: Plone :: '
+        supported_versions = [classifier[len(CLASSIFIER_BASE):] for classifier in \
+                       self.request.form.get('classifiers', [])\
+                       if classifier.startswith(CLASSIFIER_BASE)]
+
+        for supported_version in supported_versions:
+            try:
+                Decimal(supported_version)
+            except InvalidOperation:
+                continue
+            versions.append('Plone %s' % supported_version)
+
+        vocab = release.getCompatibilityVocab()
+        compats = []
+        for version in versions:
+            if version in vocab:
+                compats.append(version)
+        if compats:
+            release.setCompatibility(compats)
 
     def _get_classifiers(self):
         """returns current classifiers"""

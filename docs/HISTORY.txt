@@ -17,6 +17,7 @@ Changelog
 - Update classifiers [toutpt]
 - Update TROVE.txt [toutpt]
 - Update default available versions of Plone [toutpt]
+- Add mapping between classifiers and Plone release version when release using pypi api [toutpt]
 
 1.6.3 (2011-06-19)
 ------------------
