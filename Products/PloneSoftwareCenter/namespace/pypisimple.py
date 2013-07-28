@@ -19,8 +19,12 @@ from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.browser import IPublishTraverse
 from zope.traversing.namespace import SimpleHandler
 from zope.traversing.interfaces import TraversalError
-#from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+try:
+    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+except ImportError:
+    # bbb: Zope 2.12 and older
+    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile   
+
 
 class PyPISimpleTraverser(SimpleHandler):
     """ Custom traverser for the Simple Index

@@ -1,10 +1,17 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:i18n="http://namespaces.zope.org/i18n"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
            i18n_domain="plonesoftwarecenter">
 
-  <subscriber for="..interfaces.ISoftwareCenterContent
+  <subscriber zcml:condition="have plone-43"
+              for="..interfaces.ISoftwareCenterContent
                    zope.container.interfaces.IObjectAddedEvent"
+              handler=".softwarecenter.initializeSoftwareCenterSecurity" />
+
+  <subscriber zcml:condition="not-have plone-43"
+              for="..interfaces.ISoftwareCenterContent
+                   zope.app.container.interfaces.IObjectAddedEvent"
               handler=".softwarecenter.initializeSoftwareCenterSecurity" />
 
   <subscriber provides="Products.Archetypes.interfaces.IObjectPreValidation"
