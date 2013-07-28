@@ -4,7 +4,7 @@
            i18n_domain="plonesoftwarecenter">
 
   <subscriber for="..interfaces.ISoftwareCenterContent
-                   zope.app.container.interfaces.IObjectAddedEvent"
+                   zope.container.interfaces.IObjectAddedEvent"
               handler=".softwarecenter.initializeSoftwareCenterSecurity" />
 
   <subscriber provides="Products.Archetypes.interfaces.IObjectPreValidation"

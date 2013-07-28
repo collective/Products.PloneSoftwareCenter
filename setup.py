@@ -54,6 +54,7 @@ setup(name='Products.PloneSoftwareCenter',
           'cioppino.twothumbs',
           # this is temporary until we get the ratings migrated
           'plone.contentratings',
+          'plone.app.kss'
       ],
       entry_points="""
       # -*- Entry points: -*-
