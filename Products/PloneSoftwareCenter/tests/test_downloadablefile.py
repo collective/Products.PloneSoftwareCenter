@@ -85,7 +85,7 @@ class TestPSCFileView(PSCTestCase):
         f = open(os.path.join(PACKAGE_HOME, 'input', 'pdb.txt')).read()
         self.file.setDownloadableFile(createFileUpload(f, 'pdb.txt'))
         self.resetView()
-        self.assertEqual('7.5 kB', self.view.file_size())
+        self.assertEqual('7.5 KB', self.view.file_size())
     
     def test_direct_url(self):
         self.assertEqual('http://nohost/plone/psc/proj/releases/1.0/file',
