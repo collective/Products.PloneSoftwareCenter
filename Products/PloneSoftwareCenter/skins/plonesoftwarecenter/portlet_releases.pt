@@ -28,7 +28,7 @@
 <dl class="portlet" id="portlet-releases">
 
     <dt class="portletHeader">
-        <tal:syndicate condition="context/portal_syndication/isSiteSyndicationAllowed">
+        <tal:syndicate condition="context/portal_syndication/isSiteSyndicationAllowed|nothing">
            <a class="feedButton" href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;review_state=alpha&amp;review_state=beta&amp;review_state=release-candidate&amp;review_state=final">
               <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                    tal:attributes="src string:$portal_url/rss.gif"
