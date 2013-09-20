@@ -9,6 +9,15 @@ Changelog
   This fixes http://plone.org/products/plonehelpcenter/issues/149.
   [dukebody, maurits]
 
+- Plone 4.3 support.
+  [glenfant]
+
+- Use request to get classifiers instead of release.getClassfiers.
+  Add mapping between classifiers and versions.  [toutp, aclark]
+
+- Add stub pypi_view.
+  [aclark]
+
 
 1.6.4 (2012-09-27)
 ------------------
