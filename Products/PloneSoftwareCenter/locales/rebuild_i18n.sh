@@ -5,12 +5,15 @@
 
 rm ./rebuild_i18n.log
 
+# ploneSOFTWAREcenter domain
 i18ndude rebuild-pot --pot ./plonesoftwarecenter.pot --create plonesoftwarecenter ../ || exit 1
 i18ndude sync --pot ./plonesoftwarecenter.pot ./*/LC_MESSAGES/plonesoftwarecenter.po
 
-i18ndude rebuild-pot --pot ./psc-plonehelpcenter.pot --create plonehelpcenter ../ || exit 1
-i18ndude sync --pot ./psc-plonehelpcenter.pot ./*/LC_MESSAGES/psc-plonehelpcenter.po
+# ploneHELPcenter domain
+i18ndude rebuild-pot --pot ./plonehelpcenter.pot --create plonehelpcenter ../ || exit 1
+i18ndude sync --pot ./plonehelpcenter.pot ./*/LC_MESSAGES/plonehelpcenter.po
 
+# plone domain
 i18ndude rebuild-pot --pot ../i18n/plonesoftwarecenter-plone.pot --merge ../i18n/manual.pot --create plone ../profiles ../skins
 i18ndude sync --pot ../i18n/plonesoftwarecenter-plone.pot ../i18n/plonesoftwarecenter-plone-*.po
 
