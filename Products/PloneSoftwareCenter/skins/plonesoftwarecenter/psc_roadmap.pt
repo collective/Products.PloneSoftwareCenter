@@ -273,7 +273,7 @@
 
     <p>
       <a href="" title="View rejected and deferred proposals"
-         tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=rejected&state=deferred"
+         tal:attributes="href string:${here/absolute_url}/psc_improvements_listing?state:list=rejected&amp;state=deferred"
          i18n:attributes="title title_roadmap_rejected_deferred_proposals">
             <span i18n:translate="label_roadmap_rejected_deferred_proposals">Rejected and deferred proposals</span>
       </a>
