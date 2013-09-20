@@ -1,5 +1,0 @@
-# Copy to buildout.cfg and uncomment one of the configs below
-[buildout]
-extends =
-#    conf/dev.cfg
-#    conf/prod.cfg
