@@ -182,7 +182,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         vocabulary='getLicenseVocab',
         widget=SelectionWidget(
             format = 'radio',
-            label=_(u"label_release_license", default=u"Second License (if published under different licenses)"),
+            label=_(u"label_release_license2", default=u"Second License (if published under different licenses)"),
             description=_(u"help_release_license", default=u"Release License: Please examine carefully which license you choose for your contribution. You can't  change it after the release."),
             i18n_domain='plonesoftwarecenter',
         ),
@@ -195,7 +195,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
         vocabulary='getLicenseVocab',
         widget=SelectionWidget(
             format = 'radio',
-            label=_(u"label_release_license", default=u"Third License (if published under different licenses)"),
+            label=_(u"label_release_license3", default=u"Third License (if published under different licenses)"),
             description=_(u"help_release_license", default=u"Release License: Please examine carefully which license you choose for your contribution. You can't  change it after the release."),
             i18n_domain='plonesoftwarecenter',
         ),

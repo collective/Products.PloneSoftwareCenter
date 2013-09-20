@@ -167,7 +167,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
         schemata="review",
         write_permission=AddReviewComment,
         widget=TextAreaWidget(
-            label=_(u"label_review_comment", default=u"Review Comment"),
+            label=_(u"label_review_comment", default=u"Independent Review Comment"),
             description=_(u"help_review_comment", default=u"Additional notes by reviewers of this project."),
             i18n_domain="plonesoftwarecenter",
         ),
