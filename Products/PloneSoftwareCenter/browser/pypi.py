@@ -20,6 +20,7 @@ from zope.event import notify
 import transaction
 
 from Products.PloneSoftwareCenter.utils import VersionPredicate
+from Products.PloneSoftwareCenter.utils import check_provision
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
 from Products.PloneSoftwareCenter.utils import is_distutils_file
 from Products.PloneSoftwareCenter.utils import which_platform
@@ -133,7 +134,7 @@ class PyPIView(BrowserView):
         # check provides
         if data.has_key('provides') and data['provides']:
             try:
-                map(versionpredicate.check_provision, data['provides'])
+                map(check_provision, data['provides'])
             except ValueError, message:
                 raise ValueError, 'Bad "provides" syntax: %s' % message
 
