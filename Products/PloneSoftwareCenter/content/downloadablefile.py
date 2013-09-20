@@ -11,7 +11,7 @@ from Products.PloneSoftwareCenter.interfaces import IFileContent
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore import permissions
 
-from Products.Archetypes.atapi import * 
+from Products.Archetypes.atapi import *
 
 from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter import PSCMessageFactory as _

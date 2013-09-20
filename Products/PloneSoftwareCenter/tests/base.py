@@ -52,7 +52,7 @@ class PSCTestCase(PloneTestCase):
             import Products.PloneSoftwareCenter
             fiveconfigure.debug_mode = True
             zcml.load_config('configure.zcml', Products.PloneSoftwareCenter)
-    
+
             # loading externalstorage if present in the environment
             try:
                 import collective.psc.externalstorage

@@ -126,7 +126,7 @@
            for_status="True" update_always="True">
   <description>The last transition</description>
   <default>
-   
+
    <expression>transition/getId|nothing</expression>
   </default>
   <guard>
@@ -136,7 +136,7 @@
            for_status="True" update_always="True">
   <description>The ID of the user who performed the last transition</description>
   <default>
-   
+
    <expression>user/getId</expression>
   </default>
   <guard>
@@ -146,7 +146,7 @@
            for_status="True" update_always="True">
   <description>Comments about the last transition</description>
   <default>
-   
+
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -156,7 +156,7 @@
            for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
-   
+
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -168,7 +168,7 @@
            for_status="True" update_always="True">
   <description>Time of the last transition</description>
   <default>
-   
+
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>

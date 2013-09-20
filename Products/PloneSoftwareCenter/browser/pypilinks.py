@@ -37,7 +37,7 @@ class PyPILinksView(BrowserView):
                  'review_state': ('hidden', 'pre-release', 'alpha',
                                   'beta', 'release-candidate', 'final')}
         return sorted(itertools.chain(*[self.get_urls_and_titles(brain)
-                                        for brain in catalog(**query)]), 
+                                        for brain in catalog(**query)]),
                       self._sort_releases)
 
 class PyPILinksViewDeprecated(PyPILinksView):

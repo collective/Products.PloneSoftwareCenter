@@ -269,7 +269,7 @@ class PSCImprovementProposal(ATCTMixin, OrderedBaseFolder):
     filter_content_types = True
     allowed_content_types = ('Image', 'File')
     _at_rename_after_creation = True
-    
+
     security = ClassSecurityInfo()
 
     typeDescMsgId = 'description_edit_improvementproposal'
@@ -282,7 +282,7 @@ class PSCImprovementProposal(ATCTMixin, OrderedBaseFolder):
                        'that are relevant. You can also add files and images '
                        'inside an improvement proposal, if needed.')
 
-    security.declareProtected(permissions.ModifyPortalContent, 
+    security.declareProtected(permissions.ModifyPortalContent,
                                 'setBranch')
     def setBranch(self, value):
         """Set the repository branch, stripping off whitespace and any trailing

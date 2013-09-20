@@ -12,15 +12,15 @@
     meta_type="Filesystem Directory View"
     directory="PloneSoftwareCenter/skins/plonesoftwarecenter_images"/>
  <skin-path name="*">
-  <layer name="plonesoftwarecenter_images" 
+  <layer name="plonesoftwarecenter_images"
      insert-after="custom"/>
-  <layer name="plonesoftwarecenter" 
+  <layer name="plonesoftwarecenter"
      insert-after="plonesoftwarecenter_images"/>
   <layer name="DataGridWidget"
      insert-after="plonesoftwarecenter"/>
-  <layer name="archaddon" 
+  <layer name="archaddon"
      insert-after="DataGridWidget"/>
-  <layer name="AddRemoveWidget" 
+  <layer name="AddRemoveWidget"
      insert-after="archaddon"/>
  </skin-path>
 </object>

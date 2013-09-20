@@ -11,19 +11,19 @@ optionflags =  (doctest.ELLIPSIS |
 
 def verifyURLWithRequestVars(url, base, request_list):
     request_list = tuple(request_list)
-    
+
     if url.count('?') not in [0, 1]:
         return False
-    
+
     if url.count('?') == 0 and request_list != []:
         return False
-    
+
     if url.count('?'):
         url1, url2 = url.split('?')
     else:
         url1 = url
         url2 = ''
-    
+
     actual_vars = url2.split('&')
     for item in request_list:
         count = actual_vars.count(item)
@@ -31,7 +31,7 @@ def verifyURLWithRequestVars(url, base, request_list):
             return False
         for i in range(count):
             actual_vars.remove(item)
-    
+
     return actual_vars == []
 
 def setUpDefaultMembers(portal):

@@ -21,7 +21,7 @@ class RoadmapView(BrowserView):
         wftool = getToolByName(self, 'portal_workflow')
         wf = wftool.psc_improvementproposal_workflow
         return wf.states[state].title
-        
+
         return self.context.utranslate(
           msgid='workflow_state_title_%s' % state,
           domain='plonesoftwarecenter',
@@ -41,18 +41,18 @@ class RoadmapView(BrowserView):
             query['review_state'] = review_state
 
         proposals = catalog.portal_catalog(query)
-                                
+
         def sortProposals(x, y):
             try: xval = int(x.getId)
             except ValueError: xval = 0
             try: yval = int(y.getId)
             except ValueError: yval = 0
             return cmp(xval, yval)
-                                    
+
         proposals = [p for p in proposals]
         proposals.sort(sortProposals)
         return proposals
-    
+
     def upcoming_releases(self):
         return _upcoming_releases(self.context.aq_inner.aq_parent)
 

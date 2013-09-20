@@ -20,7 +20,7 @@ class ImprovementView(BrowserView):
         with the title when it's displayed.
         """
         return '#%s: %s' % (self.context.getId(), self.context.getField('title').get(self.context))
-    
+
     def raw_title(self):
         """Get the raw title of the improvement proposal - no #${id} prefixing.
         """

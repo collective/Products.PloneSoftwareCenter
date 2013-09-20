@@ -8,8 +8,8 @@
       name="Products.PloneSoftwareCenter.stylesheets"
       directory="stylesheets"
       />
-  
-  
+
+
   <page
       name="softwarecenter_view"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
@@ -33,7 +33,7 @@
         documentation_url documentation_link_class additional_resources
         has_criteria_info criteria_info has_review_comment"
       />
-  
+
   <page
       name="project_doap_view"
       for="Products.PloneSoftwareCenter.interfaces.IProjectContent"
@@ -42,7 +42,7 @@
       allowed_attributes="categories_url naked_description all_licenses get_oses
         get_releases get_tracker"
       />
-  
+
   <page
       name="doap.rdf"
       for="Products.PloneSoftwareCenter.interfaces.IProjectContent"
@@ -56,7 +56,7 @@
       for="Products.PloneSoftwareCenter.interfaces.IReleaseFolderContent"
       class=".releasefolder.ReleaseFolderView"
       permission="zope2.View"
-      allowed_attributes="upcoming_releases previous_releases" 
+      allowed_attributes="upcoming_releases previous_releases"
       />
 
   <page
@@ -118,15 +118,15 @@
       />
 
   <!-- Pypi APIs -->
-  <page 
+  <page
       name="file_upload"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypi.PyPIView"
       permission="zope2.View"
       attribute="file_upload"
     />
- 
-  <page 
+
+  <page
       name="submit"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypi.PyPIView"
@@ -134,7 +134,7 @@
       attribute="submit"
     />
 
-  <page 
+  <page
       name="links"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypilinks.PyPILinksView"
@@ -142,7 +142,7 @@
       template="pypilinks.pt"
     />
 
-  <page 
+  <page
       name="simple"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypilinks.PyPILinksViewDeprecated"
@@ -150,7 +150,7 @@
       template="pypilinks.pt"
     />
 
-  <page 
+  <page
       name="list_classifiers"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypi.PyPIView"
@@ -158,7 +158,7 @@
       attribute="list_classifiers"
     />
 
-  <page 
+  <page
       name="verify"
       for="Products.PloneSoftwareCenter.interfaces.ISoftwareCenterContent"
       class=".pypi.PyPIView"
@@ -179,5 +179,5 @@
         name="pypi_view"
         permission="zope2.View"
         />
-  
+
 </configure>

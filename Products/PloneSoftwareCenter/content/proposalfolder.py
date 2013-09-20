@@ -61,7 +61,7 @@ PSCImprovementProposalFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     LinesField(
         name='proposalTypes',
         multiValued=1,
@@ -100,10 +100,10 @@ class PSCImprovementProposalFolder(ATCTMixin, BaseBTreeFolder):
 
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent
-        if IMPROVEMENTS_ID not in parent.objectIds():            
+        if IMPROVEMENTS_ID not in parent.objectIds():
             # Can't rename without a subtransaction commit when using
             # portal_factory!
             transaction.savepoint(optimistic=True)
             self.setId(IMPROVEMENTS_ID)
-        
+
 registerType(PSCImprovementProposalFolder, PROJECTNAME)

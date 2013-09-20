@@ -45,13 +45,13 @@
     <p class="portalMessage warning" tal:condition="python:outdated and released"
        i18n:translate="label_message_no_longer_supported">
     This release is no longer supported! If you are using this release,
-    please upgrade to a newer version if possible. 
+    please upgrade to a newer version if possible.
     </p>
-    
+
     <p class="portalMessage info" tal:condition="not:final"
        i18n:translate="label_message_not_final_release">
-    This is not a final release. Experimental releases should only be used for 
-    testing and development. Do not use these on production sites, and make 
+    This is not a final release. Experimental releases should only be used for
+    testing and development. Do not use these on production sites, and make
     sure you have proper backups before installing.
     </p>
 
@@ -64,7 +64,7 @@
        tal:condition="python: is_editable and not released"
        i18n:translate="label_message_not_released">
     A release needs to be published before it will show up in the download
-    listings of the software center. You should make a release using the 
+    listings of the software center. You should make a release using the
     'state' drop-down when work on the release is completed and downloadable
     files have been added. There is no approval required to make a release.
     </p>
@@ -102,16 +102,16 @@
         <div tal:repeat="file here/contentValues">
           <a class="link-plain"
              tal:attributes="href file/@@file_view/direct_url">
-            <img src="" alt="" 
+            <img src="" alt=""
                  style="float: left; display: block; margin: 0 0.5em 0.5em 0;"
                  tal:attributes="src string:${here/portal_url}/${file/@@file_view/downloadicon_name}" />
           </a>
-  
+
           <a class="link-plain"
              tal:attributes="href file/@@file_view/direct_url">
             <span tal:replace="file/Title">Product Package</span>
           </a>
-    
+
           <p class="discreet"
                 tal:define="fileSize file/@@file_view/file_size">
             <span i18n:translate="">For</span>
@@ -200,7 +200,7 @@
     <div class="visualClear"></div>
 
       <tal:proposals define="proposals here/getRelatedFeatures;"
-        condition="nocall:proposals"> 
+        condition="nocall:proposals">
 
         <h2
             i18n:translate="heading_feature_enhancements_release">
@@ -217,7 +217,7 @@
             <dt>
               <a tal:attributes="href proposal/absolute_url;"
                  tal:content="proposal/title_or_id">
-                <tal:comment replace="nothing">#1: Improvement Title</tal:comment>                     
+                <tal:comment replace="nothing">#1: Improvement Title</tal:comment>
               </a>
             </dt>
 

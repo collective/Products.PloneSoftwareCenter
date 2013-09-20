@@ -42,7 +42,7 @@
                 recommended projects (politically, practically). If this is re-
                 enabled, it must also be re-enabled in schemata.py and
                 psc_releasefolder_view.pt.
-                
+
                 <div tal:condition="here/isRecommended"
                      i18n:translate="label_portlet_project_info_recommended">
                     This is a recommended project.

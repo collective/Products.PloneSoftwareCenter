@@ -62,7 +62,7 @@ PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     LinesField(
         'audiencesVocab',
         accessor='getAudiencesVocab',
@@ -86,7 +86,7 @@ class PSCDocumentationFolder(ATCTMixin, OrderedBaseFolder):
         implements(IDocumentationFolderContent, IHelpCenterContent)
     else:
         implements(IDocumentationFolderContent)
-    
+
 
     archetype_name = 'Documentation Section'
     immediate_view = 'base_edit'
@@ -116,12 +116,12 @@ class PSCDocumentationFolder(ATCTMixin, OrderedBaseFolder):
 
     def _renameAfterCreation(self, check_auto_id=False):
         parent = self.aq_inner.aq_parent
-        if DOCUMENTATION_ID not in parent.objectIds():            
+        if DOCUMENTATION_ID not in parent.objectIds():
             # Can't rename without a subtransaction commit when using
             # portal_factory!
             transaction.savepoint(optimistic=True)
             self.setId(DOCUMENTATION_ID)
-        
+
 
     security.declareProtected(permissions.View, 'generateUniqueId')
     def generateUniqueId(self, type_name):
@@ -145,7 +145,7 @@ class PSCDocumentationFolder(ATCTMixin, OrderedBaseFolder):
             return self.aq_inner.aq_parent.generateUniqueId(type_name)
         else:
             return self._ensureUniqueId(consideredTypes[type_name])
-    
+
     security.declarePrivate('_ensureUniqueId')
     def _ensureUniqueId(self, id):
         """Test the given id. If it's not unique, append .<n> where n is a

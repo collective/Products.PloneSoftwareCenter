@@ -17,7 +17,7 @@
     <tal:releases repeat="release releases">
 
         <div class="visualIEFloatFix" style="margin-top: 1em;">
-            
+
             <dl>
 
                 <dt>

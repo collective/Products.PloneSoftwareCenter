@@ -20,12 +20,12 @@ class TestProductInstall(PSCTestCase):
         for t in self.types.keys():
             self.failUnless(t in self.portal.portal_types.objectIds(),
                             '%s content type not installed' % t)
-                            
+
     def testWorkflowsInstalled(self):
         for wf in self.types.values():
             if wf:
                 self.failUnless(wf in self.portal.portal_workflow.objectIds())
-    
+
     def testWorkflowsMapped(self):
         for fti, wf in self.types.items():
             chain = self.portal.portal_workflow.getChainForPortalType(fti)
@@ -33,38 +33,38 @@ class TestProductInstall(PSCTestCase):
                 self.assertEqual(0, len(chain))
             else:
                 self.assertEqual((wf,), tuple(chain))
-    
+
     def testWorkflowScriptsInstalled(self):
         wf = self.portal.portal_workflow
-        
+
         release_wf = wf['psc_release_workflow'].scripts
         package_wf = wf['psc_package_workflow'].scripts
 
         self.failUnless('release_new_state' in release_wf.objectIds())
         self.failUnless('re_release_state' in release_wf.objectIds())
-        
+
         self.failUnless('give_reviewer_localrole' in package_wf.objectIds())
         self.failUnless('take_reviewer_localrole' in package_wf.objectIds())
-        
+
     def testCatalogIndexesInstalled(self):
         catalog = self.portal.portal_catalog
         self.failUnless('releaseCount' in catalog.indexes())
-        
+
     def testCatalogMetadataInstalled(self):
         catalog = self.portal.portal_catalog
         self.failUnless('UID' in catalog.schema())
         self.failUnless('getCategoryTitles' in catalog.schema())
-        
+
     def testPortalFactoryConfigured(self):
         factory = self.portal.portal_factory
         for t in self.types.keys():
             self.failUnless(t in factory.getFactoryTypes())
-        
+
     def testNavtreePropertiesConfigured(self):
         pmntq = self.portal.portal_properties.navtree_properties.parentMetaTypesNotToQuery
         for t in ('PloneSoftwareCenter', 'PSCReleaseFolder', 'PSCImprovementProposalFolder', 'PSCRelease'):
             self.failUnless(t in pmntq)
-    
+
     # XXX I don't think this is a good test because
     # the dependencies are not automatically installed by PSC
     # at this time. They are just installed in the test fixture.

@@ -20,7 +20,7 @@
 
     <div metal:define-macro="main"
          tal:define="view here/@@file_view">
-    
+
         <dl class="portalMessage info"
             tal:define="is_editable context/@@plone_context_state/is_editable;"
             tal:condition="python: is_editable">
@@ -30,7 +30,7 @@
                 <a href="" tal:attributes="href here/aq_parent/absolute_url">
                 <span i18n:translate="help_message_remember_back_release_page"> going back to the release page</span>
                 </a>.
-            </dd> 
+            </dd>
         </dl>
 
         <h1 class="documentFirstHeading">
@@ -53,7 +53,7 @@
             </a>
             <a tal:attributes="href downloadURL"
                tal:define="filename python:here.getFilename('downloadableFile')" i18n:translate="">
-                Download <span condition="filename" tal:content="string:$filename" 
+                Download <span condition="filename" tal:content="string:$filename"
                                i18n:name="psc_filename_view" />
             </a>
             <tal:size define="fileSize view/file_size"

@@ -57,7 +57,7 @@
                 Product
             </span>
         </a>
-        
+
         <div class="discreet"
              tal:define="categories obj/getCategoryTitles | nothing"
              tal:condition="categories"

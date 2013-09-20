@@ -5,7 +5,7 @@ from Products.PloneSoftwareCenter.tests.base import PSCTestCase
 from Products.CMFCore.utils import getToolByName
 
 from Products.PloneSoftwareCenter.setuphandlers import before_1_5
-from Products.PloneSoftwareCenter.setuphandlers import extract_distutils_id 
+from Products.PloneSoftwareCenter.setuphandlers import extract_distutils_id
 from Products.PloneSoftwareCenter.setuphandlers import _pypi_certified_owner
 
 curdir = os.path.dirname(__file__)
@@ -20,21 +20,21 @@ class TestMigration(PSCTestCase):
         self.setRoles(('Manager',))
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         self.portal.psc.invokeFactory('PSCProject', 'proj')
-        
+
         self.psc = self.portal.psc
         self.proj = self.portal.psc.proj
         self.proj.setContactAddress('mailto:tarek@ziade.org')
-        releases = self.proj.releases 
+        releases = self.proj.releases
         releases.invokeFactory('PSCRelease', '1.0')
         self.release = releases['1.0']
         self.file = self.release.invokeFactory('PSCFile',
-                                               'my.egg') 
+                                               'my.egg')
 
     def test_pypi_synchro(self):
         pass
 
     def test_extract_distutils_id(self):
-       
+
         class FakeField(object):
             def __init__(self, content, filename):
                 self.content = content
@@ -46,21 +46,21 @@ class TestMigration(PSCTestCase):
             def __init__(self, path):
                 self.content = open(path).read()
                 self.name = os.path.split(path)[-1]
-            
+
             def getId(self):
                 return self.name
 
             def getDownloadableFile(self):
-                return FakeField(self.content, self.name) 
+                return FakeField(self.content, self.name)
 
-        for egg, wanted in zip(SOME_EGGS, 
+        for egg, wanted in zip(SOME_EGGS,
                                ('zope.size', 'zope.event')):
             egg = FakeFile(egg)
             self.assertEquals(extract_distutils_id(egg), wanted)
 
     def test_pypi_certified_owner(self):
         # testing the real server
-        # XXX this is not optimal 
+        # XXX this is not optimal
         try:
             contacts = _pypi_certified_owner('Products.PloneSoftwareCenter')
         except gaierror:
@@ -73,7 +73,7 @@ class TestMigration(PSCTestCase):
         # patching _pypi_certified_owner
         # so we don't query pypi for real here
         def _owner(id_):
-            return 'tarek@ziade.org' 
+            return 'tarek@ziade.org'
 
         from Products.PloneSoftwareCenter import setuphandlers
         setuphandlers._pypi_certified_owner = _owner
@@ -88,13 +88,13 @@ class TestMigration(PSCTestCase):
             f.setDownloadableFile(content, filename=name)
         self.release.reindexObject()
 
-        # let's run the migration 
-        portal_setup = getToolByName(self.portal, 'portal_setup')        
-          
+        # let's run the migration
+        portal_setup = getToolByName(self.portal, 'portal_setup')
+
         before_1_5(portal_setup)
-        
+
         # let's see what has been done to our proj
-        self.assertEquals(self.proj.getDistutilsMainId(), 
+        self.assertEquals(self.proj.getDistutilsMainId(),
                           'zope.event')
         self.assertEquals(self.proj.getDistutilsSecondaryIds(),
                           ('zope.size',))

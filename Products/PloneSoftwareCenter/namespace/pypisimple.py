@@ -23,7 +23,7 @@ try:
     from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 except ImportError:
     # bbb: Zope 2.12 and older
-    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile   
+    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
 
 class PyPISimpleTraverser(SimpleHandler):
@@ -41,7 +41,7 @@ class PyPISimpleTraverser(SimpleHandler):
     def publishTraverse(self, request, name):
         """publish a project"""
         return PyPIProjectView(self.context, request, name)
-        
+
     def traverse(self, name, ignored):
         if name == '':
             return PyPISimpleTraverser(self.context, self.request)
@@ -56,7 +56,7 @@ class PyPISimpleTraverser(SimpleHandler):
 
 SIMPLE = os.path.join(os.path.dirname(__file__), 'pypisimple.pt')
 PROJECT = os.path.join(os.path.dirname(__file__), 'pypiproject.pt')
-    
+
 class PyPISimpleView(object):
     """view used for the main package index page"""
     implements(IBrowserPublisher)
@@ -89,10 +89,10 @@ class PyPISimpleView(object):
     def get_projects(self):
         """provides the simple view over the projects
         with links to the published files"""
-        
-        query = {'path': self.sc_path, 
+
+        query = {'path': self.sc_path,
                  'portal_type': 'PSCProject',
-                 'review_state': 'published', 
+                 'review_state': 'published',
                  'sortOn': 'getId'}
 
         def _filter_id(brain):
@@ -101,7 +101,7 @@ class PyPISimpleView(object):
                 return None
             return element
 
-        projects = (_filter_id(brain) for brain 
+        projects = (_filter_id(brain) for brain
                     in self.catalog(**query))
 
         return itertools.chain(*[self.get_url_and_distutils_ids(p)
@@ -114,7 +114,7 @@ class PyPIProjectView(PyPISimpleView):
         self.context = context
         self.request = request
         self.project_name = name
-        self.projects = self._get_projects(name) 
+        self.projects = self._get_projects(name)
         if self.projects == []:
             raise TraversalError(self.context, name)
 
@@ -122,21 +122,21 @@ class PyPIProjectView(PyPISimpleView):
         return cmp(f1['url'], f2['url'])
 
     def _get_released_files(self, project):
-        project_path = '/'.join(project.getPhysicalPath()) 
+        project_path = '/'.join(project.getPhysicalPath())
         query = {'path': project_path, 'portal_type': 'PSCRelease',
-                 'review_state': ('alpha', 'beta', 'pre-release', 'final', 
+                 'review_state': ('alpha', 'beta', 'pre-release', 'final',
                                   'hidden')}
         for brain in self.catalog(**query):
             for id_, file_ in brain.getObject().objectItems():
-                yield {'url': file_.absolute_url(), 
+                yield {'url': file_.absolute_url(),
                        'title': id_}
 
     def _get_projects(self, name):
         return get_projects_by_distutils_ids(self.context, [name])
-       
-    def __call__(self): 
+
+    def __call__(self):
         template = ViewPageTemplateFile(PROJECT)
-        return template(self) 
+        return template(self)
 
     def get_name(self):
         return self.project_name
@@ -147,13 +147,13 @@ class PyPIProjectView(PyPISimpleView):
         links = []
         for project_name in self.projects:
             project = self.context[project_name]
-            
+
             # archives first
             for archive in sorted(self._get_released_files(project),
                                   self._sort_files):
-                links.append(archive)           
-            
-            # then url links 
+                links.append(archive)
+
+            # then url links
             fields = ('homepage', 'repository')
             for field in fields:
                 value = getattr(project, field, u'')
@@ -161,6 +161,6 @@ class PyPIProjectView(PyPISimpleView):
                 if value != u'':
                     links.append({'url': value, 'title': title,
                                   'rel': field})
-            
+
         return links
 

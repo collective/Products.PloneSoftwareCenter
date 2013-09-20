@@ -44,7 +44,7 @@ class TestPyPI(PSCTestCase):
         membership = getToolByName(self.portal, 'portal_membership')
         membership.addMember('user1', 'secret', ['Member'], [])
         membership.addMember('user2', 'secret', ['Member'], [])
-        
+
     def testSubmit(self):
         self.login('user1')
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
@@ -56,14 +56,14 @@ class TestPyPI(PSCTestCase):
         # no links or file links are created
         # until the project is published by the PSC owner
         self.login('user2')
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
-                'metadata_version': '1.0', 'author': 'Ingeniweb', 
-                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
+                'metadata_version': '1.0', 'author': 'Ingeniweb',
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN',
                 'summary': 'xxx', 'author_email': 'support@ingeniweb.com',
                 'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
-                'keywords': '', 
+                'keywords': '',
                 'classifiers': ['Programming Language :: Python',
-                                'Topic :: Utilities', 'Rated :: PG13'], 
+                                'Topic :: Utilities', 'Rated :: PG13'],
                 'description': 'xxx'}
         view = PyPIView(psc, Req(form))
         view.submit()
@@ -77,16 +77,16 @@ class TestPyPI(PSCTestCase):
         # check what has been created
         iw_dist = psc['iw.dist']
         rel = iw_dist.releases['0.1.0dev-r6983']
-        # we don't want any file or file link 
+        # we don't want any file or file link
         self.assertEquals(rel.objectIds(), [])
 
         # now let's provide an url
         form['download_url'] = 'the_url'
         form['platform'] = 'win32'
-        view = PyPIView(psc, Req(form))  
+        view = PyPIView(psc, Req(form))
         view.submit()
         self.assertEquals(rel.objectIds(), ['download'])
-        
+
         # now let the user 1 publish the project
         self.login('user1')
         wf = self.portal.portal_workflow
@@ -99,15 +99,15 @@ class TestPyPI(PSCTestCase):
 
         # making sure the project is correctly set
         self.login('user2')
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
-                'metadata_version': '1.0', 'author': 'Ingeniweb', 
-                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
-                'summary': 'The summary', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
+                'metadata_version': '1.0', 'author': 'Ingeniweb',
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN',
+                'summary': 'The summary',
                 'author_email': 'support@ingeniweb.com',
                 'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
-                'keywords': '', 
+                'keywords': '',
                 'classifiers': ['Programming Language :: Python',
-                                'Topic :: Utilities', 'Rated :: PG13'], 
+                                'Topic :: Utilities', 'Rated :: PG13'],
                 'description': 'xxx'}
         view = PyPIView(psc, Req(form))
 
@@ -115,10 +115,10 @@ class TestPyPI(PSCTestCase):
         iw_dist = psc['iw.dist']
         self.assertEquals(iw_dist.getText(),  '<p>xxx</p>\n')
 
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
                 'metadata_version': '1.0', 'author': 'Ingeniweb',
-                'version': '0.1.0dev-r6983'} 
-       
+                'version': '0.1.0dev-r6983'}
+
         view = PyPIView(psc, Req(form))
         view.submit()
         self.assertEquals(iw_dist.getText(),  '<p>xxx</p>\n')
@@ -132,16 +132,16 @@ class TestPyPI(PSCTestCase):
 
         # making sure the project is correctly set
         self.login('user2')
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
-                'metadata_version': '1.0', 'author': 'Ingeniweb', 
-                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
-                'summary': 'The summary', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
+                'metadata_version': '1.0', 'author': 'Ingeniweb',
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN',
+                'summary': 'The summary',
                 'author_email': 'support@ingeniweb.com',
                 'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
-                'keywords': '', 
+                'keywords': '',
                 'classifiers': ['Programming Language :: Python',
                                 'Topic :: Utilities', 'Rated :: PG13',
-                                'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'], 
+                                'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'],
                 'description': 'xxx'}
         view = PyPIView(psc, Req(form))
 
@@ -150,11 +150,11 @@ class TestPyPI(PSCTestCase):
         pg = 'rated-pg13|Rated PG13|Rated :: PG13'
         classifiers = psc.getField('availableClassifiers')
         values = classifiers.get(psc)
-        classifiers.set(psc, values + (pg,))  
-        
+        classifiers.set(psc, values + (pg,))
+
         view.submit()
         iw_dist = psc['iw.dist']
-        wanted = ('python', 'utilities', 'rated-pg13') 
+        wanted = ('python', 'utilities', 'rated-pg13')
         self.assertEquals(iw_dist.getClassifiers(),  wanted)
 
     def test_list_classifiers(self):
@@ -164,7 +164,7 @@ class TestPyPI(PSCTestCase):
         psc = self.portal.psc
 
         self.login('user2')
-        view = PyPIView(psc, Req({})) 
+        view = PyPIView(psc, Req({}))
         res = view.list_classifiers()
         res = res.split('\n')
         self.assertEquals(res[0], 'Development Status :: 1 - Planning')
@@ -172,8 +172,8 @@ class TestPyPI(PSCTestCase):
 
     def test_distutils_id_missing(self):
 
-        # let's create a PSC with a project that 
-        # has the same name but no distutils fixed 
+        # let's create a PSC with a project that
+        # has the same name but no distutils fixed
         self.login('user1')
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         psc = self.portal.psc
@@ -181,15 +181,15 @@ class TestPyPI(PSCTestCase):
         self.assertEquals(['iw.dist'], list(psc.objectIds()))
 
         # making sure the project is correctly set
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
-                'metadata_version': '1.0', 'author': 'Ingeniweb', 
-                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
-                'summary': 'The summary', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
+                'metadata_version': '1.0', 'author': 'Ingeniweb',
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN',
+                'summary': 'The summary',
                 'author_email': 'support@ingeniweb.com',
                 'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
-                'keywords': '', 
+                'keywords': '',
                 'classifiers': ['Programming Language :: Python',
-                                'Topic :: Utilities', 'Rated :: PG13'], 
+                                'Topic :: Utilities', 'Rated :: PG13'],
                 'description': 'xxx'}
         view = PyPIView(psc, Req(form))
 
@@ -199,26 +199,26 @@ class TestPyPI(PSCTestCase):
 
     def test_distutils_id_missing2(self):
 
-        # let's create a PSC with a project that 
-        # has the same name but no distutils fixed 
+        # let's create a PSC with a project that
+        # has the same name but no distutils fixed
         self.login('user1')
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         psc = self.portal.psc
         psc.invokeFactory('PSCProject', 'iw.dist')
         self.assertEquals(['iw.dist'], list(psc.objectIds()))
-        
+
         psc['iw.dist'].setDistutilsMainId('another.one')
 
         # making sure the project is correctly set
-        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist', 
-                'metadata_version': '1.0', 'author': 'Ingeniweb', 
-                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN', 
-                'summary': 'The summary', 
+        form = {'': 'submit', 'license': 'GPL', 'name': 'iw.dist',
+                'metadata_version': '1.0', 'author': 'Ingeniweb',
+                'home_page': 'UNKNOWN', 'download_url': 'UNKNOWN',
+                'summary': 'The summary',
                 'author_email': 'support@ingeniweb.com',
                 'version': '0.1.0dev-r6983', 'platform': 'UNKNOWN',
-                'keywords': '', 
+                'keywords': '',
                 'classifiers': ['Programming Language :: Python',
-                                'Topic :: Utilities', 'Rated :: PG13'], 
+                                'Topic :: Utilities', 'Rated :: PG13'],
                 'description': 'xxx'}
         view = PyPIView(psc, Req(form))
 
@@ -227,18 +227,18 @@ class TestPyPI(PSCTestCase):
         self.assertEquals(iw_dist.getDistutilsSecondaryIds(),  ('iw.dist',))
 
     def test_filename_normalization(self):
-        """ Make sure product ids are following our conventions. 
+        """ Make sure product ids are following our conventions.
             http://plone.org/products/plonesoftwarecenter/issues/81
         """
-        
+
         self.login('user1')
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         psc = self.portal.psc
-        
+
         def createProductWithName(name):
             view = PyPIView(psc, Req({'': 'submit', 'name': name, 'version': '1.0'}))
             view.submit()
-        
+
         # Use dotted product names when creating ids
         createProductWithName('collective.something')
         self.failUnless('collective.something' in psc.objectIds(), 'Product "collective.something" should be created as "collective.something". Existing ids are %s' % [a for a in psc.objectIds()])
@@ -246,7 +246,7 @@ class TestPyPI(PSCTestCase):
         # Use lowercase
         createProductWithName('collective.BargainingAgreement')
         self.failUnless('collective.bargainingagreement' in psc.objectIds(), 'Product "collective.BargainingAgreement" should be created as "collective.bargainingagreement", using lowercase. Existing ids are %s' % [a for a in psc.objectIds()])
-        
+
         # Don't repeat "products" for the Products.* namespace
         createProductWithName('Products.ImageRepository')
         self.failUnless('imagerepository' in  psc.objectIds(), 'Product "Products.ImageRepository" should be created as "imagerepository". Existing ids are %s' % [a for a in psc.objectIds()])
@@ -272,16 +272,16 @@ class TestPyPI(PSCTestCase):
 
         rel = createProductWithNameAndVersion('collective.something', '1.0alpha1')
         self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'alpha')
-        
+
         rel = createProductWithNameAndVersion('collective.something', '1.0b1')
         self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'beta')
-        
+
         rel = createProductWithNameAndVersion('collective.something', '1.0beta')
         self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'beta')
 
         rel = createProductWithNameAndVersion('collective.something', '1.0rc5')
         self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'release-candidate')
-        
+
         rel = createProductWithNameAndVersion('collective.something', '1.0')
         self.assertEquals(wf.getInfoFor(rel, 'review_state'), 'final')
 

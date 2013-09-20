@@ -11,10 +11,10 @@ class TestStorage(PSCTestCase):
         self.setRoles(('Manager',))
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         self.portal.psc.invokeFactory('PSCProject', 'proj')
-        
+
         self.psc = self.portal.psc
         self.proj = self.portal.psc.proj
-        releases = self.proj.releases 
+        releases = self.proj.releases
         releases.invokeFactory('PSCRelease', '1.0')
         self.release = releases['1.0']
 
@@ -22,7 +22,7 @@ class TestStorage(PSCTestCase):
         # try various storage
         storage = DynamicStorage()
         self.assertEquals(storage.getName(), 'dynamic')
-        
+
         pluggable_storage = storage._getStorage(self.psc)
         self.failUnless(pluggable_storage.__class__ is ArchetypeStorage)
         # name = pluggable_storage.getName()
@@ -37,10 +37,10 @@ class TestStorage(PSCTestCase):
                 found = True
                 break
         self.assert_(found)
-       
+
     def test_storage_change(self):
 
-        # what is the current storage strategy ? 
+        # what is the current storage strategy ?
         ss = self.portal.psc.getStorageStrategy()
         self.assertEquals(ss, 'archetype')
 
@@ -65,15 +65,15 @@ class TestStorage(PSCTestCase):
         from zope.component import getSiteManager
         from zope.interface import Interface
         sm = getSiteManager()
-        sm.registerAdapter(factory=DummyStorage, 
+        sm.registerAdapter(factory=DummyStorage,
                            provided=IPSCFileStorage,
                            required=(Interface,),
                            name='dummy')
 
         # let's see what kind of strategies are available
-        strats = sorted([s for s, a in 
+        strats = sorted([s for s, a in
                   getFileStorageAdapters(self.portal.psc)])
-        
+
         for s in ['archetype', 'dummy']:
             self.assert_(s in strats)
 
@@ -83,10 +83,10 @@ class TestStorage(PSCTestCase):
         # let's change the strategy
         self.portal.psc.setStorageStrategy('dummy')
 
-        # it should trigger an event that changes 
+        # it should trigger an event that changes
         # the storage for all files
-        self.assert_(DummyStorage.storage, ['ok']) 
-       
+        self.assert_(DummyStorage.storage, ['ok'])
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()

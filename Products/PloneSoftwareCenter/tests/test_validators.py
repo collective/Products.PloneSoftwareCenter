@@ -8,10 +8,10 @@ class TestValidators(PSCTestCase):
         self.setRoles(('Manager',))
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         self.portal.psc.invokeFactory('PSCProject', 'proj')
-        
+
         self.psc = self.portal.psc
         self.proj = self.portal.psc.proj
-        
+
     def testProjectIdValidator(self):
         # Archetypes validation machinery is unclear so it's not clear
         # whether the test should ensure that additional keywords like

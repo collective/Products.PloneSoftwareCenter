@@ -22,7 +22,7 @@ try:
     NEEDS_UPDATE = True
 except ImportError:
     NEEDS_UPDATE = False
-    
+
 from Products.ArchAddOn.Fields import SimpleDataGridField
 from Products.ArchAddOn.Widgets import SimpleDataGridWidget
 from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
@@ -72,8 +72,8 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             columns=3,
         column_names=('id', 'title', 'description'),
         default=[
-            'standalone|Stand-alone products|Projects that are self-contained.', 
-            'add-on|Add-on components|Projects that provide additional functionality.', 
+            'standalone|Stand-alone products|Projects that are self-contained.',
+            'add-on|Add-on components|Projects that provide additional functionality.',
             'infrastructure|Infrastructure|Projects that provide services.',
         ],
         widget=SimpleDataGridWidget(
@@ -140,7 +140,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=6,
         ),
     ),
-    
+
     LinesField('projectEvaluators',
         languageIndependent=1,
         widget=LinesWidget(
@@ -149,7 +149,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     LinesField('availableSelfCertificationCriteria',
         default=[
             'Internationalized',
@@ -167,7 +167,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=10,
         ),
     ),
-    
+
     StringField('product_title',
         default='Add-on Product',
         widget=StringWidget(
@@ -176,7 +176,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain='plonesoftwarecenter',
         ),
     ),
-    
+
     TextField('addon_description',
         default='Add-ons extend your Plone site with additional functionality.',
         widget=TextAreaWidget(
@@ -186,7 +186,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=6,
         ),
     ),
-    
+
     TextField('installation_instructions',
         default='If you are using Plone 3.2 or higher, you probably want to install '
                 'this product with buildout. See <a href="http://plone.org/'
@@ -232,7 +232,7 @@ PloneSoftwareCenterSchema = OrderedBaseFolder.schema.copy() + Schema((
             description=_(u"help_storage_strategy", default=u"Defines the storage strategies for files"),
             i18n_domain="plonesoftwarecenter",
         ),
-),             
+),
 
 ))
 
@@ -255,7 +255,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
     _at_rename_after_creation = True
 
     security = ClassSecurityInfo()
-    
+
     typeDescription = "A container for software projects"
 
     if NEEDS_UPDATE: # pre Plone3/GS-based install
@@ -274,7 +274,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
         },
                                  )
                                 )
-    
+
     def canSelectDefaultPage(self):
         return False
 
@@ -289,7 +289,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
         projects = catalog.searchResults(
                             portal_type = 'PSCProject',
                             path = '/'.join(self.getPhysicalPath()))
-        
+
         categoryIds = [v.split('|')[0].strip() for v in value]
         projectIds = [p.getId for p in projects]
 
@@ -300,7 +300,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
                 empty.append(cat)
             elif cat in projectIds or categoryIds.count(cat) > 1:
                 invalid.append(cat)
-    
+
         if empty:
             return "Please enter categories as Short Name | Long name | Description."
         if invalid:
@@ -311,7 +311,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
             return None
 
     # Vocabulary methods
-    security.declareProtected(permissions.View, 
+    security.declareProtected(permissions.View,
                               'getAvailableTopicsFromClassifiers')
     def getAvailableTopicsFromClassifiers(self):
         """Get categories in DisplayList form, extracted from
@@ -324,7 +324,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
                 vocab[id] = (title, trove_id)
         return vocab
 
-    security.declareProtected(permissions.View, 
+    security.declareProtected(permissions.View,
                               'getAvailableCategoriesAsDisplayList')
     def getAvailableCategoriesAsDisplayList(self):
         """Get categories in DisplayList form."""
@@ -344,24 +344,24 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
     def getAvailableVersionsAsDisplayList(self):
         """Get versions in DisplayList form."""
         return DisplayList([(item, item) for item in self.getAvailableVersions()])
-    
+
     security.declareProtected(permissions.View, 'getAvailableVersionsAsDisplayList')
     def getAvailableSelfCertificationCriteriaAsDisplayList(self):
         """Get self-certification criteria in DisplayList form."""
-        try: 
+        try:
             return DisplayList([(item, item) for item in self.getAvailableSelfCertificationCriteria()])
         except:
             return DisplayList([('no','criteria')])
-    
+
     # Mutator methods
     security.declareProtected(permissions.ModifyPortalContent, 'setProjectEvaluators')
     def setProjectEvaluators(self, value, **kw):
         orig = self.getProjectEvaluators()
         self.getField('projectEvaluators').set(self, value, **kw)
-        
+
         usersToDemote = [id for id in orig if id not in value]
         usersToPromote = [id for id in value if id not in orig]
-        
+
         for id in usersToDemote:
             roles = list(self.get_local_roles_for_userid(id))
             while 'PSCEvaluator' in roles:
@@ -376,7 +376,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
                 roles.append('PSCEvaluator')
             self.manage_setLocalRoles(id, roles)
 
-    security.declareProtected(permissions.View, 
+    security.declareProtected(permissions.View,
                               'getFileStorageStrategyVocab')
     def getFileStorageStrategyVocab(self):
         """returns registered storage strategies"""

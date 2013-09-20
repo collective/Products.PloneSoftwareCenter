@@ -26,12 +26,12 @@ for r in folder.folderlistingFolderContents(contentFilter = typesFilter):
             datedReleases.append(r)
         else:
             undatedReleases.append(r)
-            
+
 datedReleases.sort(lambda x, y: \
                     cmp(x.getExpectedReleaseDate(), y.getExpectedReleaseDate()))
 
 releases = datedReleases + undatedReleases
 
 return releases
-        
-        
+
+

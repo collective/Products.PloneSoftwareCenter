@@ -37,7 +37,7 @@ datadir = os.path.dirname(__file__)
 def test_suite():
     tarball = FileUpload(FileHolder(os.path.join(datadir, 'project-macosx-10.3-fat.tar.gz')))
     egg = FileUpload(FileHolder(os.path.join(datadir, 'project.egg')))
- 
+
     globs = globals()
     globs['tarball'] = tarball
     globs['egg'] = egg

@@ -28,25 +28,25 @@ class TestCenterSecurity(PSCTestCase):
     def afterSetUp(self):
         # Definitions for convenience
         self.wf_tool = getToolByName(self.portal, 'portal_workflow')
-        
+
         # Actual changes to portal
         allowMembersToAddCenter(self.portal)
-        
+
         membership = getToolByName(self.portal, 'portal_membership')
         membership.addMember('user1', 'secret', ['Member'], [])
         membership.addMember('user2', 'secret', ['Member'], [])
-        
+
         self.login('user1')
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
-    
+
     def testProjectApproval(self):
         self.login('user2')
         self.portal.psc.invokeFactory('PSCProject', 'proj')
         proj = self.portal.psc.proj
         proj.content_status_modify(workflow_action='submit')
-        
+
         self.assertEqual(self.wf_tool.getInfoFor(proj, 'review_state'), 'pending')
-        
+
         self.login('user1')
         proj.content_status_modify(workflow_action='publish')
         self.assertEqual(self.wf_tool.getInfoFor(proj, 'review_state'), 'published')
@@ -55,43 +55,43 @@ class TestProjectSecurity(PSCTestCase):
     def afterSetUp(self):
         # Definitions for convenience
         self.wf_tool = getToolByName(self.portal, 'portal_workflow')
-        
+
         # Actual changes to portal
-        
+
         membership = getToolByName(self.portal, 'portal_membership')
         membership.addMember('user1', 'secret', ['Member'], [])
         membership.addMember('user2', 'secret', ['Member'], [])
-        
+
         self.setRoles(('Manager',))
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         self.psc = self.portal.psc
-        
+
         self.login('user1')
         self.psc.invokeFactory('PSCProject', 'proj')
         self.proj = self.psc.proj
         self.proj.content_status_modify(workflow_action='submit')
-        
+
         self.login('test_user_1_')
         self.proj.content_status_modify(workflow_action='publish')
-    
+
     def testRoadmapCreation(self):
         self.login('user1')
-        
+
         try:
             self.proj.invokeFactory('PSCImprovementProposalFolder', 'roadmap')
         except:
             self.fail('Project creator is unable to add a roadmap')
-    
+
     def testProposalCreationAndApproval(self):
         self.login('user1')
         self.proj.invokeFactory('PSCImprovementProposalFolder', 'roadmap')
-        
+
         try:
             self.proj.roadmap.invokeFactory('PSCImprovementProposal', '1')
         except:
             self.fail('Project creator is unable to add an improvement proposal.')
         ip = self.proj.roadmap['1']
-        
+
         ip.content_status_modify(workflow_action = 'propose')
         self.assertEqual(self.wf_tool.getInfoFor(ip, 'review_state'), 'being-discussed')
         ip.content_status_modify(workflow_action = 'begin')
@@ -100,12 +100,12 @@ class TestProjectSecurity(PSCTestCase):
         self.assertEqual(self.wf_tool.getInfoFor(ip, 'review_state'), 'ready-for-merge')
         ip.content_status_modify(workflow_action = 'merge')
         self.assertEqual(self.wf_tool.getInfoFor(ip, 'review_state'), 'completed')
-        
+
         #When is a user supposed to be able to add improvement proposals?
-    
+
     def testReleaseFolderDeletionAndCreation(self):
         self.login('user1')
-        
+
         try:
             self.proj.manage_delObjects(['releases'])
         except:
@@ -114,30 +114,30 @@ class TestProjectSecurity(PSCTestCase):
             self.proj.invokeFactory('PSCReleaseFolder', 'releases')
         except:
             self.fail('Project creator is unable to create Releases folder.')
-    
+
 class TestPloneHelpCenterIntegration(PSCTestCase):
     def afterSetUp(self):
         # Definitions for convenience
         self.wf_tool = getToolByName(self.portal, 'portal_workflow')
-        
+
         # Actual changes to portal
-        
+
         membership = getToolByName(self.portal, 'portal_membership')
         membership.addMember('user1', 'secret', ['Member'], [])
         membership.addMember('user2', 'secret', ['Member'], [])
-        
+
         self.setRoles(('Manager',))
         self.portal.invokeFactory('PloneSoftwareCenter', 'psc')
         self.psc = self.portal.psc
-        
+
         self.login('user1')
         self.psc.invokeFactory('PSCProject', 'proj')
         self.proj = self.psc.proj
         self.proj.content_status_modify(workflow_action='submit')
-        
+
         self.login('test_user_1_')
         self.proj.content_status_modify(workflow_action='publish')
-        
+
         self.setRoles(('Manager',))
         qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
         try:
@@ -156,61 +156,61 @@ class TestPloneHelpCenterIntegration(PSCTestCase):
             self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')
         except:
             self.fail('Project creator unable to create documentation folder')
-    
+
     def testFAQCreationByOwner(self):
         #Note: Rather than testing the creation and approval of every possible
         #PloneHelpCenter type within a PSCDocumentationFolder, we only test
         #FAQ creation and approval as a representative example.
-        
+
         self.login('user1')
         self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')
-        
+
         documentation = self.proj.documentation
-        
+
         try:
             documentation.invokeFactory('HelpCenterFAQFolder', 'faq')
         except:
             self.fail('Project creator unable to create FAQ Folder')
         faq = documentation.faq
-        
+
         try:
             faq.invokeFactory('HelpCenterFAQ', 'question')
         except:
             self.fail('Project creator unable to create FAQ within FAQ Folder')
-    
+
     def testFAQCreationByUser(self):
         #Note: Rather than testing the creation and approval of every possible
         #PloneHelpCenter type within a PSCDocumentationFolder, we only test
         #FAQ creation and approval as a representative example.
-        
+
         self.login('user1')
         self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')
         documentation = self.proj.documentation
         documentation.invokeFactory('HelpCenterFAQFolder', 'faq')
         faq = documentation.faq
-        
+
         self.login('user2')
         try:
             faq.invokeFactory('HelpCenterFAQ', 'question')
         except:
             self.fail('Generic user unable to create FAQ within FAQ Folder')
-    
+
     def testFAQApproval(self):
         #Note: Rather than testing the creation and approval of every possible
         #PloneHelpCenter type within a PSCDocumentationFolder, we only test
         #FAQ creation and approval as a representative example.
-        
+
         self.login('user1')
         self.proj.invokeFactory('PSCDocumentationFolder', 'documentation')
         documentation = self.proj.documentation
         documentation.invokeFactory('HelpCenterFAQFolder', 'faq')
         faq = documentation.faq
-        
+
         faq.invokeFactory('HelpCenterFAQ', 'q1')
         faq.q1.content_status_modify(workflow_action='publish')
         self.assertEqual(self.wf_tool.getInfoFor(faq.q1, 'review_state'),
           'published')
-        
+
         self.login('user2')
         faq.invokeFactory('HelpCenterFAQ', 'q2')
         faq.q2.content_status_modify(workflow_action='submit')
@@ -222,13 +222,13 @@ class TestPloneHelpCenterIntegration(PSCTestCase):
           'published')
 
     def testReleaseCreation(self):
-        # a member can create a project and its releases 
-        self.login('user2') 
-        self.psc.invokeFactory('PSCProject', 'proj2') 
-        try: 
-            self.psc.proj2.releases.invokeFactory('PSCRelease', '0.1') 
-        except:   
-            self.fail('Project creator is unable to create its releases') 
+        # a member can create a project and its releases
+        self.login('user2')
+        self.psc.invokeFactory('PSCProject', 'proj2')
+        try:
+            self.psc.proj2.releases.invokeFactory('PSCRelease', '0.1')
+        except:
+            self.fail('Project creator is unable to create its releases')
 
 
 def test_suite():

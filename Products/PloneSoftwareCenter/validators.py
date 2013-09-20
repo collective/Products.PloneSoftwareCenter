@@ -1,5 +1,5 @@
 # Old Style
- 
+
 from Products.validation.interfaces import ivalidator
 import re
 
@@ -12,7 +12,7 @@ try:
 except ImportError:
     # BBB Plone 3
     USE_BBB_VALIDATORS = True
-    
+
 
 from zope.interface import implements
 from Products.validation.interfaces.IValidator import IValidator
@@ -29,20 +29,20 @@ is_valid_contact = re.compile('[mailto:,http:]')
 # Old style validators
 
 class ProjectIdValidator:
-    """Ensure that we don't get a value for the id of a project that is the same 
-    as the id of a category. This will break our nice acquisition-fuelled 
+    """Ensure that we don't get a value for the id of a project that is the same
+    as the id of a category. This will break our nice acquisition-fuelled
     listing templates and generally be bad.
     """
-    
+
     if USE_BBB_VALIDATORS:
         __implements__ = (ivalidator,)
     else:
         implements(IValidator)
-    
+
     def __init__(self, name):
         self.name = name
         return None
-    
+
     def __call__(self, value, *args, **kwargs):
         instance = kwargs['instance']
         if value in instance.getAvailableCategoriesAsDisplayList().keys():
@@ -77,14 +77,14 @@ class ProjectContactValidator:
 
 class ValidateEggNameUnique(object):
     """ Ensure that an egg is not already registered under a different project. """
-    
+
     implements(IObjectPreValidation)
     adapts(IProjectContent)
-    
+
     def __init__(self, context):
         super(ValidateEggNameUnique, self).__init__()
         self.context = context
-    
+
     def __call__(self, request):
         """ Validate that the fields for egg name registrations do not conflict with existing names """
         main = request.get("distutilsMainId", None)
@@ -93,16 +93,16 @@ class ValidateEggNameUnique(object):
             return {"distutilsMainId":_("You must set the primary package before you can select secondary packages.")}
 
         main = (main, )
-        
+
         if isinstance(secondary, str):
             secondary = (secondary, )
         elif isinstance(secondary, list) or isinstance(secondary, tuple):
             secondary = tuple(secondary)
         else:
             return {"distutilsSecondaryIds":_("You must provide a list of package names")}
-        
+
         errors = {}
-        
+
         if not self.context._distUtilsNameAvailable(main):
             errors['distutilsMainId'] = _("This package is already claimed by another project.")
         if not self.context._distUtilsNameAvailable(secondary):

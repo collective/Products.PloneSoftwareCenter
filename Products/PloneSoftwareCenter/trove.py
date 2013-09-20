@@ -26,7 +26,7 @@ class TroveClassifier(object):
             # if it has failed, we will use the saved one
             trove = open(self.default)
         try:
-            self._data = sorted([line.strip() for line in 
+            self._data = sorted([line.strip() for line in
                                  trove.readlines()])
         finally:
             trove.close()
@@ -61,6 +61,6 @@ class TroveClassifier(object):
             key2 = key2.split('|')[-1]
             return cmp(key1, key2)
 
-        return sorted(['%s|%s|%s' % (value[0], value[1], key) 
+        return sorted(['%s|%s|%s' % (value[0], value[1], key)
                        for key, value in self._ids.items()], _sorted)
 

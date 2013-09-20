@@ -32,7 +32,7 @@
                    title="RSS feed of the latest releases" />
          </a>
     </div>
-    
+
     <p class="documentDescription"
        tal:content="context/Description">
       <tal:comment replace="nothing">Description.</tal:comment>
@@ -42,7 +42,7 @@
       <select style="float: right; clear: right"
               onchange="window.location.href=this.options[this.selectedIndex].value">
         <option value="" i18n:translate="label_go_directly_project">Go directly to project&hellip;</option>
-        <option  tal:repeat="project view/active_projects" 
+        <option  tal:repeat="project view/active_projects"
                  tal:content="python:project.Title[:30]"
                  tal:attributes="value project/getURL">
         </option>
@@ -64,7 +64,7 @@
 
     <form action="createObject"
           tal:condition="context/@@plone_portal_state/anonymous">
-        
+
         <input name="type_name"
                type="hidden"
                value="PSCProject"
@@ -75,17 +75,17 @@
                i18n:attributes="value"
                />
     </form>
-    
-    <p class="discreet" 
+
+    <p class="discreet"
        style="text-align: right; clear: both;"
        i18n:translate="label_currently_listing_projects_releases">
-       Currently listing <span i18n:name="label_project_count" tal:replace="view/project_count" /> projects 
+       Currently listing <span i18n:name="label_project_count" tal:replace="view/project_count" /> projects
        with <span i18n:name="label_release_count" tal:replace="view/release_count" /> releases.
     </p>
-    
-      
+
+
     <p class="discreet" i18n:translate="help_latest_releases_each_category">
-    The latest releases in each category. To see all projects in a specific 
+    The latest releases in each category. To see all projects in a specific
     category, click "Show all".
     </p>
 
@@ -110,10 +110,10 @@
             </dt>
             <tal:releases tal:define="releases category/releases"
                           tal:condition="nocall:releases">
-                 
+
                 <tal:list repeat="release releases">
-                
-                <dd class="portletItem" 
+
+                <dd class="portletItem"
                      tal:define="oddrow repeat/release/odd"
                      tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
                     <a href=""
@@ -124,11 +124,11 @@
                         <span tal:replace="release/title">Project</span>
                         <span class="portletItemDetails"
                               tal:content="python:context.toLocalizedTime(release['date'])"><tal:comment replace="nothing">May 5</tal:comment></span>
-                        
+
                     </a>
                 </dd>
                 </tal:list>
-                
+
                 <tal:nolist condition="not:nocall:releases">
                     <dd class="portletItem odd">
                         <span class="discreet" i18n:translate="no_releases_found">
@@ -141,19 +141,19 @@
                     <a href="" title="Show all the projects in this category"
                        tal:attributes="href string:${context/absolute_url}/by-category/${category/id}"
 	               i18n:attributes="title title_psc_show_all_projects">
-                        <span i18n:translate="label_psc_show_all_projects">Show all </span> 
-                        <span tal:content="category/num_projects" /> 
+                        <span i18n:translate="label_psc_show_all_projects">Show all </span>
+                        <span tal:content="category/num_projects" />
                         <span i18n:translate="label_psc_show_all_projects_category"> projects in this category&#8230;</span>
                     </a>
                 </dd>
             </tal:releases>
         </dl>
-    
+
         <div class="visualClear" tal:condition="python: repeat['category'].number() % 3 == 0"><!----></div>
     </div>
-    
+
     <div class="visualClear"><!----></div>
-    
+
     <div class="poweredBy">
       <span i18n:translate="label_powered_by">Powered by </span>
       <a class="link-plain" href="http://plone.org/products/plonesoftwarecenter"

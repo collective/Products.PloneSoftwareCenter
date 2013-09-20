@@ -23,17 +23,17 @@
         <tal:release repeat="upcoming upcomingReleases">
         <tal:block define="upcoming_view upcoming/@@release_view">
         <dd class="portletItem">
-            <a href="" 
+            <a href=""
               tal:content="upcoming/Title"
               tal:attributes="href upcoming/absolute_url"><tal:comment replace="nothing">Release 1.2.2</tal:comment></a><br />
-    
+
             <tal:releasedate condition="upcoming_view/is_released">
                 <span class="discreet"
                       i18n:translate="portlet_project_roadmap_released_date">
                   Released <tal:date i18n:name="name_released_date" replace="upcoming_view/release_date" /><br />
                 </span>
             </tal:releasedate>
-    
+
             <tal:norelease condition="not: upcoming_view/is_released">
                 <span class="discreet" tal:condition="upcoming_view/release_date"
                       i18n:translate="portlet_project_roadmap_upcoming_release">
@@ -50,10 +50,10 @@
         <dd class="portletItem"
             tal:define="roadmapFolder here/getRoadmapFolder"
             tal:condition="roadmapFolder">
-           
+
                  <a i18n:translate="label_show_upcoming_releases"
                     tal:attributes="href roadmapFolder/absolute_url">
-                     Release roadmap for 
+                     Release roadmap for
                      <tal:projectname tal:replace="here/title_or_id"
                                       i18n:name="project">
                          Project
@@ -63,12 +63,12 @@
 
         <dd class="portletItem">
             <ul>
-            <li i18n:translate="help_show_upcoming_alpha_releases"><strong>Alpha</strong> releases should only be used for testing and 
+            <li i18n:translate="help_show_upcoming_alpha_releases"><strong>Alpha</strong> releases should only be used for testing and
             development.</li>
-            <li i18n:translate="help_show_upcoming_beta_releases"><strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally 
-            released for production testing, but should not be used on 
+            <li i18n:translate="help_show_upcoming_beta_releases"><strong>Beta releases</strong> and <strong>Release Candidates</strong> are normally
+            released for production testing, but should not be used on
             mission-critical sites.</li>
-            <li i18n:translate="help_show_upcoming_test_releases">Always install on a separate test server first, and 
+            <li i18n:translate="help_show_upcoming_test_releases">Always install on a separate test server first, and
                 <a href="/documentation/faq/plone-backup-move">make
                 sure you have proper backups</a> before installing.</li>
             </ul>

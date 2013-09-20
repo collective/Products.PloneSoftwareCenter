@@ -46,10 +46,10 @@ class ReleaseView(BrowserView):
         projectPath = self.context.getPhysicalPath()[:-2]
         if len(projectPath) > 1 and projectPath[-1] == 'portal_factory':
             projectPath = projectPath[:-2]
-            
+
         search = catalog.searchResults(portal_type = 'PSCImprovementProposal',
                                        path = '/'.join(projectPath))
-        
+
         items = [s for s in search]
         items.sort(lambda x, y: cmp(int(x.getId), int(y.getId)))
         lst = DisplayList()
@@ -57,7 +57,7 @@ class ReleaseView(BrowserView):
             title = i.Title
             if len(title) > 40:
                 title = title[:40] + '...'
-                
+
             lst.add(i.UID, title)
         return lst
 
@@ -81,12 +81,12 @@ class ReleaseView(BrowserView):
             return True
         else:
             return False
-    
+
     def is_released(self):
         """Returns true if the release has already been released."""
         wtool = getToolByName(self.context, 'portal_workflow')
         return wtool.getInfoFor(self.context, 'review_state') != 'pre-release'
-    
+
     def release_date(self):
         """Gets the release date."""
         if self.is_released():

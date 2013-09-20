@@ -4,7 +4,7 @@ try:
     haveContentMigrations = True
 except ImportError:
     haveContentMigrations = False
-    
+
 import types
 
 from StringIO import StringIO
@@ -18,21 +18,21 @@ from DateTime import DateTime
 def v1beta7_v1beta8(self, out):
     """Migrate from beta 7 to beta 8
     """
-    
+
     if not haveContentMigrations:
         print >> out, "WARNING: Install contentmigrations to be able to migrate from v1 beta 7 to beta 8"
         return
 
     class ReleaseStateMigrator(BaseInlineMigrator):
         src_portal_type = src_meta_type = 'PSCRelease'
-        
+
         stateMap = {'final' : 'final',
                     'rc'    : 'release-candidate',
                     'beta'  : 'beta',
                     'alpha' : 'alpha',
                     'in progress' : 'pre-release',
                     'in-progress' : 'pre-release'}
-        
+
         def migrate_releaseState(self):
             maturity = getattr(aq_base(self.obj), 'maturity', None)
             wftool = getToolByName(self.obj, 'portal_workflow')
@@ -40,18 +40,18 @@ def v1beta7_v1beta8(self, out):
             if maturity is not None and wfdef is not None:
                 maturity = str(maturity)
                 state = self.stateMap.get(maturity.lower(), 'pre-release')
-                wfstate = {'action'       : None, 
-                           'actor'        : None, 
+                wfstate = {'action'       : None,
+                           'actor'        : None,
                            'comments'     : 'Updated by migration; maturity was ' + maturity,
                            'review_state' : state,
                            'time'         : DateTime()}
                 wftool.setStatusOf('psc_release_workflow', self.obj, wfstate)
                 wfdef.updateRoleMappingsFor(self.obj)
                 self.obj.reindexObject()
-                
-    class ReleaseCountMigrator(BaseInlineMigrator): 
+
+    class ReleaseCountMigrator(BaseInlineMigrator):
         src_portal_type = src_meta_type = 'PSCProject'
-        
+
         def migrate_releaseCount(self):
             releaseCount = getattr(aq_base(self.obj), 'releaseCount', None)
             catalog = getToolByName(self.obj, 'portal_catalog')
@@ -63,21 +63,21 @@ def v1beta7_v1beta8(self, out):
             else:
                 self.obj.manage_changeProperties(releaseCount = len(releases))
             self.obj.reindexObject()
-    
+
     portal = getToolByName(self, 'portal_url').getPortalObject()
-    
+
     # Migrate release state
     walker = CustomQueryWalker(portal, ReleaseStateMigrator, query = {})
     transaction.savepoint(optimistic=True)
     print >> out, "Migrating from field-based maturity to workflow-based maturity"
     walker.go()
-    
+
     # Migrate release count variable
     walker = CustomQueryWalker(portal, ReleaseCountMigrator, query = {})
     transaction.savepoint(optimistic=True)
     print >> out, "Adding release count property"
     walker.go()
-    
+
 def migrate(self):
     """Run migrations
     """

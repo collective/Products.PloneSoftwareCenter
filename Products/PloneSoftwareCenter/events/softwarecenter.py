@@ -17,7 +17,7 @@ def initializeSoftwareCenterSecurity(ob, event):
 
 def addProjectEvaluatorRole(ob):
 
-    
+
     if 'PSCEvaluator' not in ob.validRoles():
         # Note: API sucks :-(
         ob.manage_defined_roles(submit='Add Role',
@@ -26,7 +26,7 @@ def addProjectEvaluatorRole(ob):
 def allowCreatorToReview(ob):
     """Assign the Reviewer and PSCEvaluator roles to a software center creator.
     """
-    
+
     owner = ob.Creator()
     roles = list(ob.get_local_roles_for_userid(owner))
     roles = roles + ['PSCEvaluator', 'Reviewer']
@@ -49,14 +49,14 @@ def changeStorageStrategy(psc, event):
     catalog = getToolByName(psc, 'portal_catalog')
     files = catalog.searchResults(portal_type='PSCFile',
                                   path=psc_path)
-    
+
     # at this stage the storage hasn't changed yet
     new_adapter = getAdapter(psc, IPSCFileStorage, event.new_storage)
 
     def _getStorage(*args):
         return new_adapter
-    
-    # now for each file we want to set the 
+
+    # now for each file we want to set the
     # content using the new storage
     #
     try:

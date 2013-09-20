@@ -34,7 +34,7 @@
                         <span i18n:translate="label_project_resources_documentation"> Documentation</span>
                     </a>
                 </li>
-                
+
                 <li tal:condition="here/getHomepage">
                     <a href=""
                        class="link-plain"
@@ -100,7 +100,7 @@
           </a>
         </p>
 
-        <p style="text-align: center;" 
+        <p style="text-align: center;"
            tal:condition="context/portal_syndication/isSiteSyndicationAllowed | nothing">
                <a href="" title="Subscribe to updates for this project"
                   tal:attributes="href project_view/release_rss_url | nothing"

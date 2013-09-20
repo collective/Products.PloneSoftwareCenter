@@ -19,7 +19,7 @@ try:
     NEEDS_UPDATE = True
 except ImportError:
     NEEDS_UPDATE = False
-    
+
 from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.permissions import ApproveProject, \
@@ -42,7 +42,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     TextField('description',
         default='',
         required=1,
@@ -72,7 +72,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             rows=25,
         ),
     ),
-    
+
     LinesField('classifiers',
         multiValued=1,
         required=0,
@@ -100,7 +100,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     StringField('distutilsMainId',
         required=0,
         schemata="distutils",
@@ -111,7 +111,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     LinesField('distutilsSecondaryIds',
         multiValued=1,
         required=0,
@@ -123,7 +123,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     IntegerField('downloadCount',
         required = 0,
         schemata = 'distutils',
@@ -134,7 +134,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             ),
         write_permission = 'Manage portal',
         ),
-    
+
     LinesField('selfCertifiedCriteria',
         multiValued=1,
         required=0,
@@ -149,7 +149,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             format="checkbox",
         ),
     ),
-    
+
     BooleanField('isApproved',
         required=0,
         write_permission=ApproveProject,
@@ -160,7 +160,7 @@ PSCProjectSchema = OrderedBaseFolder.schema.copy() + Schema((
             i18n_domain="plonesoftwarecenter",
         ),
     ),
-    
+
     TextField('reviewComment',
         searchable=1,
         required=0,
@@ -317,7 +317,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
                        'particular software package. It can keep track '
                        'of meta-data about the project, as well as '
                        'releases and improvement proposals.')
-    if NEEDS_UPDATE:                   
+    if NEEDS_UPDATE:
         actions = updateActions(ATCTMixin,
             ({
             'id'          : 'local_roles',
@@ -333,8 +333,8 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
              },
             )
         )
-    
-    
+
+
     def canSelectDefaultPage(self):
         return False
 
@@ -345,19 +345,19 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         Projects are initialized with a release folder.
         """
         OrderedBaseFolder.initializeArchetype(self,**kwargs)
-        
+
         # if self.haveHelpCenter() and \
         #        not self.objectIds('PSCDocumentationFolder'):
         #    self.invokeFactory('PSCDocumentationFolder',
         #                       config.DOCUMENTATION_ID)
-        
+
         if not self.objectIds('PSCReleaseFolder'):
             self.invokeFactory('PSCReleaseFolder', config.RELEASES_ID)
-        
+
         # if not self.objectIds('PSCImprovementProposalFolder'):
         #     self.invokeFactory('PSCImprovementProposalFolder',
         #                        config.IMPROVEMENTS_ID)
-        
+
         if not self.hasProperty('releaseCount'):
             self.manage_addProperty('releaseCount', 0, 'int')
 
@@ -380,7 +380,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
     def getView(self):
         """returns the view object"""
         return getMultiAdapter((self, self.REQUEST), name='project_view')
-   
+
     security.declareProtected(permissions.ModifyPortalContent,
                               'setClassifiers')
     def setClassifiers(self, value):
@@ -404,7 +404,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         values = [vocab.getValue(c) or c for c in self.getCategories()]
         values.sort()
         return values
-    
+
     security.declareProtected(permissions.View,
                               'getVocabularyTitlesFromCLassifiers')
     def getVocabularyTitlesFromCLassifiers(self):
@@ -421,21 +421,21 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         """Get classifiers vocabulary from parent project area via acquisition.
         """
         return self.getAvailableClassifiersAsDisplayList()
-    
+
 
     security.declareProtected(permissions.View, 'getCategoriesVocab')
     def getCategoriesVocab(self):
         """Get categories vocabulary from parent project area via acquisition.
         """
         return self.getAvailableCategoriesAsDisplayList()
-    
+
     security.declareProtected(permissions.View, 'getSelfCertificationCriteriaVocab')
     def getSelfCertificationCriteriaVocab(self):
         """Get self-certification criteria vocabulary from parent project area
         via acquisition.
         """
         return self.getAvailableSelfCertificationCriteriaAsDisplayList()
-    
+
     security.declareProtected(permissions.View, 'getReleaseFolder')
     def getReleaseFolder(self):
         """Get the release folder.
@@ -500,9 +500,9 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         allVersions = self.getVersionsVocab()
         unsupported = self.getUnsupportedVersions()
         return [v for v in allVersions if v not in unsupported]
-        
+
     security.declareProtected(permissions.View, 'haveHelpCenter')
-    def haveHelpCenter(self):    
+    def haveHelpCenter(self):
         """Test to see if PloneHelpCenter is installed
         """
         ttool = getToolByName(self, 'portal_types')
@@ -510,7 +510,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
             return True
         else:
             return False
-    
+
     security.declareProtected(permissions.View, 'getAvailableFeaturesAsDisplayList')
     def getAvailableFeaturesAsDisplayList(self):
         """Get list of Improvement Proposals in DisplayList form."""
@@ -529,9 +529,9 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
 
             lst.add(i.UID, title)
         return lst
-   
+
     def _distUtilsNameAvailable(self, ids):
-        current_id = self.getId() 
+        current_id = self.getId()
         sc = self.getParentNode()
         existing_projects = get_projects_by_distutils_ids(sc, ids)
 
@@ -542,8 +542,8 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
         return True
 
     def getCompatibility(self):
-        '''Get the compatibility of the product by getting  
-        the compatabilities of the LATEST release. This is 
+        '''Get the compatibility of the product by getting
+        the compatabilities of the LATEST release. This is
         used primarily by the index.
         '''
         compatabilities = []
@@ -553,15 +553,15 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
                 compatabilities.append(release_compatability)
         compatabilities.sort(reverse=True)
         return set(compatabilities)
-            
+
     def getLatestRelease(self):
-        """Get the most recent final release brain or None if none 
+        """Get the most recent final release brain or None if none
         can be found.
         """
         releaseFolder = self.getReleaseFolder()
-        
+
         res = None
-        
+
         if releaseFolder:
             catalog = getToolByName(self, 'portal_catalog')
             res = catalog.searchResults(
@@ -570,49 +570,49 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
               sort_on = 'Date',
               sort_order = 'reverse',
               portal_type = 'PSCRelease')
-        
+
         if not res:
             return None
         else:
             return res[0]
-            
+
     def mayBeUnmaintained(self):
         """Return True if there hasn't been a release in over a year"""
         lastRelease = self.getLatestReleaseDate()
         if not lastRelease:
             return False
-            
+
         if DateTime.DateTime() - lastRelease > 360:
             return True
-            
+
         return False
-        
-            
+
+
     def getLatestReleaseDate(self):
         """
-        Return the effective date of the last release. This is currently used for index 
+        Return the effective date of the last release. This is currently used for index
         and catalog data.
         """
         latest = self.getLatestRelease()
         if latest:
             return latest.effective
         return None
-    
 
-    security.declareProtected(permissions.ModifyPortalContent,  
+
+    security.declareProtected(permissions.ModifyPortalContent,
                               'setDistutilsSecondaryIds')
     def setDistutilsSecondaryIds(self, names):
         if not self._distUtilsNameAvailable(names):
             raise Unauthorized
-        self.getField('distutilsSecondaryIds').set(self, names) 
+        self.getField('distutilsSecondaryIds').set(self, names)
         self.reindexObject()
 
-    security.declareProtected(permissions.ModifyPortalContent,  
+    security.declareProtected(permissions.ModifyPortalContent,
                               'setDistutilsMainId')
     def setDistutilsMainId(self, name):
         if not self._distUtilsNameAvailable([name]):
             raise Unauthorized
-        self.getField('distutilsMainId').set(self, name) 
+        self.getField('distutilsMainId').set(self, name)
         self.reindexObject()
 
 registerType(PSCProject, config.PROJECTNAME)

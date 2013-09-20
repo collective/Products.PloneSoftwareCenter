@@ -3,20 +3,20 @@ from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner
 
 class CategoryView(BrowserView):
-    
+
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
-        
+
         self.membership = getToolByName(self.context, 'portal_membership')
         self.catalog = getToolByName(self.context, 'portal_catalog')
         self.portal_url = getToolByName(self.context, 'portal_url')()
-        
+
         self.context_path = '/'.join(self.context.getPhysicalPath())
-        
-    
+
+
     def get_products(self, category, version, sort_on, SearchableText=None):
         featured = False
-        # featured content should be filtered by state and then 
+        # featured content should be filtered by state and then
         # sorted by average rating
         if sort_on == 'featured':
             featured = True
@@ -25,26 +25,26 @@ class CategoryView(BrowserView):
 			             'portal_type': 'PSCProject',
 			             'sort_on' : sort_on,
 			             'sort_order': 'reverse'}
-        
+
         if version != 'any':
             contentFilter['getCompatibility'] = version
         if featured:
             contentFilter['review_state'] = 'featured'
         if category:
             contentFilter['getCategories'] = category
-            
+
         return self.catalog(**contentFilter)
-    
+
     def get_latest_plone_release(self):
-        """Get the latest version from the vocabulary. This only 
-        goes by string sorting so would need to be reworked if the 
+        """Get the latest version from the vocabulary. This only
+        goes by string sorting so would need to be reworked if the
         plone versions dramatically changed"""
         # getAvailableVersions is coming from root.py. ?
         versions = list(self.context.getAvailableVersions())
         versions.sort(reverse=True)
         return versions[0]
-    
-    
+
+
     def by_category(self, category, states=[], limit=None):
         """Get catalog brains for projects in category."""
         return self._contained(states, category, 'PSCProject', limit,
@@ -65,7 +65,7 @@ class CategoryView(BrowserView):
             query['review_state'] = states
         if category:
             if self.context.getUseClassifiers():
-                query['getClassifiers'] = category 
+                query['getClassifiers'] = category
             else:
                 query['getCategories'] = category
         if limit:

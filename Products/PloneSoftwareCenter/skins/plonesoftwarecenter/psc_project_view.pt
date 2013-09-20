@@ -27,7 +27,7 @@
         <h1 class="documentFirstHeading">
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
-        
+
         <dl class="portalMessage error" tal:condition="context/mayBeUnmaintained">
             <dt i18n:translate="">Warning</dt>
             <dd i18n:translate="">This product has not had a release in over 1 year and may no longer be maintained. </dd>
@@ -38,7 +38,7 @@
              tal:content="here/Description">
             <tal:comment replace="nothing">description</tal:comment>
         </p>
-        
+
         <p class="portalMessage info"
            tal:condition="python: is_editable and not view.is_public()"
            i18n:domain="plone" i18n:translate="description_cannot_add_before_approved">
@@ -47,9 +47,9 @@
            the relevant project information has been entered.
         </p>
 
-        
+
         <h2 i18n:translate="label_project_description">Project Description</h2>
-    
+
         <div id="project_logo_wrapper"
          tal:condition="here/getLogo | nothing">
             <a tal:omit-tag="not: here/getLogoURL"
@@ -57,11 +57,11 @@
                 <img tal:replace="structure here/getLogo" />
             </a>
         </div>
-        
+
         <div tal:replace="structure here/getText" />
-        
+
         <div class="visualClear"></div>
-        
+
         <tal:block tal:condition="python: view.has_criteria_info()">
             <h2 i18n:translate="label_self_certification">Self-Certification</h2>
             <tal:block repeat="criterion view/criteria_info">
@@ -72,10 +72,10 @@
                 </p>
             </tal:block>
         </tal:block>
-        
-        <tal:block tal:condition="view/has_review_comment|nothing"> 
+
+        <tal:block tal:condition="view/has_review_comment|nothing">
             <h2 tal:condition="here/isApproved|nothing" i18n:translate="label_independent_review">Independent Review</h2>
-            <p content="structure here/getReviewComment" /> 
+            <p content="structure here/getReviewComment" />
             <p tal:condition="here/isApproved|nothing">
                 <i i18n:translate="help_independent_review">This project has been approved via independent review.</i>
             </p>
@@ -83,11 +83,11 @@
             <p tal:condition="here/isApproved|nothing">
                 <span tal:replace="here/reviewComment" />
             </p>
-        </tal:block> 
-        
+        </tal:block>
+
         <div class="visualClear"></div>
         <tal:nostable condition="nocall:not:latestRelease">
-        
+
                 <h2 i18n:translate="label_current_stable_release">Current Release</h2>
                 <p i18n:translate="help_not_stable_release">
                     No stable release available yet.
@@ -98,7 +98,7 @@
                     <p class="discreet"
                        tal:condition="here/getRepository">
                         <span i18n:translate="label_resource_getting_code">
-                        If you are interested in getting the source code of 
+                        If you are interested in getting the source code of
                         this project, you can get it from the
                         </span>
                         <a href=""
@@ -125,10 +125,10 @@
                          </tal:noreleases>
                          <tal:prioritize i18n:translate="description_prioritize_releases">
                             This listing will prioritize final releases,
-                            but will list the latest published release of any 
+                            but will list the latest published release of any
                             other type if no final release exists. If you list
-                            the source code repository in this project, it 
-                            will show up, so people know where to go to check 
+                            the source code repository in this project, it
+                            will show up, so people know where to go to check
                             out in the code in the meantime.
                          </tal:prioritize>
                     </p>
@@ -137,7 +137,7 @@
 
         </tal:nostable>
 
-        
+
         <tal:stable condition="nocall:latestRelease">
         <div class="pane">
            <h2>
@@ -153,7 +153,7 @@
                 <tal:releasedate condition="latestRelease/effective" i18n:translate="">
                     Released <span tal:replace="view/latest_release_date" i18n:name="latest_release_date" />
                 </tal:releasedate>
-                
+
                 <tal:compatibility condition="latestRelease/getCompatibility">
                     &mdash; <span i18n:translate="">tested with</span>
                     <metal:versions
@@ -171,7 +171,7 @@
                    i18n:translate="label_release_details"
                    tal:attributes="href latestRelease/absolute_url">More about this release&hellip;</a>
                 </p>
-                
+
                 <dl>
                   <tal:downloads repeat="file latestRelease/contentValues">
                   <dt>
@@ -182,14 +182,14 @@
                              style="float: left; clear:left; display: block; margin: 0 0.5em 0.5em 0;"
                              tal:attributes="src string:${here/portal_url}/${file/@@file_view/downloadicon_name}" />
                       </a>
-                      
+
                       <a class="link-plain"
                          tal:attributes="href file/@@file_view/direct_url">
                         <span i18n:translate="label_get">Get</span>
                         <span tal:replace="here/Title">Ploneboard 1.0</span>
                         <span i18n:translate="">for</span>
                         <span tal:replace="file/getPlatform" /></a>
-                      
+
                         <!--comment out size
                         <span class="discreet"
                                   tal:define="fileSize file/@@file_view/file_size">
@@ -214,7 +214,7 @@
                 </dl>
         </div>
         </tal:stable>
-        
+
         <div class="pane">
            <h2 i18n:translate="">All Releases</h2>
            <table class="listing release_table">
@@ -261,7 +261,7 @@
                                 <span tal:content="release/license2" />
                                 </tal:block><tal:block tal:condition="release/license3|nothing"><br />
                                 <span tal:content="release/license3" /></tal:block>
-                            </td>   
+                            </td>
                             <td class="maturity" tal:content="maturity"/>
                         </tr>
                     </tal:loop>

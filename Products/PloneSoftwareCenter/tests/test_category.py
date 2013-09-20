@@ -11,7 +11,7 @@ class TestCategoryView(PSCTestCase):
 
         self.psc = self.portal.psc
 
-        for id in ['proj4', 'proj3', 'proj2', 'proj1']: 
+        for id in ['proj4', 'proj3', 'proj2', 'proj1']:
 
             self.psc.invokeFactory('PSCProject', id)
 
@@ -30,7 +30,7 @@ class TestCategoryView(PSCTestCase):
 
     def testViewLookup(self):
         self.failIf(self.view is None)
-    
+
     def test_category_name(self):
         self.psc.setAvailableCategories([
           'cat1|Category 1|Projects of category 1',
@@ -38,7 +38,7 @@ class TestCategoryView(PSCTestCase):
           ])
         self.resetView()
         self.assertEqual(self.view.category_name('cat1'), 'Category 1' )
-    
+
     def test_category_description(self):
         self.psc.setAvailableCategories([
           'cat1|Category 1|Projects of category 1',
@@ -58,13 +58,13 @@ class TestCategoryView(PSCTestCase):
 
         for wanted in (self.psc.proj4, self.psc.proj3):
             self.assert_(wanted in objs)
-        
+
         objs = [brain.getObject() for brain in self.view.by_category(
           'cat1', limit=2)]
         objs.sort()
         for wanted in (self.psc.proj4, self.psc.proj3):
-            self.assert_(wanted in objs)    
-    
+            self.assert_(wanted in objs)
+
     def test_contained(self):
 
         objs = [brain.getObject() for brain in self.view._contained(
@@ -73,18 +73,18 @@ class TestCategoryView(PSCTestCase):
 
         objs = [brain.getObject() for brain in self.view._contained(
           category='cat1', portal_type='PSCProject', states=['published'])]
-        
+
         for proj in (self.psc.proj4, self.psc.proj3):
             self.assert_(proj in objs)
 
         self.assertEqual([], self.view._contained(
           category='cat1', portal_type='DummyType', states=['published']))
-        
+
         objs = [brain.getObject() for brain in self.view._contained(
           category='cat1', portal_type='PSCProject', states=['published'], limit=2)]
         self.assertEqual([self.psc.proj3, self.psc.proj4],
           objs)
-        
+
         objs = [brain.getObject() for brain in self.view._contained(
           category='cat1', portal_type='PSCProject', states=['published'], sort_on='sortable_title', sort_order='reverse')]
         self.assertEqual([self.psc.proj3, self.psc.proj4], objs)

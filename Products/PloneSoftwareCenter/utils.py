@@ -27,17 +27,17 @@ def plat(name):
     generic = r'^[\w\-\.]+\.%s\-[\w\-\.]+\.tar\.gz$'
     return re.compile(generic % name, re.I)
 
-platform_catchers = ((plat('macosx'), 'Mac OS X'), 
+platform_catchers = ((plat('macosx'), 'Mac OS X'),
                      (plat('linux'), 'Linux'),
                      (plat('linux-x64'), 'Linux-x64'),
                      (plat('win32'), 'Windows'))
 
 def which_platform(filename_or_url):
     """Get the platform with the filename.
-    
+
     - an egg will be considered as non-specific to a platform
       even if it contains a specific compilation
-    - a tar.gz name will be scanned 
+    - a tar.gz name will be scanned
     """
     if '/' in filename_or_url:
         filename = filename_or_url.split('/')[-1]
@@ -152,7 +152,7 @@ class VersionPredicate:
            str = match.groups()[0]
            self.pred = [splitUp(aPred) for aPred in str.split(",")]
            if not self.pred:
-               raise ValueError("Empty Parenthesized list in %r" 
+               raise ValueError("Empty Parenthesized list in %r"
                                 % versionPredicateStr )
        else:
            self.pred=[]
@@ -184,9 +184,9 @@ def check_provision(value):
 def search_projects_by_field(center, field, value):
     value = [v for v in value if v]
     if not value:
-        # If there is no search to be done there's no point checking 
+        # If there is no search to be done there's no point checking
         # the catalogue
-        raise StopIteration     
+        raise StopIteration
     catalog = getToolByName(center, 'portal_catalog')
     sc_path = '/'.join(center.getPhysicalPath())
     query = {'path'         : sc_path,
@@ -205,6 +205,6 @@ def search_projects_by_field(center, field, value):
 
 def get_projects_by_distutils_ids(sc, ids):
     primary = search_projects_by_field(sc, 'getDistutilsMainId', ids)
-    secondary = search_projects_by_field(sc, 'getDistutilsSecondaryIds', ids) 
+    secondary = search_projects_by_field(sc, 'getDistutilsSecondaryIds', ids)
     return chain(primary, secondary)
 

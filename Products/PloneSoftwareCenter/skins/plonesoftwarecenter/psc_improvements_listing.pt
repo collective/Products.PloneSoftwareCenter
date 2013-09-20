@@ -29,7 +29,7 @@
     <h1>
       <span i18n:translate="label_improvements_listing">Improvement Proposals </span>
       <span tal:condition="state">"</span><span tal:replace="python:(', ').join(state).capitalize()" /><span tal:condition="state">"</span>
-      <span i18n:translate="label_improvements_proposals_for"> for </span>        
+      <span i18n:translate="label_improvements_proposals_for"> for </span>
       <span tal:replace="here/aq_parent/Title" />
     </h1>
 
@@ -38,7 +38,7 @@
            <span i18n:translate="help_improvements_listing">
             If you want to see the feature proposals displayed according
             to what release they are assigned to, go to the
-           </span>            
+           </span>
         <a href="psc_roadmap" title="Roadmap page"
            i18n:attributes="title title_improvements_listing_roadmap_page">
            <span i18n:translate="title_improvements_listing_roadmap_page">Roadmap page</span>
@@ -110,7 +110,7 @@
                     <td>&nbsp;
 
                         <span tal:repeat="release item/getRelatedReleases">
-                           <a tal:content="release" 
+                           <a tal:content="release"
                               tal:attributes="href string:${releaseFolderUrl}/${release}">
                               <tal:comment replace="nothing">[item]</tal:comment>
                            </a>
@@ -128,7 +128,7 @@
             i18n:attributes="title title_improvements_listing_show_all">
             <span i18n:translate="label_improvements_listing_show_all">Show all</span>
         </a>
-        
+
         <p class="discreet"
            tal:condition="not: plips"
            i18n:translate="label_improvements_listing_no_proposals_added">

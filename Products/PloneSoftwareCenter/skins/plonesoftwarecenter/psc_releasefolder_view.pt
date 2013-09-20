@@ -45,10 +45,10 @@
         <p class="portalMessage"
            tal:condition="python: is_editable and wtool.getInfoFor(context.aq_parent, 'review_state')!='published'"
            i18n:domain="plone" i18n:translate="description_cannot_add_before_approved">
-        You can not add releases, documentation or feature proposals until the 
-        project itself is approved, make sure you submit it for approval when 
+        You can not add releases, documentation or feature proposals until the
+        project itself is approved, make sure you submit it for approval when
         the relevant project information has been entered.
-        </p>        
+        </p>
 
         <tal:releases define="upcoming view/upcoming_releases;
                               previous view/previous_releases">
@@ -151,7 +151,7 @@
                 </div>
                 <div class="visualClear"></div>
             </tal:release_iter>
-         
+
      </tal:releases>
 
     </div>

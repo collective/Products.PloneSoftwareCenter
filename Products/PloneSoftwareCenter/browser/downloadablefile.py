@@ -31,7 +31,7 @@ class DownloadableFileView(BrowserView):
         """
         try:
             return self.context.getObjSize(self.context)
-        except RuntimeError: 
+        except RuntimeError:
             # older products throwing RuntimeError: Filesystem Script (Python) getObjSize has errors.
             return None
 

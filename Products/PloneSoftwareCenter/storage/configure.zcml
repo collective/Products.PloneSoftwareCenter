@@ -5,7 +5,7 @@
 
   <!-- release storage adapters -->
   <adapter
-      name="archetype"  
+      name="archetype"
       for="*"
       factory=".archetype.ArchetypeStorage"
       provides=".interfaces.IPSCFileStorage"

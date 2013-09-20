@@ -3,7 +3,7 @@
     <version>1.6.1</version>
     <!--
     There is something really weird happening here. This throws another
-    error on profiles.zcml. Doing this in code for 
+    error on profiles.zcml. Doing this in code for
     <dependencies>
         <dependency>profile-contentratings:default</dependency>
     <dependencies>-->

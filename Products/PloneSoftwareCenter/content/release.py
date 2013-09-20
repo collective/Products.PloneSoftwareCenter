@@ -155,7 +155,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
             show_hm = False,
         ),
     ),
-    
+
     DateTimeField('featureFreezeDate',
         required=0,
         searchable=0,
@@ -295,8 +295,8 @@ class PSCRelease(ATCTMixin, OrderedBaseFolder):
     security.declarePublic('generateTitle')
     def generateTitle(self):
         """Generate the title of the release from the project name +
-        the version 
-        """ 
+        the version
+        """
         # The first time this is called (it's called like two dozen times
         # when a release is created...) we don't seem to have an acquisition
         # context, so the call to aq_inner fails. Thus, we fall back on a
@@ -347,32 +347,32 @@ class PSCRelease(ATCTMixin, OrderedBaseFolder):
         except AttributeError:
             return ''
         return portal_workflow.getInfoFor(self, 'review_state')
-    
+
     security.declareProtected(permissions.View, 'getLicenseVocab')
     def getLicenseVocab(self):
         """Get the available licenses from the parent project area via
          acqusition.
         """
         return self.getAvailableLicensesAsDisplayList()
-    
+
     security.declareProtected(permissions.View, 'getCompatibilityVocab')
     def getCompatibilityVocab(self):
         """Get the available compatability versions from the parent project
            area via acqusition.
         """
         return self.getAvailableVersionsAsDisplayList()
-    
+
     security.declareProtected(permissions.View, 'getRelatedFeaturesVocab')
     def getRelatedFeaturesVocab(self):
         """Get list of Improvement Proposals possible to add to this release
            from the parent project area via acquisition"""
         return self.getAvailableFeaturesAsDisplayList()
-    
+
     security.declareProtected(permissions.View, 'showReleaseNumber')
     def showReleaseNumber(self):
         """Determine if the 'release number' field should be visible.
         """
-        
+
         # Note: This is view code which ideally should not be on the
         # content itself, but because Archetypes is not componentized
         # yet this is not possible.

@@ -9,7 +9,7 @@
 
 <head>
     <metal:css fill-slot="style_slot">
-        <style type="text/css" media="all" 
+        <style type="text/css" media="all"
             tal:content="string:@import url($portal_url/plonesoftwarecenter.css);">
         </style>
         <style type="text/css">
@@ -44,13 +44,13 @@
             normalizeString nocall:context/@@plone/normalizeString;
             toLocalizedTime nocall:context/@@plone/toLocalizedTime;
             cropText nocall:context/@@plone/cropText;">
-                     
+
         <h1 tal:content="here/title_or_id" class="documentFirstHeading">
             <tal:comment replace="nothing">Title or id</tal:comment>
         </h1>
 
         <div class="feedButton" >
-            <a href="" tal:attributes="href string:${context/absolute_url}/search_rss?portal_type=PSCRelease"><img 
+            <a href="" tal:attributes="href string:${context/absolute_url}/search_rss?portal_type=PSCRelease"><img
                 i18n:attributes="title title_rss_feed; alt label_rss_feed;"
                     tal:attributes="src string:$portal_url/rss.gif" src="rss.gif"
                         alt="RSS Feed" title="RSS feed of the latest releases" /></a>
@@ -65,22 +65,22 @@
         <p class="documentDescription" tal:content="here/Description">
             <tal:comment replace="nothing">Description</tal:comment>
         </p>
-        
+
         <div class="visualClear"><!-- --></div>
-    
+
         <tal:featured_project_wrapper tal:condition="python: here.getFeaturedProject()">
             <dl class="portlet" style="width: 23em; float: left">
                 <dt class="portletHeader" i18n:translate="label_psc_ploneorg_featured_project">
                     Get <tal:featured_project tal:replace="python: here.getFeaturedProject().Title()"
                     i18n:name="label_psc_ploneorg_get_featured_project">
-                        Featured Project </tal:featured_project> 
+                        Featured Project </tal:featured_project>
                     for your platform
                 </dt>
-                <dd class="portletItem" style="text-align: center" 
+                <dd class="portletItem" style="text-align: center"
                     tal:define="project_url python: here.getFeaturedProject().absolute_url()">
-                    <a tal:attributes="href project_url"><img 
-                        height="40" width="40" alt="Windows" src="platform_windows.gif" i18n:attributes="alt" /><img 
-                        height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" i18n:attributes="alt" /><img 
+                    <a tal:attributes="href project_url"><img
+                        height="40" width="40" alt="Windows" src="platform_windows.gif" i18n:attributes="alt" /><img
+                        height="40" width="40" alt="Mac" src="platform_mac_os_x.gif" i18n:attributes="alt" /><img
                         height="40" width="40" alt="Linux" src="platform_linux.gif" i18n:attributes="alt" /></a>
                     <h3>
                         <a tal:attributes="href project_url" title="Download projects"
@@ -91,9 +91,9 @@
                         </a>
                     </h3>
                     <span class="discreet"
-                          i18n:translate="label_psc_ploneorg_latest_release">Latest release: 
+                          i18n:translate="label_psc_ploneorg_latest_release">Latest release:
                         <tal:latest_release tal:replace="python: here.getFeaturedProjectRelease().getId()"
-                        i18n:name="title_psc_ploneorg_latest_release"> 
+                        i18n:name="title_psc_ploneorg_latest_release">
                             Latest Release
                         </tal:latest_release>
                     </span>
@@ -109,7 +109,7 @@
                 <form style="text-align: center;"
                       name="searchform" id="searchform"
                       action="/search" tal:attributes="action string:${portal_url}/search">
-               
+
                         <label for="searchGadget"
                                class="hiddenStructure" i18n:translate="label_search_addon">
                             Search add-ons
@@ -123,7 +123,7 @@
                                accesskey="accesskeys-search"
                                i18n:attributes="title label_search_addon"
                                tabindex="0" />
-        
+
                         <input class="searchButton" name="Search"
                                style="font-size: 150%; background-position: 3px 5px; padding-left: 25px; padding-right: 10px"
                                type="submit" value="Search" i18n:attributes="value label_search_package_releases"
@@ -137,7 +137,7 @@
             <dt class="portletHeader"
                 i18n:translate="heading_want_addon_package">Want to list your add-on package?</dt>
             <dd class="portletItem" style="text-align: center">
-                <form action="createObject" 
+                <form action="createObject"
                       tal:condition="python: user.has_permission('PloneSoftwareCenter: Add Project', context)">
                     <input name="type_name"
                            type="hidden"
@@ -171,14 +171,14 @@
         <!-- <select style="float: left;"
                 onchange="window.location.href=this.options[this.selectedIndex].value">
             <option value="">Go directly to project&hellip;</option>
-            <option  tal:repeat="project here/getActiveProjects" 
+            <option  tal:repeat="project here/getActiveProjects"
                      tal:content="python:project.Title[:30]"
                      tal:attributes="value project/getURL">
             </option>
         </select> -->
 
-        
-          
+
+
         <div class="visualClear"><!----></div>
 
         <h2 style="margin-top:1em" i18n:translate="heading_addon_package_releases">
@@ -218,13 +218,13 @@
                     </option>
                 </tal:block>
             </select>
-             
+
             <input class="context" type="submit" name="product_search" value="Update"
                    i18n:attributes="value label_update_form_package_releases" />
         </form>
 
         <div tal:define="results python:catalog(getCategories=currentCategory,
-                                                getCompatibility=currentVersion, 
+                                                getCompatibility=currentVersion,
                                                 portal_type='PSCRelease',
                                                 sort_on='effective',
                                                 sort_order='reverse');
@@ -232,18 +232,18 @@
                          b_size python:20;b_start python:0;b_start request/b_start | b_start;
                          desc_length site_properties/search_results_description_length;
                          desc_ellipsis site_properties/ellipsis;">
-        
+
             <p tal:condition="not: results">
                 <strong i18n:translate="description_no_results_found">No results were found.</strong>
             </p>
-        
+
             <p class="discreet" i18n:translate="help_releases_matching_criteria">
                 <span i18n:name="results_releases_matching_criteria" tal:replace="python:len(results)">234</span> releases matching your criteria, sorted with latest releases first.
             </p>
-        
+
             <div tal:condition="results"
                   tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
-        
+
                 <div class="project" tal:repeat="result batch">
                 <tal:entry define="obj result/getObject;
                                    project python:obj.aq_parent.aq_parent;
@@ -255,13 +255,13 @@
                     <div class="screenshot" tal:condition="project/logo|nothing">
                         <a href="#" tal:attributes="href projectURL"><img tal:replace="structure project/logo" /></a>
                     </div>
-                    
+
                     <div class="project_details">
                         <h3 tal:define="item_wf_state result/review_state;
                                         item_wf_state_class python:'state-' + normalizeString(item_wf_state);"
                             tal:attributes="class item_wf_state_class">
 
-                            <a href="#" style="border-bottom: 1px solid #8CACBB" tal:attributes="href projectURL;" 
+                            <a href="#" style="border-bottom: 1px solid #8CACBB" tal:attributes="href projectURL;"
                                 tal:content="result/pretty_title_or_id"><tal:comment replace="nothing">Software Project</tal:comment></a>
 
                             <span class="discreet" tal:content="python:toLocalizedTime(result.ModificationDate, long_format=0)">
@@ -269,12 +269,12 @@
                             </span>
 
                         </h3>
-                        
+
                         <p class="discreet"
                            tal:condition="not:currentCategory">
                             <span i18n:translate="">in</span> <span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
                         </p>
-                        
+
                         <div class="description">
                             <p tal:content="python:cropText(project.Description(), desc_length, desc_ellipsis)">
                                 <tal:comment replace="nothing">Project Description</tal:comment>
@@ -284,25 +284,25 @@
                                 <span tal:content="python:cropText(result.Description, desc_length, desc_ellipsis)">
                                     <tal:comment replace="nothing">Release Description</tal:comment>
                                 </span>
-                            </p>                        
+                            </p>
                         </div>
                     </div>
                 </tal:entry>
                 </div>
-                 
+
                 <!-- Navigation -->
                 <div metal:use-macro="here/batch_macros/macros/navigation" />
-        
+
             </div>
         </div>
 
 
         <div class="visualClear"><!----></div>
-        
+
         <div class="poweredBy" i18n:translate="label_powered_by_ploneorg">
             Powered by <img src="product_icon.png" alt="Plone Software Center's Home Page"
                         i18n:attributes="alt label_psc_homepage" />
-            <a class="link-plain" 
+            <a class="link-plain"
                href="http://plone.org/products/plonesoftwarecenter"
                title="Plone Software Center's Home Page"
                i18n:attributes="title title_psc_homepage">Plone Software Center</a>
