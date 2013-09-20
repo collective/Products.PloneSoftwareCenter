@@ -75,7 +75,7 @@ class SoftwareCenterView(BrowserView):
             filtered_values = self.catalog.uniqueValuesFor('getClassifiers')
             field = self.context.getField('availableClassifiers')
             vocab = self.context.getAvailableTopicsFromClassifiers()
-            classifiers = field.getAsGrid(field)
+            classifiers = field.getAsGrid(self.context)
             field_name = 'getClassifiers'
         else:
             vocab = self.context.getAvailableCategoriesAsDisplayList() 

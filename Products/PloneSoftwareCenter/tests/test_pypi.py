@@ -149,7 +149,7 @@ class TestPyPI(PSCTestCase):
         psc = self.portal.psc
         pg = 'rated-pg13|Rated PG13|Rated :: PG13'
         classifiers = psc.getField('availableClassifiers')
-        values = classifiers.get(classifiers) 
+        values = classifiers.get(psc)
         classifiers.set(psc, values + (pg,))  
         
         view.submit()

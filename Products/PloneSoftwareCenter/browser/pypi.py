@@ -544,7 +544,7 @@ class PyPIView(BrowserView):
     def list_classifiers(self):
         """returns classifiers titles"""
         field = self.context.getField('availableClassifiers')
-        return '\n'.join(field.getColumn(field, 2))
+        return '\n'.join(field.getColumn(self.context, 2))
 
     def normalizeName(self, text):
         """ Generate an id that

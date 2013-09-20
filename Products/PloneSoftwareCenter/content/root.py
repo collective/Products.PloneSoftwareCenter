@@ -317,7 +317,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
         """Get categories in DisplayList form, extracted from
         all classifiers that starts with 'Topic'"""
         field = self.getField('availableClassifiers')
-        classifiers = field.getAsGrid(field)
+        classifiers = field.getAsGrid(self)
         vocab = {}
         for id, title, trove_id in classifiers:
             if trove_id.startswith('Topic'):
