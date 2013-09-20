@@ -1,8 +1,6 @@
-from urllib import quote
-
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+from Products.Five import BrowserView
+
 
 class SoftwareCenterView(BrowserView):
 
@@ -18,12 +16,12 @@ class SoftwareCenterView(BrowserView):
     def rss_url(self):
         """Get the URL to the RSS feed for the project center
         """
-        return "%s/search_rss?" \
-                "portal_type=PSCRelease&" \
-                "sort_on=Date&sort_order=reverse&"\
-                "review_state=alpha&review_state=beta&" \
-                "review_state=release-candidate&review_state=final" \
-                % self.context.absolute_url()
+        return ("%s/search_rss?"
+                "portal_type=PSCRelease&"
+                "sort_on=Date&sort_order=reverse&"
+                "review_state=alpha&review_state=beta&"
+                "review_state=release-candidate&review_state=final"
+                % self.context.absolute_url())
 
     def active_projects(self):
         """Get all active projects (i.e. they have one alpha/beta/rc/final
@@ -32,7 +30,7 @@ class SoftwareCenterView(BrowserView):
         return self.catalog(review_state = 'published',
                             portal_type = 'PSCProject',
                             path = self.context_path,
-                            releaseCount = {'query' : 1, 'range' : 'min'},
+                            releaseCount = {'query': 1, 'range': 'min'},
                             sort_on = 'sortable_title',
                             sort_order = 'asc')
 
@@ -75,7 +73,6 @@ class SoftwareCenterView(BrowserView):
             filtered_values = self.catalog.uniqueValuesFor('getClassifiers')
             field = self.context.getField('availableClassifiers')
             vocab = self.context.getAvailableTopicsFromClassifiers()
-            classifiers = field.getAsGrid(self.context)
             field_name = 'getClassifiers'
         else:
             vocab = self.context.getAvailableCategoriesAsDisplayList()
@@ -92,28 +89,31 @@ class SoftwareCenterView(BrowserView):
                            "sort_order=reverse&path=%s&getCategories=%s&"
                            "review_state=alpha&review_state=beta&"
                            "review_state=release-candidate&"
-                           "review_state=final")  % (self.portal_url,
-                                                     self.context_path,
-                                                     cat)
+                           "review_state=final") % (self.portal_url,
+                                                    self.context_path,
+                                                    cat)
 
                 releases = []
-                release_query = {'path': self.context_path,
-                                 'portal_type': 'PSCRelease',
-                                  field_name: cat,
-                                  'sort_on': 'Date',
-                                  'sort_order': 'reverse',
-                                  'sort_limit': 5}
+                release_query = {
+                    'path': self.context_path,
+                    'portal_type': 'PSCRelease',
+                    field_name: cat,
+                    'sort_on': 'Date',
+                    'sort_order': 'reverse',
+                    'sort_limit': 5}
 
-                project_query = {field_name: cat,
-                                 'portal_type': 'PSCProject',
-                                 'path': self.context_path}
+                project_query = {
+                    field_name: cat,
+                    'portal_type': 'PSCProject',
+                    'path': self.context_path}
 
                 for r in self.catalog(**release_query)[:5]:
-                    releases.append(dict(title = r.Title,
-                                         description = r.Description,
-                                         parent_url = parent_url(r.getURL()),
-                                         review_state = r.review_state,
-                                         date = r.Date))
+                    releases.append(dict(
+                        title = r.Title,
+                        description = r.Description,
+                        parent_url = parent_url(r.getURL()),
+                        review_state = r.review_state,
+                        date = r.Date))
 
                 num_projects = len(self.catalog(**project_query))
 
@@ -182,4 +182,3 @@ class SoftwareCenterView(BrowserView):
             return self.context.getField('featuredProject').absolute_url()
         except:
             return False
-

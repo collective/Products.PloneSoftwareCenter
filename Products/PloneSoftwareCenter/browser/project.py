@@ -1,6 +1,5 @@
-from Products.Five.browser import BrowserView
+from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
 
 
 def _upcoming_releases(proj):
@@ -11,11 +10,11 @@ def _upcoming_releases(proj):
     releaseFolder = proj.getReleaseFolder()
     catalog = getToolByName(proj, 'portal_catalog')
     res = catalog.searchResults(
-      portal_type = 'PSCRelease',
-      review_state = ['pre-release', 'alpha', 'beta', 'release-candidate'],
-      path = '/'.join(releaseFolder.getPhysicalPath()),
-      sort_on = 'effective',
-      sort_order = 'reverse')
+        portal_type = 'PSCRelease',
+        review_state = ['pre-release', 'alpha', 'beta', 'release-candidate'],
+        path = '/'.join(releaseFolder.getPhysicalPath()),
+        sort_on = 'effective',
+        sort_order = 'reverse')
     return [r.getObject() for r in res]
 
 
@@ -44,11 +43,11 @@ class ProjectView(BrowserView):
         if releaseFolder:
             catalog = getToolByName(self.context, 'portal_catalog')
             res = catalog.searchResults(
-              path = '/'.join(releaseFolder.getPhysicalPath()),
-              review_state = 'final',
-              sort_on = 'Date',
-              sort_order = 'reverse',
-              portal_type = 'PSCRelease')
+                path = '/'.join(releaseFolder.getPhysicalPath()),
+                review_state = 'final',
+                sort_on = 'Date',
+                sort_order = 'reverse',
+                portal_type = 'PSCRelease')
 
         if not res:
             return None
@@ -61,7 +60,6 @@ class ProjectView(BrowserView):
 
         latest_release = self.latest_release()
 
-
         if latest_release:
             return self.context.toLocalizedTime(latest_release.effective())
         else:
@@ -73,7 +71,6 @@ class ProjectView(BrowserView):
 
         return _upcoming_releases(self.context)
 
-
     def all_releases(self):
         """Get a list of all releases, ordered by version, starting with the latest.
         """
@@ -81,10 +78,10 @@ class ProjectView(BrowserView):
         releaseFolder = proj.getReleaseFolder()
         catalog = getToolByName(proj, 'portal_catalog')
         res = catalog.searchResults(
-          portal_type = 'PSCRelease',
-          path = '/'.join(releaseFolder.getPhysicalPath()),
-          sort_on = 'id',
-          sort_order = 'reverse')
+            portal_type = 'PSCRelease',
+            path = '/'.join(releaseFolder.getPhysicalPath()),
+            sort_on = 'id',
+            sort_order = 'reverse')
         return [r.getObject() for r in res]
 
     def release_rss_url(self):
@@ -94,15 +91,15 @@ class ProjectView(BrowserView):
         here_url = self.context.absolute_url()
 
         req_vars = [
-          ['portal_type', 'PSCRelease'],
-          ['sort_on', 'Date'],
-          ['sort_order', 'reverse'],
-          ['path', self.context_path],
-          ]
+            ['portal_type', 'PSCRelease'],
+            ['sort_on', 'Date'],
+            ['sort_order', 'reverse'],
+            ['path', self.context_path],
+            ]
 
         req_vars_str = '&'.join(
-          ['%s=%s' % (pair[0], pair[1]) for pair in req_vars]
-          )
+            ['%s=%s' % (pair[0], pair[1]) for pair in req_vars]
+            )
 
         return '%s/search_rss?%s' % (here_url, req_vars_str)
 
@@ -123,13 +120,13 @@ class ProjectView(BrowserView):
         """
 
         req_vars = [
-          ['portal_type%3Alist', 'PSCProject'],
-          ['Creator', self.context.Creator()],
-          ]
+            ['portal_type%3Alist', 'PSCProject'],
+            ['Creator', self.context.Creator()],
+            ]
 
         req_vars_str = '&'.join(
-          ['%s=%s' % (pair[0], pair[1]) for pair in req_vars]
-          )
+            ['%s=%s' % (pair[0], pair[1]) for pair in req_vars]
+            )
 
         return '%s/search?%s' % (self.portal_url, req_vars_str)
 
@@ -145,17 +142,16 @@ class ProjectView(BrowserView):
         """
 
         ids = self.context.contentIds(
-          filter = {'portal_type': 'PSCReleaseFolder'})
+            filter = {'portal_type': 'PSCReleaseFolder'})
         if ids:
             return '%s/%s' % (self.context.absolute_url(), ids[0])
-
 
     def roadmap_folder_url(self):
         """Get the url to the roadmap folder, or None if it does not exist
         """
 
         ids = self.context.contentIds(
-          filter = {'portal_type': 'PSCImprovementProposalFolder'})
+            filter = {'portal_type': 'PSCImprovementProposalFolder'})
         if ids:
             return '%s/%s' % (self.context.absolute_url(), ids[0])
 
@@ -171,7 +167,7 @@ class ProjectView(BrowserView):
         """
 
         ids = self.context.contentIds(
-          filter = {'portal_type': 'PSCDocumentationFolder'})
+            filter = {'portal_type': 'PSCDocumentationFolder'})
         if ids:
             return '%s/documentation' % self.context.absolute_url()
         elif self.context.getDocumentationLink():
@@ -196,8 +192,8 @@ class ProjectView(BrowserView):
         ignored types passed in. This essentially allows access to contained
         help-center items, collectors etc.
         """
-        return [o for o in self.context.folderlistingFolderContents() \
-                    if o.portal_type not in ignore]
+        return [o for o in self.context.folderlistingFolderContents()
+                if o.portal_type not in ignore]
 
     def criteria_info(self):
         """
@@ -242,4 +238,3 @@ class ProjectView(BrowserView):
                 return False
         except KeyError:
             return False
-

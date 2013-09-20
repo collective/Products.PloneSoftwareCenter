@@ -2,12 +2,12 @@
 Trove reader
 $Id:$
 """
-from urllib2 import urlopen
 from urllib2 import URLError
+from urllib2 import urlopen
 import socket
-from itertools import groupby
 
 PYPI_CLASSIFIERS_URL = 'http://pypi.python.org/pypi?%3Aaction=list_classifiers'
+
 
 class TroveClassifier(object):
     """PloneSoftware-friendly Trove provider
@@ -63,4 +63,3 @@ class TroveClassifier(object):
 
         return sorted(['%s|%s|%s' % (value[0], value[1], key)
                        for key, value in self._ids.items()], _sorted)
-

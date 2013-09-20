@@ -1,10 +1,7 @@
-from zope.interface import implements
-from zope.component import adapts
-
 from Products.Archetypes.atapi import AttributeStorage
-
 from Products.PloneSoftwareCenter.storage.interfaces import IPSCFileStorage
-from Products.Archetypes.interfaces.storage import IStorage
+from zope.interface import implements
+
 
 class ArchetypeStorage(AttributeStorage):
     """adapts a release folder as a dummy storage
@@ -16,5 +13,3 @@ class ArchetypeStorage(AttributeStorage):
 
     def __init__(self, context):
         self.context = context
-
-

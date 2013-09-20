@@ -1,6 +1,6 @@
-from Products.Five.browser import BrowserView
+from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+
 
 class ImprovementView(BrowserView):
 

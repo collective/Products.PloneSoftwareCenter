@@ -1,20 +1,14 @@
-"""
-$Id$
-"""
-
-from Products.CMFCore.utils import ContentInit
-from Products.CMFCore.DirectoryView import registerDirectory
-
 from Products.Archetypes.atapi import listTypes, process_types
+from Products.CMFCore import permissions as cmf_permissions
+from Products.CMFCore.DirectoryView import registerDirectory
+from Products.CMFCore.utils import ContentInit
+from Products.validation import validation
+from zope.i18nmessageid import MessageFactory
 
 from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter import permissions as psc_permissions
-from Products.CMFCore import permissions
-
-from Products.validation import validation
 from Products.PloneSoftwareCenter import validators
 
-from zope.i18nmessageid import MessageFactory
 PSCMessageFactory = MessageFactory('plonesoftwarecenter')
 
 validation.register(validators.ProjectIdValidator('isNonConflictingProjectId'))
@@ -26,6 +20,7 @@ registerDirectory(config.SKINS_DIR, config.GLOBALS)
 def initialize(context):
     # Kick content registration and sys.modules mangling
     from Products.PloneSoftwareCenter import content
+    content  # pyflakes
 
     allTypes = listTypes(config.PROJECTNAME)
 
@@ -76,7 +71,7 @@ def initialize(context):
     ContentInit(
         config.PROJECTNAME + ' Project Content',
         content_types=tuple(member_content_types),
-        permission=permissions.AddPortalContent,
+        permission=cmf_permissions.AddPortalContent,
         extra_constructors=tuple(member_constructors),
         fti=ftis,
         ).initialize(context)

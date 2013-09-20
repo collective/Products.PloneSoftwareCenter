@@ -12,6 +12,7 @@ from Products.PloneSoftwareCenter.tests.utils import PACKAGE_HOME
 from Testing import ZopeTestCase
 try:
     from Products.Poi.interfaces import Tracker
+    Tracker  # pyflakes
     HAS_POI = True
     ZopeTestCase.installProduct('Poi')
 except ImportError:

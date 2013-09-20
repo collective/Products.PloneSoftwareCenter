@@ -1,31 +1,28 @@
 """
 $Id: PyPI.py 18612 2006-01-28 14:46:00Z dreamcatcher $
 """
-import re
+
 import hashlib
-from decimal import Decimal, InvalidOperation
+import re
 
-from AccessControl import getSecurityManager
 from AccessControl import Unauthorized
+from AccessControl import getSecurityManager
 from AccessControl.SpecialUsers import nobody
-import transaction
-
-from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.utils import SimpleItemWithProperties, UniqueObject
-from Products.CMFCore.WorkflowCore import WorkflowException
-from Products.Five import BrowserView
 from Products.Archetypes.event import ObjectEditedEvent
-
-from Products.PloneSoftwareCenter.utils import VersionPredicate
-from Products.PloneSoftwareCenter.utils import which_platform
-from Products.PloneSoftwareCenter.utils import is_distutils_file
-from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
-
+from Products.CMFCore.WorkflowCore import WorkflowException
+from Products.CMFCore.utils import getToolByName
+from Products.Five import BrowserView
+from decimal import Decimal, InvalidOperation
 from plone.i18n.normalizer.interfaces import IFileNameNormalizer
-
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
 from zope.event import notify
+import transaction
+
+from Products.PloneSoftwareCenter.utils import VersionPredicate
+from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
+from Products.PloneSoftwareCenter.utils import is_distutils_file
+from Products.PloneSoftwareCenter.utils import which_platform
 
 safe_filenames = re.compile(r'.+?\.(exe|tar\.gz|bz2|egg|rpm|deb|zip|tgz)$', re.I)
 
@@ -158,7 +155,6 @@ class PyPIView(BrowserView):
     def _store_package(self, name, version, data):
         msg = []
         user = getSecurityManager().getUser()
-        sc = self.context
         normalized_name = self.normalizeName(name)
 
         # getting project and release packages.
@@ -341,7 +337,7 @@ class PyPIView(BrowserView):
             releases.invokeFactory('PSCRelease', id=version)
             try:
                 IAnnotations(releases[version])['title_hint'] = name
-            except TypeError, KeyError:
+            except (TypeError, KeyError):
                 pass
             if msg is not None:
                 msg.append('Created Release %s in Project %s' % \
@@ -469,7 +465,7 @@ class PyPIView(BrowserView):
             return self.fail(err)
 
         md5_digest = data.get('md5_digest')
-        comment = data.get('comment')
+        #comment = data.get('comment')
 
         # check for valid filenames
         filename = content.filename

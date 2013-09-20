@@ -2,25 +2,16 @@
 $Id: PSCImprovementProposal.py 24697 2006-06-10 22:01:35Z optilude $
 """
 
-from zope.interface import implements
-
-from Products.PloneSoftwareCenter.interfaces import IImprovementProposalContent
-
 from AccessControl import ClassSecurityInfo
-
-from Products.CMFCore import permissions
-
-from Products.Archetypes.atapi import *
-
-try:
-    import transaction
-except ImportError:  # BBB
-    from Products.Archetypes import transaction
-
 from Products.ATContentTypes.content.base import ATCTMixin
+from Products.Archetypes.atapi import *
+from Products.CMFCore import permissions
+from zope.interface import implements
+import transaction
 
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.config import PROJECTNAME
+from Products.PloneSoftwareCenter.interfaces import IImprovementProposalContent
 
 TEXT_TYPES = (
     'text/structured',

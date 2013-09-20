@@ -2,32 +2,18 @@
 $Id: PSCRelease.py 24703 2006-06-11 01:44:04Z optilude $
 """
 
-from zope.interface import implements
-
-from Products.PloneSoftwareCenter.interfaces import IReleaseContent
-
-import re
-
-from random import random
-from DateTime import DateTime
-
-from Acquisition import aq_inner
-from Acquisition import aq_parent
-
 from AccessControl import ClassSecurityInfo
+from Products.ATContentTypes.content.base import ATCTMixin
+from Products.AddRemoveWidget import AddRemoveWidget
+from Products.Archetypes.atapi import *
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
-
-from Products.Archetypes.atapi import *
-from Products.ATContentTypes.content.base import ATCTMixin
-
-from Products.AddRemoveWidget import AddRemoveWidget
+from zope.annotation.interfaces import IAnnotations
+from zope.interface import implements
 
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter import config
-
-from zope.annotation.interfaces import IAnnotations
-
+from Products.PloneSoftwareCenter.interfaces import IReleaseContent
 
 PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
 
@@ -256,6 +242,7 @@ PSCReleaseSchema = OrderedBaseFolderSchema.copy() + Schema((
 ))
 
 PSCReleaseSchema.moveField('releaseNumber', before='description')
+
 
 class PSCRelease(ATCTMixin, OrderedBaseFolder):
     """A release of a software project, either final or in progress"""

@@ -1,8 +1,8 @@
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+from Products.Five import BrowserView
 
 from Products.PloneSoftwareCenter.browser.project import _upcoming_releases
+
 
 class RoadmapView(BrowserView):
 
@@ -23,9 +23,9 @@ class RoadmapView(BrowserView):
         return wf.states[state].title
 
         return self.context.utranslate(
-          msgid='workflow_state_title_%s' % state,
-          domain='plonesoftwarecenter',
-          default=wf.states[state].title)
+            msgid='workflow_state_title_%s' % state,
+            domain='plonesoftwarecenter',
+            default=wf.states[state].title)
 
     def improvement_proposals(self, review_state = []):
         """Get the improvement proposals in this folder, sorted on plip number,
@@ -43,10 +43,14 @@ class RoadmapView(BrowserView):
         proposals = catalog.portal_catalog(query)
 
         def sortProposals(x, y):
-            try: xval = int(x.getId)
-            except ValueError: xval = 0
-            try: yval = int(y.getId)
-            except ValueError: yval = 0
+            try:
+                xval = int(x.getId)
+            except ValueError:
+                xval = 0
+            try:
+                yval = int(y.getId)
+            except ValueError:
+                yval = 0
             return cmp(xval, yval)
 
         proposals = [p for p in proposals]

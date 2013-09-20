@@ -2,22 +2,16 @@
 $Id: PSCFile.py 19225 2006-02-13 05:50:18Z limi $
 """
 
-import re
-
+from AccessControl import ClassSecurityInfo
+from Products.ATContentTypes.content.base import ATCTFileContent
+from Products.Archetypes.atapi import *
+from Products.CMFCore import permissions
 from zope.interface import implements
 
-from Products.PloneSoftwareCenter.interfaces import IFileContent
-
-from AccessControl import ClassSecurityInfo
-from Products.CMFCore import permissions
-
-from Products.Archetypes.atapi import *
-
-from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
+from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter.interfaces import IFileContent
 from Products.PloneSoftwareCenter.storage import DynamicStorage
-
-from Products.ATContentTypes.content.base import ATCTFileContent
 
 # We need to make sure that the right storage is set at Field
 # creation to correctly trigger the layer registration process

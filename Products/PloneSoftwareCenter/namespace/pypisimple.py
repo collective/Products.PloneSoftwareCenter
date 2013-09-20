@@ -7,20 +7,17 @@ $Id$
 import itertools
 import os
 
-from zope.interface import implements
-
-from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-
 from Products.PloneSoftwareCenter.utils import get_projects_by_distutils_ids
-
-from zope.publisher.interfaces.browser import IBrowserView
+from zope.interface import implements
 from zope.publisher.interfaces.browser import IBrowserPublisher
+from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IPublishTraverse
-from zope.traversing.namespace import SimpleHandler
 from zope.traversing.interfaces import TraversalError
+from zope.traversing.namespace import SimpleHandler
 try:
     from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+    ViewPageTemplateFile  # pyflakes
 except ImportError:
     # bbb: Zope 2.12 and older
     from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
@@ -34,7 +31,7 @@ class PyPISimpleTraverser(SimpleHandler):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-	
+
     def __of__(self, context):
         return self
 
@@ -56,6 +53,7 @@ class PyPISimpleTraverser(SimpleHandler):
 
 SIMPLE = os.path.join(os.path.dirname(__file__), 'pypisimple.pt')
 PROJECT = os.path.join(os.path.dirname(__file__), 'pypiproject.pt')
+
 
 class PyPISimpleView(object):
     """view used for the main package index page"""
@@ -107,10 +105,11 @@ class PyPISimpleView(object):
         return itertools.chain(*[self.get_url_and_distutils_ids(p)
                                  for p in projects if p is not None])
 
+
 class PyPIProjectView(PyPISimpleView):
 
     def __init__(self, context, request, name):
-        PyPISimpleView.__init__(self,  context, request)
+        PyPISimpleView.__init__(self, context, request)
         self.context = context
         self.request = request
         self.project_name = name
@@ -163,4 +162,3 @@ class PyPIProjectView(PyPISimpleView):
                                   'rel': field})
 
         return links
-

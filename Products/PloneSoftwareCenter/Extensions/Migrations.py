@@ -1,19 +1,17 @@
+from StringIO import StringIO
+
+from Acquisition import aq_base
+from DateTime import DateTime
+from Products.Archetypes import transaction
+from Products.CMFCore.utils import getToolByName
+
 try:
-    from Products.contentmigration.migrator import InlineFieldActionMigrator, BaseInlineMigrator
+    from Products.contentmigration.migrator import BaseInlineMigrator
     from Products.contentmigration.walker import CustomQueryWalker
     haveContentMigrations = True
 except ImportError:
     haveContentMigrations = False
 
-import types
-
-from StringIO import StringIO
-from Products.CMFCore.utils import getToolByName
-from Products.Archetypes import transaction
-from Products.CMFPlone.utils import safe_hasattr
-
-from Acquisition import aq_base
-from DateTime import DateTime
 
 def v1beta7_v1beta8(self, out):
     """Migrate from beta 7 to beta 8

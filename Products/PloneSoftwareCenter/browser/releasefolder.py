@@ -1,8 +1,8 @@
-from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+from Products.Five import BrowserView
 
 from Products.PloneSoftwareCenter.browser.project import _upcoming_releases
+
 
 class ReleaseFolderView(BrowserView):
 
@@ -31,4 +31,3 @@ class ReleaseFolderView(BrowserView):
                                     sort_on = 'effective',
                                     sort_order = 'reverse')
         return [r.getObject() for r in res]
-

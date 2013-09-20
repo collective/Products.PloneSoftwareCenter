@@ -1,6 +1,6 @@
-from Products.Five.browser import BrowserView
+from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+
 
 class CategoryView(BrowserView):
 
@@ -21,10 +21,11 @@ class CategoryView(BrowserView):
         if sort_on == 'featured':
             featured = True
             sort_on = 'positive_ratings'
-        contentFilter = {'SearchableText': SearchableText,
-			             'portal_type': 'PSCProject',
-			             'sort_on' : sort_on,
-			             'sort_order': 'reverse'}
+        contentFilter = {
+            'SearchableText': SearchableText,
+            'portal_type': 'PSCProject',
+            'sort_on': sort_on,
+            'sort_order': 'reverse'}
 
         if version != 'any':
             contentFilter['getCompatibility'] = version

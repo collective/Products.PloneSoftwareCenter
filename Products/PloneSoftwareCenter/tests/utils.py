@@ -5,9 +5,10 @@ PACKAGE_HOME = package_home(globals())
 from Products.CMFCore.utils import getToolByName
 
 # Standard options for DocTests
-optionflags =  (doctest.ELLIPSIS |
-                doctest.NORMALIZE_WHITESPACE |
-                doctest.REPORT_ONLY_FIRST_FAILURE)
+optionflags = (doctest.ELLIPSIS |
+               doctest.NORMALIZE_WHITESPACE |
+               doctest.REPORT_ONLY_FIRST_FAILURE)
+
 
 def verifyURLWithRequestVars(url, base, request_list):
     request_list = tuple(request_list)
@@ -19,9 +20,8 @@ def verifyURLWithRequestVars(url, base, request_list):
         return False
 
     if url.count('?'):
-        url1, url2 = url.split('?')
+        _ignored, url2 = url.split('?')
     else:
-        url1 = url
         url2 = ''
 
     actual_vars = url2.split('&')
@@ -34,12 +34,13 @@ def verifyURLWithRequestVars(url, base, request_list):
 
     return actual_vars == []
 
+
 def setUpDefaultMembers(portal):
-    portal_membership = getToolByName(portal, 'portal_membership')
     membership = getToolByName(portal, 'portal_membership')
     membership.addMember('member1', 'secret', ['Member'], [])
     membership.addMember('member2', 'secret', ['Member'], [])
     membership.addMember('member3', 'secret', ['Member'], [])
+
 
 def setUpEvaluator(psc, id):
     roles = list(psc.get_local_roles_for_userid(id))

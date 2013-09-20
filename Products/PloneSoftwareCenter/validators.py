@@ -8,19 +8,20 @@ import re
 try:
     # Plone 4 and higher
     import plone.app.upgrade
+    plone.app.upgrade  # pyflakes
     USE_BBB_VALIDATORS = False
 except ImportError:
     # BBB Plone 3
     USE_BBB_VALIDATORS = True
 
-
-from zope.interface import implements
+from Products.Archetypes.interfaces import IObjectPreValidation
 from Products.validation.interfaces.IValidator import IValidator
 from zope.component import adapts
-from Products.Archetypes.interfaces import IObjectPreValidation
+from zope.i18nmessageid import MessageFactory
+from zope.interface import implements
+
 from Products.PloneSoftwareCenter.interfaces import IProjectContent
 
-from zope.i18nmessageid import MessageFactory
 _ = MessageFactory('plonesoftwarecenter')
 
 is_valid_contact = re.compile('[mailto:,http:]')

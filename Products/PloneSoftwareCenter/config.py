@@ -48,6 +48,7 @@ GLOBALS = globals()
 if USE_EXTERNAL_STORAGE:
     try:
         import Products.ExternalStorage
+        Products.ExternalStorage  # pyflakes
     except ImportError:
         LOG('PloneSoftwareCenter',
             PROBLEM, 'ExternalStorage N/A, falling back to AttributeStorage')

@@ -1,12 +1,9 @@
-from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
+from xml.dom import getDOMImplementation
+
 from Products.PloneSoftwareCenter.interfaces import ISoftwareCenterContent
-from Acquisition import aq_inner, aq_parent, aq_self
-from DateTime import DateTime
 
 from project import ProjectView
 
-from xml.dom import *
 
 class ProjectDOAPView(ProjectView):
 

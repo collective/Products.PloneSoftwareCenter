@@ -1,8 +1,8 @@
-from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
-
 import re
+
+from Products.Five import BrowserView
+from Products.CMFCore.utils import getToolByName
+
 
 class DownloadableFileView(BrowserView):
 
@@ -24,7 +24,7 @@ class DownloadableFileView(BrowserView):
         (including whitespace) converted to underscores.
         """
         return 'platform_%s.gif' % \
-                    re.sub(r'\W', '_', self.context.getPlatform()).lower()
+            re.sub(r'\W', '_', self.context.getPlatform()).lower()
 
     def file_size(self):
         """Return the file size of the download, or None if unknown.

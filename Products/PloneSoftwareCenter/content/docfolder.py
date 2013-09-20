@@ -2,28 +2,22 @@
 $Id: PSCDocumentationFolder.py 24410 2006-06-05 01:40:27Z optilude $
 """
 
-from zope.interface import implements
-
-from Products.PloneSoftwareCenter.interfaces import IDocumentationFolderContent
-
 from AccessControl import ClassSecurityInfo
-from Products.CMFCore import permissions
-from Products.CMFCore.utils import getToolByName
-
-from Products.Archetypes.atapi import *
-try:
-    import transaction
-except ImportError:  # BBB
-    from Products.Archetypes import transaction
-
 from Products.ATContentTypes.content.base import ATCTMixin
+from Products.Archetypes.atapi import *
+from Products.CMFCore import permissions
+from zope.interface import implements
+import transaction
+
+try:
+    from Products.PloneHelpCenter.interfaces import IHelpCenterContent
+    IHelpCenterContent  # pyflakes
+except ImportError:
+    IHelpCenterContent = None
 
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.config import PROJECTNAME, DOCUMENTATION_ID
-try:
-    from Products.PloneHelpCenter.interfaces import IHelpCenterContent
-except ImportError:
-    IHelpCenterContent = None
+from Products.PloneSoftwareCenter.interfaces import IDocumentationFolderContent
 
 PSCDocumentationFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
 

@@ -2,20 +2,15 @@
 $Id: PSCFileLink.py 19225 2006-02-13 05:50:18Z limi $
 """
 
-import re
-
-from zope.interface import  implements
-
-from Products.PloneSoftwareCenter.interfaces import IFileLinkContent
-
 from AccessControl import ClassSecurityInfo
-from Products.CMFCore import permissions
-
-from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content.base import ATCTMixin
+from Products.Archetypes.atapi import *
+from Products.CMFCore import permissions
+from zope.interface import  implements
 
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
 from Products.PloneSoftwareCenter.config import PROJECTNAME
+from Products.PloneSoftwareCenter.interfaces import IFileLinkContent
 
 PSCFileLinkSchema = BaseSchema.copy() + Schema((
 

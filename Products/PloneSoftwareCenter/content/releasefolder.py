@@ -2,24 +2,16 @@
 $Id: PSCReleaseFolder.py 24400 2006-06-04 22:38:43Z optilude $
 """
 
-from zope.interface import implements
-
-from Products.PloneSoftwareCenter.interfaces import IReleaseFolderContent
-
 from AccessControl import ClassSecurityInfo
-from Products.CMFCore import permissions
-from Products.CMFCore.utils import getToolByName
-
-from Products.Archetypes.atapi import *
-try:
-    import transaction
-except ImportError:  # BBB
-    from Products.Archetypes import transaction
-
 from Products.ATContentTypes.content.base import ATCTMixin
+from Products.Archetypes.atapi import *
+from Products.CMFCore import permissions
+from zope.interface import implements
+import transaction
 
-from Products.PloneSoftwareCenter import config
 from Products.PloneSoftwareCenter import PSCMessageFactory as _
+from Products.PloneSoftwareCenter import config
+from Products.PloneSoftwareCenter.interfaces import IReleaseFolderContent
 
 PSCReleaseFolderSchema = OrderedBaseFolderSchema.copy() + Schema((
 

@@ -1,6 +1,6 @@
-from Products.Five.browser import BrowserView
+from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Acquisition import aq_inner
+
 
 class DocFolderView(BrowserView):
 
@@ -28,4 +28,5 @@ class DocFolderView(BrowserView):
         if not nonPHCTypes:
             return []
 
-        return self.context.getFolderContents(contentFilter = {'portal_type' : nonPHCTypes})
+        return self.context.getFolderContents(
+            contentFilter={'portal_type': nonPHCTypes})
