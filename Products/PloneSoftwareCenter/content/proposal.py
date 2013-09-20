@@ -234,7 +234,7 @@ PSCImprovementProposalSchema = OrderedBaseFolderSchema.copy() + Schema((
 
     ComputedField(
         name='relatedReleases',
-        expression="[o.getId() for o in context.getBackReferences('RelatedFeatures') ]",
+        expression="sorted([o.getId() for o in context.getBackReferences('RelatedFeatures') ])",
         index=':schema',
         widget=StringWidget(
             label=_(u"label_proposal_related_releases", default=u"Related Releases"),
