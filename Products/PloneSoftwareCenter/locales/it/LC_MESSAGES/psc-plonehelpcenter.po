@@ -709,7 +709,7 @@ msgstr ""
 msgid "label_platforms_vocab"
 msgstr ""
 
-#. Default: "Powered by <img src=\"product_icon.gif\" alt=\"x\" /> <a class=\"link-plain\" href=\"http://plone.org/products/plonesoftwarecenter\" title=\"x\">Plone Software Center</a>"
+#. Default: "Powered by <img src=\"product_icon.png\" alt=\"x\" /> <a class=\"link-plain\" href=\"http://plone.org/products/plonesoftwarecenter\" title=\"x\">Plone Software Center</a>"
 #: ../skins/plonesoftwarecenter/plonesoftwarecenter_ploneorg.pt:305
 msgid "label_powered_by_ploneorg"
 msgstr ""

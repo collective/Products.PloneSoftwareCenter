@@ -301,7 +301,7 @@ class PSCProject(ATCTMixin, OrderedBaseFolder):
     archetype_name = 'Software Project'
     immediate_view = default_view = 'psc_project_view'
     suppl_views = ()
-    content_icon = 'product_icon.gif'
+    content_icon = 'product_icon.png'
     schema = PSCProjectSchema
     _at_rename_after_creation = True
 

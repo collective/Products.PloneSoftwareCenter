@@ -6,7 +6,7 @@
 
  <property name="title" i18n:translate="">Software Center</property>
  <property name="description" i18n:translate="">A simple folderish archetype for the Software Center.</property>
- <property name="content_icon">product_icon.gif</property>
+ <property name="content_icon">product_icon.png</property>
  <property name="content_meta_type">PloneSoftwareCenter</property>
  <property name="product">PloneSoftwareCenter</property>
  <property name="factory">addPloneSoftwareCenter</property>

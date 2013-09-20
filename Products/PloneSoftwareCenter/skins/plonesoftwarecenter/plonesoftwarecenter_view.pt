@@ -120,7 +120,7 @@
                        tal:attributes="href release/parent_url;
                                        title release/description;
                                        class string:state-${release/review_state}">
-                        <img tal:replace="structure context/product_icon.gif" />
+                        <img tal:replace="structure context/product_icon.png" />
                         <span tal:replace="release/title">Project</span>
                         <span class="portletItemDetails"
                               tal:content="python:context.toLocalizedTime(release['date'])"><tal:comment replace="nothing">May 5</tal:comment></span>

@@ -300,7 +300,7 @@
         <div class="visualClear"><!----></div>
         
         <div class="poweredBy" i18n:translate="label_powered_by_ploneorg">
-            Powered by <img src="product_icon.gif" alt="Plone Software Center's Home Page"
+            Powered by <img src="product_icon.png" alt="Plone Software Center's Home Page"
                         i18n:attributes="alt label_psc_homepage" />
             <a class="link-plain" 
                href="http://plone.org/products/plonesoftwarecenter"

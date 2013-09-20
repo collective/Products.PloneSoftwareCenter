@@ -52,7 +52,7 @@
         <a href=""
            tal:attributes="href python:here.findParentProjectURL(obj.getURL());
                            title obj/Description">
-            <tal:block replace="structure here/product_icon.gif"/>
+            <tal:block replace="structure here/product_icon.png"/>
             <span tal:replace="python:test(obj.Title, obj.Title, obj.getId)">
                 Product
             </span>

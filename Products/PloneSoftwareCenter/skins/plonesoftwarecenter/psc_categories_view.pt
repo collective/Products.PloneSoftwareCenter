@@ -22,7 +22,7 @@
     <div metal:define-macro="main">
 
         <h1 class="documentFirstHeading">
-            <img tal:replace="structure here/product_icon.gif" />
+            <img tal:replace="structure here/product_icon.png" />
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
 

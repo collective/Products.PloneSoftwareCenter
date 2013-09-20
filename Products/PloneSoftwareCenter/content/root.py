@@ -241,7 +241,7 @@ class PloneSoftwareCenter(ATCTMixin, BaseBTreeFolder):
 
     implements(ISoftwareCenterContent)
 
-    content_icon = 'product_icon.gif'
+    content_icon = 'product_icon.png'
 
     archetype_name = 'Software Center'
     metatype = 'PloneSoftwareCenter'
