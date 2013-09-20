@@ -14,6 +14,7 @@ SOME_EGGS = (os.path.join(curdir, 'zope.size-3.4.0.tar.gz'),
              os.path.join(curdir, 'zope.event-3.4.0-py2.4.egg'),
              )
 
+
 class TestMigration(PSCTestCase):
 
     def afterSetUp(self):
@@ -70,6 +71,13 @@ class TestMigration(PSCTestCase):
             self.assertEquals(contacts, wanted)
 
     def test_migration(self):
+        try:
+            from Products.ExternalStorage.ExternalStorage import\
+                ExternalStorage
+            ExternalStorage  # pyflakes
+        except ImportError:
+            print "ExternalStorage not available. Ignoring test_migration."
+            return
         # patching _pypi_certified_owner
         # so we don't query pypi for real here
         def _owner(id_):
@@ -105,4 +113,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestMigration))
     return suite
-
