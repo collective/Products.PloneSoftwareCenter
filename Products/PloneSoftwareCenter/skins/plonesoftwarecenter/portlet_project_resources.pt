@@ -120,11 +120,13 @@
         <div style="text-align: center; margin-bottom: 1em"
             tal:condition="here/screenshot_preview | nothing"
             class="thumbzoom">
+            <a href="" tal:attributes="href string:${context/absolute_url}/screenshot" target="_blank">
                 <img tal:attributes="src here/screenshot_preview/absolute_url"
                      width="240" alt=""
                      title="Screenshot &mdash; click to enlarge"
                      i18n:attributes="title label_screenshot_click_to_enlarge;"
                      />
+            </a>
         </div>
 
 
